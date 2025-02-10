@@ -295,7 +295,7 @@ def add_comment(post, post_sanitized_title, **kwargs):
     comment = Comment(author=author, content=request.form.get("content"), post=post, is_unread=not is_verified_author)
     with db.session.no_autoflush: # otherwise there's a warning
         if not comment.insert_comment(post, db.session.get(Comment, request.form.get("parent"))):
-            return jsonify(flash_msg="haker :3")
+            return jsonify(flash_msg="haxor :3")
     db.session.add(comment)
     db.session.commit()
     return jsonify(success=True, flash_msg="Comment added successfully!")
@@ -314,7 +314,7 @@ def delete_comment(post, post_sanitized_title, **kwargs):
     # delete comment
     descendants = comment.get_descendants(post)
     if not comment.remove_comment(post):
-        return jsonify(flash_msg="haker :3")
+        return jsonify(flash_msg="haxor :3")
     for descendant in descendants:
         db.session.delete(descendant)
     db.session.delete(comment)

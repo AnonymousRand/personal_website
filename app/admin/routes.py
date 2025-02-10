@@ -64,7 +64,7 @@ def login():
             #     view func of url being redirected to handles this
             return jsonify(success=True, redir_url=next_url, is_redir_after_login=True)
 
-        return jsonify(success=True, redir_url=url_for("admin.choose_action", flash_msg="haker :3", _external=True))
+        return jsonify(success=True, redir_url=url_for("admin.choose_action", flash_msg="haxor :3", _external=True))
 
 
 @bp.route("/choose-action", methods=["GET", "POST"])
@@ -88,7 +88,7 @@ def choose_action(**kwargs):
             case "change_admin_password":
                 redir_url = url_for("admin.change_admin_password", _external=True)
             case _:
-                return jsonify(flash_msg="haker :3")
+                return jsonify(flash_msg="haxor :3")
         return jsonify(redir_url=redir_url)
 
 
@@ -168,7 +168,7 @@ def edit_blogpost(**kwargs):
     try:
         post_id = int(request.args.get("post_id"))
     except Exception:
-        return admin_util.redir_depending_on_req_method("admin.search_blogpost", flash_msg="haker :3")
+        return admin_util.redir_depending_on_req_method("admin.search_blogpost", flash_msg="haxor :3")
 
     post = db.session.get(Post, post_id)
     if post is None:
