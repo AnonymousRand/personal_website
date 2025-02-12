@@ -3,6 +3,7 @@ Description=Deploy `personal-website`
 After=network.target
 
 [Service]
+User=[REPLACE]
 Group=docker
 WorkingDirectory=[REPLACE: PATH TO `docker/` FOLDER]
 # use `DOCKER_USER` to allow container access to bind-mounted MySQL data dir without messing with `uid`s
