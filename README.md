@@ -11,7 +11,7 @@ I hope I'm not reading this because I bricked a machine again.
         - Recover database data from backups
     - Make sure default key for SSH and for GitHub pushing has no passcode if planning to use automatic db/image backup scripts. No hack pls
 2. `git clone`
-    - Make sure all files and folders in the entire project are owned by the user that Docker runs its containers as (see [deployment/systemd-reference/personal_website.service](deployment/systemd-reference/personal_website.service))
+    - Make sure all files and folders in the entire project are owned by the user that Docker runs its containers as (see [deployment/systemd_reference/personal_website.service](deployment/systemd_reference/personal_website.service))
 3. Install packages:
     - Install Python modules from [requirements.txt](requirements.txt) by running `pip install -r requirements.txt` (ideally within a virtualenv)
     - Install JS modules from [app/static/package.json](app/static/package.json) by running `npm install` in the [app/static/](app/static/) directory
@@ -20,9 +20,9 @@ I hope I'm not reading this because I bricked a machine again.
         - `DATABASE_URL` should be something like `mysql+pymysql://[db username]:[db password]@[hostname]:[port]/[database name]?charset=utf8mb4`
     - `deployment/docker/flask/envs/.env`: same as `.env` but with `DATABASE_URL` modified to connect to the MySQL Docker container (i.e. the `hostname` part of the URL is the name of the MySQL container *service* in [deployment/docker/compose.yaml](deployment/docker/compose.yaml), in this case `mysql`)
     - `deployment/docker/mysql/envs/.mysqlenv`: nothing yet (no environment variables if bind-mounting existing MySQL data directory)
-    - `deployment/backup-scripts/db_backup_config.sh`: set the variables referenced in [deployment/backup-scripts/db_backup.sh](deployment/backup-scripts/db_backup.sh)
+    - `deployment/backup_scripts/db_backup_config.sh`: set the variables referenced in [deployment/backup_scripts/db_backup.sh](deployment/backup_scripts/db_backup.sh)
     - `app/static/css/custom_bootstrap.css` and `app/static/css/custom_bootstrap.css.map`: run `npm compile_bootstrap` from within the [app/static/](app/static/) folder
-5. Navigate to [deployment/docker/](deployment/docker/) and run `deploy.sh` (or use a `systemd` service, for example [deployment/systemd-reference/personal_website.service](deployment/systemd-reference/personal_website.service))
+5. Navigate to [deployment/docker/](deployment/docker/) and run `deploy.sh` (or use a `systemd` service, for example [deployment/systemd_reference/personal_website.service](deployment/systemd_reference/personal_website.service))
 
 # Developer notes to compensate for possibly scuffed code
 
@@ -31,7 +31,7 @@ Keep up-to-date:
 - [.gitignore](.gitignore)
 - [config.py](config.py)
 - README
-- Backup scripts in [deployment/backup-scripts/](deployment/backup-scripts/)
+- Backup scripts in [deployment/backup_scripts/](deployment/backup_scripts/)
 - Cloudflare firewall rules etc.
 - Server-side access control must be perfect
 
@@ -41,7 +41,7 @@ Keep up-to-date:
     - Dockerfiles
     - Docker entrypoint scripts
     - Docker environment variables
-    - `deployment/backup-scripts/db_backup_config.sh` configs
+    - `deployment/backup_scripts/db_backup_config.sh` configs
     - Backup scripts
     - `systemd` services
 - To connect to the MySQL instance running in Docker from the host:
