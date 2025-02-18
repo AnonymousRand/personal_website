@@ -1,6 +1,4 @@
-# Personal Website
-
-Janky Flask Personal Website™.
+# Janky Flask Personal Website™
 
 # Setup if it's ever needed
 
