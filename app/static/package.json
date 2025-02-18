@@ -1,5 +1,5 @@
 {
-  "name": "personal-website",
+  "name": "personal_website",
   "version": "1.0.0",
   "description": "using npm with flask is a bad idea, they said",
   "main": "index.js",

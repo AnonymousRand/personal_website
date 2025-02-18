@@ -4,8 +4,8 @@ FROM nikolaik/python-nodejs:python3.10-nodejs23-slim
 
 EXPOSE 8008
 
-RUN mkdir personal-website/
-WORKDIR /personal-website/
+RUN mkdir personal_website/
+WORKDIR /personal_website/
 
 COPY app/ app/
 COPY migrations/ migrations/

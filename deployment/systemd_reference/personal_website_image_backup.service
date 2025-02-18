@@ -1,8 +1,8 @@
 [Unit]
-Description=Periodic backup of `personal-website`'s blogpost images
+Description=Periodic backup of personal website's blogpost images
 
 [Service]
 Type=oneshot
 User=[REPLACE: linux user that can git push, like the current SSH user]
-WorkingDirectory=[REPLACE: path to backup-scripts/ folder]
+WorkingDirectory=[REPLACE: path to backup_scripts/ folder]
 ExecStart=/bin/bash image_backup.sh

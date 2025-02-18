@@ -1,5 +1,5 @@
 [Unit]
-Description=Deploy `personal-website`
+Description=Deploy personal website
 After=network.target
 
 [Service]
