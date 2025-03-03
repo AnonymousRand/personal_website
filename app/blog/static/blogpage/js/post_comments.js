@@ -127,7 +127,7 @@ $(document).on("submit", ".comment__reply-btn", async function(e) {
     const id = getCommentId(e.target);
     const jQFormAddReply = $(`#comment__add-reply-form-${id}`);
     if (jQFormAddReply.length === 0) {
-        customFlash("haxor :3");
+        customFlash("please no hack :3");
         return;
     }
 
