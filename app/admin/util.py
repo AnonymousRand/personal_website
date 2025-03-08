@@ -28,7 +28,7 @@ def upload_imgs(imgs: list[werkzeug.datastructures.FileStorage], imgs_base_path:
                         and file_ext != validate_img(img.stream)
                     )
             if invalid:
-                return "Invalid img. If it's another heic or webp im gonna lose my mind i swear to god i hat"
+                return "Invalid img. If it's another heic im gonna lose my mind i swear to god i hate"
 
             path = os.path.join(imgs_base_path, filename)
             os.makedirs(imgs_base_path, exist_ok=True) # make image directory if it doesn't exist
