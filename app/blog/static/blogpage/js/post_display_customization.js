@@ -17,7 +17,7 @@ function applyPostAndCommentStyles(baseSelector) {
     jQCommentContent.find("img").addClass("comment__img");
     jQPostAndCommentContent.find(".post__h1, .comment__h1").addClass("mb-3 border-b--h1 fs-4");
     jQPostAndCommentContent.find(".post__h2, .comment__h2").addClass("mb-3 border-b--h2 fs-6");
-    jQPostAndCommentContent.find(".post__h3, .comment__h3").addClass("mb-3 fs-7");
+    jQPostAndCommentContent.find(".post__h3, .comment__h3").addClass("mb-3 fs-6");
 }
 
 function addCommentSyntaxGuideTooltip() {
