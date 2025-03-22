@@ -10,12 +10,14 @@ function applyPostAndCommentStyles(baseSelector) {
     // add CSS classes for extra styling
     jQPostContent.find("h1").addClass("post__h1 ");
     jQPostContent.find("h2").addClass("post__h2");
+    jQPostContent.find("h3").addClass("post__h3");
     jQPostContent.find("img").addClass("post__img");
     jQCommentContent.find("h1").addClass("comment__h1");
     jQCommentContent.find("h2").addClass("comment__h2");
     jQCommentContent.find("img").addClass("comment__img");
     jQPostAndCommentContent.find(".post__h1, .comment__h1").addClass("mb-3 border-b--h1 fs-4");
-    jQPostAndCommentContent.find(".post__h2, .comment__h2").addClass("mb-3 border-b--h2 fs-7");
+    jQPostAndCommentContent.find(".post__h2, .comment__h2").addClass("mb-3 border-b--h2 fs-6");
+    jQPostAndCommentContent.find(".post__h3, .comment__h3").addClass("mb-3 fs-7");
 }
 
 function addCommentSyntaxGuideTooltip() {
