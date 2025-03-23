@@ -120,10 +120,12 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                         },
                         "ex": {
                             "thm_type": "Example",
+                            "html_class": "dimgray",
                             "thm_counter_incr": "0,0,1"
                         },
                         r"ex\\\*": {
-                            "thm_type": "Example"
+                            "thm_type": "Example",
+                            "html_class": "dimgray"
                         },
                         "lem": {
                             "thm_type": "Lemma",
