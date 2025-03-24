@@ -39,7 +39,7 @@ window.MathJax = {
             generator: ["\\langle #1 \\rangle", 1],
             id: "\\operatorname{id}",
             iffshort: "\\Leftrightarrow",
-            im: "\\operatorname{id}",
+            im: "\\operatorname{im}",
             impliesshort: "\\Rightarrow",
             innprod: ["\\langle #1 \\rangle", 1],
             lcm: "\\operatorname{lcm}",

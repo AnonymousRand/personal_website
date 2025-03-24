@@ -120,12 +120,10 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                         },
                         "ex": {
                             "thm_type": "Example",
-                            "html_class": "dimgray",
                             "thm_counter_incr": "0,0,1"
                         },
                         r"ex\\\*": {
-                            "thm_type": "Example",
-                            "html_class": "dimgray"
+                            "thm_type": "Example"
                         },
                         "lem": {
                             "thm_type": "Lemma",
@@ -174,17 +172,12 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                         },
                         "pf": {
                             "thm_type": "Proof",
-                            "html_class": "border--2px border--lightgray dimgray",
-                            "thm_name_overrides_thm_heading": True
-                        },
-                        "pfnested": {
-                            "thm_type": "Proof",
-                            "html_class": "border--2px border--lightgray dimgray",
-                            "thm_name_overrides_thm_heading": True
-                        },
-                        "pfopen": {
-                            "thm_type": "Proof",
                             "html_class": "dropdown--default-open border--2px border--lightgray dimgray",
+                            "thm_name_overrides_thm_heading": True
+                        },
+                        "pfclosed": {
+                            "thm_type": "Proof",
+                            "html_class": "border--2px border--lightgray dimgray",
                             "thm_name_overrides_thm_heading": True
                         },
                         r"rmk\\\*": {
