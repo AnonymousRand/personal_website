@@ -266,12 +266,14 @@
 .border--colorful {
     border-color: transparent !important;
     border-image: conic-gradient(
-        var(--custom-green-light) 60deg,
-        var(--custom-blue-light) 90deg,
-        var(--custom-pink-xlight) 120deg,
-        var(--custom-pink-xlight) 240deg,
-        var(--custom-orange-xlight) 270deg,
-        var(--custom-green-light) 300deg
+        var(--custom-orange) 50deg,
+        var(--custom-green-light) 85deg,
+        var(--custom-green-light) 95deg,
+        var(--custom-blue-light) 130deg,
+        var(--custom-blue-light) 225deg,
+        var(--custom-pink-xlight) 260deg,
+        var(--custom-pink-xlight) 280deg,
+        var(--custom-orange) 315deg
     ) 1 !important;
 }
 
