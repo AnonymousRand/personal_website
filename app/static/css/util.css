@@ -340,14 +340,14 @@
 /* `link` */
 /**********/
 
-.link--gray {
-    text-decoration-color: gray !important;
-    color: gray !important;
-}
-
-.link--gray:hover {
+.link--dimgray {
     text-decoration-color: dimgray !important;
     color: dimgray !important;
+}
+
+.link--dimgray:hover {
+    text-decoration-color: black !important;
+    color: black !important;
 }
 
 .link--custom-blue-deep {
