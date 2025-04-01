@@ -346,8 +346,8 @@
 }
 
 .link--dimgray:hover {
-    text-decoration-color: black !important;
-    color: black !important;
+    text-decoration-color: #343434 !important;
+    color: #343434 !important;
 }
 
 .link--custom-blue-deep {
