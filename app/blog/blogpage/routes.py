@@ -104,7 +104,7 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                             "html_class": "md-textbox last-child-no-mb border--4px border--lightgray",
                             "thm_counter_incr": "0,0,1"
                         },
-                        "coroimpt": {
+                        "coro_impt": {
                             "thm_type": "Corollary",
                             "html_class": "md-textbox last-child-no-mb border--6px border--colorful",
                             "thm_counter_incr": "0,0,1"
@@ -152,7 +152,7 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                             "thm_type": "Theorem",
                             "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxlight"
                         },
-                        "thmimpt": {
+                        "thm_impt": {
                             "thm_type": "Theorem",
                             "html_class": "md-textbox last-child-no-mb border--6px border--colorful",
                             "thm_counter_incr": "0,0,1"
@@ -175,7 +175,7 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                             "html_class": "dropdown--default-open border--2px border--lightgray dimgray",
                             "thm_name_overrides_thm_heading": True
                         },
-                        "pfclosed": {
+                        "pf_closed": {
                             "thm_type": "Proof",
                             "html_class": "border--2px border--lightgray dimgray",
                             "thm_name_overrides_thm_heading": True
