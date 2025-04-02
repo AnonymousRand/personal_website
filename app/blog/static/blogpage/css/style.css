@@ -118,6 +118,8 @@ input[value="Reply"][value="Delete"] {
 
 /* use these as heading sections within proofs */
 .pf__h1 {
+    border-bottom: 1px solid;
+    padding-bottom: 0.25rem;
     font-weight: bold;
     font-size: 1.25rem;
 }
