@@ -68,7 +68,6 @@ window.MathJax = {
             spann: "\\operatorname{span}",
             Stab: "\\operatorname{Stab}",
             suchthat: "\\,\\vert\\,",
-            suchthatlr: "\\,\\middle\\vert\\,",
             Sum: ["\\sum_{#1}^{#2}{\\left(#3\\right)}", 3],
             Sym: "\\operatorname{Sym}",
             tobij: "\\leftrightarrow",
