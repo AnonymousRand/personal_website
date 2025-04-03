@@ -266,15 +266,28 @@
 .border--colorful {
     border-color: transparent !important;
     border-image: conic-gradient(
-        var(--custom-orange) 50deg,
+        var(--custom-orange-light) 62.5deg,
         var(--custom-green-light) 85deg,
         var(--custom-green-light) 95deg,
-        var(--custom-blue-xlight) 125deg,
-        var(--custom-blue-xlight) 230deg,
+        var(--custom-blue-xlight) 112.5deg,
+        var(--custom-blue-xlight) 242.5deg,
         var(--custom-pink-xlight) 260deg,
         var(--custom-pink-xlight) 280deg,
-        var(--custom-orange) 315deg
+        var(--custom-orange-light) 312.5deg
     ) 1 !important;
+    /* use when `background-clip` is better supported for `border-radius` support
+    background: conic-gradient(
+        var(--custom-orange-light) 62.5deg,
+        var(--custom-green-light) 85deg,
+        var(--custom-green-light) 95deg,
+        var(--custom-blue-xlight) 112.5deg,
+        var(--custom-blue-xlight) 242.5deg,
+        var(--custom-pink-xlight) 260deg,
+        var(--custom-pink-xlight) 280deg,
+        var(--custom-orange-light) 312.5deg
+    ) border-box;
+    background-clip: border-area;
+    */
 }
 
 .border--custom-blue-light {
