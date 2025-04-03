@@ -4,7 +4,7 @@ let onMathJaxTypeset = function(baseSelector) {
         return;
     }
 
-    // make \[\] LaTeX blocks scroll horizontally on overflow
+    // make `\[\]` LaTeX blocks scroll horizontally on overflow
     jQBase.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCOLL_DIV_HTML);
     // for `\tag{}`ed equations
     jQBase.find("mjx-math[width='full']").each(function() {
@@ -15,7 +15,7 @@ let onMathJaxTypeset = function(baseSelector) {
 
 window.MathJax = {
     tex: {
-        // custom commands from my notes (or all the ones MathJax supports, at least)
+        // custom macros from my notes (or all the ones MathJax supports, at least)
         macros: {
             arccot: "\\operatorname{arccot}",
             arccsc: "\\operatorname{arccsc}",
