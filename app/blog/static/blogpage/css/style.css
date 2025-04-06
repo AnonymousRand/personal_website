@@ -121,11 +121,12 @@ input[value="Reply"][value="Delete"] {
     border-bottom: 1px solid;
     padding-bottom: 0.25rem;
     font-weight: bold;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
 }
 
 .pf__h2 {
     font-weight: bold;
+    font-size: 1.15rem;
 }
 
 .post__h1 {
