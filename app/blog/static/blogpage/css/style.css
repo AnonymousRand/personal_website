@@ -86,8 +86,15 @@ input[value="Reply"][value="Delete"] {
     margin-top: 0.5rem;
 }
 
+/* need first paragraph to be `inline` to start on same line as open/close dropdown marker
+ * but still have padding between it and any subsequent elements
+ * `display: inline-block` is so close to working but occasionally still starts on new line for some stupid reason */
 .md-dropdown__summary > *:first-child {
-    display: inline-block;
+    display: inline;
+}
+
+.md-dropdown__summary > *:nth-child(2) {
+    margin-top: 1rem;
 }
 
 .md-dropdown__summary > ol {
