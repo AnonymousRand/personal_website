@@ -363,6 +363,17 @@
     color: #363636 !important;
 }
 
+.link--discreet {
+    text-decoration-style: dotted !important;
+    text-decoration-color: dimgray !important;
+    color: dimgray !important;
+}
+
+.link--discreet:hover {
+    text-decoration-color: #363636 !important;
+    color: #363636 !important;
+}
+
 .link--custom-blue-deep {
     text-decoration-color: var(--custom-blue-deep) !important;
     color: var(--custom-blue-deep) !important;

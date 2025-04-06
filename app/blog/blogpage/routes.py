@@ -191,6 +191,7 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                     "content_html_class": "md-dropdown__content last-child-no-mb"
                 },
                 thm_heading_config={
+                    "html_id_prefix": "thms-",
                     "html_class": "md-thm-heading",
                     "emph_html_class": "md-thm-heading__emph"
                 }
