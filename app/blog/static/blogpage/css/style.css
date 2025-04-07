@@ -119,7 +119,7 @@ input[value="Reply"][value="Delete"] {
     font-weight: bold;
 }
 
-.md-dropdown .md-thm-heading__emph {
+.md-dropdown__summary .md-thm-heading__emph {
     font-weight: unset;
 }
 
