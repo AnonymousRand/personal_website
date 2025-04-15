@@ -146,6 +146,7 @@ Keep up-to-date:
 ### Tables:
 - Uses [Markdown tables](https://www.tablesgenerator.com/markdown_tables#) with "Compact mode" and "Line breaks as \<br\>" checked
 - For merged cells, use the [Attribute Lists](https://python-markdown.github.io/extensions/attr_list/) extension to set `colspan`. To keep valid table syntax, put `<span></span> {: hidden }` in cells that have been merged into other ones.
+- To specify column `width` attributes (in HTML, not CSS) for example with Attribute Lists, either specify in pixels or percentages. Pixels are absolute while percentages are relative to the width of the table. If percentages are used, or if no width specified at all, table will have `min-width: 100%` of parent div.
 
 # Cookie explanation from empirical observations and devtools
 

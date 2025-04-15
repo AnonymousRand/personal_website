@@ -22,6 +22,7 @@ window.MathJax = {
             arcsec: "\\operatorname{arcsec}",
             Aut: "\\operatorname{Aut}",
             C: "\\mathbb{C}",
+            comma: ",\\ ",
             ceil: ["\\left\\lceil #1 \\right\\rceil", 1],
             choose: ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2],
             codom: ["\\operatorname{codom}"],

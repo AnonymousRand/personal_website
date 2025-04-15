@@ -3,21 +3,13 @@ function applyPostAndCommentStyles(baseSelector) {
     if (jQBase.length === 0) {
         return;
     }
-    const jQPostContent = jQBase.find("#post__content");
-    const jQCommentContent = jQBase.find(".comment__content");
-    const jQPostAndCommentContent = $.merge(jQPostContent, jQCommentContent);
+    const jQPostAndCommentContent = jQBase.find("#post__content, .comment__content");
 
     // add CSS classes for extra styling
-    jQPostContent.find("h1").addClass("post__h1 ");
-    jQPostContent.find("h2").addClass("post__h2");
-    jQPostContent.find("h3").addClass("post__h3");
-    jQPostContent.find("img").addClass("post__img");
-    jQCommentContent.find("h1").addClass("comment__h1");
-    jQCommentContent.find("h2").addClass("comment__h2");
-    jQCommentContent.find("img").addClass("comment__img");
-    jQPostAndCommentContent.find(".post__h1, .comment__h1").addClass("mb-3 border-b--h1 fs-3");
-    jQPostAndCommentContent.find(".post__h2, .comment__h2").addClass("mb-3 border-b--h2 fs-5");
-    jQPostAndCommentContent.find(".post__h3, .comment__h3").addClass("mb-3 fs-6");
+    jQPostAndCommentContent.find("h1").addClass("custom-green-deep-dark mb-3 border-b--h1 fs-3");
+    jQPostAndCommentContent.find("h2").addClass("custom-orange-deep mb-3 border-b--h2 fs-5");
+    jQPostAndCommentContent.find("h3").addClass("mb-3 fs-6");
+    jQPostAndCommentContent.find("img").addClass("post__img");
 }
 
 function addCommentSyntaxGuideTooltip() {

@@ -253,6 +253,10 @@
     border-bottom-style: solid !important;
 }
 
+.border-b--3px {
+    border-bottom-width: 3px !important;
+}
+
 .border-b--h1 {
     border-bottom: 3px solid var(--custom-green-deep-dark) !important;
     padding-bottom: 0.5rem !important;
@@ -308,6 +312,9 @@
 
 .border--lightgray {
     border-color: lightgray !important;
+}
+
+.border-r--3px {
 }
 
 /*********/

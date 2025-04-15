@@ -136,12 +136,15 @@ input[value="Reply"][value="Delete"] {
     font-size: 1.15rem;
 }
 
-.post__h1 {
-    color: var(--custom-green-deep-dark);
+.post__content table {
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.post__h2 {
-    color: var(--custom-orange-deep);
+/* tables that don't specify pixel (and thus non-relative) widths on columns fill up whole width */
+/* can still specify relative percentage widths between cols, with the whole table being `min-width: 100%` of parent */
+.post__content table:not(:has(th[width$="px"], td[width$="px"])) {
+    min-width: 100%;
 }
 
 .post__img {
