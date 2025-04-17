@@ -93,6 +93,7 @@ input[value="Reply"][value="Delete"] {
     display: inline;
 }
 
+/* since first child must be inline in order to be on the same line as dropdown `::marker` */
 .md-dropdown__summary > *:nth-child(2) {
     margin-top: 1rem;
 }
