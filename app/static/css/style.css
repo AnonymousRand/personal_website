@@ -50,6 +50,11 @@ label:has(+ * [required]):after {
     content:" *";
 }
 
+/* make MathJax `\overline` actually visible; TODO sync CSS selector if MathJax updates */
+mjx-stretchy-h.mjx-c2013 mjx-ext mjx-c::before {
+    font-size: 125%;
+}
+
 /* prevent dropdowns from overflowing if dropdown not collapsed
  * note that 0.75 is an arbitrary approximation, because trying to find it precisely seems nigh impossible */
 nav .dropdown-menu {
@@ -80,8 +85,8 @@ th {
     padding: 0.5rem;
 }
 
-td *:last-child,
-th *:last-child {
+td :last-child,
+th :last-child {
     margin-bottom: 0;
 }
 
@@ -221,6 +226,6 @@ th *:last-child {
     color: #2b2b2b !important;
 }
 
-.tooltip-inner *:last-child {
+.tooltip-inner :last-child {
     margin-bottom: 0 !important;
 }
