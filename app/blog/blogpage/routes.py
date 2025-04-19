@@ -177,12 +177,12 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
                         },
                         "pf": {
                             "thm_type": "Proof",
-                            "html_class": "dropdown--default-open border--2px border--lightgray dimgray",
+                            "html_class": "md-pf dropdown--default-open border--2px border--lightgray dimgray",
                             "thm_name_overrides_thm_heading": True
                         },
                         "pf_closed": {
                             "thm_type": "Proof",
-                            "html_class": "border--2px border--lightgray dimgray",
+                            "html_class": "md-pf border--2px border--lightgray dimgray",
                             "thm_name_overrides_thm_heading": True
                         },
                         r"rmk\\\*": {

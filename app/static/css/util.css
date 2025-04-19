@@ -320,6 +320,7 @@
 }
 
 .border-r--3px {
+    border-right-width: 3px !important;
 }
 
 /*********/

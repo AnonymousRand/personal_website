@@ -108,6 +108,13 @@ input[value="Reply"][value="Delete"] {
     padding-top: 0.75rem;
 }
 
+/* no class since can't add attribute lists to `<hr>` */
+.md-pf hr {
+    opacity: 100%;
+    border-width: 2px;
+    color: lightgray;
+}
+
 .md-textbox {
     margin-bottom: 1rem;
     border-style: solid;
@@ -126,15 +133,13 @@ input[value="Reply"][value="Delete"] {
 
 /* use these as heading sections within proofs */
 .pf__h1 {
-    border-bottom: 1px solid;
-    padding-bottom: 0.25rem;
     font-weight: bold;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 .pf__h2 {
     font-weight: bold;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
 }
 
 .post__content table {
