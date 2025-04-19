@@ -9,7 +9,6 @@ function applyPostAndCommentStyles(baseSelector) {
     jQPostAndCommentContent.find("h1").addClass("custom-green-deep-dark mb-3 border-b--h1 fs-3");
     jQPostAndCommentContent.find("h2").addClass("custom-orange-deep mb-3 border-b--h2 fs-5");
     jQPostAndCommentContent.find("h3").addClass("mb-3 fs-6");
-    jQPostAndCommentContent.find("img").addClass("post__img");
 }
 
 function addCommentSyntaxGuideTooltip() {

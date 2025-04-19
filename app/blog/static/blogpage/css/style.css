@@ -142,6 +142,16 @@ input[value="Reply"][value="Delete"] {
     font-size: 1.1rem;
 }
 
+:is(.post__content, .comment-content) img {
+    display: block;
+    margin: 1rem auto 1rem auto;
+    max-width: 100%;
+}
+
+:is(.post__content, .comment_content) img:not([width]) {
+    width: 100%;
+}
+
 .post__content table {
     margin-right: auto;
     margin-left: auto;
@@ -151,16 +161,6 @@ input[value="Reply"][value="Delete"] {
 /* can still specify relative percentage widths between cols, with the whole table being `min-width: 100%` of parent */
 .post__content table:not(:has(th[width$="px"], td[width$="px"])) {
     min-width: 100%;
-}
-
-.post__img {
-    display: block;
-    margin: 1rem auto 1rem auto;
-    max-width: 100%;
-}
-
-.post__img:not([width]) {
-    width: 100%;
 }
 
 .post__timestamp {
