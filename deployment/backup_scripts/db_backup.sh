@@ -7,9 +7,9 @@
 #     - `$1`: destination path for backup, formatted identically to the destination path of `scp`
 #     - `$2`: backup number to be appended to the backup name
 
-source ./db_backup_config.sh
-
 set -e
+
+source ./db_backup_config.sh
 
 # make sure there is a secured MySQL config file providing `$db_username`'s password!
 mysqldump --protocol=tcp -u "$db_username" "$db_name" > "$host_backup_path"
