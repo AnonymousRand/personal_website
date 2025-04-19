@@ -22,13 +22,13 @@ function addCommentSyntaxGuideTooltip() {
                 "data-bs-title",
                 "Markdown:" +
                   "<ul>" +
-                    "<li>Python-Markdown with <code>extra</code> extension</li>" +
+                    "<li>Python-Markdown with <code>extra</code> and my <code>markdown-environments</code> extensions</li>" +
                     "<li>No images, links, or footnotes</li>" +
                   "</ul>" +
                 "LaTeX (MathJax):" +
                   "<ul>" +
-                    "<li>Escape anything that is also Markdown: <code>\\(</code>, <code>\\)</code>," +
-                            "<code>\\\\</code>, <code>\*</code> etc.</li>" +
+                    "<li>Escape anything that is also Markdown: <code>\\(</code>, <code>\\)</code>, " +
+                            "<code>\\{</code>, <code>\\\\</code>, <code>\*</code> etc.</li>" +
                     "<li>My custom macros are available if you can find them :3" +
                   "</ul>"
             );
