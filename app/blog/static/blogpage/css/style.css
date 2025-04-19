@@ -112,7 +112,7 @@ input[value="Reply"][value="Delete"] {
 .md-pf hr {
     opacity: 100%;
     border-width: 2px;
-    color: lightgray;
+    border-color: lightgray;
 }
 
 .md-textbox {
@@ -134,7 +134,7 @@ input[value="Reply"][value="Delete"] {
 /* use these as heading sections within proofs */
 .pf__h1 {
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
 }
 
 .pf__h2 {
