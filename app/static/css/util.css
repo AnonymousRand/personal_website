@@ -315,6 +315,10 @@
     border-color: var(--custom-pink-deep-xxlight) !important;
 }
 
+.border--double {
+    border-style: double !important;
+}
+
 .border--lightgray {
     border-color: lightgray !important;
 }
@@ -365,16 +369,6 @@
 /**********/
 /* `link` */
 /**********/
-
-.link--dimgray {
-    text-decoration-color: dimgray !important;
-    color: dimgray !important;
-}
-
-.link--dimgray:hover {
-    text-decoration-color: #363636 !important;
-    color: #363636 !important;
-}
 
 .link--discreet {
     text-decoration-style: dotted !important;
@@ -445,6 +439,16 @@
 .link--custom-pink-deep-xlight:hover {
     text-decoration-color: var(--custom-pink-deep-light) !important;
     color: var(--custom-pink-deep-light) !important;
+}
+
+.link--gray {
+    text-decoration-color: gray !important;
+    color: gray !important;
+}
+
+.link--gray:hover {
+    text-decoration-color: dimgray !important;
+    color: dimgray !important;
 }
 
 /***************/
