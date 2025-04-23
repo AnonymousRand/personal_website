@@ -214,7 +214,8 @@
 .last-child-no-mb > :last-child,
 .last-child-no-mb > :last-child > :last-child,
 .last-child-no-mb > :last-child > :last-child > :last-child,
-.last-child-no-mb > :last-child > :last-child > :last-child > :last-child {
+.last-child-no-mb > :last-child > :last-child > :last-child > :last-child,
+.last-child-no-mb > :last-child > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0 !important;
 }
 

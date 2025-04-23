@@ -50,6 +50,14 @@ label:has(+ * [required]):after {
     content:" *";
 }
 
+li > :last-child,
+li > :last-child > :last-child,
+li > :last-child > :last-child > :last-child,
+li > :last-child > :last-child > :last-child > :last-child,
+li > :last-child > :last-child > :last-child > :last-child > :last-child {
+    margin-bottom: 0;
+}
+
 /* make MathJax `\overline` actually visible; TODO sync CSS selector if MathJax updates */
 mjx-stretchy-h.mjx-c2013 mjx-ext mjx-c::before {
     font-size: 125%;
@@ -85,8 +93,11 @@ th {
     padding: 0.5rem;
 }
 
-td :last-child,
-th :last-child {
+:is(td, th) > :last-child,
+:is(td, th) > :last-child > :last-child,
+:is(td, th) > :last-child > :last-child > :last-child,
+:is(td, th) > :last-child > :last-child > :last-child > :last-child,
+:is(td, th) > :last-child > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0;
 }
 
@@ -226,6 +237,10 @@ th :last-child {
     color: #2b2b2b !important;
 }
 
-.tooltip-inner :last-child {
+.tooltip-inner > :last-child,
+.tooltip-inner > :last-child > :last-child,
+.tooltip-inner > :last-child > :last-child > :last-child,
+.tooltip-inner > :last-child > :last-child > :last-child > :last-child,
+.tooltip-inner > :last-child > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0 !important;
 }
