@@ -25,9 +25,12 @@ const DARKREADER_FIXES = {
             --darkreader-border--lightgray: lightgray;
 
             --darkreader-bg--custom-blue: var(--custom-blue);
+            --darkreader-bg--custom-blue-xlight: var(--custom-blue-xlight);
             --darkreader-bg--custom-green: var(--custom-green);
+            --darkreader-bg--custom-green-light: var(--custom-green-light);
             --darkreader-bg--custom-orange: var(--custom-orange);
             --darkreader-bg--custom-orange-light: var(--custom-orange-light);
+            --darkreader-bg--custom-orange-shallow-light: var(--custom-orange-shallow-light);
             --darkreader-bg--custom-pink-light: var(--custom-pink-light);
             --darkreader-bg--custom-pink-deep-xxxlight: var(--custom-pink-deep-xxxlight);
             --darkreader-bg--custom-pink-deep-xxxxlight: #0d0003;

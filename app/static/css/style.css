@@ -158,11 +158,6 @@ th {
     white-space: normal;
 }
 
-.dropdown-item:hover, .dropdown-item:active {
-    background-color: var(--custom-pink-deep-xxxlight);
-    color: var(--bs-body-color);
-}
-
 .flash {
     border-width: 3px;
     border-style: solid;

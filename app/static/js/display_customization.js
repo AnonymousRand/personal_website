@@ -26,6 +26,7 @@ function applySyntaxHighlighting(baseSelector) {
 
 const colorChoices = {
     blue: {
+        menuHighlight: "--custom-blue-xlight",
         form: {
             accent: "--custom-blue",
             border: "--custom-blue",
@@ -38,6 +39,7 @@ const colorChoices = {
         selection: "--custom-blue-xlight"
     },
     green: {
+        menuHighlight: "--custom-green-light",
         form: {
             accent: "--custom-green",
             border: "--custom-green",
@@ -50,6 +52,7 @@ const colorChoices = {
         selection: "--custom-green-light"
     },
     orange: {
+        menuHighlight: "--custom-orange-shallow-light",
         form: {
             accent: "--custom-orange",
             border: "--custom-orange",
@@ -62,6 +65,7 @@ const colorChoices = {
         selection: "--custom-orange-shallow-light"
     },
     pink: {
+        menuHighlight: "--custom-pink-deep-xxxlight",
         form: {
             accent: "--custom-pink-light",
             border: "--custom-pink-light",
@@ -78,18 +82,13 @@ const colorChoices = {
 function randomizeColors() {
     const color = Object.keys(colorChoices)[Math.floor(Math.random() * Object.keys(colorChoices).length)];
     const colorChoice = colorChoices[color];
-    document.getElementById("flash").classList.add(
-        `border${colorChoice.flash.border}`, `bg${colorChoice.flash.background}`
-    );
     // can't use `css()` here since it doesn't support `!important`, which is needed sometimes
     $("body").append(`
         <style>
-            /*
             #flash {
                 border-color: var(${colorChoice.flash.border});
                 background-color: var(${colorChoice.flash.background});
             }
-            */
 
             ::selection {
                 background-color: var(${colorChoice.selection});
@@ -98,6 +97,11 @@ function randomizeColors() {
             :is(select, input:not([type="button"], [type="submit"]), textarea):focus {
                 box-shadow: 0 0 0 0.25rem ${colorChoice.form.boxShadow} !important;
                 border-color: var(${colorChoice.form.border}) !important;
+            }
+
+            .dropdown-item:hover, .dropdown-item:active {
+                background-color: var(${colorChoice.menuHighlight});
+                color: var(--bs-body-color);
             }
             
             /* probably won't work yet, maybe in the future though :( */
