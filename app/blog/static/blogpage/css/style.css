@@ -54,6 +54,7 @@ input[value="Reply"][value="Delete"] {
 }
 
 .md-captioned-figure__caption {
+    margin-top: -0.5rem;
     text-align: center;
     color: dimgray;
     font-size: 0.95rem;

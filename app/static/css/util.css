@@ -316,10 +316,6 @@
     border-color: var(--custom-pink-deep-xxlight) !important;
 }
 
-.border--double {
-    border-style: double !important;
-}
-
 .border--lightgray {
     border-color: lightgray !important;
 }
@@ -468,16 +464,14 @@
 /* Other */
 /*********/
 
-a.discreet-link {
-    text-decoration-style: dotted !important;
-    text-decoration-color: unset;
-    color: unset;
+.cell--left-header {
+    border-right-width: 2px !important;
+    background-color: whitesmoke !important;
 }
 
-.discreet-tooltip {
-    text-decoration-style: dotted !important;
-    text-decoration-color: unset;
-    color: unset;
+.cell--top-header {
+    border-bottom-width: 2px !important;
+    background-color: whitesmoke !important;
 }
 
 .extend-off-page {

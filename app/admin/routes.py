@@ -26,7 +26,7 @@ def login():
 
     if request.method == "GET":
         return render_template(
-            "admin/form_base.html", title="Login", prompt="Access the Secrets of the Universe", form=form
+            "admin/form_base.html", title="Login", prompt="meow :3", form=form
         )
     elif request.method == "POST":
         if not form.validate():
@@ -74,7 +74,7 @@ def choose_action(**kwargs):
     form = ChooseActionForm()
 
     if request.method == "GET":
-        return render_template("admin/form_base.html", title="Choose action", prompt="42", form=form)
+        return render_template("admin/form_base.html", title="Choose action", prompt="what do you want to do today?", form=form)
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)
