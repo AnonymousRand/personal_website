@@ -5,7 +5,63 @@ const DARKREADER_FIXES = {
     // CSS selectors for elements that are not automatically inverted by DarkReader (images, SVG icons etc.)
     invert: [
         ".dark-mode-manual"
-    ]
+    ],
+    // CSS to apply when dark mode is on, e.g. remapping colors
+    css: `
+        :root {
+            /*
+            --darkreader-border--custom-blue-light: #ffaa00;
+            --darkreader-border--custom-pink-deep-xxlight: #ff1919;
+            */
+            --darkreader-border--custom-blue: var(--custom-blue);
+            --darkreader-border--custom-blue-light: var(--custom-blue-light);
+            --darkreader-border--custom-green: var(--custom-green);
+            --darkreader-border--custom-orange: var(--custom-orange);
+            --darkreader-border--custom-orange-light: var(--custom-orange-light);
+            --darkreader-border--custom-orange-deep: var(--custom-orange-deep);
+            --darkreader-border--custom-pink-light: var(--custom-pink-light);
+            --darkreader-border--custom-pink-deep-xlight: var(--custom-pink-deep-xlight);
+            --darkreader-border--custom-pink-deep-xxlight: var(--custom-pink-deep-xxlight);
+            --darkreader-border--lightgray: lightgray;
+
+            --darkreader-bg--custom-blue: var(--custom-blue);
+            --darkreader-bg--custom-green: var(--custom-green);
+            --darkreader-bg--custom-orange: var(--custom-orange);
+            --darkreader-bg--custom-orange-light: var(--custom-orange-light);
+            --darkreader-bg--custom-pink-light: var(--custom-pink-light);
+            --darkreader-bg--custom-pink-deep-xxxlight: var(--custom-pink-deep-xxxlight);
+            --darkreader-bg--custom-pink-deep-xxxxlight: #0d0003;
+
+            --darkreader-text--custom-blue-deep: var(--custom-blue-deep-light);
+            --darkreader-text--custom-blue-xdeep: var(--custom-blue-deep);
+        }
+
+        .btn--custom-orange-light {
+            color: black !important;
+        }
+
+        .btn-link--custom-pink-deep-xlight {
+            color: var(--custom-pink-deep-xlight) !important;
+        }
+
+        .btn-link--custom-pink-deep-xlight:hover {
+            color: var(--custom-pink-deep-light) !important;
+        }
+
+        .dropdown-item:hover, .dropdown-item:active {
+            color: var(--bs-body-color) !important;
+        }
+
+        .link--custom-green-deep-xdark {
+            text-decoration-color: var(--darkreader-text--custom-green-deep-dark) !important;
+            color: var(--darkreader-text--custom-green-deep-dark) !important;
+        }
+
+        .link--custom-orange-xdeep {
+            text-decoration-color: var(--darkreader-text--custom-orange-deep) !important;
+            color: var(--darkreader-text--custom-orange-deep) !important;
+        }
+    `
 }
 
 DarkReader.setFetchMethod(window.fetch); // solves CORS issue

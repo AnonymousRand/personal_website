@@ -64,7 +64,9 @@ def login():
             #     view func of url being redirected to handles this
             return jsonify(success=True, redir_url=next_url, is_redir_after_login=True)
 
-        return jsonify(success=True, redir_url=url_for("admin.choose_action", flash_msg="please no hack :3", _external=True))
+        return jsonify(
+            success=True, redir_url=url_for("admin.choose_action", flash_msg="please no hack :3", _external=True)
+        )
 
 
 @bp.route("/choose-action", methods=["GET", "POST"])
@@ -74,7 +76,7 @@ def choose_action(**kwargs):
     form = ChooseActionForm()
 
     if request.method == "GET":
-        return render_template("admin/form_base.html", title="Choose action", prompt="what do you want to do today?", form=form)
+        return render_template("admin/form_base.html", title="Choose action", prompt=">w<", form=form)
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)

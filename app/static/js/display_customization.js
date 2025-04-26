@@ -29,7 +29,7 @@ const colorChoices = {
         form: {
             accent: "--custom-blue",
             border: "--custom-blue",
-            boxShadow: "color-mix(in srgb, var(--custom-blue) 22.5%, transparent)"
+            boxShadow: "color-mix(in srgb, var(--custom-blue) 25%, transparent)"
         },
         flash: {
             border: "--custom-blue-light",
@@ -41,7 +41,7 @@ const colorChoices = {
         form: {
             accent: "--custom-green",
             border: "--custom-green",
-            boxShadow: "color-mix(in srgb, var(--custom-green) 40%, transparent)"
+            boxShadow: "color-mix(in srgb, var(--custom-green) 50%, transparent)"
         },
         flash: {
             border: "--custom-green",
@@ -53,7 +53,7 @@ const colorChoices = {
         form: {
             accent: "--custom-orange",
             border: "--custom-orange",
-            boxShadow: "color-mix(in srgb, var(--custom-orange) 30%, transparent)"
+            boxShadow: "color-mix(in srgb, var(--custom-orange) 40%, transparent)"
         },
         flash: {
             border: "--custom-orange-light",
@@ -74,16 +74,22 @@ const colorChoices = {
         selection: "--custom-pink-deep-xxxlight"
     }
 };
+
 function randomizeColors() {
     const color = Object.keys(colorChoices)[Math.floor(Math.random() * Object.keys(colorChoices).length)];
     const colorChoice = colorChoices[color];
+    document.getElementById("flash").classList.add(
+        `border${colorChoice.flash.border}`, `bg${colorChoice.flash.background}`
+    );
     // can't use `css()` here since it doesn't support `!important`, which is needed sometimes
     $("body").append(`
         <style>
+            /*
             #flash {
                 border-color: var(${colorChoice.flash.border});
                 background-color: var(${colorChoice.flash.background});
             }
+            */
 
             ::selection {
                 background-color: var(${colorChoice.selection});
