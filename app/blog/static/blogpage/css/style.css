@@ -40,7 +40,7 @@ input[value="Reply"][value="Delete"] {
 }
 
 .heading-link {
-    display: none;
+    visibility: hidden;
     margin-left: 0.25em;
     padding-right: 0;
     vertical-align: bottom;
@@ -50,7 +50,7 @@ input[value="Reply"][value="Delete"] {
 }
 
 :is(h1, h2, h3, h4, h5, h6):hover .heading-link {
-    display: inline;
+    visibility: visible;
 }
 
 .md-captioned-figure__caption {
