@@ -36,7 +36,6 @@ class SearchBlogpostForm(FlaskForm):
         query_factory=lambda: db.session.query(Post).order_by(Post.title), get_label="title"
     )
     search_blogpost_form_submit = SubmitField("Submit")
-    back = SubmitField("Back", render_kw={"data-class": "back-btn", "type": "button"})
 
 
 class BlogpostBaseForm(FlaskForm):
@@ -52,7 +51,6 @@ class BlogpostBaseForm(FlaskForm):
 
 class CreateBlogpostForm(BlogpostBaseForm):
     create_blogpost_form_submit = SubmitField("Submit")
-    back = SubmitField("Back", render_kw={"data-class": "back-btn", "type": "button"})
 
 
 class EditBlogpostForm(BlogpostBaseForm):
@@ -63,7 +61,6 @@ class EditBlogpostForm(BlogpostBaseForm):
     remove_updated_timestamp = BooleanField("Remove updated timestamp")
     edit_blogpost_form_submit = SubmitField("Submit")
     delete_post = SubmitField("Delete Post", render_kw={"type": "button"})
-    back = SubmitField("Back", render_kw={"data-class": "back-btn", "type": "button"})
 
 
 class ChangeAdminPasswordForm(FlaskForm):
@@ -77,4 +74,3 @@ class ChangeAdminPasswordForm(FlaskForm):
         "Repeat new password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAXLEN"])]
     )
     change_admin_password_submit = SubmitField("Submit")
-    back = SubmitField("Back", render_kw={"data-class": "back-btn", "type": "button"})
