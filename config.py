@@ -41,7 +41,9 @@ class Config(object):
     }
 
     # cookies
-    PERMANENT_SESSION_LIFETIME = 604800 # one week
+    # this affects non-logged in sessions too since they have a cookie as well to store the Flask session,
+    # and it's annoying to have CSRF expiring all the time when browser is left open, hence one year expiration
+    PERMANENT_SESSION_LIFETIME = 31536000 
     SESSION_COOKIE_DOMAIN = f".{SERVER_NAME}"
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
@@ -77,18 +79,6 @@ class Config(object):
     JINJA_TRIM_BLOCKS = True
 
     # other "conventional" configs
-    CUSTOM_ERRORS = { # error code isn't actually used I think so it's just documentation?
-        "REFRESH_CSRF": (499, "CSRF token expired, missing, or invalid.")
-    }
-    POST_COMMENT_ALLOWED_TAGS = {
-        "abbr", "acronym", "b", "blockquote", "br", "center", "code", "details", "div", "em", "h1", "h2", "h3", "i",
-        "li", "p", "pre", "ol", "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td", "th",
-        "thead", "tr", "ul"
-    }
-    POST_COMMENT_ALLOWED_ATTRIBUTES = [
-        "class", "colspan", "data-align-bottom", "data-align-center", "data-align-right", "data-align-top",
-        "data-col-width", "height", "rowspan", "title", "width"
-    ]
     IMAGE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
     IMAGE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
     IMAGE_UPLOAD_EXTS_CAN_DELETE_UNUSED = [".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"]

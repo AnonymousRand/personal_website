@@ -3,7 +3,7 @@ import markdown
 import re
 from functools import wraps
 
-from flask import current_app, jsonify, redirect, request, url_for
+from flask import jsonify, redirect, request, url_for
 
 import app.util as util
 from app import db
@@ -134,6 +134,14 @@ def sanitize_untrusted_html(s: str) -> str:
     """
 
     s = bleach.clean(s,
-            tags=current_app.config["POST_COMMENT_ALLOWED_TAGS"],
-            attributes=current_app.config["POST_COMMENT_ALLOWED_ATTRIBUTES"])
+        tags={
+            "abbr", "acronym", "b", "blockquote", "br", "center", "code", "details", "div", "em", "h1", "h2", "h3", "i",
+            "li", "p", "pre", "ol", "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td", "th",
+            "thead", "tr", "ul"
+        },
+        attributes={ 
+            "class", "colspan", "data-align-bottom", "data-align-center", "data-align-right", "data-align-top",
+            "data-col-width", "height", "rowspan", "title", "width"
+        }
+    )
     return s

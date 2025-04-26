@@ -44,17 +44,6 @@ async function fetchWrapper(baseUrl, options, params=null) {
         case 429:
             customFlash("Please slow down :3");
             break;
-        case 499:
-            // CSRF token expiry; refresh CSRF token and resend the request if this is the case
-            let newToken = respJson.new_csrf_token;
-            reloadCSRF(newToken);
-
-            // resend request with updated CSRF token in FormData (header refresh handled by recursive call)
-            if (options.body && options.body instanceof FormData) {
-                options.body.set("csrf_token", csrfToken);
-            }
-            return fetchWrapper(baseUrl, options, params);
-            break;
         default:
             hasHandledError = false;
     }
@@ -99,9 +88,4 @@ function doAjaxResponseForm(respJson, submitEvent) {
             jQField.find(".invalid-feedback").text(fieldErrors[0]);
         }
     }
-}
-
-function reloadCSRF(newToken) {
-    csrfToken = newToken;
-    $("input[name='csrf_token']").val(csrfToken); // reload hidden form fields
 }

@@ -6,7 +6,7 @@ from flask_moment import Moment
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_talisman import Talisman
-from flask_wtf.csrf import CSRFProtect, CSRFError
+from flask_wtf.csrf import CSRFProtect
 from werkzeug.exceptions import HTTPException
 
 from config import Config
@@ -83,4 +83,3 @@ def register_global_routes(app):
     app.context_processor(global_routes.inject_forms)
     app.context_processor(global_routes.inject_blogpages)
     app.register_error_handler(HTTPException, global_routes.handle_general_http_error)
-    app.register_error_handler(CSRFError, global_routes.handle_csrf_error)

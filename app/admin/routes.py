@@ -40,10 +40,11 @@ def login():
                 "password": ["No, the password is not \"solarwinds123\"."]
             })
 
-        # no persistent cookies, so session expires on both browser close (if it isn't running in background)
-        # and on `PERMANENT_SESSION_LIFETIME` timeout (check readme for cookie explanation)
+        # `remember=False`, so session expires on both browser close (if it isn't running in background)
+        # and on `PERMANENT_SESSION_LIFETIME` timeout (`session.permanent = True` only also makes sure cookie is deleted
+        # upon this timeout instead of just invalidated by Flask; check readme for more details)
         login_user(user, remember=False)
-        session.permanent = False
+        session.permanent = True
 
         # if modal login, we are done
         if request.form.get("is_modal") == "true":
