@@ -33,7 +33,6 @@ const DARKREADER_FIXES = {
             --darkreader-bg--custom-orange-shallow-light: var(--custom-orange-shallow-light);
             --darkreader-bg--custom-pink-light: var(--custom-pink-light);
             --darkreader-bg--custom-pink-deep-xxxlight: var(--custom-pink-deep-xxxlight);
-            --darkreader-bg--custom-pink-deep-xxxxlight: #0d0003;
 
             --darkreader-text--custom-blue-deep: var(--custom-blue-deep-light);
             --darkreader-text--custom-blue-xdeep: var(--custom-blue-deep);

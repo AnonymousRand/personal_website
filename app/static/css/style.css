@@ -228,7 +228,7 @@ th {
 .tooltip .tooltip-inner {
     border: 2px solid var(--custom-pink-light) !important;
     border-radius: var(--bs-border-radius);
-    background-color: var(--custom-pink-deep-xxxxlight) !important;
+    background-color: var(--bs-body-bg) !important;
     max-width: 30rem !important;
     color: #2b2b2b !important;
 }
@@ -239,4 +239,8 @@ th {
 .tooltip-inner > :last-child > :last-child > :last-child > :last-child,
 .tooltip-inner > :last-child > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0 !important;
+}
+
+#flash {
+    background-color: var(--bs-body-bg);
 }

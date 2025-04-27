@@ -32,10 +32,7 @@ const colorChoices = {
             border: "--custom-blue",
             boxShadow: "color-mix(in srgb, var(--custom-blue) 25%, transparent)"
         },
-        flash: {
-            border: "--custom-blue-light",
-            background: "--custom-blue-xxlight"
-        },
+        flashBorder: "--custom-blue-light",
         selection: "--custom-blue-xlight"
     },
     green: {
@@ -45,10 +42,7 @@ const colorChoices = {
             border: "--custom-green",
             boxShadow: "color-mix(in srgb, var(--custom-green) 50%, transparent)"
         },
-        flash: {
-            border: "--custom-green",
-            background: "--custom-green-xxxlight"
-        },
+        flashBorder: "--custom-green",
         selection: "--custom-green-light"
     },
     orange: {
@@ -58,10 +52,7 @@ const colorChoices = {
             border: "--custom-orange",
             boxShadow: "color-mix(in srgb, var(--custom-orange) 40%, transparent)"
         },
-        flash: {
-            border: "--custom-orange-light",
-            background: "--custom-orange-xxxlight"
-        },
+        flashBorder: "--custom-orange-light",
         selection: "--custom-orange-shallow-light"
     },
     pink: {
@@ -71,10 +62,7 @@ const colorChoices = {
             border: "--custom-pink-light",
             boxShadow: "color-mix(in srgb, var(--custom-pink-light) 50%, transparent)"
         },
-        flash: {
-            border: "--custom-pink-light",
-            background: "--custom-pink-deep-xxxxlight"
-        },
+        flashBorder: "--custom-pink-light",
         selection: "--custom-pink-deep-xxxlight"
     }
 };
@@ -86,8 +74,7 @@ function randomizeColors() {
     $("body").append(`
         <style>
             #flash {
-                border-color: var(${colorChoice.flash.border});
-                background-color: var(${colorChoice.flash.background});
+                border-color: var(${colorChoice.flashBorder});
             }
 
             ::selection {
