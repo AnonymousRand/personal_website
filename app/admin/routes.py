@@ -160,7 +160,7 @@ def search_blogpost(**kwargs):
 
         post_id = request.form.get("post")
         if post_id is None:
-            return jsonify(flash_msg="You somehow managed to choose nothing, congratulations.")
+            return jsonify(flash_msg="You somehow managed to choose nothing o_O")
         return jsonify(redir_url=url_for("admin.edit_blogpost", post_id=post_id, _external=True))
 
 
@@ -237,9 +237,9 @@ def edit_blogpost(**kwargs):
                 files = os.listdir(files_base_path)
                 for file in files:
                     filename, file_ext = os.path.splitext(file)
-                    if file not in post.content:
-                        # delete everything matching that file's extension-less filename, so .excalidraw files
-                        # or whatever with the same filename are also removed
+                    if filename not in post.content:
+                        # if extension-less filename is unused, delete everything with that extension-less filename
+                        # so .excalidraw files etc. are also removed
                         for file in glob.iglob(f"{os.path.join(files_base_path, filename)}.*"):
                             os.remove(file)
                 admin_util.delete_dir_if_empty(files_base_path)
