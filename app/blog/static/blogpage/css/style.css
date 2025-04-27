@@ -30,6 +30,10 @@ input[value="Reply"][value="Delete"] {
     font-size: 1em; /* undo Bootstrap */
 }
 
+.edit-post-btn {
+    margin-top: 0.5rem;
+}
+
 .goto-page-form__page-input {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -186,16 +190,17 @@ input[value="Reply"][value="Delete"] {
         /* left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen (up to the size it would be on a
          * 1536px screen), and is centered within the left margin (with 1/6 of the margin on each side of the TOC) */
         /* i'm sure there are better ways to do this but im a frontend noob so math it is */
-        --left-sticky-margin-left: calc(-5 * (min(100vw,1536px) - var(--container-content-max-width)) / 12);
-        --left-sticky-width: calc((min(100vw,1536px) - var(--container-content-max-width)) / 3);
+        --sticky-width: calc((min(100vw, 1536px) - var(--container-content-max-width)) / 3);
+        --left-sticky-margin-left: calc(-5 * (min(100vw, 1536px) - var(--container-content-max-width)) / 12);
     }
 
     .edit-post-btn {
         position: fixed;
         float: left;
+        margin-top: 0;
         top: 4rem;
         margin-left: var(--left-sticky-margin-left);
-        width: var(--left-sticky-width)
+        width: var(--sticky-width);
     }
 
     .post__toc {
@@ -205,11 +210,11 @@ input[value="Reply"][value="Delete"] {
         border: none;
         padding: 0;
         /* TOC takes up max 75% of the screen height, and is vertically centered (as if it took 75% of the screen
-         * height) when sticky */
+         * height) when stickied */
         top: calc(12.5svh + var(--toc-heading-outer-height));
         max-height: calc(75svh - var(--toc-heading-outer-height));
         margin-left: var(--left-sticky-margin-left);
-        width: var(--left-sticky-width)
+        width: var(--sticky-width);
     }
 
     .toc__heading {

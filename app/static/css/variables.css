@@ -42,6 +42,7 @@
 }
 
 /* for scoping issues on accessing `--bs-gutter-x` */
-#container--content {
+.container--content {
     --container-content-padding-x: calc(0.5 * var(--bs-gutter-x));
+    --container-content-width: calc(var(--container-content-max-width) - 2 * var(--container-content-padding-x));
 }
