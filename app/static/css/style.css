@@ -161,6 +161,7 @@ th {
 .flash {
     border-width: 3px;
     border-style: solid;
+    background-color: var(--bs-body-bg);
     color: var(--bs-body-color);
 }
 
@@ -239,8 +240,4 @@ th {
 .tooltip-inner > :last-child > :last-child > :last-child > :last-child,
 .tooltip-inner > :last-child > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0 !important;
-}
-
-#flash {
-    background-color: var(--bs-body-bg);
 }

@@ -134,14 +134,14 @@ def sanitize_untrusted_html(s: str) -> str:
     """
 
     s = bleach.clean(s,
-        tags={
+        tags=[
             "abbr", "acronym", "b", "blockquote", "br", "center", "code", "details", "div", "em", "h1", "h2", "h3", "i",
             "li", "p", "pre", "ol", "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td", "th",
             "thead", "tr", "ul"
-        },
-        attributes={ 
+        ],
+        attributes=[
             "class", "colspan", "data-align-bottom", "data-align-center", "data-align-right", "data-align-top",
             "data-col-width", "height", "rowspan", "title", "width"
-        }
+            ]
     )
     return s

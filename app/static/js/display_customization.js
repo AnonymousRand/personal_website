@@ -73,10 +73,6 @@ function randomizeColors() {
     // can't use `css()` here since it doesn't support `!important`, which is needed sometimes
     $("body").append(`
         <style>
-            #flash {
-                border-color: var(${colorChoice.flashBorder});
-            }
-
             ::selection {
                 background-color: var(${colorChoice.selection});
             }
@@ -94,6 +90,10 @@ function randomizeColors() {
             option:active, .dropdown-item:hover, .dropdown-item:active {
                 background-color: var(${colorChoice.menuHighlight}) !important;
                 color: var(--bs-body-color) !important;
+            }
+
+            .flash {
+                border-color: var(${colorChoice.flashBorder});
             }
         </style>
     `);

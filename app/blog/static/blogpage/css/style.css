@@ -182,6 +182,22 @@ input[value="Reply"][value="Delete"] {
 }
 
 @media(min-width: 1400px) {
+    :root {
+        /* left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen (up to the size it would be on a
+         * 1536px screen), and is centered within the left margin (with 1/6 of the margin on each side of the TOC) */
+        /* i'm sure there are better ways to do this but im a frontend noob so math it is */
+        --left-sticky-margin-left: calc(-5 * (min(100vw,1536px) - var(--container-content-max-width)) / 12);
+        --left-sticky-width: calc((min(100vw,1536px) - var(--container-content-max-width)) / 3);
+    }
+
+    .edit-post-btn {
+        position: fixed;
+        float: left;
+        top: 4rem;
+        margin-left: var(--left-sticky-margin-left);
+        width: var(--left-sticky-width)
+    }
+
     .post__toc {
         position: sticky;
         float: left;
@@ -192,11 +208,8 @@ input[value="Reply"][value="Delete"] {
          * height) when sticky */
         top: calc(12.5svh + var(--toc-heading-outer-height));
         max-height: calc(75svh - var(--toc-heading-outer-height));
-        /* TOC takes up 2/3 of the margin on the left of the screen (up to the size it would be on a 1536px screen),
-         * and is perfectly centered within the left margin (with 1/6 of the margin on each side of the TOC) */
-        /* I'm sure there are better ways to do this but im a frontend noob so math it is */
-        margin-left: calc(-5 * (min(100vw, 1536px) - var(--container-content-max-width)) / 12);
-        width: calc((min(100vw, 1536px) - var(--container-content-max-width)) / 3);
+        margin-left: var(--left-sticky-margin-left);
+        width: var(--left-sticky-width)
     }
 
     .toc__heading {
