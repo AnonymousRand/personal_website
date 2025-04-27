@@ -79,9 +79,8 @@ class Config(object):
     JINJA_TRIM_BLOCKS = True
 
     # other "conventional" configs
-    IMAGE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
-    IMAGE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
-    IMAGE_UPLOAD_EXTS_CAN_DELETE_UNUSED = [".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"]
+    FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
+    FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024 # 100 MB
     LOGIN_VIEW = "admin.login"
     AFTER_LOGOUT_VIEW = "main.index"

@@ -8,33 +8,33 @@ from flask import current_app, jsonify, redirect, request, url_for
 from werkzeug.utils import escape, secure_filename
 
 
-def upload_imgs(imgs: list[werkzeug.datastructures.FileStorage], imgs_base_path: str) -> str:
+def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_path: str) -> str:
     try:
-        for img in imgs:
+        for img in files:
             if img.filename == "":
                 continue
 
             filename = sanitize_filename(img.filename)
             if filename == "":
-                return "Image name was reduced to atoms by sanitization."
+                return "File name was deleted by sanitization."
 
             file_ext = os.path.splitext(filename)[1]
-            if file_ext == ".jpg":                     # `imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`
+            if file_ext == ".jpg":                      # `imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`
                 file_ext = ".jpeg"
             # `imghdr` can't check SVG; trustable since admin-only ig
-            invalid = file_ext not in current_app.config["IMAGE_UPLOAD_EXTS"] \
+            invalid = file_ext not in current_app.config["FILE_UPLOAD_EXTS"] \
                     or (
-                        file_ext in current_app.config["IMAGE_UPLOAD_EXTS_CAN_VALIDATE"]
+                        file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]
                         and file_ext != validate_img(img.stream)
                     )
             if invalid:
                 return "Invalid img. If it's another heic im gonna lose my mind i swear to god i hate"
 
-            path = os.path.join(imgs_base_path, filename)
-            os.makedirs(imgs_base_path, exist_ok=True) # make image directory if it doesn't exist
-            img.save(path)                             # this can replace existing images
+            path = os.path.join(files_base_path, filename)
+            os.makedirs(files_base_path, exist_ok=True) # make image directory if it doesn't exist
+            img.save(path)                              # this can replace existing images
     except Exception as e:
-        return f"Image upload exception"
+        return f"File upload exception"
     return ""
 
 
@@ -52,7 +52,7 @@ def delete_dir_if_empty(path: str) -> None:
         shutil.rmtree(path)
 
 
-def get_imgs_base_path(post: Post) -> str:
+def get_files_base_path(post: Post) -> str:
     return os.path.join(
         current_app.root_path, current_app.config["ROOT_TO_BLOGPAGE_STATIC"],
         str(post.blogpage_id), "images", str(post.id)

@@ -45,8 +45,8 @@ class BlogpostBaseForm(FlaskForm):
     content = TextAreaField(
         "Content (Markdown, LaTeX supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAXLEN"])]
     )
-    images = MultipleFileField(f"Upload images (supported formats: {', '.join(Config.IMAGE_UPLOAD_EXTS)})")
-    cancel_image_uploads = SubmitField("Clear images to upload", render_kw={"type": "button"})
+    files = MultipleFileField(f"Upload files (supported formats: {', '.join(Config.FILE_UPLOAD_EXTS)})")
+    cancel_file_uploads = SubmitField("Clear files to upload", render_kw={"type": "button"})
 
 
 class CreateBlogpostForm(BlogpostBaseForm):
@@ -54,9 +54,9 @@ class CreateBlogpostForm(BlogpostBaseForm):
 
 
 class EditBlogpostForm(BlogpostBaseForm):
-    delete_images = SelectMultipleField("Delete images")
-    cancel_delete_images = SubmitField("Clear images to delete", render_kw={"type": "button"})
-    delete_unused_images = BooleanField("Delete unused images")
+    delete_files = SelectMultipleField("Delete files")
+    cancel_delete_files = SubmitField("Clear files to delete", render_kw={"type": "button"})
+    delete_unused_files = BooleanField("Delete unused files")
     update_updated_timestamp = BooleanField("Update updated timestamp")
     remove_updated_timestamp = BooleanField("Remove updated timestamp")
     edit_blogpost_form_submit = SubmitField("Submit")

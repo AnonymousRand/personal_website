@@ -131,9 +131,9 @@ def create_blogpost(**kwargs):
         post.add_timestamps(False, False)
         post.expand_img_markdown()
 
-        # upload images if any
-        imgs_base_path = admin_util.get_imgs_base_path(post)
-        err = admin_util.upload_imgs(request.files.getlist("images"), imgs_base_path)
+        # upload files if any
+        files_base_path = admin_util.get_files_base_path(post)
+        err = admin_util.upload_files(request.files.getlist("files"), files_base_path)
         if err:
             return jsonify(flash_msg=err)
 
@@ -185,14 +185,14 @@ def edit_blogpost(**kwargs):
     form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
     form.content.data = post.collapse_img_markdown()
     
-    imgs_base_path = admin_util.get_imgs_base_path(post)
-    if os.path.exists(imgs_base_path) and os.path.isdir(imgs_base_path):
-        imgs_choices = []
-        for f in os.listdir(imgs_base_path):
-            if os.path.isfile(os.path.join(imgs_base_path, f)) and not f.startswith("."):
-                imgs_choices.append((f, f))
-        imgs_choices.sort(key=lambda t: t[0])
-        form.delete_images.choices = imgs_choices
+    files_base_path = admin_util.get_files_base_path(post)
+    if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
+        files_choices = []
+        for f in os.listdir(files_base_path):
+            if os.path.isfile(os.path.join(files_base_path, f)) and not f.startswith("."):
+                files_choices.append((f, f))
+        files_choices.sort(key=lambda t: t[0])
+        form.delete_files.choices = files_choices
 
     if request.method == "GET":
         return render_template("admin/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form)
@@ -216,46 +216,44 @@ def edit_blogpost(**kwargs):
         )
         post.expand_img_markdown()
 
-        # upload images if any
-        err = admin_util.upload_imgs(request.files.getlist("images"), imgs_base_path)
+        # upload files if any
+        err = admin_util.upload_files(request.files.getlist("files"), files_base_path)
         if err:
             return jsonify(flash_msg=err)
         
-        # delete images if any
+        # delete files if any
         try:
-            for img in request.form.getlist("delete_images"):
-                filepath = os.path.join(imgs_base_path, img)
+            for file in request.form.getlist("delete_files"):
+                filepath = os.path.join(files_base_path, file)
                 if os.path.exists(filepath):
                     os.remove(filepath)
-            # delete image directory if now empty
-            admin_util.delete_dir_if_empty(imgs_base_path)
+            admin_util.delete_dir_if_empty(files_base_path)
         except Exception:
-            return jsonify(flash_msg=f"Image delete exception")
+            return jsonify(flash_msg=f"File delete exception")
 
-        # delete unused images if applicable; we assume any image whose filename is not in the Markdown is unused
-        if request.form.get("delete_unused_images") and os.path.exists(imgs_base_path):
+        # delete unused files if applicable; we assume any file whose filename is not in the Markdown is unused
+        if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
             try:
-                imgs = os.listdir(imgs_base_path)
-                for img in imgs:
-                    filename, file_ext = os.path.splitext(img)
-                    if file_ext in current_app.config["IMAGE_UPLOAD_EXTS_CAN_DELETE_UNUSED"] \
-                            and img not in post.content:
-                        # delete everything matching that image's extension-less filename, so .excalidraw files
+                files = os.listdir(files_base_path)
+                for file in files:
+                    filename, file_ext = os.path.splitext(file)
+                    if file not in post.content:
+                        # delete everything matching that file's extension-less filename, so .excalidraw files
                         # or whatever with the same filename are also removed
-                        for file in glob.iglob(f"{os.path.join(imgs_base_path, filename)}.*"):
+                        for file in glob.iglob(f"{os.path.join(files_base_path, filename)}.*"):
                             os.remove(file)
-                admin_util.delete_dir_if_empty(imgs_base_path)
+                admin_util.delete_dir_if_empty(files_base_path)
             except Exception:
-                return jsonify(flash_msg=f"Image delete unused exception")
+                return jsonify(flash_msg=f"File delete unused exception")
         
-        # move images if moving blogpost
+        # move files if moving blogpost
         if post.blogpage_id != old_blogpage_id:
-            if os.path.exists(imgs_base_path):
+            if os.path.exists(files_base_path):
                 try:
-                    new_imgs_base_path = admin_util.get_imgs_base_path(post)
-                    shutil.move(imgs_base_path, new_imgs_base_path)
+                    new_files_base_path = admin_util.get_files_base_path(post)
+                    shutil.move(files_base_path, new_files_base_path)
                 except Exception:
-                    return jsonify(flash_msg=f"Image move exception")
+                    return jsonify(flash_msg=f"File move exception")
 
         db.session.commit()
         return jsonify(
@@ -268,8 +266,8 @@ def edit_blogpost(**kwargs):
         db.session.delete(post)
         db.session.commit()
         try:
-            if os.path.exists(imgs_base_path) and os.path.isdir(imgs_base_path):
-                shutil.rmtree(imgs_base_path)
+            if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
+                shutil.rmtree(files_base_path)
         except Exception:
             return jsonify(flash_msg=f"Directory delete exception")
         return jsonify(
