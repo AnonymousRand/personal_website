@@ -38,30 +38,32 @@ const DARKREADER_FIXES = {
             --darkreader-text--custom-blue-xdeep: var(--custom-blue-deep);
         }
 
-        .btn--custom-orange-light {
-            color: black !important;
-        }
+        @layer god-i-hate-css-and-specificity {
+            .btn--custom-orange-light {
+                color: black !important;
+            }
 
-        .btn-link--custom-pink-deep-xlight {
-            color: var(--custom-pink-deep-xlight) !important;
-        }
+            .btn-link--custom-pink-deep-xlight {
+                color: var(--custom-pink-deep-xlight) !important;
+            }
 
-        .btn-link--custom-pink-deep-xlight:hover {
-            color: var(--custom-pink-deep-light) !important;
-        }
+            .btn-link--custom-pink-deep-xlight:hover {
+                color: var(--custom-pink-deep-light) !important;
+            }
 
-        .dropdown-item:hover, .dropdown-item:active {
-            color: var(--bs-body-color) !important;
-        }
+            option:active, .dropdown-item:hover, .dropdown-item:active {
+                color: var(--bs-body-color) !important;
+            }
 
-        .link--custom-green-deep-xdark {
-            text-decoration-color: var(--darkreader-text--custom-green-deep-dark) !important;
-            color: var(--darkreader-text--custom-green-deep-dark) !important;
-        }
+            .link--custom-green-deep-xdark {
+                text-decoration-color: var(--darkreader-text--custom-green-deep-dark) !important;
+                color: var(--darkreader-text--custom-green-deep-dark) !important;
+            }
 
-        .link--custom-orange-xdeep {
-            text-decoration-color: var(--darkreader-text--custom-orange-deep) !important;
-            color: var(--darkreader-text--custom-orange-deep) !important;
+            .link--custom-orange-xdeep {
+                text-decoration-color: var(--darkreader-text--custom-orange-deep) !important;
+                color: var(--darkreader-text--custom-orange-deep) !important;
+            }
         }
     `
 }

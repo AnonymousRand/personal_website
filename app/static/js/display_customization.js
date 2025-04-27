@@ -86,14 +86,14 @@ function randomizeColors() {
                 border-color: var(${colorChoice.form.border}) !important;
             }
 
-            .dropdown-item:hover, .dropdown-item:active {
-                background-color: var(${colorChoice.menuHighlight});
-                color: var(--bs-body-color);
-            }
-            
             /* probably won't work yet, maybe in the future though :( */
             input.is([type="checkbox"], [type="radio"]) {
                 accent-color: var(${colorChoice.form.accent}) !important;
+            }
+
+            option:active, .dropdown-item:hover, .dropdown-item:active {
+                background-color: var(${colorChoice.menuHighlight}) !important;
+                color: var(--bs-body-color) !important;
             }
         </style>
     `);
