@@ -18,6 +18,7 @@ class Blogpage(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True, nullable=False, autoincrement=False)    
 
     # basic attributes
+
     name: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(Config.DB_CONFIGS["BLOGPAGE_NAME_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         nullable=False
@@ -52,11 +53,13 @@ class Blogpage(db.Model):
     is_writeable: so.Mapped[bool] = so.mapped_column(nullable=False, default=False, server_default=sa.false())
 
     # relationship: `Post`
+
     posts: so.WriteOnlyMapped[Post] = so.relationship(
         back_populates="blogpage", cascade="all, delete-orphan", passive_deletes=True
     )
 
     # relationship: `Blogpage`
+
     publishing_sibling_id: so.Mapped[int] = so.mapped_column(
             # `ForeignKey()` needs to use lowercase SQL table name instead of Python class name
             sa.ForeignKey("blogpage.id"), unique=True, nullable=True, default=None, server_default=None
@@ -68,6 +71,7 @@ class Post(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True, nullable=False)
 
     # basic attributes
+
     title: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_TITLE_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         nullable=False
@@ -91,15 +95,20 @@ class Post(db.Model):
     )
 
     # relationship: `Blogpage`
+
     blogpage_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Blogpage.id, ondelete="CASCADE"), nullable=False)
     blogpage: so.Mapped[Blogpage] = so.relationship(back_populates="posts")
 
     # relationship: `Comment`
+
     comments: so.WriteOnlyMapped[Comment] = so.relationship(
         back_populates="post", cascade="all, delete-orphan", passive_deletes=True
     )
 
     # util
+
+    SANITIZE_TITLE_PATTERN = re.compile(r"[^A-Za-z0-9-]")
+
     def sanitize_title(self) -> None:
         """
         Replaces whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric and non-hypthen
@@ -107,7 +116,7 @@ class Post(db.Model):
         """
 
         self.sanitized_title = ("-".join(self.title.split())).lower()
-        self.sanitized_title = re.sub(r"[^A-Za-z0-9-]", "", self.sanitized_title)
+        self.sanitized_title = self.SANITIZE_TITLE_PATTERN.sub("", self.sanitized_title)
 
     def check_and_try_flushing(self, should_add_to_db: bool) -> str:
         # check that title still exists after sanitization
@@ -152,19 +161,18 @@ class Post(db.Model):
             self.timestamp = datetime.now(timezone.utc)
             self.updated_timestamp = None
 
+    EXPAND_IMG_MARKDOWN_PATTERN = re.compile(r"(!\[[\S\s]*?\])\(([\S\s]+?)\)")
+
     def expand_img_markdown(self) -> None:
-        self.content = re.sub(
-            r"(!\[[\S\s]*?\])\(([\S\s]+?)\)",
+        self.content = self.EXPAND_IMG_MARKDOWN_PATTERN.sub(
             fr"\1({current_app.config['BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC']}/{self.blogpage_id}/images/{self.id}/\2)",
             self.content
         )
 
     def collapse_img_markdown(self) -> str:
         return re.sub(
-            (
-                fr"(!\[[\S\s]*?\])\({current_app.config['BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC']}/{self.blogpage_id}/"
-                fr"images/{self.id}/([\S\s]+?)\)"
-            ),
+            fr"(!\[[\S\s]*?\])\({current_app.config['BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC']}/{self.blogpage_id}/" +
+            fr"images/{self.id}/([\S\s]+?)\)",
             r"\1(\2)", self.content
         )
 
@@ -185,6 +193,7 @@ class Comment(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
 
     # basic attributes
+
     author: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(Config.DB_CONFIGS["COMMENT_AUTHOR_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         nullable=False
@@ -203,15 +212,18 @@ class Comment(db.Model):
     is_unread: so.Mapped[bool] = so.mapped_column(nullable=False, default=True, server_default=sa.true())
 
     # relationship: `Post`
+
     post_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Post.id, ondelete="CASCADE"), nullable=False)
     post: so.Mapped[Post] = so.relationship(back_populates="comments")
 
     # nested set; quite the beautiful data structure
+
     depth: so.Mapped[int] = so.mapped_column(nullable=False)
     left: so.Mapped[int] = so.mapped_column(nullable=False, index=True)
     right: so.Mapped[int] = so.mapped_column(nullable=False, index=True)
 
     # util
+
     def insert_comment(self, post: Post, parent: Comment) -> bool:
         if parent is None:
             # add child with left = max of right for that post + 1
@@ -268,6 +280,7 @@ class User(UserMixin, db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True, nullable=False)
 
     # basic attributes
+
     email: so.Mapped[str] = so.mapped_column(
         sa.String(Config.DB_CONFIGS["USER_EMAIL_MAXLEN"]), unique=True, nullable=False
     )
@@ -280,6 +293,7 @@ class User(UserMixin, db.Model):
     )
 
     # util
+
     def set_password(self, password: str) -> None:
         self.password_hash = generate_password_hash(password)
 
