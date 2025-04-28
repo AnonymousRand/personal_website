@@ -1,5 +1,9 @@
-import markdown
+import glob
 import image_titles
+import markdown
+import os
+import shutil
+
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 import sqlalchemy.sql.functions as sa_func
@@ -22,6 +26,9 @@ def inject_blogpage_from_db():
     blogpage = db.session.query(Blogpage).filter_by(id=bp_util.get_blogpage_id()).first()
     return dict(blogpage=blogpage, blogpage_id=blogpage.id)
 
+####################################################################################################
+# Blogpage
+####################################################################################################
 
 @bp.route("/", methods=["GET"])
 @util.set_content_type(ContentType.HTML)
@@ -59,6 +66,9 @@ def index(**kwargs):
         prev_page_url=prev_page_url, next_page_url=next_page_url
     )
 
+####################################################################################################
+# Post
+####################################################################################################
 
 # private posts, unlike blogpages, are still accessible by link (like YouTube's "unlisted")
 # hence the lack of `@require_login_if_restricted_bp()`
@@ -223,6 +233,185 @@ def post(post, post_sanitized_title, **kwargs): # first param is from `require_v
     )
 
 
+@bp.route("/create", methods=["GET"], endpoint="create_post_form")
+@bp.route("/", methods=["POST"])
+@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@util.require_login()
+def create_post(**kwargs):
+    form = CreateBlogpostForm()
+    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
+    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
+
+    if request.method == "GET":
+        # automatically populate blogpage form field to current blogpage if possible
+        blogpage_id = bp_util.get_blogpage_id()
+        if blogpage_id is None:
+            return "ok im actually impressed how did you do that"
+        blogpage = db.session.get(Blogpage, blogpage_id)
+        if blogpage.is_writeable:
+            form.blogpage_id.data = blogpage_id # TODO sibling thing
+
+        return render_template(
+            "blog/blogpage/form_base.html", title="Create post", prompt="Create post", form=form,
+            action=url_for(f"blog.{blogpage_id}.create_post", _external=True), method="POST"
+        )
+    elif request.method == "POST":
+        if not form.validate():
+            return jsonify(submission_errors=form.errors)
+
+        # create post in db
+        post = Post(
+            blogpage_id=request.form.get("blogpage_id"), title=request.form.get("title"),
+            subtitle=request.form.get("subtitle"), content=request.form.get("content")
+        )
+        post.sanitize_title()
+        err = post.check_and_try_flushing(True)
+        if err:
+            return jsonify(flash_msg=err)
+        post.add_timestamps(False, False) # TODO use kwargs for these?
+        post.expand_img_markdown()
+
+        # upload files if any
+        files_base_path = bp_util.get_files_base_path(post)
+        err = bp_util.upload_files(request.files.getlist("files"), files_base_path)
+        if err:
+            return jsonify(flash_msg=err)
+
+        db.session.commit() # only commit at very end in case error happened above
+        return jsonify(
+            redir_url=url_for(
+                f"blog.{post.blogpage_id}.post", post_sanitized_title=post.sanitized_title, _external=True
+            ),
+            flash_msg="Post created successfully!"
+        )                   # view completed post
+
+
+@bp.route("/<string:post_sanitized_title>/edit", methods=["GET"], endpoint="edit_post_form")
+@bp.route("/<string:post_sanitized_title>", methods=["PUT"])
+@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@util.require_login()
+@bp_util.require_valid_post()
+def edit_post(post, post_sanitized_title, **kwargs):
+    # pre-populate form fields with existing post content
+    form = EditBlogpostForm(obj=post)
+    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
+    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
+    form.content.data = post.collapse_img_markdown()
+    files_base_path = bp_util.get_files_base_path(post)
+    if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
+        files_choices = []
+        for f in os.listdir(files_base_path):
+            if os.path.isfile(os.path.join(files_base_path, f)) and not f.startswith("."):
+                files_choices.append((f, f))
+        files_choices.sort(key=lambda t: t[0])
+        form.delete_files.choices = files_choices
+
+    if request.method == "GET":
+        blogpage_id = bp_util.get_blogpage_id()
+        return render_template(
+            "blog/blogpage/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form,
+            action=url_for(f"blog.{blogpage_id}.edit_post", post_sanitized_title=post_sanitized_title, _external=True),
+            method="PUT"
+        )
+    elif request.method == "PUT":
+        if not form.validate():
+            return jsonify(submission_errors=form.errors)
+
+        # edit post in db
+        old_blogpage_id = post.blogpage_id
+        post.blogpage_id = request.form.get("blogpage_id")
+        post.title = request.form.get("title")
+        post.subtitle = request.form.get("subtitle")
+        post.content = request.form.get("content")
+        
+        post.sanitize_title()
+        err = post.check_and_try_flushing(False) # TODO could this name be better? what is it checking?
+        if err:
+            return jsonify(flash_msg=err)
+        post.add_timestamps(
+            request.form.get("remove_updated_timestamp"), request.form.get("update_updated_timestamp"), old_blogpage_id
+        )
+        post.expand_img_markdown()
+
+        # upload files if any
+        files_base_path = bp_util.get_files_base_path(post)
+        err = bp_util.upload_files(request.files.getlist("files"), files_base_path)
+        if err:
+            return jsonify(flash_msg=err)
+        
+        # delete files if any
+        try:
+            for file in request.form.getlist("delete_files"):
+                filepath = os.path.join(files_base_path, file)
+                if os.path.exists(filepath):
+                    os.remove(filepath)
+            bp_util.delete_dir_if_empty(files_base_path)
+        except Exception as e:
+            print(e)
+            return jsonify(flash_msg=f"File delete exception")
+
+        # delete unused files if applicable; we assume any file whose filename is not in the Markdown is unused
+        if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
+            try:
+                files = os.listdir(files_base_path)
+                for file in files:
+                    filename, file_ext = os.path.splitext(file)
+                    if filename not in post.content:
+                        # if extension-less filename is unused, delete everything with that extension-less filename
+                        # so .excalidraw files etc. are also removed
+                        for file in glob.iglob(f"{os.path.join(files_base_path, filename)}.*"):
+                            os.remove(file)
+                bp_util.delete_dir_if_empty(files_base_path)
+            except Exception as e:
+                print(e)
+                return jsonify(flash_msg=f"File delete unused exception")
+        
+        # move files if moving blogpost
+        if post.blogpage_id != old_blogpage_id:
+            if os.path.exists(files_base_path):
+                try:
+                    new_files_base_path = bp_util.get_files_base_path(post)
+                    shutil.move(files_base_path, new_files_base_path)
+                except Exception as e:
+                    print(e)
+                    return jsonify(flash_msg=f"File move exception")
+
+        db.session.commit()
+        return jsonify(
+            redir_url=url_for(
+                f"blog.{post.blogpage_id}.post", post_sanitized_title=post.sanitized_title, _external=True
+            ),
+            flash_msg="Post updated successfully!"
+        ) # view updated post
+
+
+@bp.route("/<string:post_sanitized_title>", methods=["DELETE"])
+@util.set_content_type(ContentType.JSON)
+@util.require_login()
+@bp_util.require_valid_post()
+def delete_post(post, post_sanitized_title, **kwargs):
+    # delete post from db
+    db.session.delete(post)
+
+    # delete files directory
+    files_base_path = bp_util.get_files_base_path(post)
+    try:
+        if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
+            shutil.rmtree(files_base_path)
+    except Exception as e:
+        print(e)
+        return jsonify(flash_msg=f"Directory delete exception")
+
+    db.session.commit()
+    return jsonify(
+        redir_url=url_for(f"blog.{post.blogpage_id}.index", _external=True), flash_msg="Post deleted successfully!"
+    )
+
+
+####################################################################################################
+# Comment
+####################################################################################################
+
 @bp.route("/<string:post_sanitized_title>/get-comments", methods=["GET"])
 @util.set_content_type(ContentType.HTML)
 @bp_util.require_valid_post()
@@ -236,7 +425,8 @@ def get_comments(post, post_sanitized_title, **kwargs):
         if comment.author == current_app.config["VERIFIED_AUTHOR"]:
             comment.content = markdown.markdown(comment.content, extensions=["extra", "image_titles"])
         else:
-            # no custom block Markdown for non-admin because there are prob ways to 500 the page that I don't wanna fix
+            # no custom Markdown for non-admin because there are prob ways to 500 the page that I don't wanna fix
+            # TODO check if comment hover text still applies
             # (and besides it loads faster)
             comment.content = markdown.markdown(comment.content, extensions=["extra"])
             comment.content = bp_util.sanitize_untrusted_html(comment.content)
@@ -265,11 +455,6 @@ def get_comment_count(post, post_sanitized_title, **kwargs):
 @bp_util.redir_to_post_after_login()
 def get_unread_comment_count(post, post_sanitized_title, **kwargs):
     return jsonify(count=post.get_unread_comment_count())
-
-
-###################################################################################################
-# POST Endpoints
-###################################################################################################
 
 
 @bp.route("/<string:post_sanitized_title>/add-comment", methods=["POST"])

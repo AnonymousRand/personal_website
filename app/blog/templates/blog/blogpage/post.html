@@ -7,7 +7,6 @@
 
 {% block js_start_inline %}
 {{ super() }}
-const VERIFIED_AUTHOR = "{{ config["VERIFIED_AUTHOR"] }}";
 const ADD_COMMENT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.add_comment', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const DELETE_COMMENT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.delete_comment', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const GET_COMMENTS_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_comments', post_sanitized_title=post.sanitized_title, _external=True) }}";
@@ -15,6 +14,8 @@ const GET_COMMENT_COUNT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_comment_
 const GET_COMMENT_UNREAD_COUNT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_unread_comment_count', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_comments_as_read', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const PERMANENT_LINK_URL = "{{ url_for('blog.post_by_id', post_id=post.id, _external=True) }}";
+const DELETE_POST_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.delete_post', post_sanitized_title=post.sanitized_title, _external=True) }}";
+const VERIFIED_AUTHOR = "{{ config["VERIFIED_AUTHOR"] }}";
 {% endblock %}
 
 {% block js_deferred_linked %}
@@ -51,8 +52,14 @@ const PERMANENT_LINK_URL = "{{ url_for('blog.post_by_id', post_id=post.id, _exte
     <button id="copy-permanent-link-btn" class="btn btn-link copy-permanent-link-btn" type="button" title="Copy permanent link"><i class="bi bi-link-45deg"></i></button>
   </div>
   
-  <a class="edit-post-btn btn btn-primary btn--custom-orange-light show-when-logged-in" href="{{ url_for('admin.edit_blogpost', post_id=post.id) }}" role="button"{% if not current_user.is_authenticated %} hidden{% endif %}>Edit/delete post</a>
-  
+  <div class="post__btns d-flex align-items-center show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}>
+    <form class="flex-basis-50 me-3" action="{{ url_for('blog.' ~ blogpage_id ~ '.edit_post_form', post_sanitized_title=post.sanitized_title, _external=True) }}" method="GET">
+      <input class="edit-post-btn btn btn-primary btn--custom-orange-light mt-0 w-100" type="submit" value="Edit post">
+    </form>
+    <!-- `<form>`s don't take DELETE method; frontend web is maybe the stupidest thing i've ever had the misfortunate of experiencing -->
+    <button id="delete-post-btn" class="delete-post-btn btn btn-primary btn--custom-orange-light flex-basis-50" type="button">Delete post</button>
+  </div>
+
   <hr class="mb-0">
   
   {% if toc_tokens and toc_tokens|length > 0 %}

@@ -1,9 +1,15 @@
+from __future__ import annotations
+
 import bleach
+import imghdr
 import markdown
+import os
 import re
+import shutil
 from functools import wraps
 
-from flask import jsonify, redirect, request, url_for
+from flask import current_app, jsonify, redirect, request, url_for
+from werkzeug.utils import escape, secure_filename
 
 import app.util as util
 from app import db
@@ -107,12 +113,55 @@ def nonexistent_post(content_type: ContentType):
             return "app/blog/blogpage/util.py: `nonexistent_post()` reached end of switch statement", 500
 
 
+def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_path: str) -> str:
+    try:
+        for file in files:
+            if file.filename == "":
+                continue
+
+            filename = sanitize_filename(file.filename)
+            if filename == "":
+                return "File name was deleted by sanitization."
+
+            file_ext = os.path.splitext(filename)[1]
+            if file_ext == ".jpg":                      # `imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`
+                file_ext = ".jpeg"
+            # `imghdr` can't check SVG; trustable since admin-only ig
+            invalid = file_ext not in current_app.config["FILE_UPLOAD_EXTS"] \
+                    or (
+                        file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]
+                        and file_ext != validate_img(file.stream)
+                    )
+            if invalid:
+                return "Invalid file. If it's another heic im gonna lose my mind i swear to god i hate"
+
+            path = os.path.join(files_base_path, filename)
+            os.makedirs(files_base_path, exist_ok=True) # make image directory if it doesn't exist
+            file.save(path)                              # this can replace existing images
+    except Exception as e:
+        print(e)
+        return f"File upload exception"
+    return ""
+
+
+def delete_dir_if_empty(path: str) -> None:
+    if os.path.exists(path) and os.path.isdir(path) and len(os.listdir(path)) == 0:
+        shutil.rmtree(path)
+
+
 def get_blogpage_id() -> int:
     """
     Gets blogpage id from `request.blueprint`.
     """
 
     return int(request.blueprint.split('.')[-1])
+
+
+def get_files_base_path(post: Post) -> str:
+    return os.path.join(
+        current_app.root_path, current_app.config["ROOT_TO_BLOGPAGE_STATIC"],
+        str(post.blogpage_id), "images", str(post.id)
+    )
 
 
 def get_post(post: Post, post_sanitized_title: str, blogpage_id: int) -> Post:
@@ -145,3 +194,18 @@ def sanitize_untrusted_html(s: str) -> str:
             ]
     )
     return s
+
+
+def sanitize_filename(filename: str) -> str:
+    filename = escape(secure_filename(filename))
+    filename = filename.replace("(", "").replace(")", "") # for Markdown parsing
+    return filename
+
+
+def validate_img(img) -> str:
+    header = img.read(512)
+    img.seek(0)
+    format = imghdr.what(None, header)
+    if not format:
+        return ""
+    return f".{format}"

@@ -223,8 +223,13 @@
 /* Flex */
 /********/
 
+/* this doesn't always work, more proof that CSS was invented by a troglodyte who took a gamma ray burst to the brain */
 .flex-equal-children > * {
     flex: 1 !important;
+}
+
+.flex-basis-50 {
+    flex-basis: 50% !important;
 }
 
 .flex-basis-75 {

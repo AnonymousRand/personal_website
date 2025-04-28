@@ -1,0 +1,18 @@
+{% extends "blog/blogpage/base.html" %}
+
+{% block title %}
+{{ title }} - AnonymousRand blogs
+{% endblock %}
+
+{% block content %}
+<div class="mt-4">
+  <h1 class="fs-3">{{ prompt }}</h1>
+  {{ wtf.quick_form(form, id="main-form", action=action, method=method) }}
+</div>
+<!-- TODO: put this into macro so reusable for admin forms? -->
+{% endblock %}
+
+{% block js_deferred_linked %}
+{{ super() }}
+<script src="{{ url_for('blog.static', filename='blogpage/js/form_submit.js', _external=True) }}" defer></script>
+{% endblock %}

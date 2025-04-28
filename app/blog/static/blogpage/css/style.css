@@ -30,8 +30,9 @@ input[value="Reply"][value="Delete"] {
     font-size: 1em; /* undo Bootstrap */
 }
 
-.edit-post-btn {
+.post__btns {
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 .goto-page-form__page-input {
@@ -194,7 +195,7 @@ input[value="Reply"][value="Delete"] {
         --left-sticky-margin-left: calc(-5 * (min(100vw, 1536px) - var(--container-content-max-width)) / 12);
     }
 
-    .edit-post-btn {
+    .post__btns {
         position: fixed;
         float: left;
         margin-top: 0;
