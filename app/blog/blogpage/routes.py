@@ -9,7 +9,6 @@ import sqlalchemy.orm as so
 import sqlalchemy.sql.functions as sa_func
 from flask import current_app, get_template_attribute, jsonify, redirect, render_template, request, url_for
 from flask_login import current_user
-from flask_restx import Resource
 from markdown_environments import *
 from markdown.extensions.toc import TocExtension
 
