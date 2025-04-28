@@ -468,7 +468,8 @@ def add_comment(post, post_sanitized_title, **kwargs):
 
 
 @bp.route("/<string:post_sanitized_title>/comments/<string:comment_id>", methods=["DELETE"])
-@bp.route("/<string:post_sanitized_title>/comments/", defaults={"comment_id": -1}, methods=["DELETE"])
+# placeholder for `url_for()` in template inline JS to record base URL for linked JS without specifying a comment yet
+@bp.route("/<string:post_sanitized_title>/comments/", defaults={"comment_id": None}, methods=["DELETE"])
 @util.set_content_type(ContentType.JSON)
 @util.require_login()
 @bp_util.require_valid_post()
