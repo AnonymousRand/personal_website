@@ -9,6 +9,7 @@ import sqlalchemy.orm as so
 import sqlalchemy.sql.functions as sa_func
 from flask import current_app, get_template_attribute, jsonify, redirect, render_template, request, url_for
 from flask_login import current_user
+from flask_restx import Resource
 from markdown_environments import *
 from markdown.extensions.toc import TocExtension
 
@@ -26,9 +27,11 @@ def inject_blogpage_from_db():
     blogpage = db.session.query(Blogpage).filter_by(id=bp_util.get_blogpage_id()).first()
     return dict(blogpage=blogpage, blogpage_id=blogpage.id)
 
+
 ####################################################################################################
 # Posts
 ####################################################################################################
+
 
 @bp.route("/", methods=["GET"])
 @util.set_content_type(ContentType.HTML)
@@ -408,6 +411,7 @@ def delete_post(post, post_sanitized_title, **kwargs):
 ####################################################################################################
 # Comments
 ####################################################################################################
+
 
 @bp.route("/<string:post_sanitized_title>/comments", methods=["GET"])
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
