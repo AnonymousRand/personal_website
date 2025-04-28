@@ -27,7 +27,7 @@ def inject_blogpage_from_db():
     return dict(blogpage=blogpage, blogpage_id=blogpage.id)
 
 ####################################################################################################
-# Blogpage
+# Posts
 ####################################################################################################
 
 @bp.route("/", methods=["GET"])
@@ -66,9 +66,6 @@ def index(**kwargs):
         prev_page_url=prev_page_url, next_page_url=next_page_url
     )
 
-####################################################################################################
-# Post
-####################################################################################################
 
 # private posts, unlike blogpages, are still accessible by link (like YouTube's "unlisted")
 # hence the lack of `@require_login_if_restricted_bp()`
@@ -409,14 +406,14 @@ def delete_post(post, post_sanitized_title, **kwargs):
 
 
 ####################################################################################################
-# Comment
+# Comments
 ####################################################################################################
 
-@bp.route("/<string:post_sanitized_title>/get-comments", methods=["GET"])
-@util.set_content_type(ContentType.HTML)
+@bp.route("/<string:post_sanitized_title>/comments", methods=["GET"])
+@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def get_comments(post, post_sanitized_title, **kwargs):
+def comments(post, post_sanitized_title, **kwargs):
     # get comments from db and render Markdown
     comments_query = post.comments.select().order_by(Comment.timestamp.desc())
     comments = db.session.scalars(comments_query).all()
@@ -440,30 +437,12 @@ def get_comments(post, post_sanitized_title, **kwargs):
     ))
 
 
-@bp.route("/<string:post_sanitized_title>/get-comment-count", methods=["GET"])
-@util.set_content_type(ContentType.JSON)
-@bp_util.require_valid_post()
-@bp_util.redir_to_post_after_login()
-def get_comment_count(post, post_sanitized_title, **kwargs):
-    return jsonify(count=post.get_comment_count())
-
-
-@bp.route("/<string:post_sanitized_title>/get-comment-unread-count", methods=["GET"])
-@util.set_content_type(ContentType.JSON)
-@util.require_login()
-@bp_util.require_valid_post()
-@bp_util.redir_to_post_after_login()
-def get_unread_comment_count(post, post_sanitized_title, **kwargs):
-    return jsonify(count=post.get_unread_comment_count())
-
-
-@bp.route("/<string:post_sanitized_title>/add-comment", methods=["POST"])
+@bp.route("/<string:post_sanitized_title>/comments", methods=["POST"])
 @util.set_content_type(ContentType.JSON)
 @bp_util.require_login_if_restricted_bp()
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
 def add_comment(post, post_sanitized_title, **kwargs):
-    # validate form submission
     add_comment_form = AddCommentForm()
     if not add_comment_form.validate():
         return jsonify(submission_errors=add_comment_form.errors)
@@ -472,32 +451,31 @@ def add_comment(post, post_sanitized_title, **kwargs):
     author = request.form.get("author")
     is_verified_author = author.strip() == current_app.config["VERIFIED_AUTHOR"]
     if is_verified_author and not current_user.is_authenticated:
-        return jsonify(submission_errors={
-            "author": ["$8 isn't going to buy you a verified checkmark here."]
-        })
+        return jsonify(submission_errors={"author": ["$8 isn't going to buy you a verified checkmark here."]})
 
-    # add comment
-    # make sure I my own comments aren't unread when I add them, cause duh
+    # add comment to db
+    # make sure my own comments aren't unread when I add them, cause duh
     comment = Comment(author=author, content=request.form.get("content"), post=post, is_unread=not is_verified_author)
     with db.session.no_autoflush: # otherwise there's a warning
         if not comment.insert_comment(post, db.session.get(Comment, request.form.get("parent"))):
             return jsonify(flash_msg="please no hack :3")
     db.session.add(comment)
     db.session.commit()
-    return jsonify(success=True, flash_msg="Comment added successfully!")
+    return jsonify(success=True, flash_msg="comment added successfully :3")
 
 
-@bp.route("/<string:post_sanitized_title>/delete-comment", methods=["POST"])
+@bp.route("/<string:post_sanitized_title>/comments/<string:comment_id>", methods=["DELETE"])
+@bp.route("/<string:post_sanitized_title>/comments/", defaults={"comment_id": -1}, methods=["DELETE"])
 @util.set_content_type(ContentType.JSON)
 @util.require_login()
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def delete_comment(post, post_sanitized_title, **kwargs):
-    comment = db.session.get(Comment, request.args.get("comment_id"))
+def delete_comment(post, post_sanitized_title, comment_id, **kwargs):
+    comment = db.session.get(Comment, comment_id)
     if comment is None:
         return jsonify(success=True, flash_msg=f"That comment doesn't exist :/")
 
-    # delete comment
+    # delete comment and its descendants from db
     descendants = comment.get_descendants(post)
     if not comment.remove_comment(post):
         return jsonify(flash_msg="please no hack :3")
@@ -508,16 +486,33 @@ def delete_comment(post, post_sanitized_title, **kwargs):
     return jsonify(success=True, flash_msg="literally 1984")
 
 
-@bp.route("/<string:post_sanitized_title>/mark-comments-as-read", methods=["POST"])
+@bp.route("/<string:post_sanitized_title>/comments/mark-as-read", methods=["POST"])
 @util.set_content_type(ContentType.JSON)
 @util.require_login()
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
 def mark_comments_as_read(post, post_sanitized_title, **kwargs):
-    # mark comments under current post as read
+    # mark comments under current post as read in db
     unread_comments_query = post.comments.select().filter_by(is_unread=True)
     unread_comments = db.session.scalars(unread_comments_query).all()
     for comment in unread_comments:
         comment.is_unread=False
     db.session.commit()
     return jsonify(success=True)
+
+
+@bp.route("/<string:post_sanitized_title>/comments/get-count", methods=["GET"])
+@util.set_content_type(ContentType.JSON)
+@bp_util.require_valid_post()
+@bp_util.redir_to_post_after_login()
+def get_comment_count(post, post_sanitized_title, **kwargs):
+    return jsonify(count=post.get_comment_count())
+
+
+@bp.route("/<string:post_sanitized_title>/comments/get-unread-count", methods=["GET"])
+@util.set_content_type(ContentType.JSON)
+@util.require_login()
+@bp_util.require_valid_post()
+@bp_util.redir_to_post_after_login()
+def get_unread_comment_count(post, post_sanitized_title, **kwargs):
+    return jsonify(count=post.get_unread_comment_count())

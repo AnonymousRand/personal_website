@@ -77,7 +77,8 @@ def redir_to_post_after_login():
     If redirecting to this view function via the `next` parameter after logging in, instead redirect to simply the
     GET endpoint for the current post.
 
-    Important: the view function this decorator wraps must have `post_sanitized_title` as its first parameter.
+    Important: this decorator must be applied after the `post` or `post_sanitized_title` parameters are set (i.e.
+    after `@require_valid_post`).
     """
 
     def inner_decorator(func):

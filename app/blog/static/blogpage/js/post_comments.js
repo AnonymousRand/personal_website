@@ -63,7 +63,7 @@ async function reloadComments() {
     if (commentCount === 0) {
         $("#comment-list").html("");
     } else {
-        respJson = await fetchWrapper(GET_COMMENTS_URL, {method: "GET"});
+        respJson = await fetchWrapper(COMMENTS_URL, {method: "GET"});
         if (!respJson.errorStatus) {
             $("#comment-list").html(respJson.html);
         } else if (respJson.errorStatus !== 429) {
@@ -158,7 +158,7 @@ $(document).on("submit", ".ajax-delete-comment", confirmBtn(async function(e) {
 
     let formData = new FormData(e.target);
     const respJson = await fetchWrapper(
-        DELETE_COMMENT_URL, {method: "POST", body: formData}, {comment_id: getCommentId(e.target)}
+        DELETE_COMMENT_URL + `/${getCommentId(e.target)}`, {method: "DELETE", body: formData}
     );
     onCommentAjaxDone(respJson, e);
 }));

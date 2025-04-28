@@ -5,11 +5,12 @@
 {{ post.title }} - {{ blogpage.name }}
 {% endblock %}
 
+<!-- TODO organize wth -->
 {% block js_start_inline %}
 {{ super() }}
 const ADD_COMMENT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.add_comment', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const DELETE_COMMENT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.delete_comment', post_sanitized_title=post.sanitized_title, _external=True) }}";
-const GET_COMMENTS_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_comments', post_sanitized_title=post.sanitized_title, _external=True) }}";
+const COMMENTS_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.comments', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const GET_COMMENT_COUNT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_comment_count', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const GET_COMMENT_UNREAD_COUNT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_unread_comment_count', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_comments_as_read', post_sanitized_title=post.sanitized_title, _external=True) }}";
