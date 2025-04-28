@@ -1,6 +1,6 @@
 onDarkModeChange = addToFunction(onDarkModeChange, function(enabled) {
     const jQFooterIconGitHub = $("#footer__github-icon");
-    if (!jQFooterIconGitHub) {
+    if (jQFooterIconGitHub.length === 0) {
         return;
     }
 

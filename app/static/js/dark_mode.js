@@ -87,7 +87,7 @@ if (localStorage.getItem("darkMode") === "true") {
 function enableDarkMode(isVoluntary) {
     DarkReader.enable(DARKREADER_OPTIONS, DARKREADER_FIXES);
 
-    if (jQSwitchDarkMode && !jQSwitchDarkMode.prop("checked")) {
+    if (jQSwitchDarkMode && jQSwitchDarkMode.length > 0 && !jQSwitchDarkMode.prop("checked")) {
         jQSwitchDarkMode.prop("checked", true);
     }
     if (isVoluntary) {
@@ -102,7 +102,7 @@ function enableDarkMode(isVoluntary) {
 function disableDarkMode(isVoluntary) {
     DarkReader.disable();
 
-    if (jQSwitchDarkMode && jQSwitchDarkMode.prop("checked")) {
+    if (jQSwitchDarkMode && jQSwitchDarkMode.length > 0 && jQSwitchDarkMode.prop("checked")) {
         jQSwitchDarkMode.prop("checked", false);
     }
     if (isVoluntary) {

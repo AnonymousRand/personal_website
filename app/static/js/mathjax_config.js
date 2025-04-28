@@ -1,6 +1,6 @@
 let onMathJaxTypeset = function(baseSelector) {
     const jQBase = $(baseSelector);
-    if (!jQBase) {
+    if (jQBase.length === 0) {
         return;
     }
 
