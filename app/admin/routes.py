@@ -140,7 +140,7 @@ def create_blogpost(**kwargs):
         db.session.commit() # commit at very end when success is guaranteed
         return jsonify(
             redir_url=url_for(
-                f"blog.{post.blogpage_id}.post", post_sanitized_title=post.sanitized_title, _external=True
+                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
             flash_msg="Post created successfully!"
         )                   # view completed post
@@ -258,7 +258,7 @@ def edit_blogpost(**kwargs):
         db.session.commit()
         return jsonify(
             redir_url=url_for(
-                f"blog.{post.blogpage_id}.post", post_sanitized_title=post.sanitized_title, _external=True
+                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
             flash_msg="Post updated successfully!"
         ) # view updated post

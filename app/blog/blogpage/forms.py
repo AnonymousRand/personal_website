@@ -45,5 +45,9 @@ class ReplyCommentBtn(FlaskForm):
     reply_comment = SubmitField("Reply")
 
 
+class EditCommentBtn(FlaskForm):
+    edit_comment = SubmitField("Edit")
+
+
 class DeleteCommentBtn(FlaskForm):
     delete_comment = SubmitField("Delete")

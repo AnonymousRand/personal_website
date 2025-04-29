@@ -16,7 +16,7 @@ def index():
     # preserve query string
     if request.query_string.decode() != "":
         query_string = "?" + request.query_string.decode()
-    return redirect(url_for(f"blog.1.index", _external=True) + query_string)
+    return redirect(url_for(f"blog.1.get_posts", _external=True) + query_string)
 
 
 # for more permanent links that don't change if a post changes title/moves between blogs
@@ -26,7 +26,7 @@ def post_by_id(post_id):
     post = db.session.get(Post, post_id)
     if post is None:
         return redirect(
-            url_for(f"blog.index", flash_msg=util.encode_uri_component("That post doesn't exist :/"), _external=True)
+            url_for(f"blog.get_posts", flash_msg=util.encode_uri_component("That post doesn't exist :/"), _external=True)
         )
 
     # prevent brute-force enumeration of post IDs to find unlinked posts
@@ -34,7 +34,7 @@ def post_by_id(post_id):
         result = util.custom_unauthorized(ContentType.HTML)
         if result:
             return result
-    return redirect(url_for(f"blog.{post.blogpage_id}.post", post_sanitized_title=post.sanitized_title, _external=True))
+    return redirect(url_for(f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True))
 
 
 ###################################################################################################

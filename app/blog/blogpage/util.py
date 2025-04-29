@@ -36,7 +36,7 @@ def require_login_if_restricted_bp():
                                 _external=True))
                     case ContentType.JSON:
                         return jsonify(
-                                redir_url=url_for(f"{request.blueprint}.index", _external=True), 
+                                redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
                                 flash_msg="That post doesn't exist :/")
                     case _:
                         return ("app/blog/blogpage/util.py: `require_login_if_restricted_bp()` reached end of switch "
@@ -72,6 +72,18 @@ def require_valid_post():
     return inner_decorator
 
 
+def require_valid_comment():
+    def inner_decorator(func):
+        @wraps(func)
+        def wrapped(content_type: ContentType, comment_id: str, *args, **kwargs):
+            comment = db.session.get(Comment, comment_id)
+            if comment is None:
+                return jsonify(success=True, flash_msg=f"That comment doesn't exist :/")
+            return func(comment=comment, comment_id=comment_id, content_type=content_type, *args, **kwargs)
+        return wrapped
+    return inner_decorator
+
+
 def redir_to_post_after_login():
     """
     If redirecting to this view function via the `next` parameter after logging in, instead redirect to simply the
@@ -103,12 +115,12 @@ def nonexistent_post(content_type: ContentType):
     match content_type:
         case ContentType.HTML:
             return redirect(url_for(
-                    f"{request.blueprint}.index",
+                    f"{request.blueprint}.get_posts",
                     flash_msg=util.encode_uri_component("That post doesn't exist :/"),
                     _external=True))
         case ContentType.JSON:
             return jsonify(
-                    redir_url=url_for(f"{request.blueprint}.index", _external=True), 
+                    redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
                     flash_msg="That post doesn't exist :/")
         case _:
             return "app/blog/blogpage/util.py: `nonexistent_post()` reached end of switch statement", 500

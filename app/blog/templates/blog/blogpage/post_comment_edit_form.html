@@ -1,0 +1,4 @@
+{% import "bootstrap_wtf.html" as wtf %}
+
+<h3 class="mb-3 border-b border--1px border--lightgray pb-3 fs-7">making you look bad &gt;:3</h3>
+{{ wtf.quick_form(form, id="comment__edit-form-" ~ comment.id, class="mt-3 mb-2 ajax-edit-comment") }}

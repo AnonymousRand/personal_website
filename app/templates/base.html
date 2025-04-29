@@ -99,6 +99,7 @@
           const LOGOUT_URL = "{{ url_for('admin.logout', _external=True) }}";
           const AFTER_LOGOUT_URL = "{{ url_for(config['AFTER_LOGOUT_VIEW'], _external=True) }}";
           const SESSION_STATUS_URL = "{{ url_for('admin.session_status', _external=True) }}";
+          const GET_URL_FOR_URL = "{{ url_for('get_url_for', _external=True) }}";
           let csrfToken = "{{ csrf_token() }}";
           let backgroundImgUrl = "";
 
@@ -148,7 +149,7 @@
               <ul class="dropdown-menu">
                 {% for blogpage in blogpages %}
                   <li{% if blogpage.is_login_required %} class="show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}{% endif %}>
-                      <a class="dropdown-item" href="{{ url_for('blog.' ~ blogpage.id ~ '.index', _external=True) }}" title="{{ blogpage.description if blogpage.description is not none }}">{{ blogpage.name }}</a>
+                      <a class="dropdown-item" href="{{ url_for('blog.' ~ blogpage.id ~ '.get_posts', _external=True) }}" title="{{ blogpage.description if blogpage.description is not none }}">{{ blogpage.name }}</a>
                   </li>
                 {% endfor %}
               </ul>

@@ -13,7 +13,7 @@ def redirs_to_index_after_login():
         @wraps(func)
         def wrapped(*args, **kwargs):
             if request.args.get("is_redir_after_login"):
-                return redirect(url_for("blog.index", _external=True))
+                return redirect(url_for("blog.get_posts", _external=True))
             return func(*args, **kwargs)
         return wrapped
     return inner_decorator

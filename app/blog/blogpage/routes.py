@@ -35,7 +35,7 @@ def inject_blogpage_from_db():
 @bp.route("/", methods=["GET"])
 @util.set_content_type(ContentType.HTML)
 @bp_util.require_login_if_restricted_bp()
-def index(**kwargs):
+def get_posts(**kwargs):
     page_num = request.args.get("page", 1, type=int) # should automatically redirect non-int to page 1
     blogpage_id = bp_util.get_blogpage_id()
     blogpage = db.session.get(Blogpage, blogpage_id)
@@ -58,9 +58,9 @@ def index(**kwargs):
     if posts is None:
         return "ok im actually impressed how did you do that"
 
-    next_page_url = url_for(f"blog.{blogpage_id}.index", page=posts.next_num, _external=True) if posts.has_next \
+    next_page_url = url_for(f"blog.{blogpage_id}.get_posts", page=posts.next_num, _external=True) if posts.has_next \
             else None
-    prev_page_url = url_for(f"blog.{blogpage_id}.index", page=posts.prev_num, _external=True) if posts.has_prev \
+    prev_page_url = url_for(f"blog.{blogpage_id}.get_posts", page=posts.prev_num, _external=True) if posts.has_prev \
             else None
 
     return render_template(
@@ -74,7 +74,7 @@ def index(**kwargs):
 @bp.route("/<string:post_sanitized_title>", methods=["GET"])
 @util.set_content_type(ContentType.HTML)
 @bp_util.require_valid_post()
-def post(post, post_sanitized_title, **kwargs): # first param is from `require_valid_post` decorator
+def get_post(post, post_sanitized_title, **kwargs): # first param is from `require_valid_post` decorator
     # render Markdown for post
     content_md = None
     if post.content:
@@ -279,7 +279,7 @@ def create_post(**kwargs):
         db.session.commit() # only commit at very end in case error happened above
         return jsonify(
             redir_url=url_for(
-                f"blog.{post.blogpage_id}.post", post_sanitized_title=post.sanitized_title, _external=True
+                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
             flash_msg="Post created successfully!"
         )                   # view completed post
@@ -378,7 +378,7 @@ def edit_post(post, post_sanitized_title, **kwargs):
         db.session.commit()
         return jsonify(
             redir_url=url_for(
-                f"blog.{post.blogpage_id}.post", post_sanitized_title=post.sanitized_title, _external=True
+                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
             flash_msg="Post updated successfully!"
         ) # view updated post
@@ -403,7 +403,7 @@ def delete_post(post, post_sanitized_title, **kwargs):
 
     db.session.commit()
     return jsonify(
-        redir_url=url_for(f"blog.{post.blogpage_id}.index", _external=True), flash_msg="Post deleted successfully!"
+        redir_url=url_for(f"blog.{post.blogpage_id}.get_posts", _external=True), flash_msg="Post deleted successfully!"
     )
 
 
@@ -416,7 +416,7 @@ def delete_post(post, post_sanitized_title, **kwargs):
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def comments(post, post_sanitized_title, **kwargs):
+def get_comments(post, post_sanitized_title, **kwargs):
     # get comments from db and render Markdown
     comments_query = post.comments.select().order_by(Comment.timestamp.desc())
     comments = db.session.scalars(comments_query).all()
@@ -433,10 +433,11 @@ def comments(post, post_sanitized_title, **kwargs):
  
     add_comment_form = AddCommentForm()
     reply_comment_btn = ReplyCommentBtn()
+    edit_comment_btn = EditCommentBtn()
     delete_comment_btn = DeleteCommentBtn()
     return jsonify(html=render_template(
         "blog/blogpage/post_comments.html", post=post, comments=comments, add_comment_form=add_comment_form,
-        delete_comment_btn=delete_comment_btn, reply_comment_btn=reply_comment_btn
+        reply_comment_btn=reply_comment_btn, delete_comment_btn=delete_comment_btn, edit_comment_btn=edit_comment_btn
     ))
 
 
@@ -446,9 +447,9 @@ def comments(post, post_sanitized_title, **kwargs):
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
 def add_comment(post, post_sanitized_title, **kwargs):
-    add_comment_form = AddCommentForm()
-    if not add_comment_form.validate():
-        return jsonify(submission_errors=add_comment_form.errors)
+    form = AddCommentForm()
+    if not form.validate():
+        return jsonify(submission_errors=form.errors)
 
     # make sure non-admin users can't masquerade as verified author
     author = request.form.get("author")
@@ -467,18 +468,38 @@ def add_comment(post, post_sanitized_title, **kwargs):
     return jsonify(success=True, flash_msg="comment added successfully :3")
 
 
+@bp.route(
+    "/<string:post_sanitized_title>/comments/<string:comment_id>/edit", methods=["GET"], endpoint="edit_comment_form"
+)
+@bp.route("/<string:post_sanitized_title>/comments/<string:comment_id>", methods=["PUT"])
+@util.set_content_type(ContentType.JSON)
+@util.require_login() # only admins can edit comments, since there's no other user account system
+@bp_util.require_valid_post()
+@bp_util.require_valid_comment()
+@bp_util.redir_to_post_after_login()
+def edit_comment(post, post_sanitized_title, comment, comment_id, **kwargs):
+    # pre-populate form fields with existing comment content; leave out `parent` since that should not be changeable
+    form = AddCommentForm(obj=comment)
+    if request.method == "GET":
+        return jsonify(html=render_template("blog/blogpage/post_comment_edit_form.html", form=form, comment=comment))
+    elif request.method == "PUT":
+        if not form.validate():
+            return jsonify(submission_errors=form.errors)
+
+        # edit comment in db
+        comment.author = request.form.get("author")
+        comment.content = request.form.get("content")
+        db.session.commit()
+        return jsonify(success=True, flash_msg="comment updated successfully :3")
+
+
 @bp.route("/<string:post_sanitized_title>/comments/<string:comment_id>", methods=["DELETE"])
-# placeholder for `url_for()` in template inline JS to record base URL for linked JS without specifying a comment yet
-@bp.route("/<string:post_sanitized_title>/comments/", defaults={"comment_id": None}, methods=["DELETE"])
 @util.set_content_type(ContentType.JSON)
 @util.require_login()
 @bp_util.require_valid_post()
+@bp_util.require_valid_comment()
 @bp_util.redir_to_post_after_login()
-def delete_comment(post, post_sanitized_title, comment_id, **kwargs):
-    comment = db.session.get(Comment, comment_id)
-    if comment is None:
-        return jsonify(success=True, flash_msg=f"That comment doesn't exist :/")
-
+def delete_comment(post, post_sanitized_title, comment, comment_id, **kwargs):
     # delete comment and its descendants from db
     descendants = comment.get_descendants(post)
     if not comment.remove_comment(post):
@@ -487,7 +508,7 @@ def delete_comment(post, post_sanitized_title, comment_id, **kwargs):
         db.session.delete(descendant)
     db.session.delete(comment)
     db.session.commit()
-    return jsonify(success=True, flash_msg="literally 1984")
+    return jsonify(success=True, flash_msg="literally 1984 :3")
 
 
 @bp.route("/<string:post_sanitized_title>/comments/mark-as-read", methods=["POST"])

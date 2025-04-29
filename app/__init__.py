@@ -83,3 +83,4 @@ def register_global_routes(app):
     app.context_processor(global_routes.inject_forms)
     app.context_processor(global_routes.inject_blogpages)
     app.register_error_handler(HTTPException, global_routes.handle_general_http_error)
+    app.add_url_rule("/url-for", endpoint="get_url_for", view_func=global_routes.get_url_for)

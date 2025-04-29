@@ -63,7 +63,7 @@ async function reloadComments() {
     if (commentCount === 0) {
         $("#comment-list").html("");
     } else {
-        respJson = await fetchWrapper(COMMENTS_URL, {method: "GET"});
+        respJson = await fetchWrapper(GET_COMMENTS_URL, {method: "GET"});
         if (!respJson.errorStatus) {
             $("#comment-list").html(respJson.html);
         } else if (respJson.errorStatus !== 429) {
@@ -114,6 +114,7 @@ function onCommentAjaxDone(respJson, e) {
     }
 }
 
+// TODO should store instead? or at least get from top-level comment div?
 function getCommentId(nodeForm) {
     return $(nodeForm).attr("id").match(/\d+/)[0];
 }
@@ -153,12 +154,57 @@ $(document).on("submit", ".ajax-add-comment", async function(e) {
     onCommentAjaxDone(respJson, e);
 });
 
+// replace comment HTML with edit comment form
+$(document).on("submit", ".ajax-make-edit-comment", async function(e) {
+    e.preventDefault();
+
+    let commentId = getCommentId(e.target);
+    let respJson = await fetchWrapper(
+        GET_URL_FOR_URL, {method: "GET"},
+        {
+            endpoint: `blog.${BLOGPAGE_ID}.edit_comment_form`,
+            post_sanitized_title: POST_SANITIZED_TITLE,
+            comment_id: commentId
+        }
+    );
+    let url = respJson.url;
+    respJson = await fetchWrapper(url, {method: "GET"});
+    doAjaxResponseForm(respJson, e); // don't need to refresh comments or anything
+    $(`#comment-${commentId} > .card-body`).html(respJson.html); 
+});
+
+// actually submit edit comment form
+$(document).on("submit", ".ajax-edit-comment", async function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(e.target);
+    let respJson = await fetchWrapper(
+        GET_URL_FOR_URL, {method: "GET"},
+        {
+            endpoint: `blog.${BLOGPAGE_ID}.edit_comment`,
+            post_sanitized_title: POST_SANITIZED_TITLE,
+            comment_id: getCommentId(e.target)
+        }
+    );
+    let url = respJson.url;
+    respJson = await fetchWrapper(url, {method: "PUT", body: formData});
+    onCommentAjaxDone(respJson, e);
+});
+
 $(document).on("submit", ".ajax-delete-comment", confirmBtn(async function(e) {
     e.preventDefault();
 
     let formData = new FormData(e.target);
-    const respJson = await fetchWrapper(
-        DELETE_COMMENT_URL + `/${getCommentId(e.target)}`, {method: "DELETE", body: formData}
+    // TODO test don't need formdata here right
+    let respJson = await fetchWrapper(
+        GET_URL_FOR_URL, {method: "GET"},
+        {
+            endpoint: `blog.${BLOGPAGE_ID}.delete_comment`,
+            post_sanitized_title: POST_SANITIZED_TITLE,
+            comment_id: getCommentId(e.target)
+        }
     );
+    let url = respJson.url;
+    respJson = await fetchWrapper(url, {method: "DELETE", body: formData});
     onCommentAjaxDone(respJson, e);
 }));
