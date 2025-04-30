@@ -13,7 +13,7 @@ let onSamePageLogin = function() {
 // my principle is that letting an expired session simply continue viewing a restricted page with no ability to
 // interact (since it will always ask for modal and not do anything) is not a huge deal
 // (if I forgot to log out at public computer or something then we have a LOT of other problems)
-function relogin() {
+function showLoginModal() {
     customFlash("Your session has expired. Please log in again :3");
     $("#login-modal").modal("show");
 }

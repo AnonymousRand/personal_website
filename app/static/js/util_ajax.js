@@ -28,9 +28,9 @@ async function fetchWrapper(baseUrl, options, params=null) {
 
     // no error; base response
     if (resp.ok && respJson !== null) {
-        // catch `relogin` key and make sure Ajax response doesn't continue to proceed
-        if (respJson.relogin) {
-            relogin();
+        // catch `needs_login` key and make sure Ajax response doesn't continue to proceed
+        if (respJson.needs_login) {
+            showLoginModal();
             return {errorStatus: 401, hasHandledError: false};
         }
 
@@ -53,7 +53,7 @@ async function fetchWrapper(baseUrl, options, params=null) {
 
 /**
  * Always-supported JSON keys:
- *     - `relogin`
+ *     - `needs_login`
  *     - `redir_url`
  *     - `flash_msg`
  *     - `is_redir_after_login`
