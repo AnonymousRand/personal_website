@@ -29,9 +29,7 @@ def login():
         # check admin password
         if user is None or not user.check_password(request.form.get("password")):
             # display in submission errors section instead of flash
-            return jsonify(submission_errors={
-                "password": ["No, the password is not \"solarwinds123\"."]
-            })
+            return jsonify(submission_errors={"password": ["No, the password is not \"solarwinds123\"."]})
 
         # `remember=False`, so session expires on both browser close (if it isn't running in background)
         # and on `PERMANENT_SESSION_LIFETIME` timeout (`session.permanent = True` only also makes sure cookie is deleted
@@ -129,7 +127,7 @@ def change_admin_password(**kwargs):
     if request.method == "GET":
         return render_template(
             "admin/form_base.html", title="Change admin password",
-            prompt="Don't make it \"solarwinds123\" or else my incorrect password message won't wo", form=form
+            prompt="Don't make it \"solarwinds123\" or else my incorrect password message won't wor", form=form
         )
     elif request.method == "POST":
         if not form.validate():
