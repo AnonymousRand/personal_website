@@ -94,15 +94,15 @@ class Config(object):
     BLOGPAGE_ID_TO_URL_PREFIX = {
          "1": "/all",
          "2": "/misc",
-        "-2": "/misc-backrooms",
+        "-2": "/misc/backrooms",
          "3": "/professor-google",
-        "-3": "/professor-google-backrooms",
+        "-3": "/professor-google/backrooms",
          "4": "/typewriter-monkey-does-ctfs",
-        "-4": "/typewriter-monkey-does-ctfs-backrooms",
+        "-4": "/typewriter-monkey-does-ctfs/backrooms",
          "5": "/the-fake-news-network",
-        "-5": "/the-fake-news-network-backrooms",
+        "-5": "/the-fake-news-network/backrooms",
          "6": "/writers-block",
-        "-6": "/writers-block-backrooms",
+        "-6": "/writers-block/backrooms",
          "7": "/writers-unblock",
-        "-7": "/writers-unblock-backrooms"
+        "-7": "/writers-unblock/backrooms"
     }
