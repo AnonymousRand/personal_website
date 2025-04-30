@@ -143,6 +143,9 @@ Keep up-to-date:
         - E.g. lists, which have had the space between it and the previous paragraph removed by default
     - `<br>` for line breaks that aren't new paragraphs and don't leave extra space, like between lines in a stanza, and `<br>` surrounded by two empty lines for more space than a normal paragraph, like between stanzas
 
+### Debug:
+- Use `debugTestSelfLinks()` in the browser console to test for dead self-links on the current page
+
 ### Tables:
 - Uses [Markdown tables](https://www.tablesgenerator.com/markdown_tables#) with "Compact mode" and "Line breaks as \<br\>" checked
 - For merged cells, use the [Attribute Lists](https://python-markdown.github.io/extensions/attr_list/) extension to set `colspan`. To keep valid table syntax, put `<span></span> {: hidden }` in cells that have been merged into other ones.
