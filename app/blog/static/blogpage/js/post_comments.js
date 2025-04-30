@@ -190,7 +190,7 @@ $(document).on("submit", ".ajax-edit-comment", async function(e) {
     onModifyCommentAjaxDone(respJson, e);
 });
 
-$(document).on("submit", ".ajax-delete-comment", confirmBtn(async function(e) {
+$(document).on("submit", ".ajax-delete-comment", confirmWrapper(async function(e) {
     e.preventDefault();
 
     let formData = new FormData(e.target);

@@ -4,7 +4,7 @@ $(document).ready(function() {
         customFlash(`Link copied: ${PERMANENT_LINK_URL}`);
     });
 
-    $("#delete-post-btn").on("click", confirmBtn(async function(e) {
+    $("#delete-post-btn").on("click", confirmWrapper(async function(e) {
         e.preventDefault();
         const respJson = await fetchWrapper(DELETE_POST_URL, {method: "DELETE"});
         doAjaxResponseBase(respJson);

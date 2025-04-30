@@ -1,9 +1,9 @@
-function confirmBtn(btnHandler) {
+function confirmWrapper(inner) {
     return function() {
         if (!confirm("Mouse aim check")) {
             return false;
         }
-        btnHandler.apply(this, arguments);
+        inner.apply(this, arguments);
     };
 }
 
