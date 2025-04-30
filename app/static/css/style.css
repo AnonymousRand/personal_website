@@ -58,7 +58,7 @@ li > :last-child > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0;
 }
 
-/* make MathJax `\overline` actually visible; TODO sync CSS selector if MathJax updates */
+/* make MathJax `\overline` actually visible; sync CSS selector if MathJax updates */
 mjx-stretchy-h.mjx-c2013 mjx-ext mjx-c::before {
     font-size: 125%;
 }
