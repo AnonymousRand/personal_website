@@ -15,7 +15,7 @@
 {% endblock %}
 
 
-{% block js_deferred_linked %}
+{% block js_head_deferred_linked %}
 {{ super() }}
 <script src="{{ url_for('blog.static', filename='blogpage/js/form_submit.js', _external=True) }}" defer></script>
 {% endblock %}

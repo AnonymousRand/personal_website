@@ -7,13 +7,13 @@
 {% endblock %}
 
 
-{% block js_start_inline %}
+{% block js_head_inline %}
 {{ super() }}
 const GET_POSTS_WITH_UNREAD_COMMENTS_URL = "{{ url_for('blog.get_posts_with_unread_comments', _external=True) }}";
 {% endblock %}
 
 
-{% block js_deferred_linked %}
+{% block js_head_deferred_linked %}
 {{ super() }}
 <script src="{{ url_for('blog.static', filename='js/unread_comments_notif.js', _external=True) }}" defer></script>
 {% endblock %}

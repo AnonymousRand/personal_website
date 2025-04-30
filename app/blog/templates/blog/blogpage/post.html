@@ -7,7 +7,7 @@
 {% endblock %}
 
 
-{% block js_start_inline %}
+{% block js_head_inline %}
 {{ super() }}
 const BLOGPAGE_ID = {{ blogpage_id }};
 const POST_SANITIZED_TITLE = "{{ post.sanitized_title }}";
@@ -23,7 +23,7 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
 {% endblock %}
 
 
-{% block js_deferred_linked %}
+{% block js_head_deferred_linked %}
 {{ super() }}
 <script src="{{ url_for('blog.static', filename='blogpage/js/post_comments.js', _external=True) }}" defer></script>
 <script src="{{ url_for('blog.static', filename='blogpage/js/post_events.js', _external=True) }}" defer></script>
