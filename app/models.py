@@ -269,6 +269,10 @@ class Comment(db.Model):
         return True
 
     def get_descendants(self, post: Post) -> list:
+        """
+        Gets all descendants of a comment, excluding itself.
+        """
+
         comments_query = post.comments.select().filter(sa.and_(Comment.left > self.left, Comment.right < self.right))
         return db.session.scalars(comments_query).all()
 
