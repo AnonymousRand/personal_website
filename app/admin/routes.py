@@ -313,7 +313,7 @@ def change_admin_password(**kwargs):
 
 @bp.route("/session-status", methods=["GET"])
 def session_status():
-    resp = make_response(jsonify(logged_in=current_user.is_authenticated))
+    resp = make_response(jsonify(is_logged_in=current_user.is_authenticated))
     resp.headers["Cache-Control"] = "no-cache, no-store"
     return resp
 
