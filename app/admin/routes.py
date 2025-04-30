@@ -1,7 +1,7 @@
 import tldextract
 
 import sqlalchemy as sa
-from flask import current_app, jsonify, make_response, render_template, request, session, url_for
+from flask import current_app, jsonify, render_template, request, session, url_for
 from flask_login import current_user, login_user, logout_user
 
 import app.util as util
@@ -154,10 +154,3 @@ def change_admin_password(**kwargs):
             redir_url=url_for("main.index", _external=True),
             flash_msg="Your password has been changed! Here's some randomart: ඞ" # this works!?
         )
-
-
-@bp.route("/session-status", methods=["GET"])
-def session_status():
-    resp = make_response(jsonify(is_logged_in=current_user.is_authenticated))
-    resp.headers["Cache-Control"] = "no-cache, no-store"
-    return resp

@@ -1,4 +1,5 @@
-from flask import jsonify, redirect, request, url_for
+from flask import jsonify, make_response, redirect, request, url_for
+from flask_login import current_user
 
 from app import db
 from app.forms import *
@@ -32,3 +33,9 @@ def get_url_for(*args, **kwargs):
     """
 
     return jsonify(url=url_for(**request.args, _external=True))
+
+
+def get_session_status():
+    resp = make_response(jsonify(is_logged_in=current_user.is_authenticated))
+    resp.headers["Cache-Control"] = "no-cache, no-store"
+    return resp

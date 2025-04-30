@@ -1,5 +1,5 @@
 const IS_USER_AUTHENTICATED = async function() {
-    const respJson = await fetchWrapper(SESSION_STATUS_URL, {method: "GET"});
+    const respJson = await fetchWrapper(GET_SESSION_STATUS_URL, {method: "GET"});
     return respJson.is_logged_in;
 };
 
