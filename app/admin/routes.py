@@ -70,6 +70,15 @@ def login():
         )
 
 
+@bp.route("/logout", methods=["POST"])
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+    return jsonify(
+        redir_url=url_for(current_app.config["AFTER_LOGOUT_ENDPOINT"], _external=True), flash_msg="Mischief managed."
+    )
+
+
 @bp.route("/choose-action", methods=["GET", "POST"])
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @util.require_login()
@@ -85,9 +94,9 @@ def choose_action(**kwargs):
         redir_url = ""
         match action:
             case "create":
-                redir_url = url_for("admin.create_blogpost", _external=True)
+                redir_url = url_for("blog.1.create_post_form", _external=True)
             case "edit":
-                redir_url = url_for("admin.search_blogpost", _external=True)
+                redir_url = url_for("admin.search_posts", _external=True)
             case "change_admin_password":
                 redir_url = url_for("admin.change_admin_password", _external=True)
             case _:
@@ -95,61 +104,10 @@ def choose_action(**kwargs):
         return jsonify(redir_url=redir_url)
 
 
-@bp.route("/create-blogpost", methods=["GET", "POST"])
+@bp.route("/search-posts", methods=["GET", "POST"])
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @util.require_login()
-def create_blogpost(**kwargs):
-    form = CreateBlogpostForm()
-    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
-    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
-
-    if request.method == "GET":
-        # automatically populate blogpage form field from query string if detected
-        # don't need URL decode here, and uses first option if invalid
-        blogpage_id = request.args.get("blogpage_id", None)
-        if blogpage_id is not None:
-            try:
-                blogpage_id = int(blogpage_id)
-                blogpage = db.session.get(Blogpage, blogpage_id)
-                if blogpage and blogpage.is_writeable:
-                    form.blogpage_id.data = int(blogpage_id)
-            except Exception:
-                pass
-        return render_template("admin/form_base.html", title="Create post", prompt="Create post", form=form)
-    elif request.method == "POST":
-        if not form.validate():
-            return jsonify(submission_errors=form.errors)
-
-        post = Post(
-            blogpage_id=request.form.get("blogpage_id"), title=request.form.get("title"),
-            subtitle=request.form.get("subtitle"), content=request.form.get("content")
-        )
-        post.sanitize_title()
-        err = post.check_and_try_flushing(True)
-        if err:
-            return jsonify(flash_msg=err)
-        post.add_timestamps(False, False)
-        post.expand_img_markdown()
-
-        # upload files if any
-        files_base_path = admin_util.get_files_base_path(post)
-        err = admin_util.upload_files(request.files.getlist("files"), files_base_path)
-        if err:
-            return jsonify(flash_msg=err)
-
-        db.session.commit() # commit at very end when success is guaranteed
-        return jsonify(
-            redir_url=url_for(
-                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
-            ),
-            flash_msg="Post created successfully!"
-        )                   # view completed post
-
-
-@bp.route("/search-blogpost", methods=["GET", "POST"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@util.require_login()
-def search_blogpost(**kwargs):
+def search_posts(**kwargs):
     form = SearchBlogpostForm()
 
     if request.method == "GET":
@@ -160,119 +118,13 @@ def search_blogpost(**kwargs):
 
         post_id = request.form.get("post")
         if post_id is None:
-            return jsonify(flash_msg="You somehow managed to choose nothing o_O")
-        return jsonify(redir_url=url_for("admin.edit_blogpost", post_id=post_id, _external=True))
-
-
-@bp.route("/edit-blogpost", methods=["GET", "POST", "DELETE"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@util.require_login()
-def edit_blogpost(**kwargs):
-    try:
-        post_id = int(request.args.get("post_id"))
-    except Exception:
-        return admin_util.redir_depending_on_req_method("admin.search_blogpost", flash_msg="please no hack :3")
-
-    post = db.session.get(Post, post_id)
-    if post is None:
-        return admin_util.redir_depending_on_req_method(
-            "admin.search_blogpost",
-            flash_msg="That post no longer exists. Did you hit the back button? Regret it, do you?"
-        )
-    
-    form = EditBlogpostForm(obj=post) # pre-populate fields by name; again form must be created outside
-    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
-    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
-    form.content.data = post.collapse_img_markdown()
-    
-    files_base_path = admin_util.get_files_base_path(post)
-    if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
-        files_choices = []
-        for f in os.listdir(files_base_path):
-            if os.path.isfile(os.path.join(files_base_path, f)) and not f.startswith("."):
-                files_choices.append((f, f))
-        files_choices.sort(key=lambda t: t[0])
-        form.delete_files.choices = files_choices
-
-    if request.method == "GET":
-        return render_template("admin/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form)
-    elif request.method == "POST":
-        if not form.validate():
-            return jsonify(submission_errors=form.errors)
-
-        # handle post editing
-        old_blogpage_id = post.blogpage_id
-        post.blogpage_id = request.form.get("blogpage_id")
-        post.title = request.form.get("title")
-        post.subtitle = request.form.get("subtitle")
-        post.content = request.form.get("content")
-        
-        post.sanitize_title()
-        err = post.check_and_try_flushing(False)
-        if err:
-            return jsonify(flash_msg=err)
-        post.add_timestamps(
-            request.form.get("remove_updated_timestamp"), request.form.get("update_updated_timestamp"), old_blogpage_id
-        )
-        post.expand_img_markdown()
-
-        # upload files if any
-        err = admin_util.upload_files(request.files.getlist("files"), files_base_path)
-        if err:
-            return jsonify(flash_msg=err)
-        
-        # delete files if any
-        try:
-            for file in request.form.getlist("delete_files"):
-                filepath = os.path.join(files_base_path, file)
-                if os.path.exists(filepath):
-                    os.remove(filepath)
-            admin_util.delete_dir_if_empty(files_base_path)
-        except Exception:
-            return jsonify(flash_msg=f"File delete exception")
-
-        # delete unused files if applicable; we assume any file whose filename is not in the Markdown is unused
-        if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
-            try:
-                files = os.listdir(files_base_path)
-                for file in files:
-                    filename, file_ext = os.path.splitext(file)
-                    if filename not in post.content:
-                        # if extension-less filename is unused, delete everything with that extension-less filename
-                        # so .excalidraw files etc. are also removed
-                        for file in glob.iglob(f"{os.path.join(files_base_path, filename)}.*"):
-                            os.remove(file)
-                admin_util.delete_dir_if_empty(files_base_path)
-            except Exception:
-                return jsonify(flash_msg=f"File delete unused exception")
-        
-        # move files if moving blogpost
-        if post.blogpage_id != old_blogpage_id:
-            if os.path.exists(files_base_path):
-                try:
-                    new_files_base_path = admin_util.get_files_base_path(post)
-                    shutil.move(files_base_path, new_files_base_path)
-                except Exception:
-                    return jsonify(flash_msg=f"File move exception")
-
-        db.session.commit()
-        return jsonify(
-            redir_url=url_for(
-                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
-            ),
-            flash_msg="Post updated successfully!"
-        ) # view updated post
-    elif request.method == "DELETE":
-        db.session.delete(post)
-        db.session.commit()
-        try:
-            if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
-                shutil.rmtree(files_base_path)
-        except Exception:
-            return jsonify(flash_msg=f"Directory delete exception")
-        return jsonify(
-            redir_url=url_for(f"blog.{post.blogpage_id}.index", _external=True), flash_msg="Post deleted successfully!"
-        )
+            return jsonify(flash_msg="thanks for choosing nothing, now i will stare at you")
+        post = db.session.get(Post, post_id)
+        if post is None:
+            return jsonify(flash_msg="That post doesn't exist :/")
+        return jsonify(redir_url=url_for(
+            f"blog.{post.blogpage_id}.edit_post_form", post_sanitized_title=post.sanitized_title, _external=True
+        ))
 
 
 @bp.route("/change-admin-password", methods=["GET", "POST"])
@@ -294,7 +146,7 @@ def change_admin_password(**kwargs):
         # check old password
         if user is None or not user.check_password(request.form.get("old_password")):
             return jsonify(submission_errors={
-                "old_password": ["Incorrect password, uh oh."]
+                "old_password": ["Incorrect password, imposter spotted"]
             })
         # check new passwords are identical
         if request.form.get("new_password_1") != request.form.get("new_password_2"):
@@ -316,17 +168,3 @@ def session_status():
     resp = make_response(jsonify(is_logged_in=current_user.is_authenticated))
     resp.headers["Cache-Control"] = "no-cache, no-store"
     return resp
-
-
-###################################################################################################
-# POST Endpoints
-###################################################################################################
-
-
-@bp.route("/logout", methods=["POST"])
-def logout():
-    if current_user.is_authenticated:
-        logout_user()
-    return jsonify(
-        redir_url=url_for(current_app.config["AFTER_LOGOUT_VIEW"], _external=True), flash_msg="Mischief managed."
-    )

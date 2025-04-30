@@ -1,8 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import (
-    BooleanField, MultipleFileField, PasswordField, RadioField, SelectField,
-    SelectMultipleField, StringField, SubmitField, TextAreaField
-)
+from wtforms import PasswordField, RadioField, SubmitField
 from wtforms_sqlalchemy.fields import QuerySelectField
 from wtforms.validators import InputRequired, Length
 
@@ -36,31 +33,6 @@ class SearchBlogpostForm(FlaskForm):
         query_factory=lambda: db.session.query(Post).order_by(Post.title), get_label="title"
     )
     search_blogpost_form_submit = SubmitField("Submit")
-
-
-class BlogpostBaseForm(FlaskForm):
-    blogpage_id = SelectField("Blog", coerce=int, validators=[InputRequired()])
-    title = StringField("Title", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["POST_TITLE_MAXLEN"])])
-    subtitle = StringField("Subtitle", validators=[Length(max=Config.DB_CONFIGS["POST_SUBTITLE_MAXLEN"])])
-    content = TextAreaField(
-        "Content (Markdown, LaTeX supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAXLEN"])]
-    )
-    files = MultipleFileField(f"Upload files (supported formats: {', '.join(Config.FILE_UPLOAD_EXTS)})")
-    cancel_file_uploads = SubmitField("Clear files to upload", render_kw={"type": "button"})
-
-
-class CreateBlogpostForm(BlogpostBaseForm):
-    create_blogpost_form_submit = SubmitField("Submit")
-
-
-class EditBlogpostForm(BlogpostBaseForm):
-    delete_files = SelectMultipleField("Delete files")
-    cancel_delete_files = SubmitField("Clear files to delete", render_kw={"type": "button"})
-    delete_unused_files = BooleanField("Delete unused files")
-    update_updated_timestamp = BooleanField("Update updated timestamp")
-    remove_updated_timestamp = BooleanField("Remove updated timestamp")
-    edit_blogpost_form_submit = SubmitField("Submit")
-    delete_post = SubmitField("Delete Post", render_kw={"type": "button"})
 
 
 class ChangeAdminPasswordForm(FlaskForm):

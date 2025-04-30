@@ -23,7 +23,7 @@ db = SQLAlchemy(session_options={"autoflush": False})
 # not using `session_protection="strong"` to avoid potential security mess of finding original IP through Cloudflare
 # and Nginx; and more crucially IPv4 vs. IPv6 hell
 login_manager = LoginManager()
-login_manager.login_view = Config.LOGIN_VIEW
+login_manager.login_view = Config.LOGIN_ENDPOINT
 migrate = Migrate()
 minify = Minify()
 moment = Moment()

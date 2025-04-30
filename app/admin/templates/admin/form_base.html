@@ -7,15 +7,14 @@
 {% endblock %}
 
 
+{% block js_head_deferred_linked %}
+<script src="{{ url_for('admin.static', filename='js/form_submit.js', _external=True) }}" defer></script>
+{% endblock %}
+
+
 {% block content %}
 <div class="mt-4">
   <h1 class="fs-3">{{ prompt }}</h1>
   {{ wtf.quick_form(form, id="main-form") }}
 </div>
-{% endblock %}
-
-
-{% block js_head_deferred_linked %}
-<script src="{{ url_for('admin.static', filename='js/form_submit.js', _external=True) }}" defer></script>
-<script src="{{ url_for('admin.static', filename='js/events.js', _external=True) }}" defer></script>
 {% endblock %}

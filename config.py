@@ -82,8 +82,8 @@ class Config(object):
     FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
     FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024 # 100 MB
-    LOGIN_VIEW = "admin.login"
-    AFTER_LOGOUT_VIEW = "main.index"
+    LOGIN_ENDPOINT = "admin.login"
+    AFTER_LOGOUT_ENDPOINT = "main.index"
     POSTS_PER_PAGE = 20
     VERIFIED_AUTHOR = "AnonymousRand"
 
