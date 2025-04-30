@@ -26,7 +26,7 @@ const TOTAL_PAGES = {{ total_pages }};
     <div>
       {% if blogpage.is_all_posts %}
         {% set color = post.blogpage.color %}
-        <a class="darken-on-hover link--{{ color }} underline-on-hover-only" href="{{ url_for('blog.' ~ post.blogpage_id ~ '.post', post_sanitized_title=post.sanitized_title) }}">
+        <a class="darken-on-hover link--{{ color }} underline-on-hover-only" href="{{ url_for('blog.' ~ post.blogpage_id ~ '.get_posts', post_sanitized_title=post.sanitized_title) }}">
           <div class="d-flex align-items-top">
             <h1 class="flex-shrink-0 flex-basis-75 me-3 mb-0 p-mb-0 fs-5">{{ post.title|safe }}</h1>
             <span class="post-list__blogtitle flex-shrink-1 ms-auto mb-0 text-end"> {{ post.blogpage.name }}</span>
@@ -80,10 +80,10 @@ const TOTAL_PAGES = {{ total_pages }};
         <div class="d-flex justify-content-center align-items-center">
           {% if prev_page_url %}
             <a class="w-2rem text-end underline-on-hover-only" href="{{ prev_page_url }}"><code>--</code></a>
-            <span class="pipe-1_5em mx-3"></span>
+            <span class="pipe--1_5em mx-4"></span>
           {% else %}
             <a class="invisible w-2rem text-end underline-on-hover-only"><code>--</code></a>
-            <span class="pipe-1_5em invisible mx-3"></span>
+            <span class="pipe--1_5em invisible mx-4"></span>
           {% endif %}
     
           <form id="goto-page-form">
@@ -97,10 +97,10 @@ const TOTAL_PAGES = {{ total_pages }};
           </form>
         
           {% if next_page_url %}
-            <span class="pipe-1_5em mx-3"></span>
+            <span class="pipe--1_5em mx-4"></span>
             <a class="w-2rem text-start underline-on-hover-only" href="{{ next_page_url }}"><code>++</code></a>
           {% else %}
-            <span class="pipe-1_5em invisible mx-3"></span>
+            <span class="pipe--1_5em invisible mx-4"></span>
             <a class="invisible w-2rem text-start underline-on-hover-only"><code>++</code></a>
           {% endif %}
         </div>
