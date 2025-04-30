@@ -95,7 +95,7 @@ async function markCommentsAsRead() {
     }
 }
 
-function onCommentAjaxDone(respJson, e) {
+function onModifyCommentAjaxDone(respJson, e) {
     doAjaxResponseForm(respJson, e);
 
     if (respJson.success) {
@@ -150,8 +150,7 @@ $(document).on("submit", ".ajax-add-comment", async function(e) {
 
     let formData = new FormData(e.target);
     const respJson = await fetchWrapper(ADD_COMMENT_URL, {method: "POST", body: formData});
-
-    onCommentAjaxDone(respJson, e);
+    onModifyCommentAjaxDone(respJson, e);
 });
 
 // replace comment HTML with edit comment form
@@ -188,7 +187,7 @@ $(document).on("submit", ".ajax-edit-comment", async function(e) {
     );
     let url = respJson.url;
     respJson = await fetchWrapper(url, {method: "PUT", body: formData});
-    onCommentAjaxDone(respJson, e);
+    onModifyCommentAjaxDone(respJson, e);
 });
 
 $(document).on("submit", ".ajax-delete-comment", confirmBtn(async function(e) {
@@ -206,5 +205,5 @@ $(document).on("submit", ".ajax-delete-comment", confirmBtn(async function(e) {
     );
     let url = respJson.url;
     respJson = await fetchWrapper(url, {method: "DELETE", body: formData});
-    onCommentAjaxDone(respJson, e);
+    onModifyCommentAjaxDone(respJson, e);
 }));
