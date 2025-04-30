@@ -19,18 +19,6 @@ function addToFunction(funcBase, funcToAdd) {
     };
 }
 
-await function debugTestExternalLinks() {
-    $("a").each(function() {
-        let dest = $(this).attr("href");
-        if (dest && !dest.startsWith("#")) {
-            const resp = await fetch(dest, {method: "GET"})
-            if (resp.status.toString().startsWith("4")) {
-                console.log(`${dest} returns ${resp.status}`);
-            }
-        }
-    });
-}
-
 /**
  * Debug use: prints out dead self-links on current page.
  */
