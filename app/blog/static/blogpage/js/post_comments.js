@@ -121,8 +121,8 @@ function getCommentId(nodeForm) {
 
 // no `$(document).ready()` listener attachments for the remaining listeners since comments can be reloaded
 
-// reveals fields for adding the comment on clicking a reply button
-$(document).on("submit", ".comment__reply-btn", async function(e) {
+// reveals fields for adding a comment on clicking a "reply" button
+$(document).on("click", ".comment__reply-btn", async function(e) {
     e.preventDefault();
 
     const id = getCommentId(e.target);
@@ -145,7 +145,8 @@ $(document).on("submit", ".comment__reply-btn", async function(e) {
     e.target.setAttribute("hidden", "");
 });
 
-$(document).on("submit", ".ajax-add-comment", async function(e) {
+// actually submit add comment form
+$(document).on("submit", ".comment__add-form", async function(e) {
     e.preventDefault();
 
     let formData = new FormData(e.target);
@@ -154,7 +155,7 @@ $(document).on("submit", ".ajax-add-comment", async function(e) {
 });
 
 // replace comment HTML with edit comment form
-$(document).on("submit", ".ajax-make-edit-comment", async function(e) {
+$(document).on("click", ".comment__make-edit-btn", async function(e) {
     e.preventDefault();
 
     let commentId = getCommentId(e.target);
@@ -173,7 +174,7 @@ $(document).on("submit", ".ajax-make-edit-comment", async function(e) {
 });
 
 // actually submit edit comment form
-$(document).on("submit", ".ajax-edit-comment", async function(e) {
+$(document).on("submit", ".comment__edit-form", async function(e) {
     e.preventDefault();
 
     let formData = new FormData(e.target);
@@ -190,11 +191,9 @@ $(document).on("submit", ".ajax-edit-comment", async function(e) {
     onModifyCommentAjaxDone(respJson, e);
 });
 
-$(document).on("submit", ".ajax-delete-comment", confirmWrapper(async function(e) {
+$(document).on("click", ".comment__delete-btn", confirmWrapper(async function(e) {
     e.preventDefault();
 
-    let formData = new FormData(e.target);
-    // TODO test don't need formdata here right
     let respJson = await fetchWrapper(
         GET_URL_FOR_URL, {method: "GET"},
         {
@@ -204,6 +203,6 @@ $(document).on("submit", ".ajax-delete-comment", confirmWrapper(async function(e
         }
     );
     let url = respJson.url;
-    respJson = await fetchWrapper(url, {method: "DELETE", body: formData});
+    respJson = await fetchWrapper(url, {method: "DELETE"});
     onModifyCommentAjaxDone(respJson, e);
 }));

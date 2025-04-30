@@ -241,3 +241,9 @@ th {
 .tooltip-inner > :last-child > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0 !important;
 }
+
+/* CSS is so stupid that `hidden` HTML attribute is overriden by `display` property in CSS, so *i have to manually go
+ * and tell a hidden element to be hidden*. like. what the absolute gobsmacking bejeezus is this */
+[hidden] {
+    display: none !important;
+}

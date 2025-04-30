@@ -432,12 +432,8 @@ def get_comments(post, post_sanitized_title, **kwargs):
             comment.content = bp_util.sanitize_untrusted_html(comment.content)
  
     add_comment_form = AddCommentForm()
-    reply_comment_btn = ReplyCommentBtn()
-    edit_comment_btn = EditCommentBtn()
-    delete_comment_btn = DeleteCommentBtn()
     return jsonify(html=render_template(
-        "blog/blogpage/post_comments.html", post=post, comments=comments, add_comment_form=add_comment_form,
-        reply_comment_btn=reply_comment_btn, delete_comment_btn=delete_comment_btn, edit_comment_btn=edit_comment_btn
+        "blog/blogpage/post_comments.html", post=post, comments=comments, add_comment_form=add_comment_form
     ))
 
 

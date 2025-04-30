@@ -22,15 +22,14 @@
           <div class="mb-1 dimgray fs-10">{{ moment(comment.timestamp).format("lll") }} ({{ moment(comment.timestamp).fromNow() }})</div>
           
           {% if comment.depth < 6 %}
-            {{ wtf.quick_form(reply_comment_btn, id="comment__reply-btn-" ~ comment.id, class="comment__reply-btn", btn_type="link", btn_color="custom-orange-deep") }}
-            {{ wtf.quick_form(add_comment_form, id="comment__add-reply-form-" ~ comment.id, class="mt-3 mb-2 ajax-add-comment", hidden=true) }}
+            <button id="comment__reply-btn-{{ comment.id }}" class="comment__reply-btn btn btn-link btn-link--custom-orange-deep underline-on-hover-only" type="button">Reply</button>
+            {{ wtf.quick_form(add_comment_form, id="comment__add-reply-form-" ~ comment.id, class="comment__add-form mt-3 mb-2", hidden=true) }}
           {% else %}
             <p class="comment__nest-limit-text mb-0 custom-orange-deep">It's gonna get ugly if you keep replying…</p>
           {% endif %}
 
-          <div class="d-flex align-items-center">
-            {% set hidden = not current_user.is_authenticated %}
-            {{ wtf.quick_form(edit_comment_btn, id="comment__make-edit-form-" ~ comment.id, class="d-inline-block ajax-make-edit-comment show-when-logged-in", btn_type="link", btn_color="custom-pink-deep-xlight", hidden=hidden) }}<span class="pipe--1em mx-2 custom-pink-deep-xlight"></span>{{ wtf.quick_form(delete_comment_btn, id="comment__delete-form-" ~ comment.id, class="d-inline-block ajax-delete-comment show-when-logged-in", btn_type="link", btn_color="custom-pink-deep-xlight", hidden=hidden) }}
+          <div class="d-flex align-items-center"{% if not current_user.is_authenticated %} hidden{% endif %}>
+            <button id="comment__make-edit-btn-{{ comment.id }}" class="comment__make-edit-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Edit</button><span class="pipe--1em mx-2 custom-pink-deep-xlight"></span><button id="comment__delete-btn-{{ comment.id }}" class="comment__delete-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Delete</button>
           </div>
         </div>
       </div>

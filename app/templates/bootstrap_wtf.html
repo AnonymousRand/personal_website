@@ -1,4 +1,4 @@
-{% macro form_field(field, btn_type, btn_color, autofocus, last_field) %}
+{% macro form_field(field, btn_color, autofocus, last_field) %}
   {% set mb = " mb-3" if not last_field else "" %}
 
   {% if field.type == "BooleanField" %}
@@ -36,16 +36,7 @@
     </div>
 
   {% elif field.type == "SubmitField" %}
-    {% set class = "" %}
-    {% if btn_type == "" %}
-      {% set class = "btn btn--" ~ btn_color ~ mb %}
-    {% else %}
-      {% set class = "btn btn-" ~ btn_type ~ " btn-" ~ btn_type ~ "--" ~ btn_color ~ mb %}
-      {% if btn_type == "link" %}
-        {% set class = class ~ " underline-on-hover-only" %}
-      {% endif %}
-    {% endif %}
-    {{ field(id=field.name ~ "-input", class=class) }}
+    {{ field(id=field.name ~ "-input", class="btn btn--" ~ btn_color ~ mb) }}
 
   <!-- this will usually be `StringField`, but not always -->
   {% else %}
@@ -63,7 +54,7 @@
   {% endif %}
 {% endmacro %}
 
-{% macro quick_form(form, id="", class="", action="", method="post", btn_type="", btn_color="custom-orange-light", autofocus=true, hidden=false) %}
+{% macro quick_form(form, id="", class="", action="", method="post", btn_color="custom-orange-light", autofocus=true, hidden=false) %}
   <form novalidate
     {% if id %} id="{{ id }}"{% endif %}
     {% if class %} class="{{ class }}"{% endif %}
@@ -76,7 +67,7 @@
 
     {% for field in form if field.widget.input_type != "hidden" %}
       <div id="{{ field.name }}-field">
-        {{ form_field(field, btn_type, btn_color, ns.first_field and autofocus, loop.last) }}
+        {{ form_field(field, btn_color, ns.first_field and autofocus, loop.last) }}
         {% set ns.first_field = false %}
       </div>
     {% endfor %}

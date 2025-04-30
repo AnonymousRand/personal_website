@@ -14,7 +14,7 @@ let onSamePageLogin = function() {
 // interact (since it will always ask for modal and not do anything) is not a huge deal
 // (if I forgot to log out at public computer or something then we have a LOT of other problems)
 function showLoginModal() {
-    customFlash("Your session has expired. Please log in again :3");
+    customFlash("please log in :3");
     $("#login-modal").modal("show");
 }
 

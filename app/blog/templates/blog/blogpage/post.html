@@ -96,7 +96,7 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
   
   <div id="leave-a-comment">
     <h2 class="fs-4">Leave a comment</h2>
-    {{ wtf.quick_form(add_comment_form, class="ajax-add-comment mb-2", autofocus=false) }}
+    {{ wtf.quick_form(add_comment_form, class="comment__add-form mb-2", autofocus=false) }}
   </div>
   
   <hr>
