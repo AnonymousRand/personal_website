@@ -488,9 +488,9 @@
     min-height: 100svh !important;
 }
 
-.pipe--1em {
+.pipe--0_85em {
     border-left: 2px solid !important;
-    height: 1em;
+    height: 0.85em;
 }
 
 .pipe--1_5em {

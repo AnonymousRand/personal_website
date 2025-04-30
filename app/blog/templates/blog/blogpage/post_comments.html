@@ -29,7 +29,7 @@
           {% endif %}
 
           <div class="d-flex align-items-center"{% if not current_user.is_authenticated %} hidden{% endif %}>
-            <button id="comment__make-edit-btn-{{ comment.id }}" class="comment__make-edit-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Edit</button><span class="pipe--1em mx-2 custom-pink-deep-xlight"></span><button id="comment__delete-btn-{{ comment.id }}" class="comment__delete-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Delete</button>
+            <button id="comment__make-edit-btn-{{ comment.id }}" class="comment__make-edit-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Edit</button><span class="pipe--0_85em mx-2 custom-pink-deep-xlight"></span><button id="comment__delete-btn-{{ comment.id }}" class="comment__delete-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Delete</button>
           </div>
         </div>
       </div>
