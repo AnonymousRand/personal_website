@@ -7,7 +7,7 @@ $(document).ready(function() {
     $("#delete-post-btn").on("click", confirmWrapper(async function(e) {
         e.preventDefault();
         const respJson = await fetchWrapper(DELETE_POST_URL, {method: "DELETE"});
-        doAjaxResponseBase(respJson);
+        doAjaxBaseResponse(respJson);
     }));
 
     $(".heading-link").on("click", function(e) {

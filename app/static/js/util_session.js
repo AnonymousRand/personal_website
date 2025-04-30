@@ -24,7 +24,7 @@ $(document).ready(function() {
 
         let formData = new FormData(e.target);
         const respJson = await fetchWrapper(LOGIN_URL, {method: "POST", body: formData});
-        doAjaxResponseForm(respJson, e);
+        doAjaxFormResponse(respJson, e);
 
         if (respJson.success) {
             onSamePageLogin();

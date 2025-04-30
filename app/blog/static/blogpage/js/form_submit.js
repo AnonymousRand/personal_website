@@ -8,6 +8,6 @@ $(document).ready(function() {
         const respJson = await fetchWrapper(
             form.getAttribute("action"), {method: form.getAttribute("method"), body: formData}
         );
-        doAjaxResponseForm(respJson, e);
+        doAjaxFormResponse(respJson, e);
     });
 });

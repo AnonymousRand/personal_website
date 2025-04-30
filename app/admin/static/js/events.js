@@ -9,6 +9,6 @@ $(document).ready(function() {
 
     $("#delete_post-input").on("click", confirmWrapper(async function(e) {
         const respJson = await fetchWrapper(window.location.href, {method: "DELETE"});
-        doAjaxResponseForm(respJson, e);
+        doAjaxFormResponse(respJson, e);
     }));
 });

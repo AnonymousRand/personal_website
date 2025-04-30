@@ -61,7 +61,7 @@ def login():
             #
             # the `is_redir_after_login` key takes the following path:
             #     `login()` view func (here) adds to response JSON ->
-            #     `doAjaxResponseBase()` handles response JSON and adds to params of url being redirected to ->
+            #     `doAjaxBaseResponse()` handles response JSON and adds to params of url being redirected to ->
             #     view func of url being redirected to handles this
             return jsonify(success=True, redir_url=next_url, is_redir_after_login=True)
 

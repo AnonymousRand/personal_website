@@ -34,7 +34,7 @@ async function fetchWrapper(baseUrl, options, params=null) {
             return {errorStatus: 401, hasHandledError: false};
         }
 
-        doAjaxResponseBase(respJson);
+        doAjaxBaseResponse(respJson);
         return respJson;
     }
 
@@ -58,7 +58,7 @@ async function fetchWrapper(baseUrl, options, params=null) {
  *     - `flash_msg`
  *     - `is_redir_after_login`
  */
-function doAjaxResponseBase(respJson) {
+function doAjaxBaseResponse(respJson) {
     if (respJson.redir_url) {
         let newUrl = new URL(decodeURIComponent(respJson.redir_url));
 
@@ -79,7 +79,7 @@ function doAjaxResponseBase(respJson) {
     }
 }
 
-function doAjaxResponseForm(respJson, submitEvent) {
+function doAjaxFormResponse(respJson, submitEvent) {
     if (!respJson.redir_url && respJson.submission_errors) { 
         let errors = respJson.submission_errors;
         for (const [fieldName, fieldErrors] of Object.entries(errors)) {

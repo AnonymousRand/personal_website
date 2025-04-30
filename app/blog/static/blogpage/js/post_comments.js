@@ -96,7 +96,7 @@ async function markCommentsAsRead() {
 }
 
 function onModifyCommentAjaxDone(respJson, e) {
-    doAjaxResponseForm(respJson, e);
+    doAjaxFormResponse(respJson, e);
 
     if (respJson.success) {
         // clear input fields and reset height
@@ -168,7 +168,7 @@ $(document).on("submit", ".ajax-make-edit-comment", async function(e) {
     );
     let url = respJson.url;
     respJson = await fetchWrapper(url, {method: "GET"});
-    doAjaxResponseForm(respJson, e); // don't need to refresh comments or anything
+    doAjaxFormResponse(respJson, e); // don't need to refresh comments or anything
     $(`#comment-${commentId} > .card-body`).html(respJson.html); 
 });
 
