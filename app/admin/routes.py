@@ -1,14 +1,9 @@
-import glob
-import os
-import shutil
 import tldextract
 
 import sqlalchemy as sa
-from flask import current_app, flash, jsonify, make_response, redirect, render_template, request, session, url_for
+from flask import current_app, jsonify, make_response, render_template, request, session, url_for
 from flask_login import current_user, login_user, logout_user
-from wtforms.form import Form
 
-import app.admin.util as admin_util
 import app.util as util
 from app import db
 from app.admin import bp
@@ -25,9 +20,7 @@ def login():
         logout_user()
 
     if request.method == "GET":
-        return render_template(
-            "admin/form_base.html", title="Login", prompt="meow :3", form=form
-        )
+        return render_template("admin/form_base.html", title="Login", prompt="meow :3", form=form)
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)
