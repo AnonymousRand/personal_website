@@ -28,8 +28,6 @@
     <div class="{{ mb }}">
       {{ field.label(class="form-label") }}
       <div class="input-group has-validation">
-        <!-- TODO: make these __input instead of -input? same with field etc. -->
-        <!-- TODO: is name a good enough substitute for id? so we don't need the id? e.g. do names have to be unique? -->
         {{ field(id=field.name ~ "-input", class="form-control" ~ (" is-invalid" if field.errors else ""), autofocus=autofocus) }}
         <div class="invalid-feedback" aria-describedby="{{ field.name }}"></div>
       </div>

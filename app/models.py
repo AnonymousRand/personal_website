@@ -118,7 +118,7 @@ class Post(db.Model):
         self.sanitized_title = ("-".join(self.title.split())).lower()
         self.sanitized_title = self.SANITIZE_TITLE_PATTERN.sub("", self.sanitized_title)
 
-    def check_and_try_flushing(self, should_add_to_db: bool) -> str:
+    def validate_titles_and_flush(self, should_add_to_db: bool) -> str:
         # check that title still exists after sanitization
         if self.sanitized_title == "":
             return "Post must have alphanumeric characters in its title."
@@ -135,10 +135,7 @@ class Post(db.Model):
         return ""
 
     def add_timestamps(
-        self,
-        should_remove_updated_timestamp: bool,
-        should_update_updated_timestamp: bool,
-        old_blogpage_id=None
+        self, should_remove_updated_timestamp: bool, should_update_updated_timestamp: bool, old_blogpage_id=None
     ) -> None:
         """
         Prereqs:

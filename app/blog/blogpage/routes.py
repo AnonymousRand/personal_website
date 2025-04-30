@@ -264,10 +264,10 @@ def create_post(**kwargs):
             subtitle=request.form.get("subtitle"), content=request.form.get("content")
         )
         post.sanitize_title()
-        err = post.check_and_try_flushing(True)
+        err = post.validate_titles_and_flush(should_add_to_db=True)
         if err:
             return jsonify(flash_msg=err)
-        post.add_timestamps(False, False) # TODO use kwargs for these?
+        post.add_timestamps(should_remove_updated_timestamp=False, should_update_updated_timestamp=False)
         post.expand_img_markdown()
 
         # upload files if any
@@ -324,11 +324,13 @@ def edit_post(post, post_sanitized_title, **kwargs):
         post.content = request.form.get("content")
         
         post.sanitize_title()
-        err = post.check_and_try_flushing(False) # TODO could this name be better? what is it checking?
+        err = post.validate_titles_and_flush(should_add_to_db=False)
         if err:
             return jsonify(flash_msg=err)
         post.add_timestamps(
-            request.form.get("remove_updated_timestamp"), request.form.get("update_updated_timestamp"), old_blogpage_id
+            should_remove_updated_timestamp=request.form.get("remove_updated_timestamp"),
+            should_update_updated_timestamp=request.form.get("update_updated_timestamp"),
+            old_blogpage_id=old_blogpage_id
         )
         post.expand_img_markdown()
 
