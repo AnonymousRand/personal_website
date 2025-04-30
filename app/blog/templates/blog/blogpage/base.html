@@ -1,9 +1,11 @@
 {% extends "blog/base.html" %}
 {% import "bootstrap_wtf.html" as wtf %}
 
+
 {% block meta_description %}
 {{ blogpage.name ~ ": " ~ blogpage.description }}
 {% endblock %}
+
 
 {% block js_start_inline %}
 {{ super() }}
@@ -12,17 +14,20 @@ const BACKGROUND_IMG_URL_BASE = "{{ url_for('blog.static', filename='blogpage/' 
 let backgroundImgName = "";
 {% endblock %}
 
+
 {% block css %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('blog.static', filename='blogpage/css/style.css', _external=True) }}">
 <link rel="stylesheet" href="{{ url_for('blog.static', filename='blogpage/' ~ blogpage_id ~ '/css/style.css', _external=True) }}">
 {% endblock %}
 
+
 {% block js_start_linked %}
 <script src="{{ url_for('blog.static', filename='blogpage/' ~ blogpage_id ~ '/js/override_background_img.js', _external=True) }}"></script>
 <!-- must be after `override_background_img.js` to allow overriding of `backgroundImgName` var -->
 <script src="{{ url_for('blog.static', filename='blogpage/js/try_override_background_img.js', _external=True) }}"></script>
 {% endblock %}
+
 
 {% block js_deferred_linked %}
 {{ super() }}

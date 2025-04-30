@@ -1,9 +1,11 @@
 {% extends "admin/base.html" %}
 {% import "bootstrap_wtf.html" as wtf %}
 
+
 {% block title %}
 {{ title }} {{ super() }}
 {% endblock %}
+
 
 {% block content %}
 <div class="mt-4">
@@ -11,6 +13,7 @@
   {{ wtf.quick_form(form, id="main-form") }}
 </div>
 {% endblock %}
+
 
 {% block js_deferred_linked %}
 <script src="{{ url_for('admin.static', filename='js/form_submit.js', _external=True) }}" defer></script>

@@ -1,18 +1,22 @@
 {% extends "main/base.html" %}
 
+
 {% block title %}
 Home {{ super() }}
 {% endblock %}
+
 
 {% block js_start_inline %}
 const ICON_GITHUB_LIGHT_URL = "{{ url_for('main.static', filename='images/icon_github_light.svg', _external=True) }}";
 const ICON_GITHUB_DARK_URL = "{{ url_for('main.static', filename='images/icon_github_dark.svg', _external=True) }}";
 {% endblock %}
 
+
 {% block js_start_linked %}
 <script src="{{ url_for('main.static', filename='js/dark_mode_logos.js', _external=True) }}"></script>
 <script src="{{ url_for('main.static', filename='js/events.js', _external=True) }}" defer></script>
 {% endblock %}
+
 
 {% block content %}
 <div class="mt-4">
@@ -30,6 +34,7 @@ const ICON_GITHUB_DARK_URL = "{{ url_for('main.static', filename='images/icon_gi
   <p id="what-meow-button" class="w-max-content dimgray">what meow button</p>
 </div>
 {% endblock %}
+
 
 {% block footer %}
 <footer class="d-flex justify-content-between align-items-around mt-auto pt-2_5rem pb-2 text-center">

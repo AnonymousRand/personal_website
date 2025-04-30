@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 
+
 {% block css %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('blog.static', filename='css/style.css', _external=True) }}">
 {% endblock %}
+
 
 {% block js_start_inline %}
 {{ super() }}
 const GET_POSTS_WITH_UNREAD_COMMENTS_URL = "{{ url_for('blog.get_posts_with_unread_comments', _external=True) }}";
 {% endblock %}
 
+
 {% block js_deferred_linked %}
 {{ super() }}
 <script src="{{ url_for('blog.static', filename='js/unread_comments_notif.js', _external=True) }}" defer></script>
 {% endblock %}
+
 
 {% block navbar_additions_right %}
 <li class="nav-item dropdown show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}>

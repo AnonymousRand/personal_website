@@ -1,8 +1,10 @@
 {% extends "blog/blogpage/base.html" %}
 
+
 {% block title %}
 {{ title }} - AnonymousRand blogs
 {% endblock %}
+
 
 {% block content %}
 <div class="mt-4">
@@ -11,6 +13,7 @@
 </div>
 <!-- TODO: put this into macro so reusable for admin forms? -->
 {% endblock %}
+
 
 {% block js_deferred_linked %}
 {{ super() }}
