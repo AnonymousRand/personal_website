@@ -469,9 +469,9 @@ def add_comment(post, post_sanitized_title, **kwargs):
 
 
 @bp.route(
-    "/<string:post_sanitized_title>/comments/<string:comment_id>/edit", methods=["GET"], endpoint="edit_comment_form"
+    "/<string:post_sanitized_title>/comments/<int:comment_id>/edit", methods=["GET"], endpoint="edit_comment_form"
 )
-@bp.route("/<string:post_sanitized_title>/comments/<string:comment_id>", methods=["PUT"])
+@bp.route("/<string:post_sanitized_title>/comments/<int:comment_id>", methods=["PUT"])
 @util.set_content_type(ContentType.JSON)
 @util.require_login() # only admins can edit comments, since there's no other user account system
 @bp_util.require_valid_post()
@@ -493,7 +493,7 @@ def edit_comment(post, post_sanitized_title, comment, comment_id, **kwargs):
         return jsonify(success=True, flash_msg="comment updated successfully :3")
 
 
-@bp.route("/<string:post_sanitized_title>/comments/<string:comment_id>", methods=["DELETE"])
+@bp.route("/<string:post_sanitized_title>/comments/<int:comment_id>", methods=["DELETE"])
 @util.set_content_type(ContentType.JSON)
 @util.require_login()
 @bp_util.require_valid_post()
