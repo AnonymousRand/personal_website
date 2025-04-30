@@ -13,8 +13,5 @@
 
 
 {% block content %}
-<div class="mt-4">
-  <h1 class="fs-3">{{ prompt }}</h1>
-  {{ wtf.quick_form(form, id="main-form") }}
-</div>
+{{ wtf.quick_form(form, id="main-form", is_full_page=true, prompt=prompt) }}
 {% endblock %}

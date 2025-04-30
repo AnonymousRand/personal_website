@@ -52,7 +52,12 @@
   {% endif %}
 {% endmacro %}
 
-{% macro quick_form(form, id="", class="", action="", method="post", btn_color="custom-orange-light", autofocus=true, hidden=false) %}
+{% macro quick_form(form, id="", class="", action="", method="post", btn_color="custom-orange-light", autofocus=true, hidden=false, is_full_page=false, prompt="") %}
+  {% if is_full_page %}
+    <div class="mt-4">
+      <h1 class="fs-3">{{ prompt }}</h1>
+  {% endif %}
+
   <form novalidate
     {% if id %} id="{{ id }}"{% endif %}
     {% if class %} class="{{ class }}"{% endif %}
@@ -70,4 +75,8 @@
       </div>
     {% endfor %}
   </form>
+
+  {% if is_full_page %}
+    </div>
+  {% endif %}
 {% endmacro %}
