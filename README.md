@@ -50,13 +50,25 @@ Keep up-to-date:
         - IMPORTANT: currently MySQL-specific!!!
     - Run `flask db migrate` on the host in the Python venv; this requires MySQL connectivity from the host
     - CHECK MIGRATION SCRIPT IN [migrations/versions/](migrations/versions/)!!!
-        - IMPORTANT: if renaming columns, you will probably have to edit the Alembic script in [migrations/versions/](migrations/versions/) to use `alter_column()`! `existing_type` is a required argument:
+        - If renaming columns, you will probably have to edit the Alembic script in [migrations/versions/](migrations/versions/) to use `alter_column()`! `existing_type` is a required argument:
         
             ```
             batch_op.alter_column(column_name='[]', new_column_name='[]', existing_type=[])
             ```
 
             Reference [migrations/versions/79665802aa08_rename_blogpage_title_and_subtitle_to_.py](migrations/versions/79665802aa08_rename_blogpage_title_and_subtitle_to_.py) for examples.
+
+        - If changing `unique` constraint, you will need
+
+            ```
+            batch_op.create_unique_constraint("[constraint_name]", ['[column_name]'])
+            ```
+
+            and
+
+            ```
+            batch_op.drop_constraint("[constraint_name]", type_='unique')
+            ```
     - Run `flask db upgrade` on the host in the Python venv or restart the Docker containers
 
 ### Access control notes:
