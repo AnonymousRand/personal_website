@@ -79,17 +79,7 @@ class Config(object):
     JINJA_TRIM_BLOCKS = True
 
     # other "conventional" configs
-    FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
-    FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
-    MAX_CONTENT_LENGTH = 100 * 1024 * 1024 # 100 MB
-    LOGIN_ENDPOINT = "admin.login"
     AFTER_LOGOUT_ENDPOINT = "main.index"
-    POSTS_PER_PAGE = 20
-    VERIFIED_AUTHOR = "AnonymousRand"
-
-    # scuffed configs; SYNC!
-    BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC = "../static/blogpage"
-    ROOT_TO_BLOGPAGE_STATIC = "blog/static/blogpage"
     # this is not in db as it's only used for initializing blueprints, during which db is not yet accessible
     BLOGPAGE_ID_TO_URL_PREFIX = {
          "1": "/all",
@@ -106,3 +96,11 @@ class Config(object):
          "7": "/writers-unblock",
         "-7": "/writers-unblock/backrooms"
     }
+    BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC = "../static/blogpage"
+    FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
+    FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
+    MAX_CONTENT_LENGTH = 100 * 1024 * 1024 # 100 MB
+    LOGIN_ENDPOINT = "admin.login"
+    POSTS_PER_PAGE = 20
+    ROOT_TO_BLOGPAGE_STATIC = "blog/static/blogpage"
+    VERIFIED_AUTHOR = "AnonymousRand"

@@ -21,8 +21,9 @@ function addCommentSyntaxGuideTooltip() {
                 "data-bs-title",
                 "Markdown:" +
                   "<ul>" +
-                    "<li>Python-Markdown with <code>extra</code> and my <code>markdown-environments</code> extensions</li>" +
-                    "<li>No images, links, or footnotes</li>" +
+                    "<li>Python-Markdown with <code>extra</code> extensions</li>" +
+                    "<li>Plaintext links only</li>" +
+                    "<li>No images or footnotes</li>" +
                   "</ul>" +
                 "LaTeX (MathJax):" +
                   "<ul>" +

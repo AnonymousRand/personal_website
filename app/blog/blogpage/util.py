@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import bleach
 import imghdr
 import markdown
 import os
@@ -185,28 +184,6 @@ def get_post(post: Post, post_sanitized_title: str, blogpage_id: int) -> Post:
     if post is not None:
         return post
     return db.session.query(Post).filter_by(sanitized_title=post_sanitized_title, blogpage_id=blogpage_id).first()
-
-
-def sanitize_untrusted_html(s: str) -> str:
-    """
-    Markdown sanitization for comments (XSS etc.).
-
-    Notes:
-        - Bleach is deprecated because html5lib is, but both seem to still be mostly active
-    """
-
-    s = bleach.clean(s,
-        tags=[
-            "abbr", "acronym", "b", "blockquote", "br", "center", "code", "details", "div", "em", "h1", "h2", "h3", "i",
-            "li", "p", "pre", "ol", "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td", "th",
-            "thead", "tr", "ul"
-        ],
-        attributes=[
-            "class", "colspan", "data-align-bottom", "data-align-center", "data-align-right", "data-align-top",
-            "data-col-width", "height", "rowspan", "title", "width"
-            ]
-    )
-    return s
 
 
 def sanitize_filename(filename: str) -> str:

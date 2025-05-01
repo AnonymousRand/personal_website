@@ -1,3 +1,4 @@
+import bleach
 import glob
 import image_titles
 import markdown
@@ -425,6 +426,28 @@ def delete_post(post, post_sanitized_title, **kwargs):
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
 def get_comments(post, post_sanitized_title, **kwargs):
+    def sanitize_comment_html(s: str) -> str:
+        """
+        Markdown sanitization for comments (XSS etc.).
+
+        Notes:
+            - Bleach is deprecated because html5lib is, but both seem to still be mostly active
+        """
+
+        s = bleach.clean(
+            s,
+            tags=[
+                "abbr", "acronym", "b", "blockquote", "br", "center", "code", "details", "div", "em", "h1", "h2", "h3",
+                "i", "li", "p", "pre", "ol", "small", "span", "strong", "sub", "summary", "sup", "table", "tbody", "td",
+                "th", "thead", "tr", "ul"
+            ],
+            attributes=[
+                "class", "colspan", "data-align-bottom", "data-align-center", "data-align-right", "data-align-top",
+                "data-col-width", "height", "rowspan", "title", "width"
+            ]
+        )
+        return s
+
     # get comments from db and render Markdown
     comments_query = post.comments.select().order_by(Comment.timestamp.desc())
     comments = db.session.scalars(comments_query).all()
@@ -433,11 +456,8 @@ def get_comments(post, post_sanitized_title, **kwargs):
         if comment.author == current_app.config["VERIFIED_AUTHOR"]:
             comment.content = markdown.markdown(comment.content, extensions=["extra", "image_titles"])
         else:
-            # no custom Markdown for non-admin because there are prob ways to 500 the page that I don't wanna fix
-            # TODO check if comment hover text still applies
-            # (and besides it loads faster)
             comment.content = markdown.markdown(comment.content, extensions=["extra"])
-            comment.content = bp_util.sanitize_untrusted_html(comment.content)
+            comment.content = sanitize_comment_html(comment.content)
  
     add_comment_form = AddCommentForm()
     return jsonify(html=render_template(
