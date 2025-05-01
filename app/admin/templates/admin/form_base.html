@@ -7,11 +7,6 @@
 {% endblock %}
 
 
-{% block js_head_deferred_linked %}
-<script src="{{ url_for('admin.static', filename='js/form_submit.js', _external=True) }}" defer></script>
-{% endblock %}
-
-
 {% block content %}
-{{ wtf.quick_form(form, id="main-form", is_full_page=true, prompt=prompt) }}
+{{ wtf.quick_form(form, class="main-form", method="POST", is_full_page=true, prompt=prompt) }}
 {% endblock %}
