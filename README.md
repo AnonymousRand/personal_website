@@ -45,7 +45,7 @@ Keep up-to-date:
 - To connect to the MySQL instance running in Docker from the host:
     - Make sure the MySQL port (default 3306) is exposed from Docker and there is a `.env` file on the host with `DATABASE_URL` pointing to `localhost`
     - Use `mysql --protocol=tcp` to connect so it doesn't try to use a Unix socket; make sure to use the MySQL user that has `%` as its host (because that means it can connect from any host, whereas `localhost` would mean that it can only connect from within the Docker container)
-- To change [app/models.py](app/models.py):
+- To edit database schema:
     - Edit [app/models.py](app/models.py) on the host
         - IMPORTANT: currently MySQL-specific!!!
         - IMPORTANT: if renaming columns, you will probably have to edit the Alembic script in [migrations/versions/](migrations/versions/) to use `alter_column()`! `existing_type` is a required argument; reference [migrations/versions/79665802aa08_rename_blogpage_title_and_subtitle_to_.py](migrations/versions/79665802aa08_rename_blogpage_title_and_subtitle_to_.py).
