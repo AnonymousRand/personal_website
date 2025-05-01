@@ -29,7 +29,7 @@ def post_by_id(post_id):
             f"blog.get_posts", flash_msg=util.encode_uri_component("That post doesn't exist :/"), _external=True
         ))
 
-    # prevent brute-force enumeration of post IDs to find unlinked posts
+    # don't allow unlisted posts to be accessed this way to prevent brute-force enumeration with post IDs
     if post.blogpage.is_login_required and not current_user.is_authenticated:
         result = util.custom_unauthorized(ContentType.HTML)
         if result:

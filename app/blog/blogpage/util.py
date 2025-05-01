@@ -30,13 +30,15 @@ def require_login_if_restricted_bp():
                 match content_type:
                     case ContentType.HTML:
                         return redirect(url_for(
-                                f"main.index",
-                                flash_msg=util.encode_uri_component("That blogpage doesn't exist :/"),
-                                _external=True))
+                            f"main.index",
+                            flash_msg=util.encode_uri_component("That blogpage doesn't exist :/"),
+                            _external=True
+                        ))
                     case ContentType.JSON:
                         return jsonify(
-                                redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
-                                flash_msg="That post doesn't exist :/")
+                            redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
+                            flash_msg="That post doesn't exist :/"
+                        )
                     case _:
                         return ("app/blog/blogpage/util.py: `require_login_if_restricted_bp()` reached end of switch "
                                 "statement"), 500
@@ -114,13 +116,15 @@ def nonexistent_post(content_type: ContentType):
     match content_type:
         case ContentType.HTML:
             return redirect(url_for(
-                    f"{request.blueprint}.get_posts",
-                    flash_msg=util.encode_uri_component("That post doesn't exist :/"),
-                    _external=True))
+                f"{request.blueprint}.get_posts",
+                flash_msg=util.encode_uri_component("That post doesn't exist :/"),
+                _external=True
+            ))
         case ContentType.JSON:
             return jsonify(
-                    redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
-                    flash_msg="That post doesn't exist :/")
+                redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
+                flash_msg="That post doesn't exist :/"
+            )
         case _:
             return "app/blog/blogpage/util.py: `nonexistent_post()` reached end of switch statement", 500
 
@@ -140,10 +144,10 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
                 file_ext = ".jpeg"
             # `imghdr` can't check SVG; trustable since admin-only ig
             invalid = file_ext not in current_app.config["FILE_UPLOAD_EXTS"] \
-                    or (
-                        file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]
-                        and file_ext != validate_img(file.stream)
-                    )
+                      or (
+                          file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]
+                          and file_ext != validate_img(file.stream)
+                      )
             if invalid:
                 return "Invalid file. If it's another heic im gonna lose my mind i swear to god i hate"
 
