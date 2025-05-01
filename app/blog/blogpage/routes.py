@@ -247,13 +247,14 @@ def create_post(**kwargs):
         if blogpage_id is None:
             return "ok im actually impressed how did you do that"
         blogpage = db.session.get(Blogpage, blogpage_id)
+        # create initially in backrooms blogpage by default
         if blogpage.backrooms_blogpage_id:
             blogpage_id = blogpage.backrooms_blogpage_id
             blogpage = db.session.get(Blogpage, blogpage_id)
             if blogpage is None:
                 return "your database is bwoken >_<"
         if blogpage.is_writeable:
-            form.blogpage_id.data = blogpage_id # TODO sibling thing
+            form.blogpage_id.data = blogpage_id
 
         return render_template(
             "blog/blogpage/form_base.html", title="Create post", prompt="Create post", form=form,
