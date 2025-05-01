@@ -29,7 +29,7 @@ async function reloadComments() {
     // get comment count in the heading; JQuery `load()` fragment doesn't seem to work with Jinja variables
     let commentCount = 0;
     let commentUnreadCount = 0;
-    let respJson = await fetchWrapper(GET_COMMENT_COUNT_URL, {method: "GET"});
+    let respJson = await fetchWrapper({url: GET_COMMENT_COUNT_URL, method: "GET"});
     if (!respJson.errorStatus) {
         commentCount = respJson.count;
     } else if (!respJson.hasHandledError) {
@@ -39,7 +39,7 @@ async function reloadComments() {
 
     // get comment unread count in the heading if admin
     if (isUserAuthenticated) {
-        respJson = await fetchWrapper(GET_COMMENT_UNREAD_COUNT_URL, {method: "GET"});
+        respJson = await fetchWrapper({url: GET_COMMENT_UNREAD_COUNT_URL, method: "GET"});
         if (!respJson.errorStatus) {
             commentUnreadCount = respJson.count;
         } else if (respJson.errorStatus !== 429) {
@@ -63,7 +63,7 @@ async function reloadComments() {
     if (commentCount === 0) {
         $("#comment-list").html("");
     } else {
-        respJson = await fetchWrapper(GET_COMMENTS_URL, {method: "GET"});
+        respJson = await fetchWrapper({url: GET_COMMENTS_URL, method: "GET"});
         if (!respJson.errorStatus) {
             $("#comment-list").html(respJson.html);
         } else if (respJson.errorStatus !== 429) {
@@ -89,7 +89,7 @@ async function reloadComments() {
 }
 
 async function markCommentsAsRead() {
-    let respJson = await fetchWrapper(MARK_COMMENTS_AS_READ_URL, {method: "POST"});
+    let respJson = await fetchWrapper({url: MARK_COMMENTS_AS_READ_URL, method: "POST"});
     if (respJson.success) {
         updateUnreadComments();
     }
@@ -149,7 +149,7 @@ $(document).on("submit", ".comment__add-form", async function(e) {
     e.preventDefault();
 
     let formData = new FormData(e.target);
-    const respJson = await fetchWrapper(ADD_COMMENT_URL, {method: "POST", body: formData});
+    const respJson = await fetchWrapper({url: ADD_COMMENT_URL, method: "POST", body: formData});
     onModifyCommentAjaxDone(respJson, e);
 });
 
@@ -158,16 +158,17 @@ $(document).on("click", ".comment__make-edit-btn", async function(e) {
     e.preventDefault();
 
     let commentId = getCommentId(e.target);
-    let respJson = await fetchWrapper(
-        GET_URL_FOR_URL, {method: "GET"},
-        {
+    let respJson = await fetchWrapper({
+        url: GET_URL_FOR_URL,
+        method: "GET",
+        params: {
             endpoint: `blog.${BLOGPAGE_ID}.edit_comment_form`,
             post_sanitized_title: POST_SANITIZED_TITLE,
             comment_id: commentId
         }
-    );
+    });
     let url = respJson.url;
-    respJson = await fetchWrapper(url, {method: "GET"});
+    respJson = await fetchWrapper({url: url, method: "GET"});
     doAjaxFormResponse(respJson, e); // don't need to refresh comments or anything
     $(`#comment-${commentId} > .card-body`).html(respJson.html); 
 });
@@ -177,31 +178,33 @@ $(document).on("submit", ".comment__edit-form", async function(e) {
     e.preventDefault();
 
     let formData = new FormData(e.target);
-    let respJson = await fetchWrapper(
-        GET_URL_FOR_URL, {method: "GET"},
-        {
+    let respJson = await fetchWrapper({
+        url: GET_URL_FOR_URL,
+        method: "GET",
+        params: {
             endpoint: `blog.${BLOGPAGE_ID}.edit_comment`,
             post_sanitized_title: POST_SANITIZED_TITLE,
             comment_id: getCommentId(e.target)
         }
-    );
+    });
     let url = respJson.url;
-    respJson = await fetchWrapper(url, {method: "PUT", body: formData});
+    respJson = await fetchWrapper({url: url, method: "PUT", body: formData});
     onModifyCommentAjaxDone(respJson, e);
 });
 
 $(document).on("click", ".comment__delete-btn", confirmWrapper(async function(e) {
     e.preventDefault();
 
-    let respJson = await fetchWrapper(
-        GET_URL_FOR_URL, {method: "GET"},
-        {
+    let respJson = await fetchWrapper({
+        url: GET_URL_FOR_URL,
+        method: "GET",
+        params: {
             endpoint: `blog.${BLOGPAGE_ID}.delete_comment`,
             post_sanitized_title: POST_SANITIZED_TITLE,
             comment_id: getCommentId(e.target)
         }
-    );
+    });
     let url = respJson.url;
-    respJson = await fetchWrapper(url, {method: "DELETE"});
+    respJson = await fetchWrapper({url: url, method: "DELETE"});
     onModifyCommentAjaxDone(respJson, e);
 }));

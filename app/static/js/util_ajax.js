@@ -1,20 +1,17 @@
-async function fetchWrapper(baseUrl, options, params=null) {
-    if (!options) {
-        options = {};
+async function fetchWrapper({url, method, body=null, params={}}) {
+    let urlWithParams = new URL(url);
+    for (const key in params) {
+        urlWithParams.searchParams.append(key, encodeURIComponent(params[key]));
     }
-    if (!options.headers) {
-        options.headers = {};
-    }
+
+    let options = {headers: {}};
     options.headers["X-CSRFToken"] = csrfToken;
     options.headers["Accept"] = "application/json";
     options.credentials = "include";
     options.mode = "cors";
-
-    let urlWithParams = new URL(baseUrl);
-    if (params) {
-        for (let key in params) {
-            urlWithParams.searchParams.append(key, encodeURIComponent(params[key]));
-        }
+    options.method = method;
+    if (body) {
+        options.body = body;
     }
 
     const resp = await fetch(urlWithParams, options);

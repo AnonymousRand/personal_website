@@ -1,5 +1,5 @@
 const IS_USER_AUTHENTICATED = async function() {
-    const respJson = await fetchWrapper(GET_SESSION_STATUS_URL, {method: "GET"});
+    const respJson = await fetchWrapper({url: GET_SESSION_STATUS_URL, method: "GET"});
     return respJson.is_logged_in;
 };
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         let formData = new FormData(e.target);
-        const respJson = await fetchWrapper(LOGIN_URL, {method: "POST", body: formData});
+        const respJson = await fetchWrapper({url: LOGIN_URL, method: "POST", body: formData});
         doAjaxFormResponse(respJson, e);
 
         if (respJson.success) {
@@ -33,7 +33,7 @@ $(document).ready(function() {
 
     $("#logout-link").on("click", async function(e) {
         e.preventDefault();
-        const respJson = await fetchWrapper(LOGOUT_URL, {method: "POST"});
+        const respJson = await fetchWrapper({url: LOGOUT_URL, method: "POST"});
     });
 
     const jQModalLogin = $("#login-modal");

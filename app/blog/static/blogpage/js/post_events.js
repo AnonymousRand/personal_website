@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     $("#delete-post-btn").on("click", confirmWrapper(async function(e) {
         e.preventDefault();
-        const respJson = await fetchWrapper(DELETE_POST_URL, {method: "DELETE"});
+        const respJson = await fetchWrapper({url: DELETE_POST_URL, method: "DELETE"});
         doAjaxBaseResponse(respJson);
     }));
 

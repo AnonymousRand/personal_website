@@ -9,9 +9,7 @@ $(document).ready(function() {
         if (!formAction) {
             formAction = window.location.href;
         }
-        const respJson = await fetchWrapper(
-            formAction, {method: form.getAttribute("method"), body: formData}
-        );
+        const respJson = await fetchWrapper({url: formAction, method: form.getAttribute("method"), body: formData});
         doAjaxFormResponse(respJson, e);
     });
 });
