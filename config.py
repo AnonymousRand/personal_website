@@ -81,7 +81,7 @@ class Config(object):
     # other "conventional" configs
     AFTER_LOGOUT_ENDPOINT = "main.index"
     # this is not in db as it's only used for initializing blueprints, during which db is not yet accessible
-    BLOGPAGE_ID_TO_URL_PREFIX = {
+    BLOGPAGE_ID_URL_PREFIXES = {
          "1": "/all",
          "2": "/misc",
         "-2": "/misc/backrooms",
