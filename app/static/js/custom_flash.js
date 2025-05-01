@@ -1,4 +1,4 @@
-function customFlash(message) {
+function flashMessage(message) {
     $("#flash__text").text(message); // `text()` by itself is XSS-safe
     $("#flash").removeAttr("hidden");
 }
@@ -7,7 +7,7 @@ function renderQueryStringFlash() {
     let urlParams = new URLSearchParams(window.location.search);
     let flash = urlParams.get("flash_msg");
     if (flash) {
-        customFlash(decodeURIComponent(flash));
+        flashMessage(decodeURIComponent(flash));
     }
 }
 

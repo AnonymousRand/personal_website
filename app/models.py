@@ -114,7 +114,7 @@ class Post(db.Model):
 
     def sanitize_title(self) -> None:
         """
-        Replaces whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric and non-hypthen
+        Replaces whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric and non-hyphen
         characters.
         """
 
@@ -141,7 +141,7 @@ class Post(db.Model):
         self, should_remove_updated_timestamp: bool, should_update_updated_timestamp: bool, old_blogpage_id=None
     ) -> None:
         """
-        Prereqs:
+        Preconditions:
             - Post must already be added to the db or at least the transaction (`db.session.add()`)
             - Post must have `blogpage` field auto-generated (`db.session.flush()`)
         """

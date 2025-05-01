@@ -71,7 +71,7 @@ def custom_unauthorized(content_type: ContentType):
         ```
 
     Args:
-        content_type: specifies the `Content-Type` of the expected server response from the view function
+        - `content_type`: specifies the `Content-Type` of the expected server response from the view function
     """
 
     if not current_user.is_authenticated:

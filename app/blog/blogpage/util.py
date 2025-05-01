@@ -19,6 +19,7 @@ from app.util import ContentType
 def require_login_if_restricted_bp():
     """
     Enforces login to access private blogpages.
+
     Use before every view function potentially accessing private blogpages!!!
     """
 
@@ -87,8 +88,8 @@ def require_valid_comment():
 
 def redir_to_post_after_login():
     """
-    If redirecting to this view function via the `next` parameter after logging in, instead redirect to simply the
-    GET endpoint for the current post.
+    If redirecting to a view function decorated by this via the `next` parameter after logging in, instead redirect to
+    the GET endpoint for the current post.
 
     Important: this decorator must be applied after the `post` or `post_sanitized_title` parameters are set (i.e.
     after `@require_valid_post`).
