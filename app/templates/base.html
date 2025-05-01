@@ -95,7 +95,7 @@
       <!-- inline (passing vars from Jinja to JS, for example) -->
       <script nonce="{{ csp_nonce() }}">
           const DEFAULT_BACKGROUND_IMG_URL = "{{ url_for('static', filename='images/background_default.svg', _external=True) }}";
-          const LOGIN_URL = "{{ url_for('admin.login', _external=True) }}";
+          const LOGIN_URL = "{{ url_for(config['LOGIN_ENDPOINT'], _external=True) }}";
           const LOGOUT_URL = "{{ url_for('admin.logout', _external=True) }}";
           const AFTER_LOGOUT_URL = "{{ url_for(config['AFTER_LOGOUT_ENDPOINT'], _external=True) }}";
           const GET_SESSION_STATUS_URL = "{{ url_for('get_session_status', _external=True) }}";

@@ -11,7 +11,7 @@
 {{ super() }}
 const BLOGPAGE_ID = {{ blogpage_id }};
 const POST_SANITIZED_TITLE = "{{ post.sanitized_title }}";
-const VERIFIED_AUTHOR = "{{ config["VERIFIED_AUTHOR"] }}";
+const VERIFIED_AUTHOR = "{{ config['VERIFIED_AUTHOR'] }}";
 
 const PERMANENT_LINK_URL = "{{ url_for('blog.post_by_id', post_id=post.id, _external=True) }}";
 const DELETE_POST_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.delete_post', post_sanitized_title=post.sanitized_title, _external=True) }}";
