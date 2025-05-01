@@ -23,7 +23,7 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
 {% endblock %}
 
 
-{% block js_head_deferred_linked %}
+{% block js_head_linked_deferred %}
 {{ super() }}
 <script src="{{ url_for('blog.static', filename='blogpage/js/post_comments.js', _external=True) }}" defer></script>
 <script src="{{ url_for('blog.static', filename='blogpage/js/post_events.js', _external=True) }}" defer></script>

@@ -29,7 +29,7 @@ let backgroundImgName = "";
 {% endblock %}
 
 
-{% block js_head_deferred_linked %}
+{% block js_head_linked_deferred %}
 {{ super() }}
 <script src="{{ url_for('blog.static', filename='blogpage/js/goto_page_form.js', _external=True) }}" defer></script>
 {% endblock %}
