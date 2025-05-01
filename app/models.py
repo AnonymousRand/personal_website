@@ -1,3 +1,5 @@
+# MYSQL-SPECIFIC!!!
+
 from __future__ import annotations
 
 import re
@@ -31,11 +33,11 @@ class Blogpage(db.Model):
         ),
         nullable=True,
         default=None,
-        server_default=None
+        server_default=None # i think this default is for migrations? since this is db-side instead of SQL-Alchemy-side
     )
     description: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(
-            Config.DB_CONFIGS["BLOGPAGE_META_DESCRIPTION_MAXLEN"],
+            Config.DB_CONFIGS["BLOGPAGE_DESCRIPTION_MAXLEN"],
             charset="utf8mb4",
             collation="utf8mb4_0900_ai_ci"
         ),
@@ -60,11 +62,11 @@ class Blogpage(db.Model):
 
     # relationship: `Blogpage`
 
-    publishing_sibling_id: so.Mapped[int] = so.mapped_column(
-            # `ForeignKey()` needs to use lowercase SQL table name instead of Python class name
-            sa.ForeignKey("blogpage.id"), unique=True, nullable=True, default=None, server_default=None
+    # one-way relationship only, thus no SQL-Alchemy `relationship` and no `backrooms_blogpage` field
+    backrooms_blogpage_id: so.Mapped[int] = so.mapped_column(
+        # `ForeignKey()` needs to use lowercase SQL table name instead of Python class name
+        sa.ForeignKey("blogpage.id"), nullable=True, default=None, server_default=None
     )
-    publishing_sibling: so.Mapped["Blogpage"] = so.relationship()
 
 
 class Post(db.Model):
@@ -85,8 +87,9 @@ class Post(db.Model):
         nullable=True, default=None, server_default=None
     )
     timestamp: so.Mapped[datetime] = so.mapped_column(
-        # `sa.text("NOW()")` should produce the same format as when SQLAlchemy casts Python's `datetime` obj
-        nullable=False, default=lambda: datetime.now(timezone.utc), server_default=sa.text("NOW()"), index=True
+        nullable=False, default=lambda: datetime.now(timezone.utc),
+        # `current_timestamp()` evaulates to `CURRENT_TIMESTAMP` in SQL which in MySQL is always stored in UTC
+        server_default=sa.func.current_timestamp(), index=True
     )
     updated_timestamp: so.Mapped[datetime] = so.mapped_column(nullable=True, default=None, server_default=None)
     content: so.Mapped[sa_mysql.MEDIUMTEXT()] = so.mapped_column(
@@ -196,7 +199,8 @@ class Comment(db.Model):
         nullable=False
     )
     timestamp: so.Mapped[datetime] = so.mapped_column(
-        nullable=False, default=lambda: datetime.now(timezone.utc), server_default=sa.text("NOW()"), index=True
+        nullable=False, default=lambda: datetime.now(timezone.utc),
+        server_default=sa.func.current_timestamp(), index=True
     )
     content: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(
