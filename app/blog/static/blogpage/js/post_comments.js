@@ -114,7 +114,6 @@ function onModifyCommentAjaxDone(respJson, e) {
     }
 }
 
-// TODO should store instead? or at least get from top-level comment div?
 function getCommentId(nodeForm) {
     return $(nodeForm).attr("id").match(/\d+/)[0];
 }
@@ -133,7 +132,7 @@ $(document).on("click", ".comment__reply-btn", async function(e) {
     }
 
     jQFormAddReply.removeAttr("hidden");
-    // insert under right parent; use `name` instead of `id` in case duplicate `id`s in comments causes issues
+    // insert under correct parent; use `name` instead of `id` in case duplicate `id`s in comments causes issues
     jQFormAddReply.find("[name='parent']").val(id);
     if (await IS_USER_AUTHENTICATED()) {
         // automatically fill in username if admin
