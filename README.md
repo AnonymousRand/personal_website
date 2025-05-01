@@ -85,7 +85,7 @@ Keep up-to-date:
     - All other forms
     - Usage guidelines:
         - Must be Ajax, using `fetchWrapper()` in [app/static/js/util_ajax.js](app/static/js/util_ajax.js) and sending FormData (since the CSRF error handling is designed only for FormData). See `doAjaxResponseBase()` in the same file for documentation on the basic, always-supported JSON keys that the backend can return.
-    - Refer to [app/static/js/util_session.js](app/static/js/util_session.js), [app/admin/static/js/form_submit.js](app/admin/static/js/form_submit.js), and [app/blog/static/blogpage/js/post_comments.js](app/blog/static/blogpage/js/post_comments.js) for examples of POST forms
+    - Refer to [app/static/js/util_session.js](app/static/js/util_session.js), [app/static/js/form_submit.js](app/static/js/form_submit.js), and [app/blog/static/blogpage/js/post_comments.js](app/blog/static/blogpage/js/post_comments.js) for examples of POST forms
 - Always add HTML classes `auth-true`/`auth-false` (for showing/hiding elements) when needed
 
 ### Updating HTML custom errors:
