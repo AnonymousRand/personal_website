@@ -25,7 +25,6 @@ class CreateBlogpostForm(BlogpostBaseForm):
 
 class EditBlogpostForm(BlogpostBaseForm):
     delete_files = SelectMultipleField("Delete files")
-    cancel_delete_files = SubmitField("Clear files to delete", render_kw={"type": "button"})
     delete_unused_files = BooleanField("Delete unused files")
     update_updated_timestamp = BooleanField("Update updated timestamp")
     remove_updated_timestamp = BooleanField("Remove updated timestamp")
