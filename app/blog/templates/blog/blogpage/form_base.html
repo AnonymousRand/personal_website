@@ -6,6 +6,11 @@
 {% endblock %}
 
 
+{% block js_head_linked_deferred %}
+<script src="{{ url_for('blog.static', filename='blogpage/js/form_events.js', _external=True) }}" defer></script>
+{% endblock %}
+
+
 {% block content %}
 {{ wtf.quick_form(form, class="main-form", action=action, method=method, is_full_page=true, prompt=prompt) }}
 {% endblock %}
