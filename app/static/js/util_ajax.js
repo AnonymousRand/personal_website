@@ -42,7 +42,7 @@ async function fetchWrapper(baseUrl, options, params=null) {
     let hasHandledError = true;
     switch(resp.status) {
         case 429:
-            customFlash("Please slow down :3");
+            customFlash("please slow down :3");
             break;
         default:
             hasHandledError = false;
