@@ -86,7 +86,7 @@ def get_post(post, post_sanitized_title, **kwargs): # first param is from `requi
 
         content_md = markdown.Markdown(extensions=[
             "extra",
-            "image_titles",                     # images use `alt` text as `title` too
+            "image_titles",                         # images use `alt` text as `title` too
             CaptionedFigureExtension(
                 html_class="md-captioned-figure", caption_html_class="md-captioned-figure__caption"
             ),
@@ -95,7 +95,7 @@ def get_post(post, post_sanitized_title, **kwargs): # first param is from `requi
             ),
             DivExtension(
                 types={
-                    "textbox": {"html_class": "md-textbox last-child-no-mb border--1px"}
+                    "textbox": {"html_class": "md-textbox last-child-no-mb border--2px border--lightgray"}
                 }
             ),
             DropdownExtension(

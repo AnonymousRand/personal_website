@@ -22,7 +22,6 @@ const DARKREADER_FIXES = {
             --darkreader-border--custom-pink-light: var(--custom-pink-light);
             --darkreader-border--custom-pink-deep-xlight: var(--custom-pink-deep-xlight);
             --darkreader-border--custom-pink-deep-xxlight: var(--custom-pink-deep-xxlight);
-            --darkreader-border--lightgray: lightgray;
 
             --darkreader-bg--custom-blue: var(--custom-blue);
             --darkreader-bg--custom-blue-xlight: var(--custom-blue-xlight);
@@ -38,7 +37,20 @@ const DARKREADER_FIXES = {
             --darkreader-text--custom-blue-xdeep: var(--custom-blue-deep);
         }
 
-        @layer god-i-hate-css-and-specificity {
+        /* for specificity */
+        @layer god-i-hate-css {
+            option:active, .dropdown-item:hover, .dropdown-item:active {
+                color: var(--bs-body-color) !important;
+            }
+
+            pre code.code-block-outside-table {
+                border-color: gray !important;
+            }
+
+            .border--lightgray {
+                border-color: gray !important;
+            }
+
             .btn--custom-orange-light {
                 color: black !important;
             }
@@ -49,10 +61,6 @@ const DARKREADER_FIXES = {
 
             .btn-link--custom-pink-deep-xlight:hover {
                 color: var(--custom-pink-deep-light) !important;
-            }
-
-            option:active, .dropdown-item:hover, .dropdown-item:active {
-                color: var(--bs-body-color) !important;
             }
 
             .link--custom-green-deep-xdark {
