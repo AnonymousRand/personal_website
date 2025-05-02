@@ -68,6 +68,7 @@ mjx-stretchy-h.mjx-c2013 mjx-ext mjx-c::before {
  * note that 0.75 is an arbitrary approximation, because trying to find it precisely seems nigh impossible */
 nav .dropdown-menu {
     width: max-content;
+    min-width: min-content !important;
     max-width: calc(0.75 * (var(--container-content-max-width) - 2 * var(--container-content-padding-x)));
 }
 
