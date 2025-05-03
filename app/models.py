@@ -161,7 +161,7 @@ class Post(db.Model):
             self.timestamp = datetime.now(timezone.utc)
             self.updated_timestamp = None
 
-    EXPAND_IMG_MARKDOWN_PATTERN = re.compile(r"(!\[[\S\s]*?\])\(([\S\s]+?)\)")
+    EXPAND_IMG_MARKDOWN_PATTERN = re.compile(r"(!\[.*?\])\((.+?)\)")
 
     def expand_img_markdown(self) -> None:
         self.content = self.EXPAND_IMG_MARKDOWN_PATTERN.sub(
@@ -171,8 +171,8 @@ class Post(db.Model):
 
     def collapse_img_markdown(self) -> str:
         return re.sub(
-            fr"(!\[[\S\s]*?\])\({current_app.config['BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC']}/{self.blogpage_id}/" +
-            fr"images/{self.id}/([\S\s]+?)\)",
+            fr"(!\[.*?\])\({current_app.config['BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC']}/{self.blogpage_id}/" +
+            fr"images/{self.id}/(.+?)\)",
             r"\1(\2)", self.content
         )
 
