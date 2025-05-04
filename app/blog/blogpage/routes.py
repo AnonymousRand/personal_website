@@ -36,7 +36,7 @@ def inject_blogpage_from_db():
 @bp.route("/", methods=["GET"])
 @util.set_content_type(ContentType.HTML)
 @bp_util.require_login_if_restricted_bp()
-def get_posts(**kwargs):
+def get_posts(*args, **kwargs):
     page_num = request.args.get("page", 1, type=int) # should automatically redirect non-int to page 1
     blogpage_id = bp_util.get_blogpage_id()
     blogpage = db.session.get(Blogpage, blogpage_id)
@@ -75,7 +75,7 @@ def get_posts(**kwargs):
 @bp.route("/<string:post_sanitized_title>", methods=["GET"])
 @util.set_content_type(ContentType.HTML)
 @bp_util.require_valid_post()
-def get_post(post, post_sanitized_title, **kwargs): # first param is from `require_valid_post` decorator
+def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from `require_valid_post` decorator
     # render Markdown for post
     content_md = None
     if post.content:
@@ -237,7 +237,7 @@ def get_post(post, post_sanitized_title, **kwargs): # first param is from `requi
 @bp.route("/", methods=["POST"])
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @util.require_login()
-def create_post(**kwargs):
+def create_post(*args, **kwargs):
     form = CreateBlogpostForm()
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
     form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
@@ -297,7 +297,7 @@ def create_post(**kwargs):
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @util.require_login()
 @bp_util.require_valid_post()
-def edit_post(post, post_sanitized_title, **kwargs):
+def edit_post(post, post_sanitized_title, *args, **kwargs):
     # pre-populate form fields with existing post content
     form = EditBlogpostForm(obj=post)
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
@@ -397,7 +397,7 @@ def edit_post(post, post_sanitized_title, **kwargs):
 @util.set_content_type(ContentType.JSON)
 @util.require_login()
 @bp_util.require_valid_post()
-def delete_post(post, post_sanitized_title, **kwargs):
+def delete_post(post, post_sanitized_title, *args, **kwargs):
     # delete post from db
     db.session.delete(post)
 
@@ -425,7 +425,7 @@ def delete_post(post, post_sanitized_title, **kwargs):
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def get_comments(post, post_sanitized_title, **kwargs):
+def get_comments(post, post_sanitized_title, *args, **kwargs):
     def sanitize_comment_html(s: str) -> str:
         """
         Sanitizes Markdown for comments (XSS etc.).
@@ -469,7 +469,7 @@ def get_comments(post, post_sanitized_title, **kwargs):
 @bp_util.require_login_if_restricted_bp()
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def add_comment(post, post_sanitized_title, **kwargs):
+def add_comment(post, post_sanitized_title, *args, **kwargs):
     form = AddCommentForm()
     if not form.validate():
         return jsonify(submission_errors=form.errors)
@@ -500,7 +500,7 @@ def add_comment(post, post_sanitized_title, **kwargs):
 @bp_util.require_valid_post()
 @bp_util.require_valid_comment()
 @bp_util.redir_to_post_after_login()
-def edit_comment(post, post_sanitized_title, comment, comment_id, **kwargs):
+def edit_comment(post, post_sanitized_title, comment, comment_id, *args, **kwargs):
     # pre-populate form fields with existing comment content; leave out `parent` since that should not be changeable
     form = AddCommentForm(obj=comment)
     if request.method == "GET":
@@ -522,7 +522,7 @@ def edit_comment(post, post_sanitized_title, comment, comment_id, **kwargs):
 @bp_util.require_valid_post()
 @bp_util.require_valid_comment()
 @bp_util.redir_to_post_after_login()
-def delete_comment(post, post_sanitized_title, comment, comment_id, **kwargs):
+def delete_comment(post, post_sanitized_title, comment, comment_id, *args, **kwargs):
     # delete comment and its descendants from db
     descendants = comment.get_descendants(post)
     if not comment.remove_comment(post):
@@ -539,7 +539,7 @@ def delete_comment(post, post_sanitized_title, comment, comment_id, **kwargs):
 @util.require_login()
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def mark_comments_as_read(post, post_sanitized_title, **kwargs):
+def mark_comments_as_read(post, post_sanitized_title, *args, **kwargs):
     # mark comments under current post as read in db
     unread_comments_query = post.comments.select().filter_by(is_unread=True)
     unread_comments = db.session.scalars(unread_comments_query).all()
@@ -553,7 +553,7 @@ def mark_comments_as_read(post, post_sanitized_title, **kwargs):
 @util.set_content_type(ContentType.JSON)
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def get_comment_count(post, post_sanitized_title, **kwargs):
+def get_comment_count(post, post_sanitized_title, *args, **kwargs):
     return jsonify(count=post.get_comment_count())
 
 
@@ -562,5 +562,5 @@ def get_comment_count(post, post_sanitized_title, **kwargs):
 @util.require_login()
 @bp_util.require_valid_post()
 @bp_util.redir_to_post_after_login()
-def get_unread_comment_count(post, post_sanitized_title, **kwargs):
+def get_unread_comment_count(post, post_sanitized_title, *args, **kwargs):
     return jsonify(count=post.get_unread_comment_count())

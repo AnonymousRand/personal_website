@@ -73,7 +73,7 @@ def logout():
 @bp.route("/choose-action", methods=["GET", "POST"])
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @util.require_login()
-def choose_action(**kwargs):
+def choose_action(*args, **kwargs):
     form = ChooseActionForm()
 
     if request.method == "GET":
@@ -98,7 +98,7 @@ def choose_action(**kwargs):
 @bp.route("/search-posts", methods=["GET", "POST"])
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @util.require_login()
-def search_posts(**kwargs):
+def search_posts(*args, **kwargs):
     form = SearchBlogpostForm()
 
     if request.method == "GET":
@@ -121,7 +121,7 @@ def search_posts(**kwargs):
 @bp.route("/change-admin-password", methods=["GET", "POST"])
 @util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @util.require_login()
-def change_admin_password(**kwargs):
+def change_admin_password(*args, **kwargs):
     form = ChangeAdminPasswordForm()
 
     if request.method == "GET":

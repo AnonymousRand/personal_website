@@ -43,7 +43,7 @@ def post_by_id(post_id):
 @util.set_content_type(ContentType.JSON)
 @util.require_login()
 @blog_util.redirs_to_index_after_login()
-def get_posts_with_unread_comments(**kwargs):
+def get_posts_with_unread_comments(*args, **kwargs):
     posts_with_unread_comments = {}
     posts = db.session.query(Post).all()
     for post in posts:
@@ -57,5 +57,5 @@ def get_posts_with_unread_comments(**kwargs):
 
 
 @bp.route("/favicon.ico")
-def favicon(**kwargs):
+def favicon():
     return redirect(url_for("static", filename="images/favicon.ico"))
