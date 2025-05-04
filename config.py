@@ -81,22 +81,23 @@ class Config(object):
     # other "conventional" configs
     AFTER_LOGOUT_ENDPOINT = "main.index"
     # this is not in db as it's only used for initializing blueprints, during which db is not yet accessible
+    # using `/backrooms` instead of `-backrooms` creates image relative pathing issues due to extra nested "directory"!
     BLOGPAGE_ID_URL_PREFIXES = {
          "1": "/all",
          "2": "/misc",
-        "-2": "/misc/backrooms",
+        "-2": "/misc-backrooms",
          "3": "/professor-google",
-        "-3": "/professor-google/backrooms",
+        "-3": "/professor-google-backrooms",
          "4": "/typewriter-monkey-does-ctfs",
-        "-4": "/typewriter-monkey-does-ctfs/backrooms",
+        "-4": "/typewriter-monkey-does-ctfs-backrooms",
          "5": "/the-fake-news-network",
-        "-5": "/the-fake-news-network/backrooms",
+        "-5": "/the-fake-news-network-backrooms",
          "6": "/writers-block",
-        "-6": "/writers-block/backrooms",
+        "-6": "/writers-block-backrooms",
          "7": "/writers-unblock",
-        "-7": "/writers-unblock/backrooms"
+        "-7": "/writers-unblock-backrooms"
     }
-    BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC = "../static/blogpage"
+    BLOGPAGE_ROUTES_TO_STATIC_REL_PATH = "../static/blogpage"
     FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
     FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024 # 100 MB

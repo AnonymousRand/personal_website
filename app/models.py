@@ -165,13 +165,13 @@ class Post(db.Model):
 
     def expand_img_markdown(self) -> None:
         self.content = self.EXPAND_IMG_MARKDOWN_PATTERN.sub(
-            fr"\1({current_app.config['BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC']}/{self.blogpage_id}/images/{self.id}/\2)",
+            fr"\1({current_app.config['BLOGPAGE_ROUTES_TO_STATIC_REL_PATH']}/{self.blogpage_id}/images/{self.id}/\2)",
             self.content
         )
 
     def collapse_img_markdown(self) -> str:
         return re.sub(
-            fr"(!\[.*?\])\({current_app.config['BLOGPAGE_ROUTES_TO_BLOGPAGE_STATIC']}/{self.blogpage_id}/" +
+            fr"(!\[.*?\])\({current_app.config['BLOGPAGE_ROUTES_TO_STATIC_REL_PATH']}/{self.blogpage_id}/" +
             fr"images/{self.id}/(.+?)\)",
             r"\1(\2)", self.content
         )
