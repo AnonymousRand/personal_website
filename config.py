@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 
 class Config(object):
     # basics
+
     SERVER_NAME = "anonymousrand.xyz"
     ALLOWED_ORIGINS = [f"https://{SERVER_NAME}", f"https://blog.{SERVER_NAME}"]
     SECRET_KEY = os.environ.get("SECRET_KEY")
@@ -41,6 +42,7 @@ class Config(object):
     }
 
     # cookies
+
     # this affects non-logged in sessions too since they have a cookie as well to store the Flask session,
     # and it's annoying to have CSRF expiring all the time when browser is left open, hence one year expiration
     PERMANENT_SESSION_LIFETIME = 31536000 
@@ -51,10 +53,12 @@ class Config(object):
     SESSION_REFRESH_EACH_REQUEST = False
 
     # Flask-WTF
+
     WTF_CSRF_SSL_STRICT = False # allows cross-site Ajax POST (Flask-CORS whitelisting not enough)
     WTF_CSRF_TIME_LIMIT = None  # CSRF token lasts until session expires
 
     # Flask-SQLAlchemy/database
+
     DB_CONFIGS = {
         "BLOGPAGE_NAME_MAXLEN": 50,
         "BLOGPAGE_SUBNAME_MAXLEN": 100,
@@ -75,10 +79,12 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
     # Jinja (must be explicitly configured in `app/__init__.py`)
+
     JINJA_LSTRIP_BLOCKS = True
     JINJA_TRIM_BLOCKS = True
 
-    # other "conventional" configs
+    # other configs
+
     AFTER_LOGOUT_ENDPOINT = "main.index"
     # this is not in db as it's only used for initializing blueprints, during which db is not yet accessible
     # using `/backrooms` instead of `-backrooms` creates image relative pathing issues due to extra nested "directory"!

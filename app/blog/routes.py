@@ -1,5 +1,5 @@
 import sqlalchemy as sa
-from flask import current_app, jsonify, redirect, request, url_for
+from flask import jsonify, redirect, request, url_for
 from flask_login import current_user
 
 import app.blog.util as blog_util
@@ -54,3 +54,8 @@ def get_posts_with_unread_comments(**kwargs):
                 "url": url_for("blog.post_by_id", post_id=post.id, _external=True)
             }
     return jsonify(posts_with_unread_comments)
+
+
+@bp.route("/favicon.ico")
+def favicon(**kwargs):
+    return redirect(url_for("static", filename="images/favicon.ico"))

@@ -17,12 +17,16 @@ def inject_blogpages():
     return dict(blogpages=blogpages)
 
 
+def favicon():
+    return redirect(url_for("static", filename="images/favicon.ico"))
+
+
 def handle_general_http_error(e):
     # meow :3
     return redirect(f"https://http.cat/{e.code}")
 
 
-def get_url_for(*args, **kwargs):
+def get_url_for():
     """
     Get `url_for()` from externally-linked JS.
 
