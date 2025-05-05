@@ -142,7 +142,6 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "lem": {
                             "thm_type": "Lemma",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray",
                             "thm_counter_incr": "0,0,1"
                         },
                         r"notat\\\*": {
