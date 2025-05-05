@@ -196,8 +196,7 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         r"rmk\\\*": {
                             "thm_type": "Remark",
-                            "html_class": "border--2px border--lightgray dimgray",
-                            "thm_name_overrides_thm_heading": True
+                            "html_class": "border--2px border--lightgray dimgray"
                         }
                     },
                     "html_class": "md-dropdown",
