@@ -135,11 +135,9 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
         for file in files:
             if file.filename == "":
                 continue
+            filename = file.filename
 
-            filename = sanitize_filename(file.filename)
-            if filename == "":
-                return "File name was deleted by sanitization."
-
+            # validate file type
             file_ext = os.path.splitext(filename)[1]
             if file_ext == ".jpg":                      # `imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`
                 file_ext = ".jpeg"
@@ -152,9 +150,13 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             if invalid:
                 return "Invalid file. If it's another heic im gonna lose my mind i swear to god i hate"
 
-            path = os.path.join(files_base_path, filename)
+            # sanitize filename and upload
+            sanitized_filename = sanitize_filename(filename)
+            if sanitized_filename == "":
+                return f"File name {filename} did not survive sanitization."
+            final_path = os.path.join(files_base_path, sanitized_filename)
             os.makedirs(files_base_path, exist_ok=True) # make image directory if it doesn't exist
-            file.save(path)                              # this can replace existing images
+            file.save(final_path)                       # this can replace existing images
     except Exception as e:
         print(e)
         return f"File upload exception"
@@ -193,7 +195,8 @@ def get_post(post: Post, post_sanitized_title: str, blogpage_id: int) -> Post:
 
 def sanitize_filename(filename: str) -> str:
     filename = escape(secure_filename(filename))
-    filename = filename.replace("(", "").replace(")", "") # for Markdown parsing
+    # for Markdown parsing
+    filename = filename.replace("(", "").replace(")", "")
     return filename
 
 

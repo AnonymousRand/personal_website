@@ -337,7 +337,6 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
             should_update_updated_timestamp=request.form.get("update_updated_timestamp"),
             old_blogpage_id=old_blogpage_id
         )
-        post.expand_img_markdown()
 
         # upload files if any
         files_base_path = bp_util.get_files_base_path(post)
@@ -362,7 +361,10 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                 files = os.listdir(files_base_path)
                 for file in files:
                     filename, file_ext = os.path.splitext(file)
-                    if filename not in post.content:
+                    # `if` condition also checks for Markdown syntax immediately before filename and period
+                    # immediately after to ensure that we are not catching a proper substring of a longer filename
+                    # (requires no periods in file name!)
+                    if f"]({filename}." not in post.content:
                         # if extension-less filename is unused, delete everything with that extension-less filename
                         # so .excalidraw files etc. are also removed
                         for file in glob.iglob(f"{os.path.join(files_base_path, filename)}.*"):
@@ -382,6 +384,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                     print(e)
                     return jsonify(flash_msg=f"File move exception")
 
+        post.expand_img_markdown() # only expand image markdown after checking for unused files
         db.session.commit()
         return jsonify(
             redir_url=url_for(
