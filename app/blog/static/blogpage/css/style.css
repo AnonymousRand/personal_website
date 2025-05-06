@@ -30,11 +30,6 @@ input[value="Reply"][value="Delete"] {
     font-size: 1em; /* undo Bootstrap */
 }
 
-.post__btns {
-    margin-top: 0.5rem;
-    width: 100%;
-}
-
 .goto-page-form__page-input {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -195,32 +190,32 @@ input[value="Reply"][value="Delete"] {
         --left-sticky-margin-left: calc(-5 * (min(100vw, 1536px) - var(--container-content-max-width)) / 12);
     }
 
-    .post__btns {
-        position: fixed;
-        float: left;
-        margin-top: 0;
-        top: 4rem;
-        margin-left: var(--left-sticky-margin-left);
-        width: var(--sticky-width);
-    }
-
     .post__toc {
-        position: sticky;
-        float: left;
-        margin-top: 0;
-        border: none;
-        padding: 0;
+        position: sticky !important;
+        float: left !important;
+        margin-top: 0 !important;
+        border: none !important;
+        padding: 0 !important;
         /* TOC takes up max 75% of the screen height, and is vertically centered (as if it took 75% of the screen
          * height) when stickied */
-        top: calc(12.5svh + var(--toc-heading-outer-height));
-        max-height: calc(75svh - var(--toc-heading-outer-height));
-        margin-left: var(--left-sticky-margin-left);
-        width: var(--sticky-width);
+        top: calc(12.5svh + var(--toc-heading-outer-height)) !important;
+        max-height: calc(75svh - var(--toc-heading-outer-height)) !important;
+        margin-left: var(--left-sticky-margin-left) !important;
+        width: var(--sticky-width) !important;
+    }
+
+    .sticky-btns {
+        position: fixed !important;
+        float: left !important;
+        margin-top: 0 !important;
+        top: 4rem !important;
+        margin-left: var(--left-sticky-margin-left) !important;
+        width: var(--sticky-width) !important;
     }
 
     .toc__heading {
-        position: absolute;
-        top: -1.5em;
+        position: absolute !important;
+        top: -1.5em !important;
     }
 }
 
@@ -235,6 +230,11 @@ input[value="Reply"][value="Delete"] {
 .post-list__comment-icon {
     font-size: 14px;
     margin-bottom: -0.25rem;
+}
+
+.sticky-btns {
+    margin-top: 0.5rem;
+    width: 100%;
 }
 
 .toc__body {
