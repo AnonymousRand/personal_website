@@ -470,12 +470,14 @@
 /*********/
 
 .cell--left-header {
-    border-right-width: 2px !important;
+    border-right-width: 3px !important;
+    border-right-style: double !important;
     background-color: whitesmoke !important;
 }
 
 .cell--top-header {
-    border-bottom-width: 2px !important;
+    border-bottom-width: 3px !important;
+    border-bottom-style: double !important;
     background-color: whitesmoke !important;
 }
 

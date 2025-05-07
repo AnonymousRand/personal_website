@@ -25,13 +25,16 @@ const DARKREADER_FIXES = {
 
             --darkreader-bg--custom-blue: var(--custom-blue);
             --darkreader-bg--custom-blue-xlight: var(--custom-blue-xlight);
+            --darkreader-bg--custom-blue-xxlight: var(--custom-blue-light);
             --darkreader-bg--custom-green: var(--custom-green);
             --darkreader-bg--custom-green-light: var(--custom-green-light);
+            --darkreader-bg--custom-green-xlight: var(--custom-green-light);
             --darkreader-bg--custom-orange: var(--custom-orange);
             --darkreader-bg--custom-orange-light: var(--custom-orange-light);
             --darkreader-bg--custom-orange-shallow-light: var(--custom-orange-shallow-light);
+            --darkreader-bg--custom-orange-shallow-xlight: var(--custom-orange-light);
             --darkreader-bg--custom-pink-light: var(--custom-pink-light);
-            --darkreader-bg--custom-pink-deep-xxxlight: var(--custom-pink-deep-xxxlight);
+            --darkreader-bg--custom-pink-deep-xxxlight: var(--custom-pink-xlight);
 
             --darkreader-text--custom-blue-deep: var(--custom-blue-deep-light);
             --darkreader-text--custom-blue-xdeep: var(--custom-blue-deep);
@@ -61,6 +64,10 @@ const DARKREADER_FIXES = {
 
             .btn-link--custom-pink-deep-xlight:hover {
                 color: var(--custom-pink-deep-light) !important;
+            }
+
+            .cell--top-header, .cell--left-header {
+                background-color: #242424 !important;
             }
 
             .link--custom-green-deep-xdark {
