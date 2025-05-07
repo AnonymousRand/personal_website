@@ -175,6 +175,10 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                 },
                 dropdown_config={
                     "types": {
+                        "bonus_content": {
+                            "thm_type": "Bonus Content",
+                            "html_class": "border--2px border--lightgray dimgray"
+                        },
                         "exer": {
                             "thm_type": "Exercise",
                             "html_class": "border--2px border--lightgray dimgray",
