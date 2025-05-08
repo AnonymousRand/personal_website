@@ -60,21 +60,21 @@ class Config(object):
     # Flask-SQLAlchemy/database
 
     DB_CONFIGS = {
-        "BLOGPAGE_NAME_MAXLEN": 50,
-        "BLOGPAGE_SUBNAME_MAXLEN": 100,
-        "BLOGPAGE_URL_PATH_MAXLEN": 50,
-        "BLOGPAGE_DESCRIPTION_MAXLEN": 500,
-        "BLOGPAGE_COLOR_MAXLEN": 100,
-        "POST_TITLE_MAXLEN": 150,
-        "POST_SUBTITLE_MAXLEN": 150,
+        "BLOGPAGE_NAME_MAX_LEN": 50,
+        "BLOGPAGE_SUBNAME_MAX_LEN": 100,
+        "BLOGPAGE_URL_PATH_MAX_LEN": 50,
+        "BLOGPAGE_DESCRIPTION_MAX_LEN": 500,
+        "BLOGPAGE_COLOR_MAX_LEN": 100,
+        "POST_TITLE_MAX_LEN": 150,
+        "POST_SUBTITLE_MAX_LEN": 150,
         # can't enforce this db-side because it's `MEDIUMTEXT` so just don't be more than 2^24 - 1 okayge
-        "POST_CONTENT_MAXLEN": 1000000,
-        "COMMENT_AUTHOR_MAXLEN": 100,
-        "COMMENT_CONTENT_MAXLEN": 5000,
-        "USER_USERNAME_MAXLEN": 25,
-        "USER_EMAIL_MAXLEN": 512,
-        "USER_PASSWORD_MAXLEN": 50,
-        "USER_PASSWORD_HASH_MAXLEN": 256
+        "POST_CONTENT_MAX_LEN": 1000000,
+        "COMMENT_AUTHOR_MAX_LEN": 100,
+        "COMMENT_CONTENT_MAX_LEN": 5000,
+        "USER_USERNAME_MAX_LEN": 25,
+        "USER_EMAIL_MAX_LEN": 512,
+        "USER_PASSWORD_MAX_LEN": 50,
+        "USER_PASSWORD_HASH_MAX_LEN": 256
     }
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 

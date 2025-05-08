@@ -10,7 +10,7 @@ class LoginForm(FlaskForm):
 
     password = PasswordField(
         "Password",
-        validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAXLEN"])]
+        validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
 
     login_form_submit = SubmitField("Submit")

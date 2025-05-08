@@ -10,7 +10,7 @@ from config import Config
 
 class LoginForm(FlaskForm):
     password = PasswordField(
-        "Password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAXLEN"])]
+        "Password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
     login_form_submit = SubmitField("Submit")
 
@@ -37,12 +37,12 @@ class SearchBlogpostForm(FlaskForm):
 
 class ChangeAdminPasswordForm(FlaskForm):
     old_password = PasswordField(
-        "Old password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAXLEN"])]
+        "Old password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
     new_password_1 = PasswordField(
-        "New password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAXLEN"])]
+        "New password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
     new_password_2 = PasswordField(
-        "Repeat new password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAXLEN"])]
+        "Repeat new password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
     change_admin_password_submit = SubmitField("Submit")

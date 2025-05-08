@@ -22,12 +22,12 @@ class Blogpage(db.Model):
     # basic attributes
 
     name: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["BLOGPAGE_NAME_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(Config.DB_CONFIGS["BLOGPAGE_NAME_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         nullable=False
     )
     subname: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(
-            Config.DB_CONFIGS["BLOGPAGE_SUBNAME_MAXLEN"],
+            Config.DB_CONFIGS["BLOGPAGE_SUBNAME_MAX_LEN"],
             charset="utf8mb4",
             collation="utf8mb4_0900_ai_ci"
         ),
@@ -37,7 +37,7 @@ class Blogpage(db.Model):
     )
     description: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(
-            Config.DB_CONFIGS["BLOGPAGE_DESCRIPTION_MAXLEN"],
+            Config.DB_CONFIGS["BLOGPAGE_DESCRIPTION_MAX_LEN"],
             charset="utf8mb4",
             collation="utf8mb4_0900_ai_ci"
         ),
@@ -46,7 +46,7 @@ class Blogpage(db.Model):
         server_default=None
     )
     color: so.Mapped[str] = so.mapped_column(
-        sa.String(Config.DB_CONFIGS["BLOGPAGE_COLOR_MAXLEN"]), nullable=False, default="black", server_default="black"
+        sa.String(Config.DB_CONFIGS["BLOGPAGE_COLOR_MAX_LEN"]), nullable=False, default="black", server_default="black"
     )
     ordering: so.Mapped[int] = so.mapped_column(unique=True, nullable=False, index=True)
     is_all_posts: so.Mapped[bool] = so.mapped_column(nullable=False, default=False, server_default=sa.false())
@@ -75,15 +75,15 @@ class Post(db.Model):
     # basic attributes
 
     title: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_TITLE_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_TITLE_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         nullable=False
     )
     sanitized_title: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_TITLE_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_TITLE_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         unique=True, nullable=False
     )
     subtitle: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_SUBTITLE_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         nullable=True, default=None, server_default=None
     )
     timestamp: so.Mapped[datetime] = so.mapped_column(
@@ -195,7 +195,7 @@ class Comment(db.Model):
     # basic attributes
 
     author: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["COMMENT_AUTHOR_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         nullable=False
     )
     timestamp: so.Mapped[datetime] = so.mapped_column(
@@ -204,7 +204,7 @@ class Comment(db.Model):
     )
     content: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
         sa_mysql.VARCHAR(
-            Config.DB_CONFIGS["COMMENT_CONTENT_MAXLEN"],
+            Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"],
             charset="utf8mb4",
             collation="utf8mb4_0900_ai_ci"
         ),
@@ -287,14 +287,14 @@ class User(UserMixin, db.Model):
     # basic attributes
 
     email: so.Mapped[str] = so.mapped_column(
-        sa.String(Config.DB_CONFIGS["USER_EMAIL_MAXLEN"]), unique=True, nullable=False
+        sa.String(Config.DB_CONFIGS["USER_EMAIL_MAX_LEN"]), unique=True, nullable=False
     )
     username: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["USER_USERNAME_MAXLEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(Config.DB_CONFIGS["USER_USERNAME_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
         unique=True, nullable=False
     )
     password_hash: so.Mapped[str] = so.mapped_column(
-        sa.String(Config.DB_CONFIGS["USER_PASSWORD_HASH_MAXLEN"]), nullable=False
+        sa.String(Config.DB_CONFIGS["USER_PASSWORD_HASH_MAX_LEN"]), nullable=False
     )
 
     # util

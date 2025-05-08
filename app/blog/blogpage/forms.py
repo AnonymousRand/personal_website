@@ -10,10 +10,10 @@ from config import Config
 
 class BlogpostBaseForm(FlaskForm):
     blogpage_id = SelectField("Blog", coerce=int, validators=[InputRequired()])
-    title = StringField("Title", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["POST_TITLE_MAXLEN"])])
-    subtitle = StringField("Subtitle", validators=[Length(max=Config.DB_CONFIGS["POST_SUBTITLE_MAXLEN"])])
+    title = StringField("Title", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["POST_TITLE_MAX_LEN"])])
+    subtitle = StringField("Subtitle", validators=[Length(max=Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"])])
     content = TextAreaField(
-        "Content (Markdown, LaTeX supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAXLEN"])]
+        "Content (Markdown, LaTeX supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAX_LEN"])]
     )
     files = MultipleFileField(f"Upload files (supported formats: {', '.join(Config.FILE_UPLOAD_EXTS)})")
     cancel_file_uploads = SubmitField("Clear files to upload", render_kw={"type": "button"})
@@ -33,8 +33,8 @@ class EditBlogpostForm(BlogpostBaseForm):
 
 class AddCommentForm(FlaskForm):
     parent = HiddenField(default=None)
-    author = StringField("Name",validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAXLEN"])])
+    author = StringField("Name",validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"])])
     content = TextAreaField(
-        "Comment", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAXLEN"])]
+        "Comment", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"])]
     )
     add_comment_form_submit = SubmitField("Submit")
