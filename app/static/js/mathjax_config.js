@@ -54,6 +54,7 @@ window.MathJax = {
             nimplies: "\\centernot\\implies",
             nimpliesshort: "\\nRightarrow",
             nul: "\\operatorname{nul}",
+            nullity: "\\operatorname{nullity}",
             Orb: "\\operatorname{Orb}",
             Out: "\\operatorname{Out}",
             Perm: "\\operatorname{Perm}",
