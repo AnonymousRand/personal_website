@@ -5,7 +5,7 @@ class Config(object):
     # basics
 
     SERVER_NAME = "anonymousrand.xyz"
-    ALLOWED_ORIGINS = [f"https://{SERVER_NAME}", f"https://blog.{SERVER_NAME}"]
+    ALLOWED_ORIGINS = [f"https://{SERVER_NAME}", f"https://blog.{SERVER_NAME}", f"https://http.cat"]
     SECRET_KEY = os.environ.get("SECRET_KEY")
     _csp_self = ["\'self\'", SERVER_NAME, f"blog.{SERVER_NAME}"]
     _csp_default_src = _csp_self
