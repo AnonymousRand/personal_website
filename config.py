@@ -5,7 +5,7 @@ class Config(object):
     # basics
 
     SERVER_NAME = "anonymousrand.xyz"
-    ALLOWED_ORIGINS = [f"https://{SERVER_NAME}", f"https://blog.{SERVER_NAME}", f"https://http.cat"]
+    ALLOWED_ORIGINS = [f"https://{SERVER_NAME}", f"https://blog.{SERVER_NAME}", "https://http.cat"]
     SECRET_KEY = os.environ.get("SECRET_KEY")
     _csp_self = ["\'self\'", SERVER_NAME, f"blog.{SERVER_NAME}"]
     _csp_default_src = _csp_self
@@ -106,7 +106,8 @@ class Config(object):
     BLOGPAGE_ROUTES_TO_STATIC_REL_PATH = "../static/blogpage"
     FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
     FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
-    MAX_CONTENT_LENGTH = 100 * 1024 * 1024 # 100 MB
+    MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MB max request size
+    MAX_FORM_MEMORY_SIZE = 10 * 1024 * 1024 # 10 MB max non-file form field (on `multipart/form-data`) size
     LOGIN_ENDPOINT = "admin.login"
     POSTS_PER_PAGE = 20
     ROOT_TO_BLOGPAGE_STATIC = "blog/static/blogpage"

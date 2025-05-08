@@ -35,7 +35,7 @@ import app.routes as global_routes # after initializing global extension variabl
 
 def create_app():
     # create app variable and config
-    app = Flask(__name__)
+    app = Flask(__name__, subdomain_matching=True)
     app.config.from_object(Config)
 
     app.jinja_env.lstrip_blocks = Config.JINJA_LSTRIP_BLOCKS
