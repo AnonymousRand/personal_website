@@ -22,8 +22,7 @@ body {
     font-size: 16px;
 }
 
-code,
-pre code {
+code, pre code {
     color: var(--custom-pink-deep);
     font-size: 100% !important;
 }
@@ -36,12 +35,7 @@ pre code.code-block-outside-table {
 }
 
 /* need to do this for DarkReader to affect blogpage index page posts (i hate css) */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     color: inherit;
 }
 
@@ -89,8 +83,7 @@ table {
     width: max-content;
 }
 
-td,
-th {
+td, th {
     border-width: 1px;
     padding: 0.5rem;
 }

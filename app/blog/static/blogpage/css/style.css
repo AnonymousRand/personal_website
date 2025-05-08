@@ -245,8 +245,7 @@ input[value="Reply"][value="Delete"] {
     margin-bottom: 0.5rem;
 }
 
-.toc__body ol,
-.toc__body ul {
+.toc__body :is(ol, ul) {
     padding-left: 1.5rem;
 }
 
