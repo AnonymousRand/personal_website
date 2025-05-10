@@ -96,6 +96,12 @@ td, th {
     margin-bottom: 0;
 }
 
+textarea.form-control {
+    /* clamp textarea height between 7rem (roughly 4 rows) and 60svh */
+    min-height: 7em;
+    max-height: 60svh;
+}
+
 /* to compensate for fixed navbar; can be inaccurate on page load still with JS-based layout shifts but oh well */
 [id] {
     scroll-margin-top: var(--navbar-outer-height);

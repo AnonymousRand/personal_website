@@ -120,7 +120,7 @@ function getCommentId(nodeForm) {
 
 // no `$(document).ready()` listener attachments for the remaining listeners since comments can be reloaded
 
-// reveals fields for adding a comment on clicking a "reply" button
+// reveals form for adding a comment on clicking a "reply" button
 $(document).on("click", ".comment__reply-btn", async function(e) {
     e.preventDefault();
 
@@ -132,6 +132,7 @@ $(document).on("click", ".comment__reply-btn", async function(e) {
     }
 
     jQFormAddReply.removeAttr("hidden");
+    e.target.setAttribute("hidden", "");
     // insert under correct parent; use `name` instead of `id` in case duplicate `id`s in comments causes issues
     jQFormAddReply.find("[name='parent']").val(id);
     if (await IS_USER_AUTHENTICATED()) {
@@ -141,7 +142,6 @@ $(document).on("click", ".comment__reply-btn", async function(e) {
     } else {
         jQFormAddReply.find("input[name='author']").first().focus();
     }
-    e.target.setAttribute("hidden", "");
 });
 
 // actually submit add comment form

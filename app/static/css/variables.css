@@ -1,8 +1,10 @@
 :root {
     /* general */
+
     --container-content-max-width: min(672px, 100vw);
 
     /* custom colors */                     /* h  , s  , v   */ /* (by Google color picker rounding) */
+
     --custom-blue: #00eaff;                 /* 185, 100, 100 */
     --custom-blue-light: #80f4ff;           /* 185, 50 , 100 */
     --custom-blue-xlight: #bffaff;          /* 185, 25 , 100 */
