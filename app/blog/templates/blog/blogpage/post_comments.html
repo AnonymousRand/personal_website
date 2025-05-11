@@ -22,7 +22,7 @@
           <div class="mb-1 dimgray fs-10">{{ moment(comment.timestamp).format("ll") }} ({{ moment(comment.timestamp).fromNow() }})</div>
           
           {% if comment.depth < 6 %}
-            <button id="comment__reply-btn-{{ comment.id }}" class="comment__reply-btn btn btn-link btn-link--custom-orange-deep underline-on-hover-only" type="button">Reply</button>
+            <button id="comment__reply-btn-{{ comment.id }}" class="comment__reply-btn btn btn-link btn-link--custom-orange-xdeep underline-on-hover-only" type="button">Reply</button>
             {{ wtf.quick_form(add_comment_form, id="comment__add-reply-form-" ~ comment.id, class="comment__add-form mt-3 mb-2", hidden=true) }}
           {% else %}
             <p class="comment__nest-limit-text mb-0 custom-orange-deep">It's gonna get ugly if you keep replying…</p>

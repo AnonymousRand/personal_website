@@ -352,12 +352,12 @@
 /* `btn-link` */
 /**************/
 
-.btn-link--custom-orange-deep {
-    color: var(--custom-orange-deep) !important;
+.btn-link--custom-orange-xdeep {
+    color: var(--custom-orange-xdeep) !important;
 }
 
-.btn-link--custom-orange-deep:hover {
-    color: var(--custom-orange-xdeep) !important;
+.btn-link--custom-orange-xdeep:hover {
+    color: var(--custom-orange-xxdeep) !important;
 }
 
 .btn-link--custom-pink-deep-xlight {
@@ -411,16 +411,6 @@
 .link--custom-green-deep-xdark:hover {
     text-decoration-color: var(--custom-green-deep-xxxdark) !important;
     color: var(--custom-green-deep-xxxdark) !important;
-}
-
-.link--custom-orange-deep {
-    text-decoration-color: var(--custom-orange-deep) !important;
-    color: var(--custom-orange-deep) !important;
-}
-
-.link--custom-orange-deep:hover {
-    text-decoration-color: var(--custom-orange-xdeep) !important;
-    color: var(--custom-orange-xdeep) !important;
 }
 
 .link--custom-orange-xdeep {
