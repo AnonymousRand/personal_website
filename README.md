@@ -1,6 +1,6 @@
 # Janky Flask Personal Website™
 
-# Setup if I brick another machine
+## Setup if I brick another machine
 
 1. Set up Docker, MySQL, and Nginx on host machine
     - MySQL data directory should be in the bind-mounted directory specified in [deployment/docker/compose.yaml](deployment/docker/compose.yaml)
@@ -20,7 +20,7 @@
     - `app/static/css/custom_bootstrap.css` and `app/static/css/custom_bootstrap.css.map`: run `npm compile_bootstrap` from within the [app/static/](app/static/) folder
 5. Navigate to [deployment/docker/](deployment/docker/) and run `deploy.sh` (or use a `systemd` service, for example [deployment/systemd_reference/personal_website.service](deployment/systemd_reference/personal_website.service))
 
-# Developer notes to compensate for possibly scuffed code
+## Developer notes to compensate for possibly scuffed code
 
 ### IMPORTANT:
 Keep up-to-date:
@@ -115,7 +115,7 @@ Keep up-to-date:
 - `url_for()` to a blueprint (trusted destination!) should always be used with `_external=True` in both HTML templates and Flask to simplify the cross-origin nature of having a blog subdomain
 - Try not to modify any of the `forms.py`s, as some JS might rely on hardcoded values of the form fields. I don't do frontend, ok?
 
-# Blog writer notes
+## Blog writer notes
 
 ### Markdown syntax and custom syntax:
 - Make sure to check out the documentation for Python-Markdown's [official extensions](https://python-markdown.github.io/extensions/)
@@ -169,7 +169,7 @@ Keep up-to-date:
 - For merged cells, use the [Attribute Lists](https://python-markdown.github.io/extensions/attr_list/) extension to set `colspan`. To keep valid table syntax, put `<span></span> {: hidden }` in cells that have been merged into other ones.
 - To specify column `width` attributes (in HTML, not CSS) for example with Attribute Lists, either specify in pixels or percentages. Pixels are absolute while percentages are relative to the width of the table. If percentages are used, or if no width specified at all, table will have `min-width: 100%` of parent div.
 
-# Cookie explanation from empirical observations and devtools
+## Cookie explanation from empirical observations and devtools
 
 Comparing Flask's built-in session cookie with `PERMANENT_SESSION_LIFETIME` config vs. Flask-Login's remember me cookie with `REMEMBER_COOKIE_DURATION` config:
 
