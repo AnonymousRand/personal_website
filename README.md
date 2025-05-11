@@ -1,8 +1,6 @@
 # Janky Flask Personal Website™
 
-# Setup if it's ever needed
-
-I hope I'm not reading this because I bricked a machine again.
+# Setup if I brick another machine
 
 1. Set up Docker, MySQL, and Nginx on host machine
     - MySQL data directory should be in the bind-mounted directory specified in [deployment/docker/compose.yaml](deployment/docker/compose.yaml)
