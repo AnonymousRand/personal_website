@@ -1,5 +1,7 @@
 import os
-from dotenv import load_dotenv
+# note that while `python-dotenv` is not explicity used, it must still be installed for Flask to load `.env` and
+# `.flaskenv`; it just does so automatically
+
 
 class Config(object):
     # basics
