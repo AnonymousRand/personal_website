@@ -1,5 +1,0 @@
-dirs:
-  - .
-useGitIgnore: true
-ignorePatterns:
-  - pattern: ".*?://stackoverflow\.com.*" # since these might return 403 or something (because detected as bot?)

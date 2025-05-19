@@ -9,5 +9,3 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: umbrelladocs/action-linkspector@v1
-      with:
-        config_file: .linkspector.yml
