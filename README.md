@@ -2,8 +2,6 @@
 
 ## Setup if I brick another machine
 
-[test](deployment/hi)
-
 1. Set up Docker, MySQL, and Nginx on host machine
     - MySQL data directory should be in the bind-mounted directory specified in [deployment/docker/compose.yaml](deployment/docker/compose.yaml)
         - Recover database data from backups
