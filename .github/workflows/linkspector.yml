@@ -1,12 +1,13 @@
 name: Check Markdown links
+on: push
 permissions:
   contents: read
 
-on: push
-
 jobs:
-  markdown-link-check:
+  check-markdown-links:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: gaurav-nelson/github-action-markdown-link-check@v1
+    - uses: umbrelladocs/action-linkspector@v1
+      with:
+        config_file: .linkspector.yml
