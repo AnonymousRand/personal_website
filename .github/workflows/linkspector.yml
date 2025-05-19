@@ -11,3 +11,4 @@ jobs:
     - uses: umbrelladocs/action-linkspector@v1
       with:
         fail_level: any
+        filter_mode: nofilter
