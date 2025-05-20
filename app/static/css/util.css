@@ -506,6 +506,17 @@
     overflow-y: hidden !important; /* for MathJax equation environments with `\\[pt]` extra line spacing */
 }
 
+.spoiler {
+    background-color: gainsboro;
+    color: transparent;
+    transition: background-color 0.25s, color 0.25s;
+}
+
+.spoiler:hover {
+    background-color: transparent;
+    color: revert;
+}
+
 .underline-on-hover-only {
     text-decoration-line: none !important;
 }

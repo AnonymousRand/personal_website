@@ -79,6 +79,14 @@ const DARKREADER_FIXES = {
                 text-decoration-color: var(--darkreader-text--custom-orange-deep) !important;
                 color: var(--darkreader-text--custom-orange-deep) !important;
             }
+            
+            .spoiler {
+                background-color: dimgray !important;
+            }
+
+            .spoiler:hover {
+                background-color: transparent !important;
+            }
         }
     `
 }

@@ -13,7 +13,7 @@ function applyPostAndCommentStyles(baseSelector) {
 
 function addCommentSyntaxGuideTooltip() {
     $("#leave-a-comment #content-field label").first()
-            .append(" (hover to show formatting options)")
+            .append(" (mouse over to show formatting options)")
             .attr("data-bs-toggle", "tooltip")
             .attr("data-bs-custom-class", "comment-tooltip")
             .attr("data-bs-html", "true")
