@@ -509,7 +509,7 @@
 .spoiler {
     background-color: gainsboro;
     color: transparent;
-    transition: background-color 0.25s, color 0.25s;
+    transition: background-color 0.4s, color 0.4s;
 }
 
 .spoiler:hover {
