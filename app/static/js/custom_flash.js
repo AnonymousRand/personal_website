@@ -1,6 +1,9 @@
 function flashMessage(message) {
     $("#flash__text").text(message); // `text()` by itself is XSS-safe
     $("#flash").removeAttr("hidden");
+    setTimeout(function() {
+        $("#flash").alert("close");
+    }, 10000);
 }
 
 function renderQueryStringFlash() {
