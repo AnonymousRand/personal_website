@@ -38,3 +38,7 @@ class AddCommentForm(FlaskForm):
         "Comment", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"])]
     )
     add_comment_form_submit = SubmitField("Submit")
+
+
+class EditCommentForm(AddCommentForm):
+    cancel_edit_comment = SubmitField("Cancel", render_kw={"type": "button"})

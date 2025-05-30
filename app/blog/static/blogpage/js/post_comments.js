@@ -192,6 +192,12 @@ $(document).on("submit", ".comment__edit-form", async function(e) {
     onModifyCommentAjaxDone(respJson, e);
 });
 
+// cancel edit comment
+$(document).on("click", "[name='cancel_edit_comment']", confirmWrapper(function(e) {
+    reloadComments();
+}));
+
+// delete comment
 $(document).on("click", ".comment__delete-btn", confirmWrapper(async function(e) {
     e.preventDefault();
 

@@ -8,13 +8,13 @@
 
     {% set descendants = comment.get_descendants(post) %}
     {% if comment.author|trim == config["VERIFIED_AUTHOR"] %}
-      <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %} border--custom-orange border--3px">
+      <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %} border--custom-orange border--2px">
         <div class="card-body pb-2">
           <h3 class="d-flex align-items-center mb-3 border-b border--1px border--lightgray pb-3 fs-7">
             {{ comment.author }}<i class="bi bi-check-circle ms-2" title="actually verified, unlike twitter &gt;:3"></i>
           </h3>
     {% else %}
-      <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--custom-pink-deep-xlight{% endif %} border--3px">
+    <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--custom-pink-deep-xlight{% else %} border--lightgray{% endif %} border--2px">
         <div class="card-body pb-2">
           <h3 class="mb-3 border-b border--1px border--lightgray pb-3 fs-7">{{ comment.author }}</h3>
     {% endif %}

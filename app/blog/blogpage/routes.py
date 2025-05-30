@@ -508,7 +508,7 @@ def add_comment(post, post_sanitized_title, *args, **kwargs):
 @bp_util.redir_to_post_after_login()
 def edit_comment(post, post_sanitized_title, comment, comment_id, *args, **kwargs):
     # pre-populate form fields with existing comment content; leave out `parent` since that should not be changeable
-    form = AddCommentForm(obj=comment)
+    form = EditCommentForm(obj=comment)
     if request.method == "GET":
         return jsonify(html=render_template("blog/blogpage/post_comment_edit_form.html", form=form, comment=comment))
     elif request.method == "PUT":
