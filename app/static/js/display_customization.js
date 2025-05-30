@@ -1,12 +1,12 @@
 function applyGlobalStyles(baseSelector) {
-    const jQBase = $(baseSelector);
-    if (jQBase.length === 0) {
+    const jqBase = $(baseSelector);
+    if (jqBase.length === 0) {
         return;
     }
 
     // tables and non-table code blocks scroll horizontally on overflow
-    jQBase.find("table").wrap(HORIZ_SCOLL_DIV_HTML);
-    jQBase.find("pre").each(function() {
+    jqBase.find("table").wrap(HORIZ_SCOLL_DIV_HTML);
+    jqBase.find("pre").each(function() {
         if ($(this).parents("table").length === 0) {
             $(this).wrap(HORIZ_SCOLL_DIV_HTML);
         }

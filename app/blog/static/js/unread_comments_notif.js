@@ -1,4 +1,4 @@
-const jQIconBell = $("#unread-comments-notif-btn-icon");
+const jqIconBell = $("#unread-comments-notif-btn-icon");
 
 // when logging in via modal on a `blog.` page/opening a `blog.` page as admin, check for notifications
 onSamePageLogin = addToFunction(onSamePageLogin, function() {
@@ -21,35 +21,35 @@ async function updateUnreadComments() {
 }
 
 function setBellWithNotif(notifCount) {
-    jQIconBell.removeClass("bi-bell");
-    jQIconBell.addClass("bi-bell-fill");
+    jqIconBell.removeClass("bi-bell");
+    jqIconBell.addClass("bi-bell-fill");
     if (orgTitle !== null) {
         document.title = `(${notifCount}) ` + orgTitle;
     }
 }
 
 function setBellWithoutNotif() {
-    jQIconBell.removeClass("bi-bell-fill");
-    jQIconBell.addClass("bi-bell");
+    jqIconBell.removeClass("bi-bell-fill");
+    jqIconBell.addClass("bi-bell");
     if (orgTitle !== null) {
         document.title = orgTitle;
     }
 }
 
 async function updateUnreadCommentsDropdown() {
-    const jQDropdownUnreadComments = $("#unread-comments-dropdown");
+    const jqDropdownUnreadComments = $("#unread-comments-dropdown");
 
     // get posts with unread comments
-    jQDropdownUnreadComments.html('<span class="dropdown-item">Loading…</span>');
+    jqDropdownUnreadComments.html('<span class="dropdown-item">Loading…</span>');
     const resp = await fetchWrapper({url: GET_POSTS_WITH_UNREAD_COMMENTS_URL, method: "POST"});
     if (resp.errorStatus) {
-        jQDropdownUnreadComments.html('<span class="dropdown-item">unable to load posts :/</span>');
+        jqDropdownUnreadComments.html('<span class="dropdown-item">unable to load posts :/</span>');
         return -1;
     }
 
     let postCount = Object.keys(resp).length;
     if (postCount === 0) {
-        jQDropdownUnreadComments.html('<span class="dropdown-item">nothing here :P</span>');
+        jqDropdownUnreadComments.html('<span class="dropdown-item">nothing here :P</span>');
         return 0;
     }
 
@@ -60,7 +60,7 @@ async function updateUnreadCommentsDropdown() {
                 `${postTitle}` +
                 "</a>";
     }
-    jQDropdownUnreadComments.html(html);
+    jqDropdownUnreadComments.html(html);
     return postCount;
 }
 

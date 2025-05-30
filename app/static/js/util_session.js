@@ -36,9 +36,9 @@ $(document).ready(function() {
         const respJson = await fetchWrapper({url: LOGOUT_URL, method: "POST"});
     });
 
-    const jQModalLogin = $("#login-modal");
+    const jqModalLogin = $("#login-modal");
     // differentiate modal vs. non-modal logins for redirecting back
-    jQModalLogin.find("#is_modal").val("true");
+    jqModalLogin.find("#is_modal").val("true");
 
     $("#login-modal").on("show.bs.modal", function(e) {
         if (window.location.href.startsWith(LOGIN_URL)) {
@@ -47,16 +47,16 @@ $(document).ready(function() {
         }
     });
 
-    jQModalLogin.on("shown.bs.modal", function(e) {
+    jqModalLogin.on("shown.bs.modal", function(e) {
         $(e.target).find("#password-input").focus();
     });
 
     // wipe contents and toggle password visibility off on hide
-    jQModalLogin.on("hidden.bs.modal", function(e) {
-        const jQInputPassword = $(e.target).find("#password-input");
-        jQInputPassword.val("");
-        if (jQInputPassword.attr("type") !== "password") {
-            togglePasswordVisibility(jQInputPassword.attr("id"), "password-show");
+    jqModalLogin.on("hidden.bs.modal", function(e) {
+        const jqInputPassword = $(e.target).find("#password-input");
+        jqInputPassword.val("");
+        if (jqInputPassword.attr("type") !== "password") {
+            togglePasswordVisibility(jqInputPassword.attr("id"), "password-show");
         }
     });
 });

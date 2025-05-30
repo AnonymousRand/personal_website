@@ -1,13 +1,13 @@
 let onMathJaxTypeset = function(baseSelector) {
-    const jQBase = $(baseSelector);
-    if (jQBase.length === 0) {
+    const jqBase = $(baseSelector);
+    if (jqBase.length === 0) {
         return;
     }
 
     // make `\[\]` LaTeX blocks scroll horizontally on overflow
-    jQBase.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCOLL_DIV_HTML);
+    jqBase.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCOLL_DIV_HTML);
     // for `\tag{}`ed equations
-    jQBase.find("mjx-math[width='full']").each(function() {
+    jqBase.find("mjx-math[width='full']").each(function() {
         $(this).parent("mjx-container").css("min-width", ""); // otherwise text just overflows
         $(this).wrap(HORIZ_SCOLL_DIV_HTML_FULL_WIDTH);
     });

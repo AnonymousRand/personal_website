@@ -1,14 +1,14 @@
 function applyPostAndCommentStyles(baseSelector) {
-    const jQBase = $(baseSelector);
-    if (jQBase.length === 0) {
+    const jqBase = $(baseSelector);
+    if (jqBase.length === 0) {
         return;
     }
-    const jQPostAndCommentContent = jQBase.find("#post__content, .comment__content");
+    const jqPostAndCommentContent = jqBase.find("#post__content, .comment__content");
 
     // add CSS classes for extra styling
-    jQPostAndCommentContent.find("h1").addClass("custom-green-deep-dark mb-3 border-b--h1 fs-3");
-    jQPostAndCommentContent.find("h2").addClass("custom-orange-deep mb-3 border-b--h2 fs-5");
-    jQPostAndCommentContent.find("h3").addClass("mb-3 fs-6");
+    jqPostAndCommentContent.find("h1").addClass("custom-green-deep-dark mb-3 border-b--h1 fs-3");
+    jqPostAndCommentContent.find("h2").addClass("custom-orange-deep mb-3 border-b--h2 fs-5");
+    jqPostAndCommentContent.find("h3").addClass("mb-3 fs-6");
 }
 
 function addCommentSyntaxGuideTooltip() {
@@ -37,13 +37,13 @@ function addCommentSyntaxGuideTooltip() {
 
 function tweakFootnotes() {
     // turn footnotes into `<details>`
-    const jQFootnotes = $("#post__content").find(".footnote");
-    if (jQFootnotes.length > 0) {
+    const jqFootnotes = $("#post__content").find(".footnote");
+    if (jqFootnotes.length > 0) {
         // the singular bothers me
-        jQFootnotes.addClass("footnotes");
-        jQFootnotes.removeClass("footnote");
-        jQFootnotes.wrap('<details id="footnotes__wrapper" class="footnotes__wrapper"></details>')
-        jQFootnotes.before("<summary>Footnotes</summary>");
+        jqFootnotes.addClass("footnotes");
+        jqFootnotes.removeClass("footnote");
+        jqFootnotes.wrap('<details id="footnotes__wrapper" class="footnotes__wrapper"></details>')
+        jqFootnotes.before("<summary>Footnotes</summary>");
     }
 
     // footnotes collapsible opens if footnote link clicked on and the collapsible is closed

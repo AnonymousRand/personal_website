@@ -125,22 +125,22 @@ $(document).on("click", ".comment__reply-btn", async function(e) {
     e.preventDefault();
 
     const id = getCommentId(e.target);
-    const jQFormAddReply = $(`#comment__add-reply-form-${id}`);
-    if (jQFormAddReply.length === 0) {
+    const jqFormAddReply = $(`#comment__add-reply-form-${id}`);
+    if (jqFormAddReply.length === 0) {
         flashMessage("please no hack :3");
         return;
     }
 
-    jQFormAddReply.removeAttr("hidden");
+    jqFormAddReply.removeAttr("hidden");
     e.target.setAttribute("hidden", "");
     // insert under correct parent; use `name` instead of `id` in case duplicate `id`s in comments causes issues
-    jQFormAddReply.find("[name='parent']").val(id);
+    jqFormAddReply.find("[name='parent']").val(id);
     if (await IS_USER_AUTHENTICATED()) {
         // automatically fill in username if admin
-        jQFormAddReply.find("input[name='author']").first().val(VERIFIED_AUTHOR);
-        jQFormAddReply.find("input[name='content']").first().focus();
+        jqFormAddReply.find("input[name='author']").first().val(VERIFIED_AUTHOR);
+        jqFormAddReply.find("input[name='content']").first().focus();
     } else {
-        jQFormAddReply.find("input[name='author']").first().focus();
+        jqFormAddReply.find("input[name='author']").first().focus();
     }
 });
 
@@ -170,7 +170,9 @@ $(document).on("click", ".comment__make-edit-btn", async function(e) {
     let url = respJson.url;
     respJson = await fetchWrapper({url: url, method: "GET"});
     doAjaxFormResponse(respJson, e); // don't need to refresh comments or anything
-    $(`#comment-${commentId} > .card-body`).html(respJson.html); 
+    let jqComment = $(`#comment-${commentId} > .card-body`);
+    jqComment.html(respJson.html); 
+    adjustTextareaHeight(jqComment.find("textarea[name='content']").first().get(0));
 });
 
 // actually submit edit comment form
