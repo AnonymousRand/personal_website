@@ -22,12 +22,16 @@ body {
     font-size: 16px;
 }
 
+code {
+    white-space-collapse: preserve;
+}
+
 code, pre code {
     color: var(--custom-pink-deep);
     font-size: 100% !important;
 }
 
-pre code.code-block-outside-table {
+pre code:not(table pre code) {
     margin-bottom: 0.5rem;
     border: 2px solid lightgray;
     border-radius: var(--bs-border-radius);

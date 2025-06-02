@@ -16,11 +16,8 @@ function applyGlobalStyles(baseSelector) {
 }
 
 function applySyntaxHighlighting(baseSelector) {
-    $(baseSelector).find("pre code").each(function() {
-        if ($(this).parents("table").length === 0) {
-            hljs.highlightElement($(this).get(0));
-            $(this).addClass("code-block-outside-table");
-        }
+    $(baseSelector).find("pre code:not(table pre code)").each(function() {
+        hljs.highlightElement($(this).get(0));
     });
 }
 

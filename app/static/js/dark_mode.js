@@ -46,7 +46,7 @@ const DARKREADER_FIXES = {
                 color: var(--bs-body-color) !important;
             }
 
-            pre code.code-block-outside-table {
+            pre code:not(table pre code) {
                 border-color: gray !important;
             }
 
