@@ -22,16 +22,9 @@ body {
     font-size: 16px;
 }
 
-code, pre code {
+code {
     color: var(--custom-pink-deep);
-    font-size: 100% !important;
-}
-
-pre code:not(table pre code) {
-    margin-bottom: 0.5rem;
-    border: 2px solid lightgray;
-    border-radius: var(--bs-border-radius);
-    padding: 0.75rem 1rem;
+    font-size: 100%;
 }
 
 /* need to do this for DarkReader to affect blogpage index page posts (i hate css) */
@@ -73,9 +66,18 @@ nav .dropdown-menu {
     }
 }
 
+/* god i hate specificity; have to separate this from `code`'s stuff */
 pre {
     margin-bottom: 0;
+    color: var(--custom-pink-deep);
     font-size: 100%;
+}
+
+pre code:not(table pre code, .md-textbox pre code) {
+    margin-bottom: 0.5rem;
+    border: 2px solid lightgray;
+    border-radius: var(--bs-border-radius);
+    padding: 0.75rem 1rem;
 }
 
 table {

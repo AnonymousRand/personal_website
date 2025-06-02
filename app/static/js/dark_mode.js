@@ -46,7 +46,7 @@ const DARKREADER_FIXES = {
                 color: var(--bs-body-color) !important;
             }
 
-            pre code:not(table pre code) {
+            pre code:not(table pre code, .md-textbox pre code) {
                 border-color: gray !important;
             }
 

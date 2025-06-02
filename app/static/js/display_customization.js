@@ -16,7 +16,7 @@ function applyGlobalStyles(baseSelector) {
 }
 
 function applySyntaxHighlighting(baseSelector) {
-    $(baseSelector).find("pre code:not(table pre code)").each(function() {
+    $(baseSelector).find("pre code:not(table pre code, .md-textbox pre code)").each(function() {
         hljs.highlightElement($(this).get(0));
     });
 }
