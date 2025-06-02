@@ -13,6 +13,8 @@
 
 .hljs-built_in,
 .hljs-section,
+.hljs-tag,
+.hljs-tag .hljs-name,
 .hljs-title {
     color: var(--custom-orange-xdeep);
 }
