@@ -73,7 +73,9 @@ pre {
     font-size: 100%;
 }
 
-pre code:not(table pre code, .md-textbox pre code) {
+/* use `.pre--inline` for inline code that respects whitespace
+ * (i.e. text-wrapping, non-bordered, non-syntax-highlighted code blocks) */
+pre:not(table pre, .pre--inline) code {
     margin-bottom: 0.5rem;
     border: 2px solid lightgray;
     border-radius: var(--bs-border-radius);
@@ -82,6 +84,7 @@ pre code:not(table pre code, .md-textbox pre code) {
 
 table {
     margin-bottom: 0.5rem;
+    border-color: dimgray;
     width: max-content;
 }
 
@@ -208,6 +211,10 @@ textarea.form-control {
 .navbar__logo {
     width: 2rem;
     height: 2rem;
+}
+
+.pre--inline {
+    white-space: pre-wrap;
 }
 
 .switch--dark-mode { /* for (approx) centering due to low descender height and thus typefacing biasing upwards */

@@ -46,7 +46,11 @@ const DARKREADER_FIXES = {
                 color: var(--bs-body-color) !important;
             }
 
-            pre code:not(table pre code, .md-textbox pre code) {
+            pre:not(table pre, .pre--inline) code {
+                border-color: gray !important;
+            }
+
+            table {
                 border-color: gray !important;
             }
 
@@ -117,7 +121,7 @@ function enableDarkMode(isVoluntary) {
         localStorage.setItem("darkMode", "true");
     }
     // only call after `$(document).ready()` in case we need to modify DOM elements
-    if (jquery.isReady) {
+    if (jQuery.isReady) {
         onDarkModeChange(true);
     }
 }
@@ -131,7 +135,7 @@ function disableDarkMode(isVoluntary) {
     if (isVoluntary) {
         localStorage.setItem("darkMode", "false");
     }
-    if (jquery.isReady) {
+    if (jQuery.isReady) {
         onDarkModeChange(false);
     }
 }
