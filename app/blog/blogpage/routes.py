@@ -328,6 +328,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
 
         # edit post in db
         old_blogpage_id = post.blogpage_id
+        files_base_path = bp_util.get_files_base_path(post) # need to be before `blogpage_id` changes
         post.blogpage_id = request.form.get("blogpage_id")
         post.title = request.form.get("title")
         post.subtitle = request.form.get("subtitle")
@@ -344,7 +345,6 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
         )
 
         # upload files if any
-        files_base_path = bp_util.get_files_base_path(post)
         err = bp_util.upload_files(request.files.getlist("files"), files_base_path)
         if err:
             return jsonify(flash_msg=err)
