@@ -182,12 +182,12 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "exer": {
                             "thm_type": "Exercise",
-                            "html_class": "border--2px border--lightgray dimgray",
+                            "html_class": "md-exer border--2px border--lightgray dimgray",
                             "thm_counter_incr": "0,0,1"
                         },
                         r"exer\\\*": {
                             "thm_type": "Exercise",
-                            "html_class": "border--2px border--lightgray dimgray"
+                            "html_class": "md-exer border--2px border--lightgray dimgray"
                         },
                         "pf": {
                             "thm_type": "Proof",

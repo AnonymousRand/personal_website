@@ -110,7 +110,7 @@ input[value="Reply"][value="Delete"] {
 }
 
 /* no class since can't add attribute lists to `<hr>` */
-.md-pf hr {
+:is(.md-pf, .md-exer .md-dropdown__content) hr {
     opacity: 100%;
     border-width: 2px;
     border-color: lightgray;
