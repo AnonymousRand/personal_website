@@ -15,7 +15,7 @@ class BlogpostBaseForm(FlaskForm):
     content = TextAreaField(
         "Content (Markdown, LaTeX supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAX_LEN"])]
     )
-    files = MultipleFileField(f"Upload files (supported formats: {', '.join(Config.FILE_UPLOAD_EXTS)})")
+    files = MultipleFileField(f"Upload files (supported: {', '.join(Config.FILE_UPLOAD_EXTS)})")
     cancel_file_uploads = SubmitField("Clear files to upload", render_kw={"type": "button"})
 
 
