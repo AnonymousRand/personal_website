@@ -54,10 +54,10 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
     <button id="copy-permanent-link-btn" class="btn btn-link copy-permanent-link-btn" type="button" title="Copy permanent link"><i class="bi bi-link-45deg"></i></button>
   </div>
   
-  <div class="d-flex align-items-center show-when-logged-in sticky-btns"{% if not current_user.is_authenticated %} hidden{% endif %}>
-    <a class="btn btn-primary btn--custom-orange-light flex-basis-50 me-3 mt-0 w-100" href="{{ url_for('blog.' ~ blogpage_id ~ '.edit_post_form', post_sanitized_title=post.sanitized_title, _external=True) }}" role="button">Edit post</a>
+  <div class="d-flex flex-equal-children align-items-center show-when-logged-in sticky-btns"{% if not current_user.is_authenticated %} hidden{% endif %}>
+    <a class="btn btn-primary btn--custom-orange-light me-3 mt-0 w-100" href="{{ url_for('blog.' ~ blogpage_id ~ '.edit_post_form', post_sanitized_title=post.sanitized_title, _external=True) }}" role="button">Edit post</a>
     <!-- `<form>`s don't take DELETE method; frontend web is maybe the stupidest thing i've ever had the misfortunate of experiencing -->
-    <button id="delete-post-btn" class="delete-post-btn btn btn-primary btn--custom-orange-light flex-basis-50" type="button">Delete post</button>
+    <button id="delete-post-btn" class="delete-post-btn btn btn-primary btn--custom-orange-light type="button">Delete post</button>
   </div>
 
   <hr class="mb-0">

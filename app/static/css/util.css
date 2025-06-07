@@ -18,52 +18,16 @@
     color: gray !important;
 }
 
-.green {
-    color: green !important;
-}
-
-.navy {
-    color: navy !important;
-}
-
-.orange {
-    color: orange !important;
-}
-
-.purple {
-    color: purple !important;
-}
-
 .red {
     color: red !important;
-}
-
-.yellow {
-    color: yellow !important;
-}
-
-.custom-blue-deep {
-    color: var(--custom-blue-deep) !important;
 }
 
 .custom-green-deep-dark {
     color: var(--custom-green-deep-dark) !important;
 }
 
-.darken-on-hover:hover .custom-green-deep-dark {
-    color: var(--custom-green-deep-xxdark) !important;
-}
-
 .custom-orange-deep {
     color: var(--custom-orange-deep) !important;
-}
-
-.custom-orange-deep {
-    color: var(--custom-orange-deep) !important;
-}
-
-.darken-on-hover:hover .custom-orange-deep {
-    color: var(--custom-orange-xdeep) !important;
 }
 
 .custom-pink-deep-light {
@@ -80,12 +44,12 @@
 
 /* override all Bootstrap `fs` classes */
 .fs-1 {
-    font-size: calc(1.5rem + 4vw) !important;
+    font-size: calc(1.45rem + 3.6vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-1 {
-        font-size: 3.5rem !important;
+        font-size: 3.25rem !important;
     }
 }
 
@@ -209,13 +173,12 @@
     width: max-content !important;
 }
 
-/* i love css */
 /* can't use descendant selector; must strictly be last child of last child of ... etc. */
+/* CSS was invented by a troglodyte who took a gamma ray burst to the brain */
 .last-child-no-mb > :last-child,
 .last-child-no-mb > :last-child > :last-child,
 .last-child-no-mb > :last-child > :last-child > :last-child,
-.last-child-no-mb > :last-child > :last-child > :last-child > :last-child,
-.last-child-no-mb > :last-child > :last-child > :last-child > :last-child > :last-child {
+.last-child-no-mb > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0 !important;
 }
 
@@ -223,13 +186,8 @@
 /* Flex */
 /********/
 
-/* this doesn't always work, more proof that CSS was invented by a troglodyte who took a gamma ray burst to the brain */
 .flex-equal-children > * {
     flex: 1 !important;
-}
-
-.flex-basis-50 {
-    flex-basis: 50% !important;
 }
 
 .flex-basis-75 {
@@ -248,10 +206,6 @@
     border-width: 2px !important;
 }
 
-.border--3px {
-    border-width: 3px !important;
-}
-
 .border--4px {
     border-width: 4px !important;
 }
@@ -262,10 +216,6 @@
 
 .border-b {
     border-bottom-style: solid !important;
-}
-
-.border-b--3px {
-    border-bottom-width: 3px !important;
 }
 
 .border-b--h1 {
@@ -323,10 +273,6 @@
 
 .border--lightgray {
     border-color: lightgray !important;
-}
-
-.border-r--3px {
-    border-right-width: 3px !important;
 }
 
 /*********/
@@ -461,10 +407,6 @@
     text-decoration-color: var(--custom-green-deep-dark) !important;
 }
 
-.underline--custom-green-deep-dark.darken-on-hover:hover {
-    text-decoration-color: var(--custom-green-deep-xxdark) !important;
-}
-
 /*********/
 /* Other */
 /*********/
@@ -486,7 +428,7 @@
     overflow: hidden;
 }
 
-.min-vh-100 {
+.min-svh-100 {
     min-height: 100svh !important;
 }
 

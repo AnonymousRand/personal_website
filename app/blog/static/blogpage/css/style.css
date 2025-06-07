@@ -30,6 +30,15 @@ input[value="Reply"][value="Delete"] {
     font-size: 1em; /* undo Bootstrap */
 }
 
+.footnotes {
+    font-size: 0.9rem;
+}
+
+.footnotes__wrapper {
+    margin-bottom: 1rem;
+    color: dimgray;
+}
+
 .goto-page-form__page-input {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -232,6 +241,14 @@ input[value="Reply"][value="Delete"] {
     margin-bottom: -0.25rem;
 }
 
+.post-list__post:hover .custom-green-deep-dark {
+    color: var(--custom-green-deep-xxdark) !important;
+}
+
+.post-list__post:hover .custom-orange-deep {
+    color: var(--custom-orange-xdeep) !important;
+}
+
 .sticky-btns {
     margin-top: 0.5rem;
     width: 100%;
@@ -251,4 +268,8 @@ input[value="Reply"][value="Delete"] {
 
 .toc__heading {
     background-color: var(--bs-body-bg); /* to match card body */
+}
+
+.underline--custom-green-deep-dark.post-list__post:hover {
+    text-decoration-color: var(--custom-green-deep-xxdark) !important;
 }

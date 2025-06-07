@@ -41,8 +41,7 @@ label:has(+ * [required]):after {
 li > :last-child,
 li > :last-child > :last-child,
 li > :last-child > :last-child > :last-child,
-li > :last-child > :last-child > :last-child > :last-child,
-li > :last-child > :last-child > :last-child > :last-child > :last-child {
+li > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0;
 }
 
@@ -51,8 +50,7 @@ mjx-stretchy-h.mjx-c2013 mjx-ext mjx-c::before {
     font-size: 125%;
 }
 
-/* prevent dropdowns from overflowing if dropdown not collapsed
- * note that 0.75 is an arbitrary approximation, because trying to find it precisely seems nigh impossible */
+/* adjust dropdown menu width */
 nav .dropdown-menu {
     width: max-content;
     min-width: min-content !important;
@@ -96,8 +94,7 @@ td, th {
 :is(td, th) > :last-child,
 :is(td, th) > :last-child > :last-child,
 :is(td, th) > :last-child > :last-child > :last-child,
-:is(td, th) > :last-child > :last-child > :last-child > :last-child,
-:is(td, th) > :last-child > :last-child > :last-child > :last-child > :last-child {
+:is(td, th) > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0;
 }
 
@@ -176,15 +173,6 @@ textarea.form-control {
     z-index: 9999;
 }
 
-.footnotes {
-    font-size: 0.9rem;
-}
-
-.footnotes__wrapper {
-    margin-bottom: 1rem;
-    color: dimgray;
-}
-
 .icon-navbar-toggler {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23909090' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
@@ -247,13 +235,12 @@ textarea.form-control {
 .tooltip-inner > :last-child,
 .tooltip-inner > :last-child > :last-child,
 .tooltip-inner > :last-child > :last-child > :last-child,
-.tooltip-inner > :last-child > :last-child > :last-child > :last-child,
-.tooltip-inner > :last-child > :last-child > :last-child > :last-child > :last-child {
+.tooltip-inner > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0 !important;
 }
 
-/* CSS is so stupid that `hidden` HTML attribute is overriden by `display` property in CSS, so *i have to manually go
- * and tell a hidden element to be hidden*. like. what the absolute gobsmacking bejeezus is this */
+/* CSS is so stupid that `hidden` HTML attribute is overriden by `display` property in CSS, so I HAVE TO MANUALLY GO
+ * AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the absolute gobsmacking gobsmacker is this */
 [hidden] {
     display: none !important;
 }
