@@ -348,11 +348,6 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
             old_blogpage_id=old_blogpage_id
         )
 
-        # upload files if any
-        err = bp_util.upload_files(request.files.getlist("files"), files_base_path)
-        if err:
-            return jsonify(flash_msg=err)
-        
         # delete files if any
         try:
             for file in request.form.getlist("delete_files"):
@@ -383,7 +378,12 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                 print(e)
                 return jsonify(flash_msg=f"File delete unused exception")
         
-        # move files if moving blogpost
+        # upload files if any (after deletes)
+        err = bp_util.upload_files(request.files.getlist("files"), files_base_path)
+        if err:
+            return jsonify(flash_msg=err)
+        
+        # move files if moving blogpost (after finishing all uploads/deletes)
         if post.blogpage_id != old_blogpage_id:
             if os.path.exists(files_base_path):
                 try:
