@@ -69,7 +69,7 @@ window.MathJax = {
             R: "\\mathbb{R}",
             rank: "\\operatorname{rank}",
             red: ["\\textcolor{red}{#1}", 1],
-            restriction: "\\,\\vert",
+            restriction: "\\vert",
             sgn: "\\operatorname{sgn}",
             spann: "\\operatorname{span}",
             Stab: "\\operatorname{Stab}",
