@@ -145,10 +145,6 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                             "html_class": "md-textbox last-child-no-mb border--4px border--lightgray",
                             "thm_counter_incr": "0,0,1"
                         },
-                        r"lem\\\*": {
-                            "thm_type": "Lemma",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
-                        },
                         r"notat\\\*": {
                             "thm_type": "Notation",
                             "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
@@ -188,10 +184,6 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                             "thm_type": "Exercise",
                             "html_class": "md-exer border--2px border--lightgray dimgray",
                             "thm_counter_incr": "0,0,1"
-                        },
-                        r"exer\\\*": {
-                            "thm_type": "Exercise",
-                            "html_class": "md-exer border--2px border--lightgray dimgray"
                         },
                         "pf": {
                             "thm_type": "Proof",

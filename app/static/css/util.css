@@ -449,14 +449,14 @@
 }
 
 .spoiler {
-    background-color: gainsboro;
-    color: transparent;
-    transition: background-color 0.4s, color 0.4s;
+    background-color: gainsboro !important;
+    color: transparent !important;
+    transition: background-color 0.4s, color 0.4s !important;
 }
 
 .spoiler:hover {
-    background-color: transparent;
-    color: revert;
+    background-color: transparent !important;
+    color: revert !important;
 }
 
 .underline-on-hover-only {
