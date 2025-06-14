@@ -190,7 +190,7 @@ input[value="Reply"][value="Delete"] {
     max-height: max(33.3333svh, 15rem);
 }
 
-@media (min-width: 1536px) and (min-height: 672px) {
+@media (min-width: 1536px) and (min-height: 660px) {
     :root {
         /* left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen (up to the size it would be on a
          * 1536px screen), and is centered within the left margin (with 1/6 of the margin on each side of the TOC) */
@@ -217,7 +217,7 @@ input[value="Reply"][value="Delete"] {
         position: fixed !important;
         float: left !important;
         margin-top: 0 !important;
-        top: 3.5rem !important;
+        top: 3.4375rem !important;
         margin-left: var(--left-sticky-margin-left) !important;
         width: var(--sticky-width) !important;
     }
