@@ -33,7 +33,8 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
 {% block content %}
 <div class="d-flex flex-equal-children gap-3 justify-content-between align-items-center mt-3">
   <a class="text-start underline-on-hover-only{% if prev_post is none %} invisible"{% else %}" href="{{ url_for('blog.post_by_id', post_id=prev_post.id, _external=True) }}" title="{{ prev_post.title }}"{% endif %}>&lt;-- prev</a>
-  <a class="text-center underline-on-hover-only" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_posts', _external=True) }}">main page</a>
+  <a class="text-center underline-on-hover-only" href="{{ url_for('blog.index', _external=True) }}">all posts</a>
+  <a class="text-center underline-on-hover-only" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_posts', _external=True) }}">this blog</a>
   <a class="text-end underline-on-hover-only{% if next_post is none %} invisible"{% else %}" href="{{ url_for('blog.post_by_id', post_id=next_post.id, _external=True) }}" title="{{ next_post.title }}"{% endif %}>next ++&gt;</a>
 </div>
 
