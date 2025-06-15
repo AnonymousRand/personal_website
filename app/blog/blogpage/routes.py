@@ -291,7 +291,7 @@ def create_post(*args, **kwargs):
             redir_url=url_for(
                 f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
-            flash_msg="Post created successfully!"
+            flash_msg="post created successfully :3"
         )                   # view completed post
 
 
@@ -395,7 +395,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
             redir_url=url_for(
                 f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
-            flash_msg="Post updated successfully!"
+            flash_msg="post updated successfully :3"
         ) # view updated post
 
 
@@ -418,7 +418,8 @@ def delete_post(post, post_sanitized_title, *args, **kwargs):
 
     db.session.commit()
     return jsonify(
-        redir_url=url_for(f"blog.{post.blogpage_id}.get_posts", _external=True), flash_msg="Post deleted successfully!"
+        redir_url=url_for(f"blog.{post.blogpage_id}.get_posts", _external=True),
+        flash_msg="post deleted successfully :3"
     )
 
 
