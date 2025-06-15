@@ -459,6 +459,10 @@
     color: revert !important;
 }
 
+.text-overflow-ellipses {
+    text-overflow: ellipsis !important;
+}
+
 .underline-on-hover-only {
     text-decoration-line: none !important;
 }
