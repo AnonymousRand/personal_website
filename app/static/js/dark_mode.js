@@ -9,10 +9,6 @@ const DARKREADER_FIXES = {
     // CSS to apply when dark mode is on, e.g. remapping colors
     css: `
         :root {
-            /*
-            --darkreader-border--custom-blue-light: #ffaa00;
-            --darkreader-border--custom-pink-deep-xxlight: #ff1919;
-            */
             --darkreader-border--custom-blue: var(--custom-blue);
             --darkreader-border--custom-blue-light: var(--custom-blue-light);
             --darkreader-border--custom-green: var(--custom-green);
@@ -42,6 +38,10 @@ const DARKREADER_FIXES = {
 
         /* for specificity */
         @layer god-i-hate-css {
+            hr {
+                color: white !important;
+            }
+
             option:active, .dropdown-item:hover, .dropdown-item:active {
                 color: var(--bs-body-color) !important;
             }
