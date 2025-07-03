@@ -71,7 +71,7 @@ Keep up-to-date:
 
 ### Access control notes:
 - Assume the user can reach all endpoints, so **access-control must be perfect server-side**
-    - Use the functions defined in [app/util.py](app/util.py) for access control
+    - Use the functions defined in [app/utils.py](app/utils.py) for access control
 - It doesn't matter as much if client-side is lax on updating hidden HTML links etc. on session expiry. This is good because my client-side is an absolute dumpster fire.
 
 ### Adding new blogpages:
