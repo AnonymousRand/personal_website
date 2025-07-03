@@ -2,12 +2,12 @@ import sqlalchemy as sa
 from flask import jsonify, redirect, request, url_for
 from flask_login import current_user
 
-import app.blog.util as blog_util
-import app.util as util
+import app.blog.utils as blog_utils
+import app.utils as utils
 from app import db
 from app.blog import bp
 from app.models import *
-from app.util import ContentType
+from app.utils import ContentType
 
 
 @bp.route("/", methods=["GET"])
@@ -26,12 +26,12 @@ def post_by_id(post_id):
     post = db.session.get(Post, post_id)
     if post is None:
         return redirect(url_for(
-            f"blog.get_posts", flash_msg=util.encode_uri_component("That post doesn't exist :/"), _external=True
+            f"blog.get_posts", flash_msg=utils.encode_uri_component("That post doesn't exist :/"), _external=True
         ))
 
     # don't allow unlisted posts to be accessed this way to prevent brute-force enumeration with post IDs
     if post.blogpage.is_login_required and not current_user.is_authenticated:
-        result = util.custom_unauthorized(ContentType.HTML)
+        result = utils.custom_unauthorized(ContentType.HTML)
         if result:
             return result
     return redirect(url_for(
@@ -40,9 +40,9 @@ def post_by_id(post_id):
 
 
 @bp.route("/get-posts-with-unread-comments", methods=["POST"])
-@util.set_content_type(ContentType.JSON)
-@util.require_login()
-@blog_util.redirs_to_index_after_login()
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+@blog_utils.redirs_to_index_after_login()
 def get_posts_with_unread_comments(*args, **kwargs):
     posts_with_unread_comments = {}
     posts = db.session.query(Post).all()

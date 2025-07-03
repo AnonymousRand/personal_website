@@ -10,10 +10,10 @@ from functools import wraps
 from flask import current_app, jsonify, redirect, request, url_for
 from werkzeug.utils import escape, secure_filename
 
-import app.util as util
+import app.utils as utils
 from app import db
 from app.models import *
-from app.util import ContentType
+from app.utils import ContentType
 
 
 def require_login_if_restricted_bp():
@@ -32,7 +32,7 @@ def require_login_if_restricted_bp():
                     case ContentType.HTML:
                         return redirect(url_for(
                             f"main.index",
-                            flash_msg=util.encode_uri_component("That blogpage doesn't exist :/"),
+                            flash_msg=utils.encode_uri_component("That blogpage doesn't exist :/"),
                             _external=True
                         ))
                     case ContentType.JSON:
@@ -41,11 +41,11 @@ def require_login_if_restricted_bp():
                             flash_msg="That post doesn't exist :/"
                         )
                     case _:
-                        return ("app/blog/blogpage/util.py: `require_login_if_restricted_bp()` reached end of switch "
+                        return ("app/blog/blogpage/utils.py: `require_login_if_restricted_bp()` reached end of switch "
                                 "statement"), 500
 
             if blogpage.is_login_required:
-                result = util.custom_unauthorized(content_type)
+                result = utils.custom_unauthorized(content_type)
                 if result:
                     return result
 
@@ -118,7 +118,7 @@ def nonexistent_post(content_type: ContentType):
         case ContentType.HTML:
             return redirect(url_for(
                 f"{request.blueprint}.get_posts",
-                flash_msg=util.encode_uri_component("That post doesn't exist :/"),
+                flash_msg=utils.encode_uri_component("That post doesn't exist :/"),
                 _external=True
             ))
         case ContentType.JSON:
@@ -127,7 +127,7 @@ def nonexistent_post(content_type: ContentType):
                 flash_msg="That post doesn't exist :/"
             )
         case _:
-            return "app/blog/blogpage/util.py: `nonexistent_post()` reached end of switch statement", 500
+            return "app/blog/blogpage/utils.py: `nonexistent_post()` reached end of switch statement", 500
 
 
 def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_path: str) -> str:

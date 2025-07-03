@@ -4,13 +4,13 @@ import sqlalchemy as sa
 from flask import current_app, jsonify, render_template, request, session, url_for
 from flask_login import current_user, login_user, logout_user
 
-import app.util as util
+import app.utils as utils
 from app import db
 from app.admin import bp
 from app.admin.forms import *
 from app.forms import *
 from app.models import *
-from app.util import ContentType
+from app.utils import ContentType
 
 
 @bp.route("/login", methods=["GET", "POST"])
@@ -42,7 +42,7 @@ def login():
             return jsonify(success=True, flash_msg="The universe is at your fingertips…")
 
         # if not modal login, then try to redirect back to previous page
-        next_url = util.decode_uri_component(request.args.get("next", url_for("admin.choose_action", _external=True)))
+        next_url = utils.decode_uri_component(request.args.get("next", url_for("admin.choose_action", _external=True)))
         next_url_extracted = tldextract.extract(next_url)
         # make sure we can only redirect within the same domain
         if f"{next_url_extracted.domain}.{next_url_extracted.suffix}" == current_app.config["SERVER_NAME"]:
@@ -71,8 +71,8 @@ def logout():
 
 
 @bp.route("/choose-action", methods=["GET", "POST"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@util.require_login()
+@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@utils.require_login()
 def choose_action(*args, **kwargs):
     form = ChooseActionForm()
 
@@ -96,8 +96,8 @@ def choose_action(*args, **kwargs):
 
 
 @bp.route("/search-posts", methods=["GET", "POST"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@util.require_login()
+@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@utils.require_login()
 def search_posts(*args, **kwargs):
     form = SearchBlogpostForm()
 
@@ -119,8 +119,8 @@ def search_posts(*args, **kwargs):
 
 
 @bp.route("/change-admin-password", methods=["GET", "POST"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@util.require_login()
+@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@utils.require_login()
 def change_admin_password(*args, **kwargs):
     form = ChangeAdminPasswordForm()
 

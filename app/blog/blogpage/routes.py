@@ -13,18 +13,18 @@ from flask_login import current_user
 from markdown_environments import *
 from markdown.extensions.toc import TocExtension
 
-import app.blog.blogpage.util as bp_util
-import app.util as util
+import app.blog.blogpage.utils as bp_utils
+import app.utils as utils
 from app import db
 from app.blog.blogpage import bp
 from app.blog.blogpage.forms import *
 from app.models import *
-from app.util import ContentType
+from app.utils import ContentType
 
 
 @bp.context_processor
 def inject_blogpage_from_db():
-    blogpage = db.session.query(Blogpage).filter_by(id=bp_util.get_blogpage_id()).first()
+    blogpage = db.session.query(Blogpage).filter_by(id=bp_utils.get_blogpage_id()).first()
     return dict(blogpage=blogpage, blogpage_id=blogpage.id)
 
 
@@ -34,11 +34,11 @@ def inject_blogpage_from_db():
 
 
 @bp.route("/", methods=["GET"])
-@util.set_content_type(ContentType.HTML)
-@bp_util.require_login_if_restricted_bp()
+@utils.set_content_type(ContentType.HTML)
+@bp_utils.require_login_if_restricted_bp()
 def get_posts(*args, **kwargs):
     page_num = request.args.get("page", 1, type=int) # should automatically redirect non-int to page 1
-    blogpage_id = bp_util.get_blogpage_id()
+    blogpage_id = bp_utils.get_blogpage_id()
     blogpage = db.session.get(Blogpage, blogpage_id)
     if blogpage is None:
         return "ok im actually impressed how did you do that"
@@ -73,8 +73,8 @@ def get_posts(*args, **kwargs):
 # private posts, unlike blogpages, are still accessible by link (like YouTube's "unlisted")
 # hence the lack of `@require_login_if_restricted_bp()`
 @bp.route("/<string:post_sanitized_title>", methods=["GET"])
-@util.set_content_type(ContentType.HTML)
-@bp_util.require_valid_post()
+@utils.set_content_type(ContentType.HTML)
+@bp_utils.require_valid_post()
 def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from `require_valid_post` decorator
     # render Markdown for post
     content_md = None
@@ -238,8 +238,8 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
 
 @bp.route("/create", methods=["GET"], endpoint="create_post_form")
 @bp.route("/", methods=["POST"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@util.require_login()
+@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@utils.require_login()
 def create_post(*args, **kwargs):
     form = CreateBlogpostForm()
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
@@ -247,7 +247,7 @@ def create_post(*args, **kwargs):
 
     if request.method == "GET":
         # automatically populate blogpage form field to current blogpage if possible
-        blogpage_id = bp_util.get_blogpage_id()
+        blogpage_id = bp_utils.get_blogpage_id()
         if blogpage_id is None:
             return "ok im actually impressed how did you do that"
         blogpage = db.session.get(Blogpage, blogpage_id)
@@ -281,8 +281,8 @@ def create_post(*args, **kwargs):
         post.expand_img_markdown()
 
         # upload files if any
-        files_base_path = bp_util.get_files_base_path(post)
-        err = bp_util.upload_files(request.files.getlist("files"), files_base_path)
+        files_base_path = bp_utils.get_files_base_path(post)
+        err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
         if err:
             return jsonify(flash_msg=err)
 
@@ -297,16 +297,16 @@ def create_post(*args, **kwargs):
 
 @bp.route("/<string:post_sanitized_title>/edit", methods=["GET"], endpoint="edit_post_form")
 @bp.route("/<string:post_sanitized_title>", methods=["PUT"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@util.require_login()
-@bp_util.require_valid_post()
+@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@utils.require_login()
+@bp_utils.require_valid_post()
 def edit_post(post, post_sanitized_title, *args, **kwargs):
     # pre-populate form fields with existing post content
     form = EditBlogpostForm(obj=post)
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
     form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
     form.content.data = post.collapse_img_markdown()
-    files_base_path = bp_util.get_files_base_path(post)
+    files_base_path = bp_utils.get_files_base_path(post)
     if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
         files_choices = []
         for f in os.listdir(files_base_path):
@@ -316,7 +316,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
         form.delete_files.choices = files_choices
 
     if request.method == "GET":
-        blogpage_id = bp_util.get_blogpage_id()
+        blogpage_id = bp_utils.get_blogpage_id()
         return render_template(
             "blog/blogpage/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form,
             action=url_for(f"blog.{blogpage_id}.edit_post", post_sanitized_title=post_sanitized_title, _external=True),
@@ -328,7 +328,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
 
         # edit post in db
         old_blogpage_id = post.blogpage_id
-        files_base_path = bp_util.get_files_base_path(post) # need to be before `blogpage_id` changes
+        files_base_path = bp_utils.get_files_base_path(post) # need to be before `blogpage_id` changes
         post.blogpage_id = request.form.get("blogpage_id")
         post.title = request.form.get("title")
         post.subtitle = request.form.get("subtitle")
@@ -350,7 +350,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                 filepath = os.path.join(files_base_path, file)
                 if os.path.exists(filepath):
                     os.remove(filepath)
-            bp_util.delete_dir_if_empty(files_base_path)
+            bp_utils.delete_dir_if_empty(files_base_path)
         except Exception as e:
             print(e)
             return jsonify(flash_msg=f"File delete exception")
@@ -369,13 +369,13 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                         # so .excalidraw files etc. are also removed
                         for file in glob.iglob(f"{os.path.join(files_base_path, filename)}.*"):
                             os.remove(file)
-                bp_util.delete_dir_if_empty(files_base_path)
+                bp_utils.delete_dir_if_empty(files_base_path)
             except Exception as e:
                 print(e)
                 return jsonify(flash_msg=f"File delete unused exception")
         
         # upload files if any (after deletes)
-        err = bp_util.upload_files(request.files.getlist("files"), files_base_path)
+        err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
         if err:
             return jsonify(flash_msg=err)
         
@@ -383,7 +383,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
         if post.blogpage_id != old_blogpage_id:
             if os.path.exists(files_base_path):
                 try:
-                    new_files_base_path = bp_util.get_files_base_path(post)
+                    new_files_base_path = bp_utils.get_files_base_path(post)
                     shutil.move(files_base_path, new_files_base_path)
                 except Exception as e:
                     print(e)
@@ -400,15 +400,15 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
 
 
 @bp.route("/<string:post_sanitized_title>", methods=["DELETE"])
-@util.set_content_type(ContentType.JSON)
-@util.require_login()
-@bp_util.require_valid_post()
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+@bp_utils.require_valid_post()
 def delete_post(post, post_sanitized_title, *args, **kwargs):
     # delete post from db
     db.session.delete(post)
 
     # delete files directory
-    files_base_path = bp_util.get_files_base_path(post)
+    files_base_path = bp_utils.get_files_base_path(post)
     try:
         if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
             shutil.rmtree(files_base_path)
@@ -429,9 +429,9 @@ def delete_post(post, post_sanitized_title, *args, **kwargs):
 
 
 @bp.route("/<string:post_sanitized_title>/comments", methods=["GET"])
-@util.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
-@bp_util.require_valid_post()
-@bp_util.redir_to_post_after_login()
+@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@bp_utils.require_valid_post()
+@bp_utils.redir_to_post_after_login()
 def get_comments(post, post_sanitized_title, *args, **kwargs):
     def sanitize_comment_html(s: str) -> str:
         """
@@ -472,10 +472,10 @@ def get_comments(post, post_sanitized_title, *args, **kwargs):
 
 
 @bp.route("/<string:post_sanitized_title>/comments", methods=["POST"])
-@util.set_content_type(ContentType.JSON)
-@bp_util.require_login_if_restricted_bp()
-@bp_util.require_valid_post()
-@bp_util.redir_to_post_after_login()
+@utils.set_content_type(ContentType.JSON)
+@bp_utils.require_login_if_restricted_bp()
+@bp_utils.require_valid_post()
+@bp_utils.redir_to_post_after_login()
 def add_comment(post, post_sanitized_title, *args, **kwargs):
     form = AddCommentForm()
     if not form.validate():
@@ -502,11 +502,11 @@ def add_comment(post, post_sanitized_title, *args, **kwargs):
     "/<string:post_sanitized_title>/comments/<int:comment_id>/edit", methods=["GET"], endpoint="edit_comment_form"
 )
 @bp.route("/<string:post_sanitized_title>/comments/<int:comment_id>", methods=["PUT"])
-@util.set_content_type(ContentType.JSON)
-@util.require_login() # only admins can edit comments, since there's no other user account system
-@bp_util.require_valid_post()
-@bp_util.require_valid_comment()
-@bp_util.redir_to_post_after_login()
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login() # only admins can edit comments, since there's no other user account system
+@bp_utils.require_valid_post()
+@bp_utils.require_valid_comment()
+@bp_utils.redir_to_post_after_login()
 def edit_comment(post, post_sanitized_title, comment, comment_id, *args, **kwargs):
     # pre-populate form fields with existing comment content; leave out `parent` since that should not be changeable
     form = EditCommentForm(obj=comment)
@@ -524,11 +524,11 @@ def edit_comment(post, post_sanitized_title, comment, comment_id, *args, **kwarg
 
 
 @bp.route("/<string:post_sanitized_title>/comments/<int:comment_id>", methods=["DELETE"])
-@util.set_content_type(ContentType.JSON)
-@util.require_login()
-@bp_util.require_valid_post()
-@bp_util.require_valid_comment()
-@bp_util.redir_to_post_after_login()
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+@bp_utils.require_valid_post()
+@bp_utils.require_valid_comment()
+@bp_utils.redir_to_post_after_login()
 def delete_comment(post, post_sanitized_title, comment, comment_id, *args, **kwargs):
     # delete comment and its descendants from db
     descendants = comment.get_descendants(post)
@@ -542,10 +542,10 @@ def delete_comment(post, post_sanitized_title, comment, comment_id, *args, **kwa
 
 
 @bp.route("/<string:post_sanitized_title>/comments/mark-as-read", methods=["POST"])
-@util.set_content_type(ContentType.JSON)
-@util.require_login()
-@bp_util.require_valid_post()
-@bp_util.redir_to_post_after_login()
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+@bp_utils.require_valid_post()
+@bp_utils.redir_to_post_after_login()
 def mark_comments_as_read(post, post_sanitized_title, *args, **kwargs):
     # mark comments under current post as read in db
     unread_comments_query = post.comments.select().filter_by(is_unread=True)
@@ -557,17 +557,17 @@ def mark_comments_as_read(post, post_sanitized_title, *args, **kwargs):
 
 
 @bp.route("/<string:post_sanitized_title>/comments/get-count", methods=["GET"])
-@util.set_content_type(ContentType.JSON)
-@bp_util.require_valid_post()
-@bp_util.redir_to_post_after_login()
+@utils.set_content_type(ContentType.JSON)
+@bp_utils.require_valid_post()
+@bp_utils.redir_to_post_after_login()
 def get_comment_count(post, post_sanitized_title, *args, **kwargs):
     return jsonify(count=post.get_comment_count())
 
 
 @bp.route("/<string:post_sanitized_title>/comments/get-unread-count", methods=["GET"])
-@util.set_content_type(ContentType.JSON)
-@util.require_login()
-@bp_util.require_valid_post()
-@bp_util.redir_to_post_after_login()
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+@bp_utils.require_valid_post()
+@bp_utils.redir_to_post_after_login()
 def get_unread_comment_count(post, post_sanitized_title, *args, **kwargs):
     return jsonify(count=post.get_unread_comment_count())
