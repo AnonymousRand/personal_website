@@ -459,7 +459,7 @@
     color: revert !important;
 }
 
-.text-overflow-ellipses {
+.text-overflow-ellipsis {
     text-overflow: ellipsis !important;
 }
 
