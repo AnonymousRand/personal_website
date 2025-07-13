@@ -291,7 +291,7 @@ def create_post(*args, **kwargs):
             redir_url=url_for(
                 f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
-            flash_msg="post created successfully :3"
+            flash_msg="post created :3"
         )                   # view completed post
 
 
@@ -395,7 +395,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
             redir_url=url_for(
                 f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
             ),
-            flash_msg="post updated successfully :3"
+            flash_msg="post updated :3"
         ) # view updated post
 
 
@@ -419,7 +419,7 @@ def delete_post(post, post_sanitized_title, *args, **kwargs):
     db.session.commit()
     return jsonify(
         redir_url=url_for(f"blog.{post.blogpage_id}.get_posts", _external=True),
-        flash_msg="post deleted successfully :3"
+        flash_msg="post deleted :3"
     )
 
 
@@ -495,7 +495,7 @@ def add_comment(post, post_sanitized_title, *args, **kwargs):
             return jsonify(flash_msg="please no hack :3")
     db.session.add(comment)
     db.session.commit()
-    return jsonify(success=True, flash_msg="comment added successfully :3")
+    return jsonify(success=True, flash_msg="comment added :3")
 
 
 @bp.route(
@@ -520,7 +520,7 @@ def edit_comment(post, post_sanitized_title, comment, comment_id, *args, **kwarg
         comment.author = request.form.get("author")
         comment.content = request.form.get("content")
         db.session.commit()
-        return jsonify(success=True, flash_msg="comment updated successfully :3")
+        return jsonify(success=True, flash_msg="comment updated :3")
 
 
 @bp.route("/<string:post_sanitized_title>/comments/<int:comment_id>", methods=["DELETE"])
