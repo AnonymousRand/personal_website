@@ -83,6 +83,10 @@ const DARKREADER_FIXES = {
                 text-decoration-color: var(--darkreader-text--custom-orange-deep) !important;
                 color: var(--darkreader-text--custom-orange-deep) !important;
             }
+
+            .md-dropdown .md-dropdown__content {
+                border-top-color: gray !important;
+            }
             
             .spoiler {
                 background-color: dimgray !important;
