@@ -88,6 +88,10 @@ const DARKREADER_FIXES = {
                 border-top-color: gray !important;
             }
             
+            :is(.post__content, .comment__content) img:hover {
+                border-color: gray !important;
+            }
+
             .spoiler {
                 background-color: dimgray !important;
             }
