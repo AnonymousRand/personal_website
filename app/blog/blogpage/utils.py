@@ -148,7 +148,7 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
                           and file_ext != validate_img(file.stream)
                       )
             if invalid:
-                return f"Invalid file {filename}. If it's another heic im gonna lose my mind i swear to god"
+                return f"Invalid file: {filename}. If it's another heic im gonna lose my mind i swear to god"
 
             # sanitize filename and upload
             sanitized_filename = sanitize_filename(filename)
