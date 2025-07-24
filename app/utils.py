@@ -86,7 +86,7 @@ def custom_unauthorized(content_type: ContentType):
             case ContentType.JSON:
                 return jsonify(needs_login=True)
             case _:
-                return "app/util.py: `custom_unauthorized()` reached end of switch statement", 500
+                return "app/util.py: `custom_unauthorized()` somehow reached end of switch statement", 500
     return None
 
 

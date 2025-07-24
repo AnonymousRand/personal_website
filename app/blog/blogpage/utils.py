@@ -41,8 +41,8 @@ def require_login_if_restricted_bp():
                             flash_msg="That post doesn't exist :/"
                         )
                     case _:
-                        return ("app/blog/blogpage/utils.py: `require_login_if_restricted_bp()` reached end of switch "
-                                "statement"), 500
+                        return ("app/blog/blogpage/utils.py: `require_login_if_restricted_bp()` somehow reached end of "
+                                "switch statement"), 500
 
             if blogpage.is_login_required:
                 result = utils.custom_unauthorized(content_type)
@@ -127,7 +127,7 @@ def nonexistent_post(content_type: ContentType):
                 flash_msg="That post doesn't exist :/"
             )
         case _:
-            return "app/blog/blogpage/utils.py: `nonexistent_post()` reached end of switch statement", 500
+            return "app/blog/blogpage/utils.py: `nonexistent_post()` somehow reached end of switch statement", 500
 
 
 def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_path: str) -> str:
@@ -148,7 +148,7 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
                           and file_ext != validate_img(file.stream)
                       )
             if invalid:
-                return "Invalid file. If it's another heic im gonna lose my mind i swear to god i hate"
+                return f"Invalid file {filename}. If it's another heic im gonna lose my mind i swear to god"
 
             # sanitize filename and upload
             sanitized_filename = sanitize_filename(filename)
