@@ -9,7 +9,7 @@ function flashMsg(msg) {
     }, 10000);
 }
 
-function renderQueryStringFlash() {
+function flashMsgFromQueryStr() {
     let urlParams = new URLSearchParams(window.location.search);
     let flash = urlParams.get("flash_msg");
     if (flash) {
