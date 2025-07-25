@@ -169,8 +169,20 @@ textarea.form-control {
 }
 
 .flash__wrapper {
-    top: 1rem;
+    position: fixed;
+    /* this and `transform` horizontally centers this, which we have to do manually since it is `position: fixed` */
+    left: 50%;
+    top: 0.75rem;
+    transform: translate(-50%);
     z-index: 9999;
+    padding: 0 var(--container-content-padding-x);
+    /* this makes sure `position: fixed` doesn't just make it as wide as the viewport */
+    width: inherit;
+    max-width: inherit;
+}
+
+.flash__wrapper:has(.flash[hidden]) {
+    z-index: -1;
 }
 
 .icon-navbar-toggler {

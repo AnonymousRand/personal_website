@@ -1,7 +1,10 @@
+let flashMessageTimeoutId;
+
 function flashMessage(message) {
+    clearTimeout(flashMessageTimeoutId);
     $("#flash__text").text(message); // `text()` by itself is XSS-safe
     $("#flash").removeAttr("hidden");
-    setTimeout(function() {
+    flashMessageTimeoutId = setTimeout(function() {
         $("#flash").alert("close");
     }, 10000);
 }
@@ -21,7 +24,7 @@ $(document).ready(renderQueryStringFlash);
  * We do this instead of changing close button behavior to preserve the fade animation.
  */
 $(document).on("close.bs.alert", "#flash", function(e) {
-    const nodeDuplicate = e.target.cloneNode(true);
-    nodeDuplicate.setAttribute("hidden", "");
-    document.getElementById("flash__wrapper").append(nodeDuplicate);
+    const nodeDuplicateFlash = e.target.cloneNode(true);
+    nodeDuplicateFlash.setAttribute("hidden", "");
+    document.getElementById("flash__wrapper").append(nodeDuplicateFlash);
 });
