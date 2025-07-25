@@ -17,7 +17,7 @@ function flashMsgFromQueryStr() {
     }
 }
 
-$(document).ready(renderQueryStringFlash);
+$(document).ready(flashMsgFromQueryStr);
 
 /**
  * Regenerates flash element on dismiss so we can flash again.
