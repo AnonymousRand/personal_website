@@ -182,6 +182,7 @@ textarea.form-control {
 }
 
 .flash__wrapper:has(.flash[hidden]) {
+    /* otherwise when the flash is hidden, it blocks navbar from being clicked */
     z-index: -1;
 }
 

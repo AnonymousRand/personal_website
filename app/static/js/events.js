@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $("#meow-btn").on("click", function() {
-        let meow = Math.floor(Math.random() * 10) < 1 ? "rawr :333" : "meow :3";
-        flashMessage(meow);
+        let meowText = Math.floor(Math.random() * 15) < 1 ? "rawr >:3" : "meow :3";
+        flashMsg(meowText);
     });
 });

@@ -14,7 +14,7 @@ let onSamePageLogin = function() {
 // interact (since it will always ask for modal and not do anything) is not a huge deal
 // (if I forgot to log out at public computer or something then we have a LOT of other problems)
 function showLoginModal() {
-    flashMessage("please log in :3");
+    flashMsg("please log in :3");
     $("#login-modal").modal("show");
 }
 
@@ -43,7 +43,7 @@ $(document).ready(function() {
     $("#login-modal").on("show.bs.modal", function(e) {
         if (window.location.href.startsWith(LOGIN_URL)) {
             e.preventDefault();
-            flashMessage("You're already on the login page, you doofus.");
+            flashMsg("You're already on the login page, you doofus.");
         }
     });
 

@@ -39,7 +39,7 @@ async function fetchWrapper({url, method, body=null, params={}}) {
     let hasHandledError = true;
     switch(resp.status) {
         case 429:
-            flashMessage("please slow down :3");
+            flashMsg("please slow down :3");
             break;
         default:
             hasHandledError = false;
@@ -71,7 +71,7 @@ function doAjaxBaseResponse(respJson) {
     } else {
         // async flash message
         if (respJson.flash_msg) {
-            flashMessage(respJson.flash_msg);
+            flashMsg(respJson.flash_msg);
         }
     }
 }

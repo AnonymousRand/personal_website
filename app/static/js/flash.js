@@ -1,10 +1,10 @@
-let flashMessageTimeoutId;
+let flashMsgTimeoutId;
 
-function flashMessage(message) {
-    clearTimeout(flashMessageTimeoutId);
-    $("#flash__text").text(message); // `text()` by itself is XSS-safe
+function flashMsg(msg) {
+    clearTimeout(flashMsgTimeoutId);
+    $("#flash__text").text(msg); // `text()` by itself is XSS-safe
     $("#flash").removeAttr("hidden");
-    flashMessageTimeoutId = setTimeout(function() {
+    flashMsgTimeoutId = setTimeout(function() {
         $("#flash").alert("close");
     }, 10000);
 }
@@ -13,7 +13,7 @@ function renderQueryStringFlash() {
     let urlParams = new URLSearchParams(window.location.search);
     let flash = urlParams.get("flash_msg");
     if (flash) {
-        flashMessage(decodeURIComponent(flash));
+        flashMsg(decodeURIComponent(flash));
     }
 }
 

@@ -33,7 +33,7 @@ async function reloadComments() {
     if (!respJson.errorStatus) {
         commentCount = respJson.count;
     } else if (!respJson.hasHandledError) {
-        flashMessage("There was an error retrieving comment count :/");
+        flashMsg("There was an error retrieving comment count :/");
         return;
     }
 
@@ -43,7 +43,7 @@ async function reloadComments() {
         if (!respJson.errorStatus) {
             commentUnreadCount = respJson.count;
         } else if (respJson.errorStatus !== 429) {
-            flashMessage("There was an error retrieving comment unread count :/");
+            flashMsg("There was an error retrieving comment unread count :/");
             return;
         }
     }
@@ -67,7 +67,7 @@ async function reloadComments() {
         if (!respJson.errorStatus) {
             $("#comment-list").html(respJson.html);
         } else if (respJson.errorStatus !== 429) {
-            flashMessage("There was an error retrieving comments :/");
+            flashMsg("There was an error retrieving comments :/");
             return;
         }
 
@@ -127,7 +127,7 @@ $(document).on("click", ".comment__reply-btn", async function(e) {
     const id = getCommentId(e.target);
     const jqFormAddReply = $(`#comment__add-reply-form-${id}`);
     if (jqFormAddReply.length === 0) {
-        flashMessage("please no hack :3");
+        flashMsg("please no hack :3");
         return;
     }
 
