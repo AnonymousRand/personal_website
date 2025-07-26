@@ -15,7 +15,7 @@ class ContentType(Enum):
     @classmethod
     def resolve_depending_on_req_method(cls):
         """
-        Resolves `ContentType.DEPENDS_ON_REQ_METHOD` by checking the current request method.
+        Resolve `ContentType.DEPENDS_ON_REQ_METHOD` by checking the current request method.
         """
 
         def inner_decorator(func):
@@ -55,7 +55,7 @@ def require_login():
 @ContentType.resolve_depending_on_req_method()
 def custom_unauthorized(content_type: ContentType):
     """
-    Makes sure `current_user` is authenticated. If not:
+    Make sure `current_user` is authenticated. If not:
         - `Content-Type: text/html`: redirects to login page (GET using Flask's `redirect()`)
         - `Content-Type: application/json`: returns `needs_login` key in JSON response which is universally handled by
           my `fetchWrapper()` and triggers a modal log in. This prevents redirects as in the earlier case, which
@@ -70,7 +70,7 @@ def custom_unauthorized(content_type: ContentType):
             return result
         ```
 
-    Args:
+    Params:
         - `content_type`: specifies the `Content-Type` of the expected server response from the view function
     """
 
@@ -101,7 +101,7 @@ def set_content_type(content_type: ContentType):
 
 def encode_uri_component(s: str) -> str:
     """
-    Mimics JavaScript's `encodeURIComponent()`.
+    Mimic JavaScript's `encodeURIComponent()`.
     """
 
     return parse.quote(s, safe="~!*()'")
@@ -109,7 +109,7 @@ def encode_uri_component(s: str) -> str:
 
 def decode_uri_component(s: str) -> str:
     """
-    Mimics JavaScript's `decodeURIComponent()`.
+    Mimic JavaScript's `decodeURIComponent()`.
     """
 
     return parse.unquote(s)

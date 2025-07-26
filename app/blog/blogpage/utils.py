@@ -18,7 +18,7 @@ from app.utils import ContentType
 
 def require_login_if_restricted_bp():
     """
-    Enforces login to access private blogpages.
+    Enforce login to access private blogpages.
 
     Use before every view function potentially accessing private blogpages!!!
     """
@@ -56,7 +56,7 @@ def require_login_if_restricted_bp():
 
 def require_valid_post():
     """
-    Makes sure URL points to a post that exists, and if so, fetches the post from the db and passes it to its inner
+    Make sure URL points to a post that exists, and if so, fetches the post from the db and passes it to its inner
     function as a parameter for later use.
     """
 
@@ -170,7 +170,7 @@ def delete_dir_if_empty(path: str) -> None:
 
 def get_blogpage_id() -> int:
     """
-    Gets blogpage id from `request.blueprint`.
+    Get blogpage id from `request.blueprint`.
     """
 
     return int(request.blueprint.split('.')[-1])
@@ -185,7 +185,7 @@ def get_files_base_path(post: Post) -> str:
 
 def get_post(post: Post, post_sanitized_title: str, blogpage_id: int) -> Post:
     """
-    Gets post from URL, making sure it's valid and matches the whole URL.
+    Get post from URL, making sure it's valid and matches the whole URL.
     """
 
     if post is not None:

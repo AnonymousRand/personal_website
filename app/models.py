@@ -114,7 +114,7 @@ class Post(db.Model):
 
     def sanitize_title(self) -> None:
         """
-        Replaces whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric and non-hyphen
+        Replace whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric and non-hyphen
         characters.
         """
 
@@ -271,7 +271,7 @@ class Comment(db.Model):
 
     def get_descendants(self, post: Post) -> list:
         """
-        Gets all descendants of a comment, excluding itself.
+        Get all descendants of a comment, excluding itself.
         """
 
         comments_query = post.comments.select().filter(sa.and_(Comment.left > self.left, Comment.right < self.right))

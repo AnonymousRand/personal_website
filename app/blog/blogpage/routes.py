@@ -435,7 +435,7 @@ def delete_post(post, post_sanitized_title, *args, **kwargs):
 def get_comments(post, post_sanitized_title, *args, **kwargs):
     def sanitize_comment_html(s: str) -> str:
         """
-        Sanitizes Markdown for comments (XSS etc.).
+        Sanitize Markdown for comments (XSS etc.).
         """
 
         # Bleach is considered deprecated because html5lib is, but both seem to still be mostly active

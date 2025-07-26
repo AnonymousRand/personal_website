@@ -2,7 +2,7 @@ const HORIZ_SCOLL_DIV_HTML = '<div class="scroll-overflow-x"></div>';
 const HORIZ_SCOLL_DIV_HTML_FULL_WIDTH = '<div class="scroll-overflow-x" width="full"></div>';
 
 /**
- * Adds code to an existing function/merges two functions.
+ * Add code to an existing function/merges two functions.
  *
  * Preconditions:
  *     - The two functions must have the same params
@@ -20,7 +20,7 @@ function addToFunction(funcBase, funcToAdd) {
 }
 
 /**
- * Debug use: prints out dead self-links on current page.
+ * For debugging: prints out dead self-links on current page.
  */
 function debugTestSelfLinks() {
     $("a").each(function() {

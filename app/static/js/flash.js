@@ -21,7 +21,7 @@ function flashMsgFromQueryStr() {
 $(document).ready(flashMsgFromQueryStr);
 
 /**
- * Regenerates flash element on dismiss so we can flash again.
+ * Regenerate flash element on dismiss so we can flash again.
  * We do this instead of changing close button behavior to preserve the fade animation.
  */
 $(document).on("close.bs.alert", "#flash", function(e) {
