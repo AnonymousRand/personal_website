@@ -352,8 +352,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                     os.remove(file_path)
             bp_utils.delete_dir_if_empty(files_base_path)
         except Exception as e:
-            print(e)
-            return jsonify(flash_msg=f"File delete exception")
+            return jsonify(flash_msg=f"File delete exception: {e}")
 
         # delete unused files if applicable
         if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
@@ -361,24 +360,26 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                 file_names = os.listdir(files_base_path)
                 for file_name in file_names:
                     file_basename, file_ext = os.path.splitext(file_name)
+                    should_delete = False
                     # `if` condition also checks for Markdown syntax around file name to ensure
                     # that we are not catching a proper substring of a longer file name
-                    if file_ext in current_app.config("FILE_UPLOAD_EXTS_IN_TEXT"):
+                    if file_ext in current_app.config["FILE_UPLOAD_EXTS_IN_TEXT"]:
                         # if `file_name` is a type that should appear in the post text (e.g. images),
                         # remove it if it doesn't
                         if f"]({file_name})" not in post.content:
-                            os.remove(file_name)
+                            should_delete = True
                     else:
                         # else if `file` is a type that doesn't appear in the post text (e.g. .xcf),
                         # remove it if its extension-less file name doesn't appear in the post text 
                         # (requires such files to exactly match their respective image's file name)
                         # also requires no periods in file basename!
                         if f"]({file_basename}." not in post.content:
-                            os.remove(file_name)
+                            should_delete = True
+                    if should_delete:
+                        os.remove(os.path.join(files_base_path, file_name))
                 bp_utils.delete_dir_if_empty(files_base_path)
             except Exception as e:
-                print(e)
-                return jsonify(flash_msg=f"File delete unused exception")
+                return jsonify(flash_msg=f"File delete unused exception: {e}")
         
         # upload files if any (after deletes)
         err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
@@ -392,8 +393,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                     new_files_base_path = bp_utils.get_files_base_path(post)
                     shutil.move(files_base_path, new_files_base_path)
                 except Exception as e:
-                    print(e)
-                    return jsonify(flash_msg=f"File move exception")
+                    return jsonify(flash_msg=f"File move exception: {e}")
 
         post.expand_img_markdown() # only expand image markdown after checking for unused files
         db.session.commit()
@@ -419,8 +419,7 @@ def delete_post(post, post_sanitized_title, *args, **kwargs):
         if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
             shutil.rmtree(files_base_path)
     except Exception as e:
-        print(e)
-        return jsonify(flash_msg=f"Directory delete exception")
+        return jsonify(flash_msg=f"Directory delete exception: {e}")
 
     db.session.commit()
     return jsonify(

@@ -157,8 +157,7 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             os.makedirs(files_base_path, exist_ok=True) # make image directory if it doesn't exist
             file.save(final_path)                       # this can replace existing images
     except Exception as e:
-        print(e)
-        return f"File upload exception"
+        return f"File upload exception: {e}"
     return ""
 
 
