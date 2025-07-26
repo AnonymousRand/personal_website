@@ -4,6 +4,7 @@ function flashMsg(msg) {
     clearTimeout(flashMsgTimeoutId);
     $("#flash__text").text(msg); // `text()` by itself is XSS-safe
     $("#flash").removeAttr("hidden");
+    $("#flash__wrapper").css("z-index", "9999");
     flashMsgTimeoutId = setTimeout(function() {
         $("#flash").alert("close");
     }, 10000);

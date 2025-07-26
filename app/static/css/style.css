@@ -174,16 +174,12 @@ textarea.form-control {
     left: 50%;
     top: 0.75rem;
     transform: translate(-50%);
-    z-index: 9999;
+    /* prevents flash from blocking navbar clicks when hidden */
+    z-index: -1;
     padding: 0 var(--container-content-padding-x);
     /* this makes sure `position: fixed` doesn't just make it as wide as the viewport */
     width: inherit;
     max-width: inherit;
-}
-
-.flash__wrapper:has(.flash[hidden]) {
-    /* otherwise when the flash is hidden, it blocks navbar from being clicked */
-    z-index: -1;
 }
 
 .icon-navbar-toggler {
