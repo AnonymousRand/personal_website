@@ -150,7 +150,7 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
                     return f"corrupted file {file_name} (my magic box told me this is actually a {detected_file_ext})"
 
             # sanitize file name and upload
-            sanitized_file_name = sanitize_filename(file_name)
+            sanitized_file_name = sanitize_file_name(file_name)
             if sanitized_file_name == "":
                 return f"file {file_name} did not survive sanitization"
             final_path = os.path.join(files_base_path, sanitized_file_name)
