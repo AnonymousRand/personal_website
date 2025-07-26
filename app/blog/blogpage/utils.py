@@ -135,26 +135,25 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
         for file in files:
             if file.filename == "":
                 continue
-            filename = file.filename
+            file_name = file.filename
 
             # validate file type
-            file_ext = os.path.splitext(filename)[1]
+            file_ext = os.path.splitext(file_name)[1]
             if file_ext == ".jpg":                      # `imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`
                 file_ext = ".jpeg"
             # `imghdr` can't check SVG; trustable since admin-only ig
-            invalid = file_ext not in current_app.config["FILE_UPLOAD_EXTS"] \
-                      or (
-                          file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]
-                          and file_ext != validate_img(file.stream)
-                      )
-            if invalid:
-                return f"Invalid file: {filename}. If it's another heic im gonna lose my mind i swear to god"
+            if file_ext not in current_app.config["FILE_UPLOAD_EXTS"]:
+                return f"unsupported file extension for {file_name}"
+            if file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]:
+                detected_file_ext = validate_img(file.stream)
+                if file_ext != detected_file_ext:
+                    return f"corrupted file {file_name} (my magic box told me this is actually a {detected_file_ext})"
 
-            # sanitize filename and upload
-            sanitized_filename = sanitize_filename(filename)
-            if sanitized_filename == "":
-                return f"File name {filename} did not survive sanitization."
-            final_path = os.path.join(files_base_path, sanitized_filename)
+            # sanitize file name and upload
+            sanitized_file_name = sanitize_filename(file_name)
+            if sanitized_file_name == "":
+                return f"file {file_name} did not survive sanitization"
+            final_path = os.path.join(files_base_path, sanitized_file_name)
             os.makedirs(files_base_path, exist_ok=True) # make image directory if it doesn't exist
             file.save(final_path)                       # this can replace existing images
     except Exception as e:
@@ -193,11 +192,13 @@ def get_post(post: Post, post_sanitized_title: str, blogpage_id: int) -> Post:
     return db.session.query(Post).filter_by(sanitized_title=post_sanitized_title, blogpage_id=blogpage_id).first()
 
 
-def sanitize_filename(filename: str) -> str:
-    filename = escape(secure_filename(filename))
-    # for Markdown parsing
-    filename = filename.replace("(", "").replace(")", "")
-    return filename
+def sanitize_file_name(file_name: str) -> str:
+    file_name = escape(secure_filename(file_name))
+    # remove parentheses for Markdown parsing, as well as extra periods
+    file_name = file_name.replace("(", "").replace(")", "")
+    file_basename, file_ext = os.path.splitext(file_name)
+    file_basename = file_basename.replace(".", "_")
+    return file_basename + file_ext
 
 
 def validate_img(img) -> str:

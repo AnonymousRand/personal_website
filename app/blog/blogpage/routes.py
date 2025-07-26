@@ -346,29 +346,35 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
 
         # delete files if any
         try:
-            for file in request.form.getlist("delete_files"):
-                filepath = os.path.join(files_base_path, file)
-                if os.path.exists(filepath):
-                    os.remove(filepath)
+            for file_name in request.form.getlist("delete_files"):
+                file_path = os.path.join(files_base_path, file_name)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
             bp_utils.delete_dir_if_empty(files_base_path)
         except Exception as e:
             print(e)
             return jsonify(flash_msg=f"File delete exception")
 
-        # delete unused files if applicable; we assume any file whose filename is not in the Markdown is unused
+        # delete unused files if applicable
         if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
             try:
-                files = os.listdir(files_base_path)
-                for file in files:
-                    filename, file_ext = os.path.splitext(file)
-                    # `if` condition also checks for Markdown syntax immediately before filename and period
-                    # immediately after to ensure that we are not catching a proper substring of a longer filename
-                    # (requires no periods in file name!)
-                    if f"]({filename}." not in post.content:
-                        # if extension-less filename is unused, delete everything with that extension-less filename
-                        # so .excalidraw files etc. are also removed
-                        for file in glob.iglob(f"{os.path.join(files_base_path, filename)}.*"):
-                            os.remove(file)
+                file_names = os.listdir(files_base_path)
+                for file_name in file_names:
+                    file_basename, file_ext = os.path.splitext(file_name)
+                    # `if` condition also checks for Markdown syntax around file name to ensure
+                    # that we are not catching a proper substring of a longer file name
+                    if file_ext in current_app.config("FILE_UPLOAD_EXTS_IN_TEXT"):
+                        # if `file_name` is a type that should appear in the post text (e.g. images),
+                        # remove it if it doesn't
+                        if f"]({file_name})" not in post.content:
+                            os.remove(file_name)
+                    else:
+                        # else if `file` is a type that doesn't appear in the post text (e.g. .xcf),
+                        # remove it if its extension-less file name doesn't appear in the post text 
+                        # (requires such files to exactly match their respective image's file name)
+                        # also requires no periods in file basename!
+                        if f"]({file_basename}." not in post.content:
+                            os.remove(file_name)
                 bp_utils.delete_dir_if_empty(files_base_path)
             except Exception as e:
                 print(e)
