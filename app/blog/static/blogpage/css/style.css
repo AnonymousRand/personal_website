@@ -78,7 +78,7 @@ input[value="Reply"][value="Delete"] {
 }
 
 .md-cited-blockquote {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 
 .md-cited-blockquote :last-child {
