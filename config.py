@@ -7,25 +7,29 @@ class Config(object):
     # basics
 
     SERVER_NAME = "anonymousrand.xyz"
-    ALLOWED_ORIGINS = [f"https://{SERVER_NAME}", f"https://blog.{SERVER_NAME}", "https://http.cat"]
+    ALLOWED_ORIGINS = [
+        f"https://{SERVER_NAME}",
+        f"https://blog.{SERVER_NAME}",
+        "https://http.cat"
+    ]
     SECRET_KEY = os.environ.get("SECRET_KEY")
     _csp_self = ["\'self\'", SERVER_NAME, f"blog.{SERVER_NAME}"]
     _csp_default_src = _csp_self
     CSP = {
         "default-src": _csp_default_src,
         "connect-src": _csp_default_src + [
-            "data:",                        # DarkReader
-            "cdnjs.cloudflare.com",         # Highlight.js
-            "http.cat"                      # error pages :3
+            "data:",                                                # DarkReader
+            "cdnjs.cloudflare.com",                                 # Highlight.js
+            "http.cat"                                              # error pages :3
         ],
         "font-src": _csp_default_src + [
-            "cdn.jsdelivr.net",             # MathJax
+            "cdn.jsdelivr.net",                                     # MathJax
             "fonts.googleapis.com",
             "fonts.gstatic.com"
         ],
         "img-src": _csp_default_src + [
-            "data:",                        # Bootstrap, DarkReader
-            "http.cat"                      # error pages :3
+            "data:",                                                # Bootstrap, DarkReader
+            "http.cat"                                              # error pages :3
         ],
         "script-src": _csp_default_src + [
             "cdn.jsdelivr.net",
@@ -37,7 +41,7 @@ class Config(object):
             "cdnjs.cloudflare.com",
             "code.jquery.com",
             "fonts.googleapis.com",
-            "\'unsafe-inline\'"             # a lot of things apparently
+            "\'unsafe-inline\'"                                     # a lot of things apparently
         ],
         "base-uri": _csp_default_src,
         "frame-ancestors": _csp_default_src
