@@ -8,6 +8,6 @@ def index():
     return render_template("main/index.html")
 
 
-@bp.route("/legal", methods=["GET"])
+@bp.route("/legal-rubbish", methods=["GET"])
 def legal():
     return render_template("main/legal.html")
