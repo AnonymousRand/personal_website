@@ -79,7 +79,6 @@ async function reloadComments() {
 
         // apply CSS to comments
         applyGlobalStyles("#comment-list");
-        applyPostAndCommentStyles("#comment-list");
 
         // mark comments as read if admin
         if (isUserAuthenticated) {

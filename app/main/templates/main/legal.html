@@ -1,0 +1,32 @@
+{% extends "main/base.html" %}
+
+
+{% block title %}
+Legal {{ super() }}
+{% endblock %}
+
+
+{% block content %}
+<div class="mt-4">
+  <div>
+    <h1 class="post-h1">Legal rubbish</h1>
+    <img class="post-img dark-mode-manual" src="{{ url_for('main.static', filename='images/legal_rubbish.png', _external=True) }}" title="page 3 of LaTeX's stmaryrd package docs (https://ctan.math.washington.edu/tex-archive/fonts/stmaryrd/stmaryrd.pdf)">
+  </div>
+  <div>
+    <h2 class="post-h2">Privacy</h2>
+    <p>There are no trackers. Zero. Check your cookies and <code>localStorage</code> if you don't believe me. Also, the only money I make off this site is -$11.18 a year from the domain, and I intend to keep it that way.</p>
+  </div>
+  <div>
+    <h2 class="post-h2">Copyright</h2>
+    <p>(scawy ;w;)</p>
+    <p>Images that I got from somewhere else will either have explicit attribution or have licensing information in the alt/title text (which appears if you hover over them). These will continue to have the same license that I got them under (or public domain if they were public domain).</p>
+    <p>Otherwise, for all images created by me (i.e. with no explicit attribution or licensing information on hover), no rights are reserved—they are released under Creative Commons <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">CC0</a>:</p>
+    <blockquote><p>You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.</p></blockquote>
+    <p>(This is essentially public domain, except it's apparently more universal across different jurisdictions.)</p>
+    <p>If you want to share large portions of text from a blogpost, just provide a link to my original post for attribution—no need to ask permission. Links would also be appreciated for my images, but these are not required :3</p>
+  </div>
+  <div>
+    <h2 class="post-h2">Contact me</h2>
+    <p>If I made an oopsie and used an image I shouldn't have, for example, just leave a comment under the post and I'll take a look :D</p>
+</div>
+{% endblock %}

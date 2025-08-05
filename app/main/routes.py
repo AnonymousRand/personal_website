@@ -6,3 +6,8 @@ from app.main import bp
 @bp.route("/", methods=["GET"])
 def index():
     return render_template("main/index.html")
+
+
+@bp.route("/legal", methods=["GET"])
+def legal():
+    return render_template("main/legal.html")

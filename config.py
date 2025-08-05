@@ -112,7 +112,7 @@ class Config(object):
     BLOGPAGE_ROUTES_TO_STATIC_REL_PATH = "../static/blogpage"
     FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
     FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
-    FILE_UPLOAD_EXTS_IN_TEXT = [".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp"]
+    FILE_UPLOAD_EXTS_IN_TEXT = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MB max request size
     MAX_FORM_MEMORY_SIZE = 10 * 1024 * 1024 # 10 MB max non-file form field (on `multipart/form-data`) size
     LOGIN_ENDPOINT = "admin.login"

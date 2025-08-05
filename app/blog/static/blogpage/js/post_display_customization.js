@@ -1,16 +1,3 @@
-function applyPostAndCommentStyles(baseSelector) {
-    const jqBase = $(baseSelector);
-    if (jqBase.length === 0) {
-        return;
-    }
-    const jqPostAndCommentContent = jqBase.find("#post__content, .comment__content");
-
-    // add CSS classes for extra styling
-    jqPostAndCommentContent.find("h1").addClass("custom-green-deep-dark mb-3 border-b--h1 fs-3");
-    jqPostAndCommentContent.find("h2").addClass("custom-orange-deep mb-3 border-b--h2 fs-5");
-    jqPostAndCommentContent.find("h3").addClass("mb-3 fs-6");
-}
-
 function addCommentSyntaxGuideTooltip() {
     $("#leave-a-comment #content-field label").first()
             .append(" (mouse over to show formatting options)")
@@ -52,7 +39,6 @@ function tweakFootnotes() {
     });
 }
 
-applyPostAndCommentStyles("body");
 addCommentSyntaxGuideTooltip();
 tweakFootnotes();
 // for making sure TOC is vertically centered

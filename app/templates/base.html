@@ -155,6 +155,9 @@
               </ul>
             </li>
 
+            <li class="nav-item show-when-logged-out"{% if current_user.is_authenticated %} hidden{% endif %}>
+              <a class="nav-link" href="{{ url_for('main.legal', _external=True) }}">Legal</a>
+            </li>
             <li class="nav-item show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}>
               <a class="nav-link" href="{{ url_for('admin.choose_action', _external=True) }}">Admin</a>
             </li>
@@ -179,7 +182,7 @@
             <li class="nav-item d-inline-flex align-items-center">
               <div class="nav-link form-check form-switch mb-0 pe-0">
                 <input id="switch--dark-mode" class="switch--dark-mode form-check-input me-2 ms-0" type="checkbox" role="switch">
-                <label class="form-check-label px-0" for="switch--dark-mode">Dark<span class="show-when-logged-out"{% if current_user.is_authenticated %} hidden{% endif %}>/high contrast</span></label>
+                <label class="form-check-label px-0" for="switch--dark-mode">High Contrast</label>
               </div>
             </li>
           </ul>
