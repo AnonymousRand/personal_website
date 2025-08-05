@@ -70,7 +70,7 @@ input[value="Reply"][value="Delete"] {
 }
 
 .md-captioned-figure img {
-    margin-bottom: 0.375rem;
+    margin-bottom: 1rem;
 }
 
 .md-captioned-figure p:has(> img) {
