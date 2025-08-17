@@ -4,6 +4,7 @@ import os
 
 
 class Config(object):
+    ############################################################################
     # basics
 
     SERVER_NAME = "anonymousrand.xyz"
@@ -47,6 +48,7 @@ class Config(object):
         "frame-ancestors": _csp_default_src
     }
 
+    ############################################################################
     # cookies
 
     # this affects non-logged in sessions too since they have a cookie as well to store the Flask session,
@@ -58,11 +60,13 @@ class Config(object):
     SESSION_COOKIE_SECURE = True
     SESSION_REFRESH_EACH_REQUEST = False
 
+    ############################################################################
     # Flask-WTF
 
     WTF_CSRF_SSL_STRICT = False # allows cross-site Ajax POST (Flask-CORS whitelisting not enough)
     WTF_CSRF_TIME_LIMIT = None  # CSRF token lasts until session expires
 
+    ############################################################################
     # Flask-SQLAlchemy/database
 
     DB_CONFIGS = {
@@ -84,11 +88,13 @@ class Config(object):
     }
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
+    ############################################################################
     # Jinja (must be explicitly configured in `app/__init__.py`)
 
     JINJA_LSTRIP_BLOCKS = True
     JINJA_TRIM_BLOCKS = True
 
+    ############################################################################
     # other configs
 
     AFTER_LOGOUT_ENDPOINT = "main.index"
@@ -110,9 +116,9 @@ class Config(object):
         "-7": "/writers-unblock-backrooms"
     }
     BLOGPAGE_ROUTES_TO_STATIC_REL_PATH = "../static/blogpage"
-    FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf"]
+    FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf", ".zip"]
     FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
-    FILE_UPLOAD_EXTS_IN_TEXT = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
+    FILE_UPLOAD_EXTS_IN_TEXT = [".gif", ".jpeg", ".jpg", ".png", ".webp", ".zip"]
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MB max request size
     MAX_FORM_MEMORY_SIZE = 10 * 1024 * 1024 # 10 MB max non-file form field (on `multipart/form-data`) size
     LOGIN_ENDPOINT = "admin.login"
