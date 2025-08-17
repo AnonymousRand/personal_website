@@ -177,7 +177,7 @@ def get_blogpage_id() -> int:
 def get_files_base_path(post: Post) -> str:
     return os.path.join(
         current_app.root_path, current_app.config["ROOT_TO_BLOGPAGE_STATIC"],
-        str(post.blogpage_id), "images", str(post.id)
+        str(post.blogpage_id), "files", str(post.id)
     )
 
 

@@ -115,7 +115,6 @@ class Config(object):
          "7": "/writers-unblock",
         "-7": "/writers-unblock-backrooms"
     }
-    BLOGPAGE_ROUTES_TO_STATIC_REL_PATH = "../static/blogpage"
     FILE_UPLOAD_EXTS = [".blend", ".excalidraw", ".gif", ".jpeg", ".jpg", ".png", ".svg", ".webp", ".xcf", ".zip"]
     FILE_UPLOAD_EXTS_CAN_VALIDATE = [".gif", ".jpeg", ".jpg", ".png", ".webp"]
     FILE_UPLOAD_EXTS_IN_TEXT = [".gif", ".jpeg", ".jpg", ".png", ".webp", ".zip"]

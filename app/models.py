@@ -161,20 +161,13 @@ class Post(db.Model):
             self.timestamp = datetime.now(timezone.utc)
             self.updated_timestamp = None
 
-    EXPAND_IMG_MARKDOWN_PATTERN = re.compile(r"(!\[.*?\])\((.+?)\)")
+    EXPAND_FILE_MARKDOWN_PATTERN = re.compile(r"\(files/(.+?)\)")
 
-    def expand_img_markdown(self) -> None:
-        self.content = self.EXPAND_IMG_MARKDOWN_PATTERN.sub(
-            fr"\1({current_app.config['BLOGPAGE_ROUTES_TO_STATIC_REL_PATH']}/{self.blogpage_id}/images/{self.id}/\2)",
-            self.content
-        )
+    def expand_file_markdown(self) -> None:
+        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.id}/files/\1)", self.content)
 
-    def collapse_img_markdown(self) -> str:
-        return re.sub(
-            fr"(!\[.*?\])\({current_app.config['BLOGPAGE_ROUTES_TO_STATIC_REL_PATH']}/{self.blogpage_id}/" +
-            fr"images/{self.id}/(.+?)\)",
-            r"\1(\2)", self.content
-        )
+    def collapse_file_markdown(self) -> str:
+        return re.sub(fr"\({self.id}/files/(.+?)\)", r"(files/\1)", self.content)
 
     def get_comment_count(self) -> int:
         # god bless https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers

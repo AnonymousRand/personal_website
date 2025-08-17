@@ -8,7 +8,7 @@ import shutil
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 import sqlalchemy.sql.functions as sa_func
-from flask import current_app, jsonify, render_template, request, url_for
+from flask import current_app, jsonify, render_template, request, send_from_directory, url_for
 from flask_login import current_user
 from markdown_environments import *
 from markdown.extensions.toc import TocExtension
@@ -278,7 +278,9 @@ def create_post(*args, **kwargs):
         if err:
             return jsonify(flash_msg=err)
         post.add_timestamps(should_remove_updated_timestamp=False, should_update_updated_timestamp=False)
-        post.expand_img_markdown()
+        # since flask is stupid and has the base url for relative paths at the blogpage level, not the post
+        # and I don't want to keep having to prepend the (changeable) post sanitized title to linked files
+        post.expand_file_markdown()
 
         # upload files if any
         files_base_path = bp_utils.get_files_base_path(post)
@@ -305,7 +307,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
     form = EditBlogpostForm(obj=post)
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
     form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
-    form.content.data = post.collapse_img_markdown()
+    form.content.data = post.collapse_file_markdown()
     files_base_path = bp_utils.get_files_base_path(post)
     if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
         files_choices = []
@@ -395,7 +397,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                 except Exception as e:
                     return jsonify(flash_msg=f"File move exception: {e}")
 
-        post.expand_img_markdown() # only expand image markdown after checking for unused files
+        post.expand_file_markdown() # only expand image markdown after checking for unused files
         db.session.commit()
         return jsonify(
             redir_url=url_for(
@@ -434,7 +436,7 @@ def delete_post(post, post_sanitized_title, *args, **kwargs):
 
 
 @bp.route("/<string:post_sanitized_title>/comments", methods=["GET"])
-@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@utils.set_content_type(ContentType.JSON)
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
 def get_comments(post, post_sanitized_title, *args, **kwargs):
@@ -576,3 +578,19 @@ def get_comment_count(post, post_sanitized_title, *args, **kwargs):
 @bp_utils.redir_to_post_after_login()
 def get_unread_comment_count(post, post_sanitized_title, *args, **kwargs):
     return jsonify(count=post.get_unread_comment_count())
+
+
+####################################################################################################
+# Files
+####################################################################################################
+
+
+# alternate, less cumbersome endpoint than the default static endpoint for post files
+@bp.route("/<string:post_id>/files/<string:file_name>", methods=["GET"])
+def get_file(post_id, file_name, *args, **kwargs):
+    post = db.session.get(Post, post_id)
+    if post is None:
+        return bp_util.nonexistent_post(ContentType.HTML)
+    return send_from_directory(
+        f"{current_app.config['ROOT_TO_BLOGPAGE_STATIC']}/{post.blogpage_id}/files/{post.id}", file_name
+    )
