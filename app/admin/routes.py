@@ -77,7 +77,7 @@ def choose_action(*args, **kwargs):
     form = ChooseActionForm()
 
     if request.method == "GET":
-        return render_template("admin/form_base.html", title="Choose action", prompt=">w<", form=form)
+        return render_template("admin/form_base.html", title="Choose action", prompt="UwU what's this?", form=form)
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)
