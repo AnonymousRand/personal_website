@@ -368,14 +368,14 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
                     if file_ext in current_app.config["FILE_UPLOAD_EXTS_IN_TEXT"]:
                         # if `file_name` is a type that should appear in the post text (e.g. images),
                         # remove it if it doesn't
-                        if f"]({file_name})" not in post.content:
+                        if f"](files/{file_name})" not in post.content:
                             should_delete = True
                     else:
                         # else if `file` is a type that doesn't appear in the post text (e.g. .xcf),
                         # remove it if its extension-less file name doesn't appear in the post text 
                         # (requires such files to exactly match their respective image's file name)
                         # also requires no periods in file basename!
-                        if f"]({file_basename}." not in post.content:
+                        if f"](files/{file_basename}." not in post.content:
                             should_delete = True
                     if should_delete:
                         os.remove(os.path.join(files_base_path, file_name))
