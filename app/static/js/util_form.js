@@ -1,18 +1,8 @@
 function confirmWrapper(inner) {
     return function() {
-        if (!confirm("Mouse aim check")) {
+        if (!confirm("mouse aim check :3")) {
             return false;
         }
         inner.apply(this, arguments);
     };
 }
-
-$(document).ready(function() {
-    // remove invalid input highlighting and error message when user inputs into field
-    $(".form-control").on("input", function() {
-        if ($(this).hasClass("is-invalid")) {
-            $(this).removeClass("is-invalid");
-            $(this).siblings(".invalid-feedback").text("");
-        }
-    });
-});
