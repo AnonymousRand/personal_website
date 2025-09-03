@@ -29,7 +29,7 @@ window.MathJax = {
             codom: ["\\operatorname{codom}"],
             coloneq: ["\\mathrel{≔}"],
             comb: ["{}^{#1}C_{#2}", 2],
-            cons: "\\text{cons}",
+            combv: ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2],
             ddx: ["\\frac{\\mathrm{d}}{\\mathrm{d} #1}", 1],
             dist: "\\operatorname{dist}",
             dom: "\\operatorname{dom}",
