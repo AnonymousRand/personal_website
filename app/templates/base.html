@@ -93,7 +93,7 @@
     <!-- JS -->
       <!-- inline (passing vars from Jinja to JS, for example) -->
       <script nonce="{{ csp_nonce() }}">
-          const DEFAULT_BACKGROUND_IMG_URL = "{{ url_for('static', filename='images/background_default.svg', _external=True) }}";
+          const DEFAULT_BACKGROUND_IMG_URL = "{{ url_for('static', filename='files/background_default.svg', _external=True) }}";
           const LOGIN_URL = "{{ url_for(config['LOGIN_ENDPOINT'], _external=True) }}";
           const LOGOUT_URL = "{{ url_for('admin.logout', _external=True) }}";
           const AFTER_LOGOUT_URL = "{{ url_for(config['AFTER_LOGOUT_ENDPOINT'], _external=True) }}";
@@ -125,7 +125,7 @@
 
       {% block js_head_linked_deferred %}{% endblock %}
 
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico', _external=True) }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='files/favicon.ico', _external=True) }}">
   </head>
 
   <body>
@@ -135,7 +135,7 @@
       <!-- SYNC: media query in `app/static/css/style.css` where navbar collapses -->
       <nav id="navbar" class="navbar navbar-expand-md sticky-top bg-white">
         <a class="navbar__home navbar-brand d-inline-flex align-items-center" href="{{ url_for('main.index', _external=True) }}">
-          <img class="navbar__logo me-2" src="{{ url_for('static', filename='images/favicon.ico', _external=True) }}" alt="favicon">
+          <img class="navbar__logo me-2" src="{{ url_for('static', filename='files/favicon.ico', _external=True) }}" alt="favicon">
           <span>Home</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

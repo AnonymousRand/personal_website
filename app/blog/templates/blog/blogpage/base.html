@@ -17,7 +17,7 @@
 {% block js_head_inline %}
 {{ super() }}
 // pieces for optionally piecing together `backgroundImgUrl`
-const BACKGROUND_IMG_URL_BASE = "{{ url_for('blog.static', filename='blogpage/' ~ blogpage_id ~ '/images/', _external=True) }}";
+const BACKGROUND_IMG_URL_BASE = "{{ url_for('blog.static', filename='blogpage/' ~ blogpage_id ~ '/files/', _external=True) }}";
 let backgroundImgName = "";
 {% endblock %}
 

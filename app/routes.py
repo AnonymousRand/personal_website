@@ -18,7 +18,7 @@ def inject_blogpages():
 
 
 def favicon():
-    return redirect(url_for("static", filename="images/favicon.ico"))
+    return redirect(url_for("static", filename="files/favicon.ico"))
 
 
 def handle_general_http_error(e):
