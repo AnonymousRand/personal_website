@@ -313,7 +313,9 @@
 /* `link` */
 /**********/
 
-.link--discreet {
+.link--discreet,
+.link--discreet .MathJax * {
+    text-decoration: underline !important;
     text-decoration-style: dotted !important;
     text-decoration-color: dimgray !important;
     color: dimgray !important;

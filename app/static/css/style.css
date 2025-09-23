@@ -45,6 +45,11 @@ li > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0;
 }
 
+/* to get mathjax `\overline` to show, because they can never fix it themselves */
+.mjx-c2013 mjx-c {
+    font-size: 1.01em !important;
+}
+
 /* adjust dropdown menu width */
 nav .dropdown-menu {
     width: max-content;
