@@ -20,7 +20,7 @@ def login():
         logout_user()
 
     if request.method == "GET":
-        return render_template("admin/form_base.html", title="Login", prompt="login pls meow :3", form=form)
+        return render_template("admin/form_base.html", title="Login", prompt="pls login meow :3", form=form)
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)
