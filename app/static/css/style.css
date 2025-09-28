@@ -47,7 +47,7 @@ li > :last-child > :last-child > :last-child > :last-child {
 
 /* to get mathjax `\overline` to show, because they can never fix it themselves */
 .mjx-c2013 mjx-c {
-    font-size: 1.01em !important;
+    font-size: 1.1em !important;
 }
 
 /* adjust dropdown menu width */
