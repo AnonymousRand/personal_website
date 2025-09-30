@@ -33,7 +33,9 @@ class EditBlogpostForm(BlogpostBaseForm):
 
 class AddCommentForm(FlaskForm):
     parent = HiddenField(default=None)
-    author = StringField("Display name",validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"])])
+    author = StringField(
+        "Display name",validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"])]
+    )
     content = TextAreaField(
         "Comment", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"])]
     )

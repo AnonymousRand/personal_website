@@ -31,10 +31,10 @@ $(document).ready(function() {
         }
     });
 
-    $("#logout-link").on("click", async function(e) {
+    $("#logout-link").on("click", confirmWrapper(async function(e) {
         e.preventDefault();
         const respJson = await fetchWrapper({url: LOGOUT_URL, method: "POST"});
-    });
+    }));
 
     const jqModalLogin = $("#login-modal");
     // differentiate modal vs. non-modal logins for redirecting back
