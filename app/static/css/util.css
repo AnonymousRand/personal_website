@@ -510,15 +510,19 @@
     overflow-y: hidden !important; /* for MathJax equation environments with `\\[pt]` extra line spacing */
 }
 
-.spoiler {
+.spoiler,
+.spoiler * {
     background-color: gainsboro !important;
+    text-decoration-color: transparent !important;
     color: transparent !important;
     transition: background-color 0.4s, color 0.4s !important;
 }
 
-.spoiler:hover {
+.spoiler:hover,
+.spoiler:hover * {
     background-color: transparent !important;
-    color: revert !important;
+    text-decoration-color: unset !important;
+    color: unset !important;
 }
 
 .text-overflow-ellipsis {
