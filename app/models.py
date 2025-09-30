@@ -185,10 +185,10 @@ class Post(db.Model):
     EXPAND_FILE_MARKDOWN_PATTERN = re.compile(r"\(files/(.+?)\)")
 
     def expand_file_markdown(self) -> None:
-        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.id}/files/\1)", self.content)
+        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.sanitized_title}/files/\1)", self.content)
 
     def collapse_file_markdown(self) -> str:
-        return re.sub(fr"\({self.id}/files/(.+?)\)", r"(files/\1)", self.content)
+        return re.sub(fr"\({self.sanitized_title}/files/(.+?)\)", r"(files/\1)", self.content)
 
     def get_comment_count(self) -> int:
         # god bless https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers

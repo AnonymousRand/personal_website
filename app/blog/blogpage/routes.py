@@ -581,11 +581,10 @@ def get_unread_comment_count(post, post_sanitized_title, *args, **kwargs):
 
 
 # alternate, less cumbersome endpoint than the default static endpoint for post files
-@bp.route("/<string:post_id>/files/<string:file_name>", methods=["GET"])
-def get_file(post_id, file_name, *args, **kwargs):
-    post = db.session.get(Post, post_id)
-    if post is None:
-        return bp_util.nonexistent_post(ContentType.HTML)
+@bp.route("/<string:post_sanitized_title>/files/<string:file_name>", methods=["GET"])
+@utils.set_content_type(ContentType.HTML)
+@bp_utils.require_valid_post()
+def get_file(post, post_sanitized_title, file_name, *args, **kwargs):
     return send_from_directory(
         f"{current_app.config['ROOT_TO_BLOGPAGE_STATIC']}/{post.blogpage_id}/files/{post.id}", file_name
     )
