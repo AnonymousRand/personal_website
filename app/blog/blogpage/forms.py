@@ -28,6 +28,7 @@ class EditBlogpostForm(BlogpostBaseForm):
     delete_unused_files = BooleanField("Delete unused files")
     update_updated_timestamp = BooleanField("Update updated timestamp")
     remove_updated_timestamp = BooleanField("Remove updated timestamp")
+    save_blogpost = SubmitField("Save")
     edit_blogpost_form_submit = SubmitField("Submit")
 
 

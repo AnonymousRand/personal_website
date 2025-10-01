@@ -4,7 +4,8 @@ $(document).ready(function() {
         e.preventDefault();
       
         const form = e.target;
-        let formData = new FormData(form);
+        // pass `e.originalEvent.submitter` to add `name=value` of submit button to form
+        let formData = new FormData(form, e.originalEvent.submitter);
         let formAction = form.getAttribute("action");
         if (!formAction) {
             formAction = window.location.href;

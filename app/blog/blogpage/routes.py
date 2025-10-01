@@ -394,12 +394,15 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
 
         post.expand_file_markdown() # only expand image markdown after checking for unused files
         db.session.commit()
-        return jsonify(
-            redir_url=url_for(
-                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
-            ),
-            flash_msg="post updated :3"
-        ) # view updated post
+        if "save_blogpost" in request.form:
+            return jsonify(flash_msg="post updated :3")
+        else:
+            return jsonify(
+                redir_url=url_for(
+                    f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
+                ),
+                flash_msg="post updated :3"
+            ) # view updated post if using "submit" and not "save" button
 
 
 @bp.route("/<string:post_sanitized_title>", methods=["DELETE"])
