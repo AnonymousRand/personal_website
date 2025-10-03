@@ -24,9 +24,7 @@ class Config(object):
             "http.cat"                                              # error pages :3
         ],
         "font-src": _csp_default_src + [
-            "cdn.jsdelivr.net",                                     # MathJax
-            "fonts.googleapis.com",
-            "fonts.gstatic.com"
+            "cdn.jsdelivr.net"                                      # MathJax
         ],
         "img-src": _csp_default_src + [
             "data:",                                                # Bootstrap, DarkReader
@@ -41,7 +39,6 @@ class Config(object):
             "cdn.jsdelivr.net",
             "cdnjs.cloudflare.com",
             "code.jquery.com",
-            "fonts.googleapis.com",
             "\'unsafe-inline\'"                                     # a lot of things apparently
         ],
         "base-uri": _csp_default_src,

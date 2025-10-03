@@ -1,8 +1,6 @@
 /* font */
-$font-weight-light: 400;
 $font-weight-normal: 500;
-$headings-font-weight: 550;
+$headings-font-weight: $font-weight-normal;
 $input-font-weight: $font-weight-normal;
-$lead-font-weight: $font-weight-light;
 
 @import "../node_modules/bootstrap/scss/bootstrap"

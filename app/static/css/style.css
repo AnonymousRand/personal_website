@@ -1,3 +1,17 @@
+@font-face {
+    font-family: "Quicksand :3";
+    src: url("../fonts/quicksand_dongle.ttf") format(TrueType);
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Quicksand :3";
+    src: url("../fonts/quicksand_dongle_bold.ttf") format(TrueType);
+    font-weight: 700;
+    font-display: swap;
+}
+
 a {
     text-decoration-color: var(--custom-blue-deep);
     color: var(--custom-blue-deep);
@@ -18,7 +32,7 @@ blockquote {
 body {
     text-decoration-thickness: 1px;
     overflow-wrap: anywhere;
-    font-family: "Quicksand", sans-serif;
+    font-family: "Quicksand :3", sans-serif;
     font-size: 16px;
 }
 
