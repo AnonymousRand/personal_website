@@ -44,12 +44,12 @@
 
 /* override all Bootstrap `fs` classes */
 .fs-1 {
-    font-size: calc(1.45rem + 3.6vw) !important;
+    font-size: calc(1.46rem + 3.68vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-1 {
-        font-size: 3.25rem !important;
+        font-size: 3.3rem !important;
     }
 }
 
