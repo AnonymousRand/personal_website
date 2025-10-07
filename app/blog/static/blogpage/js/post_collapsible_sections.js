@@ -1,6 +1,16 @@
+const postScrollObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            entry.target.setAttribute("open", "");
+        }
+    });
+});
+
 $("#post__content h2").each(function() {
     $(this).nextUntil("#post__content h2, #footnotes__wrapper, #post__end").addBack().wrapAll('<details class="post__collapsible-section"></details>');
     $(this).wrap('<summary></summary>');
+    // automatically expand section when on screen
+    postScrollObserver.observe($(this).closest("details.post__collapsible-section").get(0));
 });
 
 $(document).ready(function() {
