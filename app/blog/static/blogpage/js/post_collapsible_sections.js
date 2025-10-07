@@ -1,6 +1,8 @@
+let canExpandPostCollapsibleSections = true;
+
 const postScrollObserver = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && canExpandPostCollapsibleSections) {
             entry.target.closest(".post__collapsible-section").setAttribute("open", "");
         }
     });

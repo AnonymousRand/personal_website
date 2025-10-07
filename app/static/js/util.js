@@ -5,7 +5,7 @@ const HORIZ_SCOLL_DIV_HTML_FULL_WIDTH = '<div class="scroll-overflow-x" width="f
  * Add code to an existing function/merges two functions.
  *
  * Preconditions:
- *     - The two functions must have the same params
+ *     - The two functions must have the same params.
  *
  * Usage:
  *     ```
