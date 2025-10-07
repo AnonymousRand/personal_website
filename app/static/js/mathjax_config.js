@@ -1,9 +1,24 @@
-let onMathJaxTypeset = function(baseSelector) {
-    const jqBase = $(baseSelector);
+function renderMathJaxSelector(selector) {
+    const jqBase = $(selector);
     if (jqBase.length === 0) {
         return;
     }
+    MathJax.typesetPromise([selector]).then(function() {
+        onMathJaxTypeset(jqBase);
+    });
+}
 
+function renderMathJaxNode(node) {
+    const jqBase = $(node);
+    if (jqBase.length === 0) {
+        return;
+    }
+    MathJax.typesetPromise([node]).then(function() {
+        onMathJaxTypeset(jqBase);
+    });
+}
+
+function onMathJaxTypeset(jqBase) {
     // make `\[\]` LaTeX blocks scroll horizontally on overflow
     jqBase.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCOLL_DIV_HTML);
     // for `\tag{}`ed equations
@@ -93,11 +108,7 @@ window.MathJax = {
         }
     },
     startup: {
-        ready: function() {
-            MathJax.startup.defaultReady();
-            MathJax.startup.promise.then(function() {
-                onMathJaxTypeset("body");
-            });
-        }
+        // render nothing at first while other JS goes and labels collapsible post sections
+        typeset: false
     }
 };

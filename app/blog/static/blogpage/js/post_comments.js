@@ -2,7 +2,7 @@ let commentLoadIntervalId = 0;
 
 // when logging in via modal on a post page/opening a post page as admin and scrolling to the bottom, reload
 // comments to make sure we are seeing all of them, and then mark all of them as read
-onSamePageLogin = addToFunction(onSamePageLogin, function() {
+onSamePageLogin = addToFunc(onSamePageLogin, function() {
     reloadComments();
 });
 $(document).ready(function() {
@@ -71,14 +71,10 @@ async function reloadComments() {
             return;
         }
 
-        // render timestamps and LaTeX in comments
+        // render timestamps, LaTeX, and custom styling in comments
         flask_moment_render_all();
-        MathJax.typesetPromise(["#comment-list"]).then(function() {
-            onMathJaxTypeset("#comment-list");
-        });
-
-        // apply CSS to comments
-        applyGlobalStyles("#comment-list");
+        renderMathJaxSelector("#comment-list");
+        applyStylesSelector("#comment-list");
 
         // mark comments as read if admin
         if (isUserAuthenticated) {

@@ -21,7 +21,7 @@ const GET_COMMENT_COUNT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_comment_
 const GET_COMMENT_UNREAD_COUNT_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.get_unread_comment_count', post_sanitized_title=post.sanitized_title, _external=True) }}";
 const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_comments_as_read', post_sanitized_title=post.sanitized_title, _external=True) }}";
 {% endblock %}
-
+  
 
 {% block js_head_linked_deferred %}
 {{ super() }}
@@ -92,7 +92,7 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
     {{ post.content|safe }}
   </div>
   
-  <hr>
+  <hr id="post__end">
   
   <div id="leave-a-comment">
     <h2 class="fs-4">Leave a comment</h2>
@@ -107,9 +107,11 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
     <div id="comment-list" class="d-flex flex-column flex-shrink-0"></div>
   </div>
 {% endblock %}
-  
+
 
 {% block js_end_linked %}
   <script src="{{ url_for('blog.static', filename='blogpage/js/post_display_customization.js', _external=True) }}"></script>
+  <!-- must come after `post_display_customization.js` -->
+  <script src="{{ url_for('blog.static', filename='blogpage/js/post_collapsible_sections.js', _external=True) }}" defer></script>
 </div>
 {% endblock %}

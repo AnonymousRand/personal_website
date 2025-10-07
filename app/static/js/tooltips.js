@@ -1,5 +1,5 @@
-function refreshTooltips(baseSelector) {
-    const nodeBase = document.querySelector(baseSelector);
+function refreshTooltips(selector) {
+    const nodeBase = document.querySelector(selector);
     if (!nodeBase) {
         return;
     }
@@ -8,8 +8,8 @@ function refreshTooltips(baseSelector) {
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 }
 
-function genFootnoteTooltips(baseSelector) {
-    const jqBase = $(baseSelector);
+function genFootnoteTooltips(selector) {
+    const jqBase = $(selector);
     if (jqBase.length === 0) {
         return;
     }
@@ -35,7 +35,7 @@ function genFootnoteTooltips(baseSelector) {
         $(this).attr("data-bs-title", tooltipContents);
     });
 
-    refreshTooltips(baseSelector);
+    refreshTooltips(selector);
 }
 
 $(document).ready(function() {
@@ -43,9 +43,8 @@ $(document).ready(function() {
     genFootnoteTooltips("body");
 });
 
-// rerender LaTeX in tooltips on show
+// rerender tooltips on show
 $(document).on("inserted.bs.tooltip", function(e) {
-    MathJax.typesetPromise([".tooltip"]).then(function() {
-        onMathJaxTypeset(".tooltip");
-    });
+    renderMathJaxSelector(".tooltip");
+    applyStylesSelector(".tooltip");
 });

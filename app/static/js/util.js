@@ -9,10 +9,10 @@ const HORIZ_SCOLL_DIV_HTML_FULL_WIDTH = '<div class="scroll-overflow-x" width="f
  *
  * Usage:
  *     ```
- *     func1 = addToFunction(func1, func2);
+ *     func1 = addToFunc(func1, func2);
  *     ```
  */
-function addToFunction(funcBase, funcToAdd) {
+function addToFunc(funcBase, funcToAdd) {
     return function() {
         funcBase.apply(this, arguments);
         funcToAdd.apply(this, arguments);

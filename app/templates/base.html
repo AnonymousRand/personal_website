@@ -46,14 +46,15 @@
       <script src="{{ url_for('static', filename='js/flask_moment_for_csp.js', _external=True) }}" defer></script>
 
       <!-- MathJax -->
-      <script src="{{ url_for('static', filename='js/mathjax_config.js', _external=True) }}" defer></script>
+      <!-- no defer because needed for display customization -->
+      <!-- this script must actually be run immediately before MathJax is loaded! -->
+      <script src="{{ url_for('static', filename='js/mathjax_config.js', _external=True) }}"></script>
       <script
           id="MathJax-script"
           type="text/javascript"
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
           integrity="sha384-Wuix6BuhrWbjDBs24bXrjf4ZQ5aFeFWBuKkFekO2t8xFU0iNaLQfp2K6/1Nxveei"
-          crossorigin="anonymous"
-          defer>
+          crossorigin="anonymous">
       </script>
 
     <!-- CSS -->
@@ -99,6 +100,8 @@
       <script src="{{ url_for('static', filename='js/util_session.js', _external=True) }}"></script>
       <!-- no defer to avoid brief light mode flash -->
       <script src="{{ url_for('static', filename='js/dark_mode.js', _external=True) }}"></script>
+      <!-- no defer because `post_display_customization.js`, which is not deferred, requires this -->
+      <script src="{{ url_for('static', filename='js/tooltips.js', _external=True) }}"></script>
 
       {% block js_head_linked %}{% endblock %}
 
@@ -107,7 +110,6 @@
       <script src="{{ url_for('static', filename='js/events.js', _external=True) }}" defer></script>
       <script src="{{ url_for('static', filename='js/main_form_submit.js', _external=True) }}" defer></script>
       <script src="{{ url_for('static', filename='js/password_visibility_toggle.js', _external=True) }}" defer></script>
-      <script src="{{ url_for('static', filename='js/tooltips.js', _external=True) }}"></script>
 
       {% block js_head_linked_deferred %}{% endblock %}
 

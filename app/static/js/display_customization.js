@@ -1,9 +1,20 @@
-function applyGlobalStyles(baseSelector) {
-    const jqBase = $(baseSelector);
+function applyStylesSelector(selector) {
+    const jqBase = $(selector);
     if (jqBase.length === 0) {
         return;
     }
+    applyStylesBase(jqBase);
+}
 
+function applyStylesNode(node) {
+    const jqBase = $(node);
+    if (jqBase.length === 0) {
+        return;
+    }
+    applyStylesBase(jqBase);
+}
+
+function applyStylesBase(jqBase) {
     // tables and non-table code blocks scroll horizontally on overflow
     jqBase.find("table").wrap(HORIZ_SCOLL_DIV_HTML);
     jqBase.find("pre:not(table pre, .pre--inline) code").each(function() {
@@ -11,6 +22,9 @@ function applyGlobalStyles(baseSelector) {
         // also syntax highlight bordered code blocks
         hljs.highlightElement($(this).get(0));
     });
+
+    // open default open dropdowns
+    $("details.dropdown--default-open").attr("open", "");
 }
 
 const colorChoices = {
@@ -97,12 +111,14 @@ function reloadBackgroundImg() {
 }
 
 randomizeColors();
-applyGlobalStyles("body");
 reloadBackgroundImg();
 // for making sure navigating to a URL fragment doesn't hide it in the sticky navbar
 document.documentElement.style.setProperty("--navbar-outer-height", `${$("#navbar").outerHeight()}px`);
 
 $(document).ready(function() {
-    // open default open dropdowns
-    $("details.dropdown--default-open").attr("open", "");
+    // render MathJax first!
+    // for some reason MathJax doesn't like `*:not(#post__content *)`
+    renderMathJaxSelector("#post__content > :not(.post__collapsible-section), .post__collapsible-section > summary");
+    // render anything not in a collapsible section and collapsible section `<summary>` only
+    applyStylesSelector("*:not(#post__content *), #post__content > :not(.post__collapsible-section), .post__collapsible-section > summary");
 });
