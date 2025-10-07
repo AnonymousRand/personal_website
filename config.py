@@ -20,6 +20,7 @@ class Config(object):
         "default-src": _csp_default_src,
         "connect-src": _csp_default_src + [
             "data:",                                                # DarkReader
+            "cdn.jsdelivr.net",                                     # MathJax
             "cdnjs.cloudflare.com",                                 # Highlight.js
             "http.cat"                                              # error pages :3
         ],
@@ -40,6 +41,9 @@ class Config(object):
             "cdnjs.cloudflare.com",
             "code.jquery.com",
             "\'unsafe-inline\'"                                     # a lot of things apparently
+        ],
+        "worker-src": _csp_default_src + [
+            "blob:"                                                 # MathJax
         ],
         "base-uri": _csp_default_src,
         "frame-ancestors": _csp_default_src
