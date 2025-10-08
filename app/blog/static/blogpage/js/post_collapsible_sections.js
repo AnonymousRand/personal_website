@@ -21,18 +21,24 @@ function scrollToNodeWithCallback(node, callback) {
 };
 
 function onUrlFragmentNavigate(urlFragment) {
-    const nodeTarget = document.querySelector(urlFragment);
-    if (nodeTarget === null) {
+    const jqTarget = $(urlFragment); // using JQuery selector since `querySelector()` doesn't allow `id`s starting with number
+    if (jqTarget.length === 0) {
         return;
     }
 
-    canExpandPostCollapsibleSections = false;
+    const nodeTarget = jqTarget.get(0);
     const jqParentDetails = $(nodeTarget).parents("details"); // yes, I know this isn't just collapsible sections
     if (jqParentDetails.length > 0) {
-        // don't open collapsible if target is visible in `<summary>` portion
         let shouldOpen = true;
+        // don't allow opening collapsible sections while scrolling to target to not shift layout and cause scroll to be wrong
+        canExpandPostCollapsibleSections = false;
+        // don't open collapsible if target is visible in `<summary>` portion of a collapsible that isn't a post collapsible section
+        // (e.g. exercises dropdowns)
         jqParentDetails.each(function() {
-            if ($.contains($(this).find("summary").first().get(0), nodeTarget)) {
+            if (
+                !jqParentDetails.is(".post__collapsible-section")
+                && $.contains($(this).find("summary").first().get(0), nodeTarget)
+            ) {
                 shouldOpen = false;
                 return false; // breaks out of `each()`
             }
@@ -42,37 +48,25 @@ function onUrlFragmentNavigate(urlFragment) {
         }
     }
     // may need to manually correct scrolling position
+    // also wait until scroll finisehd to process opening collapsible sections
+    // so we don't shift layout and cause scroll to be wrong
     scrollToNodeWithCallback(nodeTarget, function() {
         canExpandPostCollapsibleSections = true;
     });
 }
 
-const postScrollObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-        if (entry.isIntersecting && canExpandPostCollapsibleSections) {
-            entry.target.closest(".post__collapsible-section").setAttribute("open", "");
-        }
-    });
-});
-
+// wrap all post `<h2>`s in a collapsible section
 $("#post__content h2").each(function() {
     $(this).nextUntil("#post__content h2, #footnotes__wrapper, #post__end").addBack().wrapAll('<details class="post__collapsible-section"></details>');
     $(this).wrap('<summary></summary>');
 });
 
+// render MathJax and apply custom styling inside post collapsible sections on open
 $(".post__collapsible-section").on("toggle", function(e) {
     if (e.target.open) {
         renderMathJaxNode(e.target);
         applyStylesNode(e.target);
     }
-});
-
-// automatically expand collapsible sections when on screen
-$(".post__collapsible-section").each(function() {
-    postScrollObserver.observe($(this).get(0));
-    $(this).find("p").each(function() {
-        postScrollObserver.observe($(this).get(0));
-    });
 });
 
 // open necessary collapsible if navigated to URL fragment
@@ -81,10 +75,23 @@ $(window).on("hashchange", function() {
 });
 
 $(document).ready(function() {
-    // open necessary collapsible if navigated to URL fragment on page load
+    // open necessary collapsibles if navigated to URL fragment on page load
     if (document.location.hash !== "") {
         onUrlFragmentNavigate(document.location.hash);
-    } else {
-        canExpandPostCollapsibleSections = true;
     }
+
+    // automatically expand collapsible sections when on screen by attaching intersection observers
+    const postScrollObserver = new IntersectionObserver(function(entries) {
+        for (entry of entries) {
+            if (entry.isIntersecting && canExpandPostCollapsibleSections) {
+                entry.target.closest(".post__collapsible-section").setAttribute("open", "");
+            }
+        }
+    }, {
+        rootMargin: `-${window.getComputedStyle(document.body).getPropertyValue("--navbar-outer-height")} 0px 0px 0px`,
+        threshold: "0.5"
+    });
+    $(".post__collapsible-section").each(function() {
+        postScrollObserver.observe($(this).get(0));
+    });
 });
