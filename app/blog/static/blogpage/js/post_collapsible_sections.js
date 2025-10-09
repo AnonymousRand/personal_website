@@ -78,6 +78,8 @@ $(document).ready(function() {
     // open necessary collapsibles if navigated to URL fragment on page load
     if (document.location.hash !== "") {
         onUrlFragmentNavigate(document.location.hash);
+    } else {
+        canExpandPostCollapsibleSections = true;
     }
 
     // automatically expand collapsible sections when on screen by attaching intersection observers
