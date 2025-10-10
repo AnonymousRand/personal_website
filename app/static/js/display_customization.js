@@ -16,9 +16,9 @@ function applyStylesNode(node) {
 
 function applyStylesBase(jqBase) {
     // tables and non-table code blocks scroll horizontally on overflow
-    jqBase.find("table").wrap(HORIZ_SCOLL_DIV_HTML);
+    jqBase.find("table").wrap(HORIZ_SCROLL_DIV_HTML);
     jqBase.find("pre:not(table pre, .pre--inline) code").each(function() {
-        $(this).wrap(HORIZ_SCOLL_DIV_HTML);
+        $(this).wrap(HORIZ_SCROLL_DIV_HTML);
         // also syntax highlight bordered code blocks
         hljs.highlightElement($(this).get(0));
     });
