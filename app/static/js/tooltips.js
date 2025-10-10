@@ -45,6 +45,6 @@ $(document).ready(function() {
 
 // rerender tooltips on show
 $(document).on("inserted.bs.tooltip", function(e) {
-    renderMathJaxSelector(".tooltip");
-    applyStylesSelector(".tooltip");
+    renderMathJax(".tooltip");
+    applyStyles(".tooltip");
 });

@@ -1,20 +1,9 @@
-function applyStylesSelector(selector) {
+function applyStyles(selector) {
     const jqBase = $(selector);
     if (jqBase.length === 0) {
         return;
     }
-    applyStylesBase(jqBase);
-}
 
-function applyStylesNode(node) {
-    const jqBase = $(node);
-    if (jqBase.length === 0) {
-        return;
-    }
-    applyStylesBase(jqBase);
-}
-
-function applyStylesBase(jqBase) {
     // tables and non-table code blocks scroll horizontally on overflow
     jqBase.find("table").wrap(HORIZ_SCROLL_DIV_HTML);
     jqBase.find("pre:not(table pre, .pre--inline) code").each(function() {
@@ -116,9 +105,5 @@ reloadBackgroundImg();
 document.documentElement.style.setProperty("--navbar-outer-height", `${$("#navbar").outerHeight()}px`);
 
 $(document).ready(function() {
-    // render MathJax first!
-    // for some reason MathJax doesn't like `*:not(#post__content *)`
-    renderMathJaxSelector("#post__content > :not(.post__collapsible-section), .post__collapsible-section > summary");
-    // render anything not in a collapsible section and collapsible section `<summary>` only
-    applyStylesSelector("*:not(#post__content *), #post__content > :not(.post__collapsible-section), .post__collapsible-section > summary");
+    applyStyles("body");
 });

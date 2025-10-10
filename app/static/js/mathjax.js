@@ -1,33 +1,3 @@
-function renderMathJaxSelector(selector) {
-    const jqBase = $(selector);
-    if (jqBase.length === 0) {
-        return;
-    }
-    MathJax.typesetPromise([selector]).then(function() {
-        onMathJaxTypeset(jqBase);
-    });
-}
-
-function renderMathJaxNode(node) {
-    const jqBase = $(node);
-    if (jqBase.length === 0) {
-        return;
-    }
-    MathJax.typesetPromise([node]).then(function() {
-        onMathJaxTypeset(jqBase);
-    });
-}
-
-function onMathJaxTypeset(jqBase) {
-    // make `\[\]` LaTeX blocks scroll horizontally on overflow
-    jqBase.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCROLL_DIV_HTML);
-    // for `\tag{}`ed equations
-    jqBase.find("mjx-math[width='full']").each(function() {
-        $(this).parent("mjx-container").css("min-width", ""); // otherwise text just overflows
-        $(this).wrap(HORIZ_SCROLL_DIV_HTML_FULL_WIDTH);
-    });
-}
-
 window.MathJax = {
     tex: {
         // custom macros from my notes (or all the ones MathJax supports, at least)
@@ -108,7 +78,38 @@ window.MathJax = {
         }
     },
     startup: {
-        // render nothing at first while other JS goes and labels collapsible post sections
+        // render nothing at first since this can be very slow on huge posts
         typeset: false
+    },
+    options: {
+        enableEnrichment: false
     }
 };
+
+function renderMathJax(selectorOrNode) {
+    MathJax.typesetClear([selectorOrNode]);
+    MathJax.typeset([selectorOrNode]);
+}
+
+$(document).ready(function() {
+    // make `\[\]` LaTeX blocks scroll horizontally on overflow
+    $("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCROLL_DIV_HTML);
+    // for `\tag{}`ed equations
+    $("mjx-math[width='full']").each(function() {
+        $(this).parent("mjx-container").css("min-width", ""); // otherwise text just overflows
+        $(this).wrap(HORIZ_SCROLL_DIV_HTML_FULL_WIDTH);
+    });
+
+    // MathJax only renders when in view
+    const intersectionObserver = new IntersectionObserver(function(entries) {
+        for (entry of entries) {
+            if (entry.isIntersecting) {
+                renderMathJax(entry.target);
+            }
+        }
+    });
+    const nodesToObserve = document.querySelectorAll("#post__content > *");
+    nodesToObserve.forEach(function(node) {
+        intersectionObserver.observe(node);
+    });
+});

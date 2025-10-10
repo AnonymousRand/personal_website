@@ -73,8 +73,8 @@ async function reloadComments() {
 
         // render timestamps, LaTeX, and custom styling in comments
         flask_moment_render_all();
-        renderMathJaxSelector("#comment-list");
-        applyStylesSelector("#comment-list");
+        renderMathJax("#comment-list");
+        applyStyles("#comment-list");
 
         // mark comments as read if admin
         if (isUserAuthenticated) {

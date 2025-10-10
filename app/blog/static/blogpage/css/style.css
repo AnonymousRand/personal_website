@@ -152,14 +152,6 @@ input[value="Reply"][value="Delete"] {
     font-size: 1.15rem;
 }
 
-.post__collapsible-section > summary {
-    list-style: none !important;
-}
-
-.post__collapsible-section > summary::-webkit-details-marker {
-    display: none;
-}
-
 :is(.post__content, .comment__content) table {
     margin-right: auto;
     margin-left: auto;
