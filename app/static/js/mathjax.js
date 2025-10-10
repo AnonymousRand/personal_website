@@ -87,23 +87,27 @@ window.MathJax = {
 };
 
 function renderMathJax(selectorOrNode) {
-    MathJax.typesetClear([selectorOrNode]);
+    MathJax.typesetClear([selectorOrNode]); // otherwise index size errros
     MathJax.typeset([selectorOrNode]);
-}
 
-$(document).ready(function() {
     // make `\[\]` LaTeX blocks scroll horizontally on overflow
-    $("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCROLL_DIV_HTML);
+    const jqNode = $(selectorOrNode);
+    jqNode.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCROLL_DIV_HTML);
     // for `\tag{}`ed equations
-    $("mjx-math[width='full']").each(function() {
+    jqNode.find("mjx-math[width='full']").each(function() {
         $(this).parent("mjx-container").css("min-width", ""); // otherwise text just overflows
         $(this).wrap(HORIZ_SCROLL_DIV_HTML_FULL_WIDTH);
     });
+}
 
-    // MathJax only renders when in view
+let canRenderMathJax = false;
+let scrollToNodeTimer;
+
+// MathJax only renders when in view
+function addIntersectionObserver() {
     const intersectionObserver = new IntersectionObserver(function(entries) {
         for (entry of entries) {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && canRenderMathJax) {
                 renderMathJax(entry.target);
             }
         }
@@ -112,4 +116,54 @@ $(document).ready(function() {
     nodesToObserve.forEach(function(node) {
         intersectionObserver.observe(node);
     });
+}
+
+// from https://github.com/w3c/csswg-drafts/issues/3744#issuecomment-2451949981; allow callback on `scrollIntoView()` finish
+// so we can halt detection of MathJax to render until URL fragment scroll is done to avoid lag spike
+// basically refresh a timer every time a scroll event is detected, and only call callback when timer finishes
+function scrollToNodeWithCallback(node, callback) {
+    const eventListenerCb = function() {
+        clearTimeout(scrollToNodeTimer);
+        scrollToNodeTimer = setTimeout(timerCb, 100);
+    };
+    const timerCb = function() {
+        callback();
+        document.removeEventListener("scroll", eventListenerCb);
+    };
+
+    scrollToNodeTimer = setTimeout(timerCb, 100);
+    document.addEventListener("scroll", eventListenerCb);
+    node.scrollIntoView();
+};
+
+function onUrlFragmentNavigate(urlFragment, callback = () => {}) {
+    const jqTarget = $(urlFragment); // using JQuery selector since `querySelector()` doesn't allow `id`s starting with number
+    if (jqTarget.length === 0) {
+        return;
+    }
+    // wait until scroll finished to render MathJax
+    canRenderMathJax = false;
+    callback = addToFunc(callback, function() {
+        canRenderMathJax = true;
+    });
+    scrollToNodeWithCallback(jqTarget.get(0), callback);
+}
+
+// for when URL fragment is navigated to after page load (e.g. TOC clicked)
+$(window).on("hashchange", function(e) {
+    e.preventDefault();
+    onUrlFragmentNavigate(document.location.hash);
+});
+
+$(document).ready(function() {
+    // for when URL fragment is navigated to as part of initially loaded URL
+    if (document.location.hash !== "") {
+        onUrlFragmentNavigate(document.location.hash, function() {
+            // only add intersection observer after initial scroll done to detect visible MathJax components correctly
+            addIntersectionObserver();
+        });
+    } else {
+        canRenderMathJax = true;
+        addIntersectionObserver();
+    }
 });
