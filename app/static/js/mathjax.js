@@ -155,7 +155,7 @@ $(document).ready(function() {
         isScrollingToUrlFrag = false;
     }
 
-    // MathJax only renders when in view
+    // MathJax only renders when in view (so huge mathy posts don't crash phones)
     const intersectionObserver = new IntersectionObserver(function(entries) {
         for (entry of entries) {
             if (entry.isIntersecting) {
@@ -170,8 +170,8 @@ $(document).ready(function() {
                     mathJaxUrlFragScrollRenderQueue.set(entry.target, true);
                 }
             } else {
-                // if currently scrolling to a URL fragment and an element previously detected on screen during
-                // the same scroll leaves the screen, then unmark it for rendering
+                // if currently scrolling to a URL fragment and an element previously detected on screen
+                // during the same scroll leaves the screen, then unmark it for rendering
                 if (isScrollingToUrlFrag && mathJaxUrlFragScrollRenderQueue.get(entry.target) === true) {
                     mathJaxUrlFragScrollRenderQueue.set(entry.target, false);
                 }
