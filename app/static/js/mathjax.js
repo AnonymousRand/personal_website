@@ -86,6 +86,10 @@ window.MathJax = {
     }
 };
 
+let isScrollingToUrlFrag = true;
+let mathJaxUrlFragScrollRenderQueue = new Map();
+let scrollToNodeTimer;
+
 function renderMathJax(selectorOrNode) {
     MathJax.typesetClear([selectorOrNode]); // otherwise index size errros
     MathJax.typeset([selectorOrNode]);
@@ -97,24 +101,6 @@ function renderMathJax(selectorOrNode) {
     jqNode.find("mjx-math[width='full']").each(function() {
         $(this).parent("mjx-container").css("min-width", ""); // otherwise text just overflows
         $(this).wrap(HORIZ_SCROLL_DIV_HTML_FULL_WIDTH);
-    });
-}
-
-let canRenderMathJax = false;
-let scrollToNodeTimer;
-
-// MathJax only renders when in view
-function addIntersectionObserver() {
-    const intersectionObserver = new IntersectionObserver(function(entries) {
-        for (entry of entries) {
-            if (entry.isIntersecting && canRenderMathJax) {
-                renderMathJax(entry.target);
-            }
-        }
-    });
-    const nodesToObserve = document.querySelectorAll("#post__content > *");
-    nodesToObserve.forEach(function(node) {
-        intersectionObserver.observe(node);
     });
 }
 
@@ -136,34 +122,64 @@ function scrollToNodeWithCallback(node, callback) {
     node.scrollIntoView();
 };
 
-function onUrlFragmentNavigate(urlFragment, callback = () => {}) {
-    const jqTarget = $(urlFragment); // using JQuery selector since `querySelector()` doesn't allow `id`s starting with number
+function onUrlFragNavigate(urlFrag) {
+    const jqTarget = $(urlFrag); // using JQuery selector since `querySelector()` doesn't allow `id`s starting with number
     if (jqTarget.length === 0) {
         return;
     }
     // wait until scroll finished to render MathJax
-    canRenderMathJax = false;
-    callback = addToFunc(callback, function() {
-        canRenderMathJax = true;
+    isScrollingToUrlFrag = true;
+    scrollToNodeWithCallback(jqTarget.get(0), function() {
+        isScrollingToUrlFrag = false;
+        // render queued elements that are still on screen at the end of the scroll, and then clear the queue
+        for (const [k, v] of mathJaxUrlFragScrollRenderQueue) {
+            if (v === true) {
+                renderMathJax(k);
+            }
+        }
+        mathJaxUrlFragScrollRenderQueue.clear();
     });
-    scrollToNodeWithCallback(jqTarget.get(0), callback);
 }
 
 // for when URL fragment is navigated to after page load (e.g. TOC clicked)
 $(window).on("hashchange", function(e) {
     e.preventDefault();
-    onUrlFragmentNavigate(document.location.hash);
+    onUrlFragNavigate(document.location.hash);
 });
 
 $(document).ready(function() {
     // for when URL fragment is navigated to as part of initially loaded URL
     if (document.location.hash !== "") {
-        onUrlFragmentNavigate(document.location.hash, function() {
-            // only add intersection observer after initial scroll done to detect visible MathJax components correctly
-            addIntersectionObserver();
-        });
+        onUrlFragNavigate(document.location.hash);
     } else {
-        canRenderMathJax = true;
-        addIntersectionObserver();
+        isScrollingToUrlFrag = false;
     }
+
+    // MathJax only renders when in view
+    const intersectionObserver = new IntersectionObserver(function(entries) {
+        for (entry of entries) {
+            if (entry.isIntersecting) {
+                if (!isScrollingToUrlFrag) {
+                    renderMathJax(entry.target);
+                } else {
+                    // if currently scrolling to a URL fragment, don't render everything we scroll past just yet;
+                    // add to a queue instead and wait until scroll finished to see which elements are still on screen
+                    // (need to do this since intersection observer fires on visible elements at the end of the scroll
+                    // a bit before the scroll ends, so without this queue, we can't detect them after setting
+                    // `isScrollingToUrlFrag` after the scroll ends)
+                    mathJaxUrlFragScrollRenderQueue.set(entry.target, true);
+                }
+            } else {
+                // if currently scrolling to a URL fragment and an element previously detected on screen during
+                // the same scroll leaves the screen, then unmark it for rendering
+                if (isScrollingToUrlFrag && mathJaxUrlFragScrollRenderQueue.get(entry.target) === true) {
+                    mathJaxUrlFragScrollRenderQueue.set(entry.target, false);
+                }
+            }
+        }
+    });
+    const nodesToObserve = document.querySelectorAll("#post__content > *");
+    nodesToObserve.forEach(function(node) {
+        intersectionObserver.observe(node);
+    });
 });
