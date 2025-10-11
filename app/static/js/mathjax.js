@@ -183,7 +183,7 @@ $(document).ready(function() {
                 }
             }
         }
-    });
+    }, {rootMargin: "25% 0% 25% 0%"});
     const nodesToObserve = document.querySelectorAll("#post__content > *");
     nodesToObserve.forEach(function(node) {
         intersectionObserver.observe(node);
