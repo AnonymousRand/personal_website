@@ -96,11 +96,17 @@ function renderMathJax(selectorOrNode) {
 
     // make `\[\]` LaTeX blocks scroll horizontally on overflow
     const jqNode = $(selectorOrNode);
-    jqNode.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").wrap(HORIZ_SCROLL_DIV_HTML);
+    jqNode.find("mjx-math[style='margin-left: 0px; margin-right: 0px;']").each(function() {
+        if ($(this).parent(".scroll-overflow-x").length === 0) {
+            $(this).wrap(HORIZ_SCROLL_DIV_HTML);
+        }
+    });
     // for `\tag{}`ed equations
     jqNode.find("mjx-math[width='full']").each(function() {
-        $(this).parent("mjx-container").css("min-width", ""); // otherwise text just overflows
-        $(this).wrap(HORIZ_SCROLL_DIV_HTML_FULL_WIDTH);
+        if ($(this).parent(".scroll-overflow-x").length === 0) {
+            $(this).parent("mjx-container").css("min-width", ""); // otherwise text just overflows
+            $(this).wrap(HORIZ_SCROLL_DIV_HTML_FULL_WIDTH);
+        }
     });
 }
 
