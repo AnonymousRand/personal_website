@@ -533,6 +533,7 @@
     text-decoration-line: none !important;
 }
 
-.underline-on-hover-only:hover {
+.underline-on-hover-only:hover,
+.underline-on-hover-only:hover .MathJax * {
     text-decoration-line: underline !important;
 }
