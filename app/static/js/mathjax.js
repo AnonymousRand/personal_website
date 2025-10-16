@@ -184,7 +184,7 @@ $(document).ready(function() {
             }
         }
     }, {rootMargin: "50% 0% 50% 0%"});
-    const nodesToObserve = document.querySelectorAll("#post__content > *");
+    const nodesToObserve = document.querySelectorAll("#post__content > *, #post__toc");
     nodesToObserve.forEach(function(node) {
         intersectionObserver.observe(node);
     });
