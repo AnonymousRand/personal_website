@@ -37,7 +37,7 @@ window.MathJax = {
             lcm: "\\operatorname{lcm}",
             M: "\\operatorname{M}",
             Maps: "\\operatorname{Maps}",
-            mapsfrom: "\\mathrel{\\style{display:inline-block; transform:scale(-1,1);}{\\mapsto}}",
+            mapsfrom: "\\leftarrow\\!\\shortmid",
             mult: "\\operatorname{mult}",
             N: "\\mathbb{N}",
             nequiv: "\\not\\equiv",
