@@ -20,6 +20,7 @@ window.MathJax = {
             dom: "\\operatorname{dom}",
             dx: ["\\,\\mathrm{d} #1", 1],
             dydx: ["\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}", 2],
+            eqcolon: ["\\mathrel{≕}"],
             ev: "\\operatorname{ev}",
             F: "\\mathbb{F}",
             Fix: "\\operatorname{Fix}",
