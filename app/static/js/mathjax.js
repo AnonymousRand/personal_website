@@ -132,6 +132,7 @@ function scrollToNodeWithCallback(node, callback) {
 function onUrlFragNavigate(urlFrag) {
     const jqTarget = $(urlFrag); // using JQuery selector since `querySelector()` doesn't allow `id`s starting with number
     if (jqTarget.length === 0) {
+        isScrollingToUrlFrag = false;
         return;
     }
     // wait until scroll finished to render MathJax
