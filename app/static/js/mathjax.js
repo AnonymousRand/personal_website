@@ -67,8 +67,6 @@ window.MathJax = {
             suchthat: "\\,\\vert\\,",
             suchthatlr: "\\,\\middle\\vert\\,",
             Sym: "\\operatorname{Sym}",
-            textand: "\\text{ and }",
-            textor: "\\text{ or }",
             tobij: "\\leftrightarrow",
             toinc: "\\hookrightarrow",
             toinj: "\\rightarrowtail",
