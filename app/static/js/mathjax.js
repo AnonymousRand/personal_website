@@ -91,7 +91,7 @@ let scrollToNodeTimer;
 
 function renderMathJax(selectorOrNode) {
     MathJax.typesetClear([selectorOrNode]); // otherwise index size errros
-    MathJax.typeset([selectorOrNode]);
+    MathJax.typesetPromise([selectorOrNode]);
 
     // make `\[\]` LaTeX blocks scroll horizontally on overflow
     const jqNode = $(selectorOrNode);
