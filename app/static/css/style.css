@@ -78,6 +78,14 @@ nav .dropdown-menu {
     }
 }
 
+/* to undo weird Bootstrap stuff */
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+    margin-bottom: 1rem !important;
+}
+
 /* god i hate specificity; have to separate this from `code`'s stuff */
 pre {
     margin-bottom: 0;
