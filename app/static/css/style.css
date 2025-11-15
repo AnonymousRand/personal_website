@@ -79,11 +79,8 @@ nav .dropdown-menu {
 }
 
 /* to undo weird Bootstrap stuff */
-ol ol,
-ul ul,
-ol ul,
-ul ol {
-    margin-bottom: 1rem !important;
+:not(.post__toc) :is(ol ol, ul ul, ol ul, ul ol) {
+    margin-bottom: 1rem;
 }
 
 /* god i hate specificity; have to separate this from `code`'s stuff */
