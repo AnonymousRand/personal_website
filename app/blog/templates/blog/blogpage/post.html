@@ -40,9 +40,9 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
 <hr class="mt-2 mb-0">
 
 <div class="mt-4">
-  <h1 class="mb-0 p-mb-0 custom-green-deep-dark fs-3">{{ post.title }}</h1>
+  <h1 class="mb-0 p-mb-0 custom-green-deep-dark fs-3">{{ post.title|safe }}</h1>
   {% if post.subtitle is not none %}
-    <h2 class="mt-2 mb-0 p-mb-0 custom-orange-deep fs-7">{{ post.subtitle }}</h2>
+    <h2 class="mt-2 mb-0 p-mb-0 custom-orange-deep fs-7">{{ post.subtitle|safe }}</h2>
   {% endif %}
   <div class="d-flex align-items-center mt-2 fs-9">
     {% if post.updated_timestamp is not none %}
