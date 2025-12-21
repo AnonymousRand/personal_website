@@ -92,6 +92,11 @@ const DARKREADER_FIXES = {
                 border-color: gray !important;
             }
 
+            .redacted {
+                background-color: var(--darkreader-text--bs-body-color, #ffffff) !important;
+                color: var(--darkreader-text--bs-body-color, #ffffff) !important;
+            }
+
             .spoiler {
                 background-color: dimgray !important;
             }
