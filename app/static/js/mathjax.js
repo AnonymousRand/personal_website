@@ -75,6 +75,7 @@ window.MathJax = {
             toiso: "\\xrightarrow{\\sim}",
             tosur: "\\twoheadrightarrow",
             trdeg: "\\operatorname{trdeg}",
+            xto: ["\\xrightarrow{#1}", 1],
             Z: "\\mathbb{Z}"
         }
     },
