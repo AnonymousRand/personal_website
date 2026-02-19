@@ -36,6 +36,7 @@ window.MathJax = {
             id: "\\operatorname{id}",
             im: "\\operatorname{im}",
             innprod: ["\\langle #1 \\rangle", 1],
+            linmaps: ["\\mathcal{L}"],
             lcm: "\\operatorname{lcm}",
             M: "\\operatorname{M}",
             Maps: "\\operatorname{Maps}",
