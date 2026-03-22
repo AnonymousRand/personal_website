@@ -147,7 +147,7 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             if file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]:
                 detected_file_ext = validate_img(file.stream)
                 if file_ext != detected_file_ext:
-                    return f"corrupted file {file_name} (my magic box told me this is actually a {detected_file_ext})"
+                    return f"corrupted file: \"{file_name}\" (my magic box says this is actually a {detected_file_ext})"
 
             # sanitize file name and upload
             sanitized_file_name = sanitize_file_name(file_name)
