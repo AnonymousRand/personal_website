@@ -85,7 +85,7 @@ window.MathJax = {
         typeset: false
     },
     options: {
-        enableEnrichment: false
+        enableEnrichment: true
     }
 };
 

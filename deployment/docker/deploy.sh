@@ -7,5 +7,5 @@ fi
 
 docker compose down
 docker system prune --force
-docker compose build
+docker compose build --no-cache
 DOCKER_USER_STR="$(id -u "$DOCKER_USER"):$(id -g "$DOCKER_USER")" docker compose up
