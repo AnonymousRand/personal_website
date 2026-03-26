@@ -2,6 +2,7 @@ window.MathJax = {
     tex: {
         // custom macros from my notes (or all the ones MathJax supports, at least)
         macros: {
+            ab: "\\mathrm{ab}",
             arccot: "\\operatorname{arccot}",
             arccsc: "\\operatorname{arccsc}",
             arcsec: "\\operatorname{arcsec}",
