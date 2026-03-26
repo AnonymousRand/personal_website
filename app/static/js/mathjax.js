@@ -10,7 +10,7 @@ window.MathJax = {
             blue: ["\\textcolor{blue}{#1}", 1],
             C: "\\mathbb{C}",
             charac: "\\operatorname{char}",
-            charsubgp: "\\mathrel{char}",
+            charsubgp: "\\mathrel{\\mathrm{char}}",
             comma: ",\\ ",
             ceil: ["\\left\\lceil #1 \\right\\rceil", 1],
             codom: "\\operatorname{codom}",

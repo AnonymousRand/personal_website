@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <title>{% block title %}{% endblock %}</title>
+    
+    {% block head %}{% endblock %}
 
     <!-- CDNs -->
       <!-- JQuery -->
@@ -122,7 +124,7 @@
       <!-- navbar -->
       <!-- SYNC: media query in `app/static/css/style.css` where navbar collapses -->
       <nav id="navbar" class="navbar navbar-expand-md sticky-top bg-white">
-        <a class="navbar__home navbar-brand d-inline-flex align-items-center" href="{{ url_for('main.index', _external=True) }}">
+        <a class="navbar__home navbar-brand d-inline-flex align-items-center" href="{{ url_for('main.index', _external=True) }}" target="_self">
           <img class="navbar__logo me-2" src="{{ url_for('static', filename='files/favicon.ico', _external=True) }}" alt="favicon">
           <span>Home</span>
         </a>
@@ -137,17 +139,17 @@
               <ul class="dropdown-menu">
                 {% for blogpage in blogpages %}
                   <li{% if blogpage.is_login_required %} class="show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}{% endif %}>
-                      <a class="dropdown-item" href="{{ url_for('blog.' ~ blogpage.id ~ '.get_posts', _external=True) }}" title="{{ blogpage.description if blogpage.description is not none }}">{{ blogpage.name }}</a>
+                      <a class="dropdown-item" href="{{ url_for('blog.' ~ blogpage.id ~ '.get_posts', _external=True) }}" title="{{ blogpage.description if blogpage.description is not none }}" target="_self">{{ blogpage.name }}</a>
                   </li>
                 {% endfor %}
               </ul>
             </li>
 
             <li class="nav-item show-when-logged-out"{% if current_user.is_authenticated %} hidden{% endif %}>
-              <a class="nav-link" href="{{ url_for('main.legal', _external=True) }}">Legal</a>
+              <a class="nav-link" href="{{ url_for('main.legal', _external=True) }}" target="_self">Legal</a>
             </li>
             <li class="nav-item show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}>
-              <a class="nav-link" href="{{ url_for('admin.choose_action', _external=True) }}">Admin</a>
+              <a class="nav-link" href="{{ url_for('admin.choose_action', _external=True) }}" target="_self">Admin</a>
             </li>
 
             <li class="nav-item show-when-logged-out"{% if current_user.is_authenticated %} hidden{% endif %}>
