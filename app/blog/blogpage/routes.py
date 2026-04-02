@@ -111,23 +111,23 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                     "types": {
                         "coro": {
                             "thm_type": "Corollary",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
                         },
                         "coro_thm": {
                             "thm_type": "Corollary",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxlight",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxlight"
                         },
                         "coro_impt": {
                             "thm_type": "Corollary",
-                            "html_class": "md-textbox last-child-no-mb border--6px border--colorful",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--6px border--colorful"
                         },
                         "defn": {
                             "thm_type": "Definition",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-blue-light",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-blue-light"
                         },
                         r"defn\\\*": {
                             "thm_type": "Definition",
@@ -135,15 +135,16 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "ex": {
                             "thm_type": "Example",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "dimgray"
                         },
                         r"ex\\\*": {
                             "thm_type": "Example"
                         },
                         "lem": {
                             "thm_type": "Lemma",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
                         },
                         r"notat\\\*": {
                             "thm_type": "Notation",
@@ -151,8 +152,8 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "prop": {
                             "thm_type": "Proposition",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
                         },
                         r"prop\\\*": {
                             "thm_type": "Proposition",
@@ -160,8 +161,8 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "thm": {
                             "thm_type": "Theorem",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxlight",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxlight"
                         },
                         r"thm\\\*": {
                             "thm_type": "Theorem",
@@ -169,8 +170,8 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "thm_impt": {
                             "thm_type": "Theorem",
-                            "html_class": "md-textbox last-child-no-mb border--6px border--colorful",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--6px border--colorful"
                         }
                     }
                 },
@@ -182,8 +183,8 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "exer": {
                             "thm_type": "Exercise",
-                            "html_class": "md-exer border--2px border--lightgray dimgray",
-                            "thm_counter_incr": "0,0,1"
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-exer border--2px border--lightgray dimgray"
                         },
                         r"exer\\\*": {
                             "thm_type": "Exercise",
@@ -191,8 +192,8 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                         },
                         "pf": {
                             "thm_type": "Proof",
-                            "html_class": "md-pf dropdown--default-open border--2px border--lightgray dimgray",
-                            "thm_name_overrides_thm_heading": True
+                            "thm_name_overrides_thm_heading": True,
+                            "html_class": "md-pf dropdown--default-open border--2px border--lightgray dimgray"
                         },
                         r"rmk\\\*": {
                             "thm_type": "Remark",
