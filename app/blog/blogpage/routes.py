@@ -146,6 +146,11 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                             "thm_counter_incr": "0,0,1",
                             "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
                         },
+                        "notat": {
+                            "thm_type": "Notation",
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
+                        },
                         r"notat\\\*": {
                             "thm_type": "Notation",
                             "html_class": "md-textbox last-child-no-mb border--4px border--lightgray"
@@ -194,6 +199,11 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                             "thm_type": "Proof",
                             "thm_name_overrides_thm_heading": True,
                             "html_class": "md-pf dropdown--default-open border--2px border--lightgray dimgray"
+                        },
+                        "rmk": {
+                            "thm_type": "Remark",
+                            "thm_counter_incr": "0,0,1",
+                            "html_class": "border--2px border--lightgray dimgray"
                         },
                         r"rmk\\\*": {
                             "thm_type": "Remark",
