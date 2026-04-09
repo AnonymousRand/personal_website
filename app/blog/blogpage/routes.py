@@ -86,7 +86,7 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
 
         content_md = markdown.Markdown(extensions=[
             "extra",
-            "image_titles",                         # images use `alt` text as `title` too
+            "image_titles",                                # images use `alt` text as `title` too
             CaptionedFigureExtension(
                 html_class="md-captioned-figure", caption_html_class="md-captioned-figure__caption"
             ),
@@ -221,7 +221,7 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
                 }
             ),
             TocExtension(
-                marker="", permalink="\uf470", permalink_class="heading-link",
+                marker="", permalink="\uf470", permalink_class="heading-link link-target-self",
                 permalink_title="", slugify=generate_anchors, toc_depth=2
             )
         ])
@@ -283,7 +283,7 @@ def create_post(*args, **kwargs):
         err = post.validate_titles_and_flush(should_add_to_db=True)
         if err:
             return jsonify(flash_msg=err)
-        post.add_timestamps(should_remove_updated_timestamp=False, should_update_updated_timestamp=False)
+        post.add_timestamps(should_update_updated_timestamp=False)
         # since flask is stupid and has the base url for relative paths at the blogpage level, not the post
         # and I don't want to keep having to prepend the (changeable) post sanitized title to linked files
         post.expand_file_markdown()
@@ -347,7 +347,6 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
         if err:
             return jsonify(flash_msg=err)
         post.add_timestamps(
-            should_remove_updated_timestamp=request.form.get("remove_updated_timestamp"),
             should_update_updated_timestamp=request.form.get("update_updated_timestamp"),
             old_blogpage_id=old_blogpage_id
         )

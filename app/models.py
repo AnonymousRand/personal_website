@@ -158,9 +158,7 @@ class Post(db.Model):
             return "There is already a post with that title or sanitized title."
         return ""
 
-    def add_timestamps(
-        self, should_remove_updated_timestamp: bool, should_update_updated_timestamp: bool, old_blogpage_id=None
-    ) -> None:
+    def add_timestamps(self, should_update_updated_timestamp: bool, old_blogpage_id=None) -> None:
         """
         Preconditions:
             - Post must already be added to the db or at least the transaction (`db.session.add()`)
@@ -169,8 +167,6 @@ class Post(db.Model):
 
         if should_update_updated_timestamp:
             self.updated_timestamp = datetime.now(timezone.utc)
-        if should_remove_updated_timestamp:
-            self.updated_timestamp = None
 
         was_originally_published = False
         if old_blogpage_id is not None:
