@@ -178,10 +178,10 @@ input[value="Reply"][value="Delete"] {
 @media (min-width: 1536px) and (min-height: 660px) {
     :root {
         /* left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen (up to the size it would be on a
-         * 1536px screen), and is centered within the left margin (with 1/6 of the margin on each side of the TOC) */
+         * 1728px screen), and is centered within the left margin (with 1/6 of the margin on each side of the TOC) */
         /* i'm sure there are better ways to do this but im a frontend noob so math it is */
-        --sticky-width: calc((min(100vw, 1536px) - var(--container-content-max-width)) / 3);
-        --left-sticky-margin-left: calc(-5 * (min(100vw, 1536px) - var(--container-content-max-width)) / 12);
+        --sticky-width: calc((min(100vw, 1728px) - var(--container-content-max-width)) / 3);
+        --left-sticky-margin-left: calc(-5 * (min(100vw, 1728px) - var(--container-content-max-width)) / 12);
     }
 
     .post__toc {
