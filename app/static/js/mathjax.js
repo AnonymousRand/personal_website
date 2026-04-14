@@ -1,5 +1,11 @@
 window.MathJax = {
+    loader: {
+        load: ['[tex]/boldsymbol']
+    },
     tex: {
+        packages: {
+            '[+]': ['boldsymbol']
+        },
         // custom macros from my notes (or all the ones MathJax supports, at least)
         macros: {
             ab: "\\mathrm{ab}",

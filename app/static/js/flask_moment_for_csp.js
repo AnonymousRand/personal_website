@@ -1,3 +1,5 @@
+// code below is from somewhere i forgot
+
 moment.locale("en");
 
 function flask_moment_render(elem) {{
