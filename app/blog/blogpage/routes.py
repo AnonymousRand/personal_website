@@ -81,6 +81,7 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
     if post.content:
         def generate_anchors(value, separator):
             value = (separator.join(value.split())).lower()
+            value = value.replace(".", "-")
             value = re.sub(f"[^A-Za-z0-9{separator}]", "", value)
             return value
 
