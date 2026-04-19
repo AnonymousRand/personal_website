@@ -1,4 +1,4 @@
-// code below is from somewhere i forgot
+// the remaining code below is from somewhere i forgot; it bundles moment.js to Flask and iirc without CSP, it didn't have to be copied here
 
 moment.locale("en");
 

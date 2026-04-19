@@ -40,9 +40,9 @@ const TOTAL_PAGES = {{ total_pages }};
   
           <div class="d-flex align-items-center mt-2">
             {% if post.updated_timestamp is not none %}
-              <span class="flex-basis-75 me-3 mb-0">{{ moment(post.timestamp).format("ll") }} | updated {{ moment(post.updated_timestamp).format("ll") }}</span>
+              <span class="flex-basis-75 me-3 mb-0">{{ moment(post.timestamp).format("Y/M/D") }} | updated {{ moment(post.updated_timestamp).format("Y/M/D") }}</span>
             {% else %}
-              <span class="flex-basis-75 me-3 mb-0">{{ moment(post.timestamp).format("ll") }}</span>
+              <span class="flex-basis-75 me-3 mb-0">{{ moment(post.timestamp).format("Y/M/D") }}</span>
             {% endif %}
             <span class="d-flex align-items-center ms-auto gray">
               <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="custom-pink-deep-light">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
@@ -58,9 +58,9 @@ const TOTAL_PAGES = {{ total_pages }};
   
           <div class="d-flex align-items-center mt-2">
             {% if post.updated_timestamp is not none %}
-              <span class="flex-basis-75 me-3 mb-0 black">{{ moment(post.timestamp).format("ll") }} | updated {{ moment(post.updated_timestamp).format("ll") }}</span>
+              <span class="flex-basis-75 me-3 mb-0 black">{{ moment(post.timestamp).format("Y/M/D") }} | updated {{ moment(post.updated_timestamp).format("Y/M/D") }}</span>
             {% else %}
-              <span class="flex-basis-75 me-3 mb-0 black">{{ moment(post.timestamp).format("ll") }}</span>
+              <span class="flex-basis-75 me-3 mb-0 black">{{ moment(post.timestamp).format("Y/M/D") }}</span>
             {% endif %}
             <span class="d-flex align-items-center gray ms-auto">
               <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="custom-pink-deep-light show-when-logged-in">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
