@@ -52,9 +52,9 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
   {% endif %}
   <div class="d-flex align-items-center mt-2 fs-9">
     {% if post.updated_timestamp is not none %}
-      <span class="post__timestamp me-3 mb-0 black">{{ moment(post.timestamp).format("l") }} | updated {{ moment(post.updated_timestamp).format("l") }}</span>
+      <span class="post__timestamp me-3 mb-0 black">{{ moment(post.timestamp).format("ll") }} | updated {{ moment(post.updated_timestamp).format("ll") }}</span>
     {% else %}
-      <span class="post__timestamp me-3 mb-0 black">{{ moment(post.timestamp).format("l") }}</span>
+      <span class="post__timestamp me-3 mb-0 black">{{ moment(post.timestamp).format("ll") }}</span>
     {% endif %}
     <a class="go-to-comments-link me-0_75rem" href="#leave-a-comment" title="go to comments" target="_self"><i class="bi bi-chat-right-text"></i></a>
     <button id="copy-permanent-link-btn" class="btn btn-link copy-permanent-link-btn" type="button" title="copy permanent link"><i class="bi bi-link-45deg"></i></button>

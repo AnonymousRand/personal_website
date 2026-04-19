@@ -19,7 +19,7 @@
           <h3 class="mb-3 border-b border--1px border--lightgray pb-3 fs-7">{{ comment.author }}</h3>
     {% endif %}
           <div class="comment__content mb-3">{{ comment.content|safe }}</div>
-          <div class="mb-1 dimgray fs-10">{{ moment(comment.timestamp).format("l") }} ({{ moment(comment.timestamp).fromNow() }})</div>
+          <div class="mb-1 dimgray fs-10">{{ moment(comment.timestamp).format("ll") }} ({{ moment(comment.timestamp).fromNow() }})</div>
           
           {% if comment.depth < 6 %}
             <button id="comment__reply-btn-{{ comment.id }}" class="comment__reply-btn btn btn-link btn-link--custom-orange-xdeep underline-on-hover-only" type="button">Reply</button>
