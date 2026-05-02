@@ -76,6 +76,7 @@ window.MathJax = {
             sgn: "\\operatorname{sgn}",
             SL: "\\operatorname{SL}",
             spann: "\\operatorname{span}",
+            Spec: "\\operatorname{Spec}",
             Stab: "\\operatorname{Stab}",
             suchthat: "\\,\\vert\\,",
             suchthatlr: "\\,\\middle\\vert\\,",
