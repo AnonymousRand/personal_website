@@ -18,14 +18,14 @@ function applyStyles(selector) {
 
 const colorChoices = {
     blue: {
-        menuHighlight: "--custom-blue-xlight",
+        menuHighlight: "--custom-blue-xxlight",
         form: {
             accent: "--custom-blue",
             border: "--custom-blue",
             boxShadow: "color-mix(in srgb, var(--custom-blue) 25%, transparent)"
         },
-        flashBorder: "--custom-blue-light",
-        selection: "--custom-blue-xlight"
+        flashBorder: "--custom-blue-xlight",
+        selection: "--custom-blue-xxlight"
     },
     green: {
         menuHighlight: "--custom-green-light",
@@ -48,14 +48,14 @@ const colorChoices = {
         selection: "--custom-orange-shallow-light"
     },
     pink: {
-        menuHighlight: "--custom-pink-deep-xxxlight",
+        menuHighlight: "--custom-pink-deep-xxxxlight",
         form: {
-            accent: "--custom-pink-light",
-            border: "--custom-pink-light",
-            boxShadow: "color-mix(in srgb, var(--custom-pink-light) 50%, transparent)"
+            accent: "--custom-pink-xlight",
+            border: "--custom-pink-xlight",
+            boxShadow: "color-mix(in srgb, var(--custom-pink-xlight) 50%, transparent)"
         },
-        flashBorder: "--custom-pink-light",
-        selection: "--custom-pink-deep-xxxlight"
+        flashBorder: "--custom-pink-xlight",
+        selection: "--custom-pink-deep-xxxxlight"
     }
 };
 

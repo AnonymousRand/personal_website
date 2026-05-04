@@ -226,12 +226,12 @@ input[value="Reply"][value="Delete"] {
     margin-bottom: -0.25rem;
 }
 
-.post-list__post:hover .custom-green-deep-dark {
-    color: var(--custom-green-deep-xxdark) !important;
+.post-list__post:hover .custom-pink-deep-xlight {
+    color: var(--custom-pink-deep-light) !important;
 }
 
-.post-list__post:hover .custom-orange-deep {
-    color: var(--custom-orange-xdeep) !important;
+.post-list__post:hover .custom-blue-deep{
+    color: var(--custom-blue-deep) !important;
 }
 
 .sticky-btns {
@@ -255,6 +255,6 @@ input[value="Reply"][value="Delete"] {
     background-color: var(--bs-body-bg); /* to match card body */
 }
 
-.underline--custom-green-deep-dark.post-list__post:hover {
-    text-decoration-color: var(--custom-green-deep-xxdark) !important;
+.underline--custom-pink-deep-xlight.post-list__post:hover {
+    text-decoration-color: var(--custom-pink-deep-light) !important;
 }

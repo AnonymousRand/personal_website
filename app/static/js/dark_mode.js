@@ -10,18 +10,16 @@ const DARKREADER_FIXES = {
     css: `
         :root {
             --darkreader-border--custom-blue: var(--custom-blue);
-            --darkreader-border--custom-blue-light: var(--custom-blue-light);
+            --darkreader-border--custom-blue-light: var(--custom-blue-xlight);
             --darkreader-border--custom-green: var(--custom-green);
             --darkreader-border--custom-orange: var(--custom-orange);
             --darkreader-border--custom-orange-light: var(--custom-orange-light);
             --darkreader-border--custom-orange-deep: var(--custom-orange-deep);
-            --darkreader-border--custom-pink-light: var(--custom-pink-light);
-            --darkreader-border--custom-pink-deep-xlight: var(--custom-pink-deep-xlight);
-            --darkreader-border--custom-pink-deep-xxlight: var(--custom-pink-deep-xxlight);
+            --darkreader-border--custom-pink-xlight: var(--custom-pink-xlight);
+            --darkreader-border--custom-pink-deep-xxlight: var(--custom-pink-xlight);
+            --darkreader-border--custom-pink-deep-xxxlight: var(--custom-pink-xxlight);
 
             --darkreader-bg--custom-blue: var(--custom-blue);
-            --darkreader-bg--custom-blue-xlight: var(--custom-blue-xlight);
-            --darkreader-bg--custom-blue-xxlight: var(--custom-blue-light);
             --darkreader-bg--custom-green: var(--custom-green);
             --darkreader-bg--custom-green-light: var(--custom-green-light);
             --darkreader-bg--custom-green-xlight: var(--custom-green-light);
@@ -29,15 +27,24 @@ const DARKREADER_FIXES = {
             --darkreader-bg--custom-orange-light: var(--custom-orange-light);
             --darkreader-bg--custom-orange-shallow-light: var(--custom-orange-shallow-light);
             --darkreader-bg--custom-orange-shallow-xlight: var(--custom-orange-light);
-            --darkreader-bg--custom-pink-light: var(--custom-pink-light);
-            --darkreader-bg--custom-pink-deep-xxxlight: var(--custom-pink-xlight);
 
-            --darkreader-text--custom-blue-deep: var(--custom-blue-deep-light);
-            --darkreader-text--custom-blue-xdeep: var(--custom-blue-deep);
+            --darkreader-text--custom-blue-deep: var(--custom-blue);
+            --darkreader-text--custom-blue-deep-dark: var(--custom-blue-light);
+            --darkreader-text--custom-blue-xdeep: var(--custom-blue-light);
+            --darkreader-text--custom-blue-xxdeep: var(--custom-blue-xlight);
+            --darkreader-text--custom-green-deep-xdark: var(--custom-green);
+            --darkreader-text--custom-green-deep-xxdark: var(--custom-green-light);
+            --darkreader-text--custom-pink-deep-light: var(--custom-pink-xxlight);
+            --darkreader-text--custom-pink-deep-xlight: var(--custom-pink-xlight);
+            --darkreader-text--custom-pink-deep-xxlight: var(--custom-pink-light);
+
+            /* turn blue links into green actually on dark mode since it's cooler, but green doesn't show up well normally in light mode */
+            --darkreader-text--default-link-color: var(--custom-green-light);
+            --darkreader-text--default-link-hover-color: var(--custom-green-xlight);
         }
 
-        /* for specificity */
-        @layer god-i-hate-css {
+        /* layer for specificity */
+        @layer css-makes-me-want-to-stick-my-head-in-a-blender {
             hr {
                 color: white !important;
             }
@@ -74,20 +81,10 @@ const DARKREADER_FIXES = {
                 background-color: #242424 !important;
             }
 
-            .link--custom-green-deep-xdark {
-                text-decoration-color: var(--darkreader-text--custom-green-deep-dark) !important;
-                color: var(--darkreader-text--custom-green-deep-dark) !important;
-            }
-
-            .link--custom-orange-xdeep {
-                text-decoration-color: var(--darkreader-text--custom-orange-deep) !important;
-                color: var(--darkreader-text--custom-orange-deep) !important;
-            }
-
             .md-dropdown .md-dropdown__content {
                 border-top-color: gray !important;
             }
-            
+
             :is(.post__content, .comment__content) img:hover {
                 border-color: gray !important;
             }

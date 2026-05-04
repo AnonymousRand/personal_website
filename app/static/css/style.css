@@ -12,14 +12,15 @@
     font-display: swap;
 }
 
-a {
-    text-decoration-color: var(--custom-blue-deep);
-    color: var(--custom-blue-deep);
+/* `:not(#navbar) a` doesn't work here becuase f&ck you, i guess */
+a:not(#navbar a) {
+    text-decoration-color: currentcolor;
+    color: var(--default-link-color);
 }
 
-a:hover {
-    text-decoration-color: var(--custom-blue-xdeep);
-    color: var(--custom-blue-xdeep);
+a:not(#navbar a):hover {
+    text-decoration-color: currentcolor;
+    color: var(--default-link-hover-color);
 }
 
 blockquote {
@@ -86,7 +87,6 @@ nav .dropdown-menu {
 /* god i hate specificity; have to separate this from `code`'s stuff */
 pre {
     margin-bottom: 0;
-    color: var(--custom-pink-deep);
     font-size: 100%;
 }
 
@@ -161,10 +161,10 @@ textarea.form-control {
 }
 
 .btn-link {
-    --bs-btn-color: var(--custom-blue-deep);
-    --bs-btn-hover-color: var(--custom-blue-xdeep);
-    --bs-btn-active-color: var(--custom-blue-deep);
-    --bs-btn-disabled-color: var(--custom-blue-deep-light);
+    --bs-btn-color: var(--default-link-color);
+    --bs-btn-hover-color: var(--default-link-hover-color);
+    --bs-btn-active-color: var(--default-link-color);
+    --bs-btn-disabled-color: var(--default-link-disabled-color);
     background-color: transparent !important;
     padding: 0;
 }
@@ -253,7 +253,7 @@ textarea.form-control {
 }
 
 .tooltip .tooltip-inner {
-    border: 2px solid var(--custom-pink-light) !important;
+    border: 2px solid var(--custom-pink-xlight) !important;
     border-radius: var(--bs-border-radius);
     background-color: var(--bs-body-bg) !important;
     max-width: 30rem !important;

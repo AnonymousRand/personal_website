@@ -1,26 +1,22 @@
 :root {
-    /* general */
-
-    --container-content-max-width: min(672px, 100vw);
-
     /* custom colors */                     /* h  , s  , v   */ /* (by Google color picker rounding) */
 
     --custom-blue: #00eaff;                 /* 185, 100, 100 */
-    --custom-blue-light: #80f4ff;           /* 185, 50 , 100 */
-    --custom-blue-xlight: #bffaff;          /* 185, 25 , 100 */
-    --custom-blue-deep: #00bfff;            /* 195, 100, 100 */
-    --custom-blue-deep-light: #47d1ff;      /* 195, 72 , 100 */
-    --custom-blue-deep-xlight: #b3ecff;     /* 195, 30 , 100 */
-    --custom-blue-deep-dark: #00b0eb;       /* 195, 100, 92  */
-    --custom-blue-xdeep: #009dff;           /* 203, 100, 100 */
+    --custom-blue-light: #4df0ff;           /* 185, 70 , 100 */
+    --custom-blue-xlight: #80f4ff;          /* 185, 50 , 100 */
+    --custom-blue-xxlight: #bffaff;         /* 185, 25 , 100 */
+    --custom-blue-deep: #00d5ff;            /* 190, 100, 100 */
+    --custom-blue-deep-dark: #00ccf5;       /* 190, 100, 96  */
+    --custom-blue-xdeep: #00bfff;           /* 195, 100, 100 */
+    --custom-blue-xxdeep: #00a6ff;          /* 201, 100, 100 */
 
     --custom-green: #b7ff00;                /* 77 , 100, 100 */
     --custom-green-light: #c9ff40;          /* 77 , 75 , 100 */
+    --custom-green-xlight: #d7ff73;         /* 77 , 55 , 100 */
     --custom-green-deep: #8cff00;           /* 87 , 100, 100 */
     --custom-green-deep-dark: #76d600;      /* 87 , 100, 84  */
     --custom-green-deep-xdark: #6fc900;     /* 87 , 100, 79  */
     --custom-green-deep-xxdark: #68bd00;    /* 87 , 100, 74  */
-    --custom-green-deep-xxxdark: #61b000;   /* 87 , 100, 69  */
 
     --custom-orange: #ffd500;               /* 50 , 100, 100 */
     --custom-orange-light: #ffdf40;         /* 50 , 75 , 100 */
@@ -31,13 +27,22 @@
     --custom-orange-xxdeep: #ff8c00;        /* 33 , 100, 100 */
 
     --custom-pink: #ff0080;                 /* 330, 100, 100 */
-    --custom-pink-light: #ffbfdf;           /* 330, 25 , 100 */
-    --custom-pink-xlight: #ffcce6;          /* 329, 20 , 100 */
-    --custom-pink-deep: #ff00ab;            /* 320, 100, 100 */
-    --custom-pink-deep-light: #ff4dc4;      /* 320, 70 , 100 */
-    --custom-pink-deep-xlight: #ff80d5;     /* 320, 50 , 100 */
-    --custom-pink-deep-xxlight: #ffb5e6;    /* 320, 29 , 100 */
-    --custom-pink-deep-xxxlight: #ffe3f6;   /* 319, 11 , 100 */
+    --custom-pink-light: #ffa3d1;           /* 330, 36 , 100 */
+    --custom-pink-xlight: #ffbfdf;          /* 330, 25 , 100 */
+    --custom-pink-xxlight: #ffcce6;         /* 329, 20 , 100 */
+    --custom-pink-deep: #ff0099;            /* 324, 100, 100 */
+    --custom-pink-deep-light: #ff4db8;      /* 324, 70 , 100 */
+    --custom-pink-deep-xlight: #ff73c7;     /* 324, 55 , 100 */
+    --custom-pink-deep-xxlight: #ff8cd1;    /* 324, 45 , 100 */
+    --custom-pink-deep-xxxlight: #ffb5e1;  /* 324, 29 , 100 */
+    --custom-pink-deep-xxxxlight: #ffe3f4; /* 324, 11 , 100 */
+
+    /* other */
+
+    --container-content-max-width: min(672px, 100vw);
+    --default-link-color: var(--custom-blue-xdeep);
+    --default-link-hover-color: var(--custom-blue-xxdeep);
+    --default-link-disabled-color: var(--custom-blue);
 }
 
 /* for scoping issues on accessing `--bs-gutter-x` */
