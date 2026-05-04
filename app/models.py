@@ -182,7 +182,7 @@ class Post(db.Model):
 
     def expand_file_markdown(self) -> None:
         # keep pattern updated if URL routes change!
-        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.id}/{self.sanitized_title}/files/\1)", self.content)
+        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.id}/files/\1)", self.content)
 
     def collapse_file_markdown(self) -> str:
         # keep pattern updated if URL routes change!
