@@ -294,9 +294,6 @@ def create_post(*args, **kwargs):
         if err:
             return jsonify(flash_msg=err)
         post.add_timestamps(should_update_updated_timestamp=False)
-        # since flask is stupid and has the base url for relative paths at the blogpage level, not the post
-        # and I don't want to keep having to prepend the (changeable) post sanitized title to linked files
-        post.expand_file_markdown()
 
         # upload files if any
         files_base_path = bp_utils.get_files_base_path(post)
@@ -324,7 +321,6 @@ def edit_post(post, post_id, *args, **kwargs):
     form = EditBlogpostForm(obj=post)
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
     form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
-    form.content.data = post.collapse_file_markdown()
     files_base_path = bp_utils.get_files_base_path(post)
     if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
         files_choices = []
@@ -413,7 +409,7 @@ def edit_post(post, post_id, *args, **kwargs):
                 except Exception as e:
                     return jsonify(flash_msg=f"File move exception: {e}")
 
-        post.expand_file_markdown() # only expand image markdown after checking for unused files
+        # commit changes to db
         db.session.commit()
         if "save_blogpost" in request.form:
             return jsonify(flash_msg="post updated :3")
@@ -609,5 +605,5 @@ def get_unread_comment_count(post, post_id, *args, **kwargs):
 @bp_utils.require_valid_post()
 def get_file(post, post_id, file_name, *args, **kwargs):
     return send_from_directory(
-        f"{current_app.config['ROOT_TO_BLOGPAGE_STATIC']}/{post.blogpage_id}/files/{post.id}", file_name
+        f"{current_app.config['ROOT_TO_BLOGPAGE_STATIC']}/{post.blogpage_id}/files/{post_id}", file_name
     )

@@ -178,16 +178,6 @@ class Post(db.Model):
             self.timestamp = datetime.now(timezone.utc)
             self.updated_timestamp = None
 
-    EXPAND_FILE_MARKDOWN_PATTERN = re.compile(r"\(files/(.+?)\)")
-
-    def expand_file_markdown(self) -> None:
-        # keep pattern updated if URL routes change!
-        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.id}/files/\1)", self.content)
-
-    def collapse_file_markdown(self) -> str:
-        # keep pattern updated if URL routes change!
-        return re.sub(fr"\({self.sanitized_title}/files/(.+?)\)", r"(files/\1)", self.content)
-
     def get_comment_count(self) -> int:
         # god bless https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers
         query = sa.select(sa.func.count()).select_from(self.comments.select().subquery())
