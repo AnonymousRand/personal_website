@@ -10,7 +10,7 @@ from app.models import *
 from app.utils import ContentType
 
 
-@bp.route("/", methods=["GET"])
+@bp.get("/")
 def index():
     query_string = ""
     # preserve query string
@@ -21,7 +21,7 @@ def index():
 
 # for more permanent links that don't change if a post changes title/moves between blogs
 # (MySQL also does not change id on delete)
-@bp.route("/<int:post_id>", methods=["GET"])
+@bp.get("/<int:post_id>")
 def post_by_id(post_id):
     post = blog_utils.get_post(post_id)
     if post is None:
@@ -37,7 +37,7 @@ def post_by_id(post_id):
     ))
 
 
-@bp.route("/get-posts-with-unread-comments", methods=["POST"])
+@bp.get("/get-posts-with-unread-comments")
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @blog_utils.redirs_to_index_after_login()
@@ -54,6 +54,6 @@ def get_posts_with_unread_comments(*args, **kwargs):
     return jsonify(posts_with_unread_comments)
 
 
-@bp.route("/favicon.ico")
+@bp.get("/favicon.ico")
 def favicon():
     return redirect(url_for("static", filename="images/favicon.ico"))

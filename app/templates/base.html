@@ -87,7 +87,7 @@
           const LOGIN_URL = "{{ url_for(config['LOGIN_ENDPOINT'], _external=True) }}";
           const LOGOUT_URL = "{{ url_for('admin.logout', _external=True) }}";
           const AFTER_LOGOUT_URL = "{{ url_for(config['AFTER_LOGOUT_ENDPOINT'], _external=True) }}";
-          const GET_SESSION_STATUS_URL = "{{ url_for('get_session_status', _external=True) }}";
+          const GET_AUTH_STATUS_URL = "{{ url_for('get_auth_status', _external=True) }}";
           const GET_URL_FOR_URL = "{{ url_for('get_url_for', _external=True) }}";
           let csrfToken = "{{ csrf_token() }}";
           let backgroundImgUrl = "";

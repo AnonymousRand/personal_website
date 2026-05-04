@@ -3,11 +3,11 @@ from flask import render_template
 from app.main import bp
 
 
-@bp.route("/", methods=["GET"])
+@bp.get("/")
 def index():
     return render_template("main/index.html")
 
 
-@bp.route("/legal-rubbish", methods=["GET"])
+@bp.get("/legal-rubbish")
 def legal():
     return render_template("main/legal.html")

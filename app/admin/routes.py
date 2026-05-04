@@ -109,7 +109,7 @@ def search_posts(*args, **kwargs):
 
         post_id = request.form.get("post")
         if post_id is None:
-            return jsonify(flash_msg="thanks for choosing nothing, now i will stare at you")
+            return jsonify(flash_msg="thanks for choosing nothing. i will now stare at you OwO")
         post = db.session.get(Post, post_id)
         if post is None:
             return jsonify(flash_msg="That post doesn't exist :/")
@@ -127,7 +127,7 @@ def change_admin_password(*args, **kwargs):
     if request.method == "GET":
         return render_template(
             "admin/form_base.html", title="Change admin password",
-            prompt="Don't make it \"solarwinds123\" or else my incorrect password message won't wor", form=form
+            prompt="Don't make it \"solarwinds123\" or else my incorrect password message will be wrong", form=form
         )
     elif request.method == "POST":
         if not form.validate():
@@ -150,5 +150,5 @@ def change_admin_password(*args, **kwargs):
         db.session.commit()
         return jsonify(
             redir_url=url_for("main.index", _external=True),
-            flash_msg="Your password has been changed! Here's some randomart: ඞ" # this works!?
+            flash_msg="Your password has been changed! Here's some randomart: ꒰ 𓂂• ⩊ •𓈒꒱" # this works!?
         )

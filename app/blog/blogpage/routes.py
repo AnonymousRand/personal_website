@@ -33,7 +33,7 @@ def inject_blogpage_from_db():
 ####################################################################################################
 
 
-@bp.route("/", methods=["GET"])
+@bp.get("/")
 @utils.set_content_type(ContentType.HTML)
 @bp_utils.require_login_if_restricted_bp()
 def get_posts(*args, **kwargs):
@@ -72,8 +72,8 @@ def get_posts(*args, **kwargs):
 
 # private posts, unlike blogpages, are still accessible by link (like YouTube's "unlisted")
 # hence the lack of `@require_login_if_restricted_bp()`
-@bp.route("/<int:post_id>/", defaults={"post_sanitized_title": ""}, methods=["GET"])
-@bp.route("/<int:post_id>/<string:post_sanitized_title>", methods=["GET"])
+@bp.get("/<int:post_id>/", defaults={"post_sanitized_title": ""})
+@bp.get("/<int:post_id>/<string:post_sanitized_title>")
 @utils.set_content_type(ContentType.HTML)
 @bp_utils.require_valid_post()
 def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` param is from `@require_valid_post`
@@ -252,71 +252,76 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
     )
 
 
-@bp.route("/create", methods=["GET"], endpoint="create_post_form")
-@bp.route("/", methods=["POST"])
-@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@bp.get("/create")
+@utils.set_content_type(ContentType.HTML)
 @utils.require_login()
-def create_post(*args, **kwargs):
+def create_post_form(*args, **kwargs):
     form = CreateBlogpostForm()
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
     form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
 
-    if request.method == "GET":
-        # automatically populate blogpage form field to current blogpage if possible
-        blogpage_id = bp_utils.get_blogpage_id()
-        if blogpage_id is None:
-            return "ok im actually impressed how did you do that"
+    # automatically populate blogpage form field to current blogpage if possible
+    blogpage_id = bp_utils.get_blogpage_id()
+    if blogpage_id is None:
+        return "ok im actually impressed how did you do that"
+    blogpage = db.session.get(Blogpage, blogpage_id)
+    # create initially in backrooms blogpage by default
+    if blogpage.backrooms_blogpage_id:
+        blogpage_id = blogpage.backrooms_blogpage_id
         blogpage = db.session.get(Blogpage, blogpage_id)
-        # create initially in backrooms blogpage by default
-        if blogpage.backrooms_blogpage_id:
-            blogpage_id = blogpage.backrooms_blogpage_id
-            blogpage = db.session.get(Blogpage, blogpage_id)
-            if blogpage is None:
-                return "your database is bwoken >_<"
-        if blogpage.is_writeable:
-            form.blogpage_id.data = blogpage_id
+        if blogpage is None:
+            return "your database is bwoken >_<"
+    if blogpage.is_writeable:
+        form.blogpage_id.data = blogpage_id
 
-        return render_template(
-            "blog/blogpage/form_base.html", title="Create post", prompt="Create post", form=form,
-            action=url_for(f"blog.{blogpage_id}.create_post", _external=True), method="POST"
-        )
-    elif request.method == "POST":
-        if not form.validate():
-            return jsonify(submission_errors=form.errors)
-
-        # create post in db
-        post = Post(
-            blogpage_id=request.form.get("blogpage_id"), title=request.form.get("title"),
-            subtitle=request.form.get("subtitle"), content=request.form.get("content")
-        )
-        post.sanitize_title()
-        err = post.validate_titles_and_flush(should_add_to_db=True)
-        if err:
-            return jsonify(flash_msg=err)
-        post.add_timestamps(should_update_updated_timestamp=False)
-
-        # upload files if any
-        files_base_path = bp_utils.get_files_base_path(post)
-        err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
-        if err:
-            return jsonify(flash_msg=err)
-
-        db.session.commit() # only commit at very end in case error happened above
-        return jsonify(
-            redir_url=url_for(
-                f"blog.{post.blogpage_id}.get_post", post_id=post_id,
-                post_sanitized_title=post.sanitized_title, _external=True
-            ),
-            flash_msg="post created :3"
-        )                   # view completed post
+    return render_template(
+        "blog/blogpage/form_base.html", title="Create post", prompt="Create post", form=form,
+        action=url_for(f"blog.{blogpage_id}.create_post", _external=True), method="POST"
+    )
 
 
-@bp.route("/<int:post_id>/edit", methods=["GET"], endpoint="edit_post_form")
-@bp.route("/<int:post_id>", methods=["PUT"])
-@utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
+@bp.post("/")
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+def create_post(*args, **kwargs):
+    form = CreateBlogpostForm(request.form)
+    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
+    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
+    if not form.validate():
+        return jsonify(submission_errors=form.errors)
+
+    # create post in db
+    post = Post(
+        blogpage_id=request.form.get("blogpage_id"), title=request.form.get("title"),
+        subtitle=request.form.get("subtitle"), content=request.form.get("content")
+    )
+    post.sanitize_title()
+    err = post.validate_titles_and_flush(should_add_to_db=True)
+    if err:
+        return jsonify(flash_msg=err)
+    post.add_timestamps(should_update_updated_timestamp=False)
+
+    # upload files if any
+    files_base_path = bp_utils.get_files_base_path(post)
+    err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
+    if err:
+        return jsonify(flash_msg=err)
+
+    db.session.commit() # only commit at very end in case error happened above
+    return jsonify(
+        redir_url=url_for(
+            f"blog.{post.blogpage_id}.get_post", post_id=post_id,
+            post_sanitized_title=post.sanitized_title, _external=True
+        ),
+        flash_msg="post created :3"
+    )                   # view completed post
+
+
+@bp.get("/<int:post_id>/edit")
+@utils.set_content_type(ContentType.HTML)
 @utils.require_login()
 @bp_utils.require_valid_post()
-def edit_post(post, post_id, *args, **kwargs):
+def edit_post_form(post, post_id, *args, **kwargs):
     # pre-populate form fields with existing post content
     form = EditBlogpostForm(obj=post)
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
@@ -330,100 +335,108 @@ def edit_post(post, post_id, *args, **kwargs):
         files_choices.sort(key=lambda t: t[0])
         form.delete_files.choices = files_choices
 
-    if request.method == "GET":
-        blogpage_id = bp_utils.get_blogpage_id()
-        return render_template(
-            "blog/blogpage/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form,
-            action=url_for(f"blog.{blogpage_id}.edit_post", post_id=post_id, _external=True),
-            method="PUT"
-        )
-    elif request.method == "PUT":
-        if not form.validate():
-            return jsonify(submission_errors=form.errors)
+    blogpage_id = bp_utils.get_blogpage_id()
+    return render_template(
+        "blog/blogpage/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form,
+        action=url_for(f"blog.{blogpage_id}.edit_post", post_id=post_id, _external=True),
+        method="PUT"
+    )
 
-        # edit post in db
-        old_blogpage_id = post.blogpage_id
-        files_base_path = bp_utils.get_files_base_path(post) # need to be before `blogpage_id` changes
-        post.blogpage_id = request.form.get("blogpage_id")
-        post.title = request.form.get("title")
-        post.subtitle = request.form.get("subtitle")
-        post.content = request.form.get("content")
-        
-        post.sanitize_title()
-        err = post.validate_titles_and_flush(should_add_to_db=False)
-        if err:
-            return jsonify(flash_msg=err)
-        post.add_timestamps(
-            should_update_updated_timestamp=request.form.get("update_updated_timestamp"),
-            old_blogpage_id=old_blogpage_id
-        )
 
-        # delete files if any
+@bp.put("/<int:post_id>")
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+@bp_utils.require_valid_post()
+def edit_post(post, post_id, *args, **kwargs):
+    form = EditBlogpostForm(request.form)
+    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
+    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
+    if not form.validate():
+        return jsonify(submission_errors=form.errors)
+
+    # edit post in db
+    old_blogpage_id = post.blogpage_id
+    files_base_path = bp_utils.get_files_base_path(post) # need to be before `blogpage_id` changes
+    post.blogpage_id = request.form.get("blogpage_id")
+    post.title = request.form.get("title")
+    post.subtitle = request.form.get("subtitle")
+    post.content = request.form.get("content")
+    
+    post.sanitize_title()
+    err = post.validate_titles_and_flush(should_add_to_db=False)
+    if err:
+        return jsonify(flash_msg=err)
+    post.add_timestamps(
+        should_update_updated_timestamp=request.form.get("update_updated_timestamp"),
+        old_blogpage_id=old_blogpage_id
+    )
+
+    # delete files if any
+    try:
+        for file_name in request.form.getlist("delete_files"):
+            file_path = os.path.join(files_base_path, file_name)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+        bp_utils.delete_dir_if_empty(files_base_path)
+    except Exception as e:
+        return jsonify(flash_msg=f"File delete exception: {e}")
+
+    # delete unused files if applicable
+    if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
         try:
-            for file_name in request.form.getlist("delete_files"):
-                file_path = os.path.join(files_base_path, file_name)
-                if os.path.exists(file_path):
-                    os.remove(file_path)
+            file_names = os.listdir(files_base_path)
+            for file_name in file_names:
+                file_basename, file_ext = os.path.splitext(file_name)
+                should_delete = False
+                # `if` condition also checks for Markdown syntax around file name to ensure
+                # that we are not catching a proper substring of a longer file name
+                if file_ext in current_app.config["FILE_UPLOAD_EXTS_IN_TEXT"]:
+                    # if `file_name` is a type that should appear in the post text (e.g. images),
+                    # remove it if it doesn't
+                    if f"](files/{file_name})" not in post.content:
+                        should_delete = True
+                else:
+                    # else if `file` is a type that doesn't appear in the post text (e.g. .xcf),
+                    # remove it if its extension-less file name doesn't appear in the post text 
+                    # (requires such files to exactly match their respective image's file name)
+                    # also requires no periods in file basename!
+                    if f"](files/{file_basename}." not in post.content:
+                        should_delete = True
+                if should_delete:
+                    os.remove(os.path.join(files_base_path, file_name))
             bp_utils.delete_dir_if_empty(files_base_path)
         except Exception as e:
-            return jsonify(flash_msg=f"File delete exception: {e}")
-
-        # delete unused files if applicable
-        if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
+            return jsonify(flash_msg=f"File delete unused exception: {e}")
+    
+    # upload files if any (after deletes)
+    err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
+    if err:
+        return jsonify(flash_msg=err)
+    
+    # move files if moving blogpost (after finishing all uploads/deletes)
+    if post.blogpage_id != old_blogpage_id:
+        if os.path.exists(files_base_path):
             try:
-                file_names = os.listdir(files_base_path)
-                for file_name in file_names:
-                    file_basename, file_ext = os.path.splitext(file_name)
-                    should_delete = False
-                    # `if` condition also checks for Markdown syntax around file name to ensure
-                    # that we are not catching a proper substring of a longer file name
-                    if file_ext in current_app.config["FILE_UPLOAD_EXTS_IN_TEXT"]:
-                        # if `file_name` is a type that should appear in the post text (e.g. images),
-                        # remove it if it doesn't
-                        if f"](files/{file_name})" not in post.content:
-                            should_delete = True
-                    else:
-                        # else if `file` is a type that doesn't appear in the post text (e.g. .xcf),
-                        # remove it if its extension-less file name doesn't appear in the post text 
-                        # (requires such files to exactly match their respective image's file name)
-                        # also requires no periods in file basename!
-                        if f"](files/{file_basename}." not in post.content:
-                            should_delete = True
-                    if should_delete:
-                        os.remove(os.path.join(files_base_path, file_name))
-                bp_utils.delete_dir_if_empty(files_base_path)
+                new_files_base_path = bp_utils.get_files_base_path(post)
+                shutil.move(files_base_path, new_files_base_path)
             except Exception as e:
-                return jsonify(flash_msg=f"File delete unused exception: {e}")
-        
-        # upload files if any (after deletes)
-        err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
-        if err:
-            return jsonify(flash_msg=err)
-        
-        # move files if moving blogpost (after finishing all uploads/deletes)
-        if post.blogpage_id != old_blogpage_id:
-            if os.path.exists(files_base_path):
-                try:
-                    new_files_base_path = bp_utils.get_files_base_path(post)
-                    shutil.move(files_base_path, new_files_base_path)
-                except Exception as e:
-                    return jsonify(flash_msg=f"File move exception: {e}")
+                return jsonify(flash_msg=f"File move exception: {e}")
 
-        # commit changes to db
-        db.session.commit()
-        if "save_blogpost" in request.form:
-            return jsonify(flash_msg="post updated :3")
-        else:
-            return jsonify(
-                redir_url=url_for(
-                    f"blog.{post.blogpage_id}.get_post", post_id=post_id,
-                    post_sanitized_title=post.sanitized_title, _external=True
-                ),
-                flash_msg="post updated :3"
-            ) # view updated post if using "submit" and not "save" button
+    # commit changes to db
+    db.session.commit()
+    if "save_blogpost" in request.form:
+        return jsonify(flash_msg="post updated :3")
+    else:
+        return jsonify(
+            redir_url=url_for(
+                f"blog.{post.blogpage_id}.get_post", post_id=post_id,
+                post_sanitized_title=post.sanitized_title, _external=True
+            ),
+            flash_msg="post updated :3"
+        ) # view updated post if using "submit" and not "save" button
 
 
-@bp.route("/<int:post_id>", methods=["DELETE"])
+@bp.delete("/<int:post_id>")
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
@@ -451,7 +464,7 @@ def delete_post(post, post_id, *args, **kwargs):
 ####################################################################################################
 
 
-@bp.route("/<int:post_id>/comments", methods=["GET"])
+@bp.get("/<int:post_id>/comments")
 @utils.set_content_type(ContentType.JSON)
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
@@ -494,13 +507,13 @@ def get_comments(post, post_id, *args, **kwargs):
     ))
 
 
-@bp.route("/<int:post_id>/comments", methods=["POST"])
+@bp.post("/<int:post_id>/comments")
 @utils.set_content_type(ContentType.JSON)
 @bp_utils.require_login_if_restricted_bp()
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
 def add_comment(post, post_id, *args, **kwargs):
-    form = AddCommentForm()
+    form = AddCommentForm(request.form)
     if not form.validate():
         return jsonify(submission_errors=form.errors)
 
@@ -521,30 +534,37 @@ def add_comment(post, post_id, *args, **kwargs):
     return jsonify(success=True, flash_msg="comment added :3")
 
 
-@bp.route("/<int:post_id>/comments/<int:comment_id>/edit", methods=["GET"], endpoint="edit_comment_form")
-@bp.route("/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
+@bp.get("/<int:post_id>/comments/<int:comment_id>/edit")
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login() # only admins can edit comments, since there's no other user account system
 @bp_utils.require_valid_post()
 @bp_utils.require_valid_comment()
 @bp_utils.redir_to_post_after_login()
-def edit_comment(post, post_id, comment, comment_id, *args, **kwargs):
+def edit_comment_form(post, post_id, comment, comment_id, *args, **kwargs):
     # pre-populate form fields with existing comment content; leave out `parent` since that should not be changeable
     form = EditCommentForm(obj=comment)
-    if request.method == "GET":
-        return jsonify(html=render_template("blog/blogpage/post_comment_edit_form.html", form=form, comment=comment))
-    elif request.method == "PUT":
-        if not form.validate():
-            return jsonify(submission_errors=form.errors)
-
-        # edit comment in db
-        comment.author = request.form.get("author")
-        comment.content = request.form.get("content")
-        db.session.commit()
-        return jsonify(success=True, flash_msg="comment updated :3")
+    return jsonify(html=render_template("blog/blogpage/post_comment_edit_form.html", form=form, comment=comment))
 
 
-@bp.route("/<int:post_id>/comments/<int:comment_id>", methods=["DELETE"])
+@bp.put("/<int:post_id>/comments/<int:comment_id>")
+@utils.set_content_type(ContentType.JSON)
+@utils.require_login()
+@bp_utils.require_valid_post()
+@bp_utils.require_valid_comment()
+@bp_utils.redir_to_post_after_login()
+def edit_comment(post, post_id, comment, comment_id, *args, **kwargs):
+    form = EditCommentForm(request.form)
+    if not form.validate():
+        return jsonify(submission_errors=form.errors)
+
+    # edit comment in db
+    comment.author = request.form.get("author")
+    comment.content = request.form.get("content")
+    db.session.commit()
+    return jsonify(success=True, flash_msg="comment updated :3")
+
+
+@bp.delete("/<int:post_id>/comments/<int:comment_id>")
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
@@ -562,7 +582,7 @@ def delete_comment(post, post_id, comment, comment_id, *args, **kwargs):
     return jsonify(success=True, flash_msg="literally 1984 :3")
 
 
-@bp.route("/<int:post_id>/comments/mark-as-read", methods=["POST"])
+@bp.post("/<int:post_id>/comments/mark-as-read")
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
@@ -577,7 +597,7 @@ def mark_comments_as_read(post, post_id, *args, **kwargs):
     return jsonify(success=True)
 
 
-@bp.route("/<int:post_id>/comments/get-count", methods=["GET"])
+@bp.get("/<int:post_id>/comments/get-count")
 @utils.set_content_type(ContentType.JSON)
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
@@ -585,7 +605,7 @@ def get_comment_count(post, post_id, *args, **kwargs):
     return jsonify(count=post.get_comment_count())
 
 
-@bp.route("/<int:post_id>/comments/get-unread-count", methods=["GET"])
+@bp.get("/<int:post_id>/comments/get-unread-count")
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
@@ -600,7 +620,7 @@ def get_unread_comment_count(post, post_id, *args, **kwargs):
 
 
 # alternate, less cumbersome endpoint than the default static endpoint for post files
-@bp.route("/<int:post_id>/files/<string:file_name>", methods=["GET"])
+@bp.get("/<int:post_id>/files/<string:file_name>")
 @utils.set_content_type(ContentType.HTML)
 @bp_utils.require_valid_post()
 def get_file(post, post_id, file_name, *args, **kwargs):

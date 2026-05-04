@@ -39,7 +39,7 @@ def get_url_for():
     return jsonify(url=url_for(**request.args, _external=True))
 
 
-def get_session_status():
+def get_auth_status():
     resp = make_response(jsonify(is_logged_in=current_user.is_authenticated))
     resp.headers["Cache-Control"] = "no-cache, no-store"
     return resp

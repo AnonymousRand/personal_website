@@ -41,7 +41,7 @@ async function updateUnreadCommentsDropdown() {
 
     // get posts with unread comments
     jqDropdownUnreadComments.html('<span class="dropdown-item">loading…</span>');
-    const resp = await fetchWrapper({url: GET_POSTS_WITH_UNREAD_COMMENTS_URL, method: "POST"});
+    const resp = await fetchWrapper({url: GET_POSTS_WITH_UNREAD_COMMENTS_URL, method: "GET"});
     if (resp.errorStatus) {
         jqDropdownUnreadComments.html('<span class="dropdown-item">unable to load posts :/</span>');
         return -1;

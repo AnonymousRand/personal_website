@@ -84,5 +84,5 @@ def register_global_routes(app):
     app.context_processor(global_routes.inject_blogpages)
     app.register_error_handler(HTTPException, global_routes.handle_general_http_error)
     app.add_url_rule("/favicon.ico", endpoint="favicon", view_func=global_routes.favicon)
-    app.add_url_rule("/session-status", endpoint="get_session_status", view_func=global_routes.get_session_status)
+    app.add_url_rule("/auth-status", endpoint="get_auth_status", view_func=global_routes.get_auth_status)
     app.add_url_rule("/url-for", endpoint="get_url_for", view_func=global_routes.get_url_for)
