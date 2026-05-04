@@ -181,9 +181,11 @@ class Post(db.Model):
     EXPAND_FILE_MARKDOWN_PATTERN = re.compile(r"\(files/(.+?)\)")
 
     def expand_file_markdown(self) -> None:
-        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.sanitized_title}/files/\1)", self.content)
+        # keep pattern updated if URL routes change!
+        self.content = self.EXPAND_FILE_MARKDOWN_PATTERN.sub(fr"({self.id}/{self.sanitized_title}/files/\1)", self.content)
 
     def collapse_file_markdown(self) -> str:
+        # keep pattern updated if URL routes change!
         return re.sub(fr"\({self.sanitized_title}/files/(.+?)\)", r"(files/\1)", self.content)
 
     def get_comment_count(self) -> int:

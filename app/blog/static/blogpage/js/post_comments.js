@@ -158,7 +158,7 @@ $(document).on("click", ".comment__make-edit-btn", async function(e) {
         method: "GET",
         params: {
             endpoint: `blog.${BLOGPAGE_ID}.edit_comment_form`,
-            post_sanitized_title: POST_SANITIZED_TITLE,
+            post_id: POST_ID,
             comment_id: commentId
         }
     });
@@ -180,7 +180,7 @@ $(document).on("submit", ".comment__edit-form", async function(e) {
         method: "GET",
         params: {
             endpoint: `blog.${BLOGPAGE_ID}.edit_comment`,
-            post_sanitized_title: POST_SANITIZED_TITLE,
+            post_id: POST_ID,
             comment_id: getCommentId(e.target)
         }
     });
@@ -203,7 +203,7 @@ $(document).on("click", ".comment__delete-btn", confirmWrapper(async function(e)
         method: "GET",
         params: {
             endpoint: `blog.${BLOGPAGE_ID}.delete_comment`,
-            post_sanitized_title: POST_SANITIZED_TITLE,
+            post_id: POST_ID,
             comment_id: getCommentId(e.target)
         }
     });

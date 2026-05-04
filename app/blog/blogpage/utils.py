@@ -10,6 +10,7 @@ from functools import wraps
 from flask import current_app, jsonify, redirect, request, url_for
 from werkzeug.utils import escape, secure_filename
 
+import app.blog.utils as blog_utils
 import app.utils as utils
 from app import db
 from app.models import *
@@ -64,10 +65,10 @@ def require_valid_post():
         @wraps(func)
         def wrapped(content_type: ContentType, *args, **kwargs):
             blogpage_id = get_blogpage_id()
-            # Flask view functions seem to turn `args` into `kwargs`, and I'm not complaining
-            post = get_post(kwargs.get("post"), kwargs.get("post_sanitized_title"), blogpage_id)
+            # Flask view functions seem to turn `args` into `kwargs` (but I'm not complaining :D)
+            post = blog_utils.get_post(kwargs.get("post_id"), kwargs.get("post"))
             if post is None:
-                return nonexistent_post(content_type)
+                return blog_utils.on_nonexistent_post(content_type)
             # also return `post` in addition since functions with these decorators probably need `post` anyway
             return func(post=post, content_type=content_type, *args, **kwargs)
         return wrapped
@@ -90,17 +91,14 @@ def redir_to_post_after_login():
     """
     If redirecting to a view function decorated by this via the `next` parameter after logging in, instead redirect to
     the GET endpoint for the current post.
-
-    Important: this decorator must be applied after the `post` or `post_sanitized_title` parameters are set (i.e.
-    after `@require_valid_post`).
     """
 
     def inner_decorator(func):
         @wraps(func)
         def wrapped(content_type: ContentType, *args, **kwargs):
-            post = get_post(kwargs.get("post"), kwargs.get("post_sanitized_title"), get_blogpage_id())
+            post = blog_utils.get_post(kwargs.get("post_id"), kwargs.get("post"))
             if post is None:
-                return nonexistent_post(content_type)
+                return blog_utils.on_nonexistent_post(content_type)
             if request.args.get("is_redir_after_login"):
                 # here it's always `redirect()` aka HTML content type because this view function must've been called
                 # by JS changing `window.location.href` after successful login + seeing `redir_url` JSON key from
@@ -110,24 +108,6 @@ def redir_to_post_after_login():
             return func(content_type=content_type, *args, **kwargs)
         return wrapped
     return inner_decorator
-
-
-@ContentType.resolve_depending_on_req_method()
-def nonexistent_post(content_type: ContentType):
-    match content_type:
-        case ContentType.HTML:
-            return redirect(url_for(
-                f"{request.blueprint}.get_posts",
-                flash_msg=utils.encode_uri_component("That post doesn't exist :/"),
-                _external=True
-            ))
-        case ContentType.JSON:
-            return jsonify(
-                redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
-                flash_msg="That post doesn't exist :/"
-            )
-        case _:
-            return "app/blog/blogpage/utils.py: `nonexistent_post()` somehow reached end of switch statement", 500
 
 
 def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_path: str) -> str:
@@ -179,16 +159,6 @@ def get_files_base_path(post: Post) -> str:
         current_app.root_path, current_app.config["ROOT_TO_BLOGPAGE_STATIC"],
         str(post.blogpage_id), "files", str(post.id)
     )
-
-
-def get_post(post: Post, post_sanitized_title: str, blogpage_id: int) -> Post:
-    """
-    Get post from URL, making sure it's valid and matches the whole URL.
-    """
-
-    if post is not None:
-        return post
-    return db.session.query(Post).filter_by(sanitized_title=post_sanitized_title, blogpage_id=blogpage_id).first()
 
 
 def sanitize_file_name(file_name: str) -> str:

@@ -8,7 +8,7 @@ import shutil
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 import sqlalchemy.sql.functions as sa_func
-from flask import current_app, jsonify, render_template, request, send_from_directory, url_for
+from flask import current_app, jsonify, render_template, redirect, request, send_from_directory, url_for
 from flask_login import current_user
 from markdown_environments import *
 from markdown.extensions.toc import TocExtension
@@ -72,10 +72,19 @@ def get_posts(*args, **kwargs):
 
 # private posts, unlike blogpages, are still accessible by link (like YouTube's "unlisted")
 # hence the lack of `@require_login_if_restricted_bp()`
-@bp.route("/<string:post_sanitized_title>", methods=["GET"])
+@bp.route("/<int:post_id>/", defaults={"post_sanitized_title": ""}, methods=["GET"])
+@bp.route("/<int:post_id>/<string:post_sanitized_title>", methods=["GET"])
 @utils.set_content_type(ContentType.HTML)
 @bp_utils.require_valid_post()
-def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from `require_valid_post` decorator
+def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` param is from `@require_valid_post`
+    # only use `post_id` to determine what post to get (in case titles change), but if `post_sanitized_title`
+    # given in request doesn't match that of the post with id `post_id`, redirect to the correct URL
+    if post_sanitized_title != post.sanitized_title:
+        return redirect(url_for(
+            f"{request.blueprint}.get_post", post_id=post_id,
+            post_sanitized_title=post.sanitized_title, _external=True
+        ))
+
     # render Markdown for post
     content_md = None
     if post.content:
@@ -87,7 +96,7 @@ def get_post(post, post_sanitized_title, *args, **kwargs): # first param is from
 
         content_md = markdown.Markdown(extensions=[
             "extra",
-            "image_titles",                                # images use `alt` text as `title` too
+            "image_titles", # images use `alt` text as `title` too
             CaptionedFigureExtension(
                 html_class="md-captioned-figure", caption_html_class="md-captioned-figure__caption"
             ),
@@ -298,18 +307,19 @@ def create_post(*args, **kwargs):
         db.session.commit() # only commit at very end in case error happened above
         return jsonify(
             redir_url=url_for(
-                f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
+                f"blog.{post.blogpage_id}.get_post", post_id=post_id,
+                post_sanitized_title=post.sanitized_title, _external=True
             ),
             flash_msg="post created :3"
         )                   # view completed post
 
 
-@bp.route("/<string:post_sanitized_title>/edit", methods=["GET"], endpoint="edit_post_form")
-@bp.route("/<string:post_sanitized_title>", methods=["PUT"])
+@bp.route("/<int:post_id>/edit", methods=["GET"], endpoint="edit_post_form")
+@bp.route("/<int:post_id>", methods=["PUT"])
 @utils.set_content_type(ContentType.DEPENDS_ON_REQ_METHOD)
 @utils.require_login()
 @bp_utils.require_valid_post()
-def edit_post(post, post_sanitized_title, *args, **kwargs):
+def edit_post(post, post_id, *args, **kwargs):
     # pre-populate form fields with existing post content
     form = EditBlogpostForm(obj=post)
     blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
@@ -328,7 +338,7 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
         blogpage_id = bp_utils.get_blogpage_id()
         return render_template(
             "blog/blogpage/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form,
-            action=url_for(f"blog.{blogpage_id}.edit_post", post_sanitized_title=post_sanitized_title, _external=True),
+            action=url_for(f"blog.{blogpage_id}.edit_post", post_id=post_id, _external=True),
             method="PUT"
         )
     elif request.method == "PUT":
@@ -410,17 +420,18 @@ def edit_post(post, post_sanitized_title, *args, **kwargs):
         else:
             return jsonify(
                 redir_url=url_for(
-                    f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
+                    f"blog.{post.blogpage_id}.get_post", post_id=post_id,
+                    post_sanitized_title=post.sanitized_title, _external=True
                 ),
                 flash_msg="post updated :3"
             ) # view updated post if using "submit" and not "save" button
 
 
-@bp.route("/<string:post_sanitized_title>", methods=["DELETE"])
+@bp.route("/<int:post_id>", methods=["DELETE"])
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
-def delete_post(post, post_sanitized_title, *args, **kwargs):
+def delete_post(post, post_id, *args, **kwargs):
     # delete post from db
     db.session.delete(post)
 
@@ -444,11 +455,11 @@ def delete_post(post, post_sanitized_title, *args, **kwargs):
 ####################################################################################################
 
 
-@bp.route("/<string:post_sanitized_title>/comments", methods=["GET"])
+@bp.route("/<int:post_id>/comments", methods=["GET"])
 @utils.set_content_type(ContentType.JSON)
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
-def get_comments(post, post_sanitized_title, *args, **kwargs):
+def get_comments(post, post_id, *args, **kwargs):
     def sanitize_comment_html(s: str) -> str:
         """
         Sanitize Markdown for comments (XSS etc.).
@@ -487,12 +498,12 @@ def get_comments(post, post_sanitized_title, *args, **kwargs):
     ))
 
 
-@bp.route("/<string:post_sanitized_title>/comments", methods=["POST"])
+@bp.route("/<int:post_id>/comments", methods=["POST"])
 @utils.set_content_type(ContentType.JSON)
 @bp_utils.require_login_if_restricted_bp()
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
-def add_comment(post, post_sanitized_title, *args, **kwargs):
+def add_comment(post, post_id, *args, **kwargs):
     form = AddCommentForm()
     if not form.validate():
         return jsonify(submission_errors=form.errors)
@@ -514,16 +525,14 @@ def add_comment(post, post_sanitized_title, *args, **kwargs):
     return jsonify(success=True, flash_msg="comment added :3")
 
 
-@bp.route(
-    "/<string:post_sanitized_title>/comments/<int:comment_id>/edit", methods=["GET"], endpoint="edit_comment_form"
-)
-@bp.route("/<string:post_sanitized_title>/comments/<int:comment_id>", methods=["PUT"])
+@bp.route("/<int:post_id>/comments/<int:comment_id>/edit", methods=["GET"], endpoint="edit_comment_form")
+@bp.route("/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login() # only admins can edit comments, since there's no other user account system
 @bp_utils.require_valid_post()
 @bp_utils.require_valid_comment()
 @bp_utils.redir_to_post_after_login()
-def edit_comment(post, post_sanitized_title, comment, comment_id, *args, **kwargs):
+def edit_comment(post, post_id, comment, comment_id, *args, **kwargs):
     # pre-populate form fields with existing comment content; leave out `parent` since that should not be changeable
     form = EditCommentForm(obj=comment)
     if request.method == "GET":
@@ -539,13 +548,13 @@ def edit_comment(post, post_sanitized_title, comment, comment_id, *args, **kwarg
         return jsonify(success=True, flash_msg="comment updated :3")
 
 
-@bp.route("/<string:post_sanitized_title>/comments/<int:comment_id>", methods=["DELETE"])
+@bp.route("/<int:post_id>/comments/<int:comment_id>", methods=["DELETE"])
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
 @bp_utils.require_valid_comment()
 @bp_utils.redir_to_post_after_login()
-def delete_comment(post, post_sanitized_title, comment, comment_id, *args, **kwargs):
+def delete_comment(post, post_id, comment, comment_id, *args, **kwargs):
     # delete comment and its descendants from db
     descendants = comment.get_descendants(post)
     if not comment.remove_comment(post):
@@ -557,12 +566,12 @@ def delete_comment(post, post_sanitized_title, comment, comment_id, *args, **kwa
     return jsonify(success=True, flash_msg="literally 1984 :3")
 
 
-@bp.route("/<string:post_sanitized_title>/comments/mark-as-read", methods=["POST"])
+@bp.route("/<int:post_id>/comments/mark-as-read", methods=["POST"])
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
-def mark_comments_as_read(post, post_sanitized_title, *args, **kwargs):
+def mark_comments_as_read(post, post_id, *args, **kwargs):
     # mark comments under current post as read in db
     unread_comments_query = post.comments.select().filter_by(is_unread=True)
     unread_comments = db.session.scalars(unread_comments_query).all()
@@ -572,20 +581,20 @@ def mark_comments_as_read(post, post_sanitized_title, *args, **kwargs):
     return jsonify(success=True)
 
 
-@bp.route("/<string:post_sanitized_title>/comments/get-count", methods=["GET"])
+@bp.route("/<int:post_id>/comments/get-count", methods=["GET"])
 @utils.set_content_type(ContentType.JSON)
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
-def get_comment_count(post, post_sanitized_title, *args, **kwargs):
+def get_comment_count(post, post_id, *args, **kwargs):
     return jsonify(count=post.get_comment_count())
 
 
-@bp.route("/<string:post_sanitized_title>/comments/get-unread-count", methods=["GET"])
+@bp.route("/<int:post_id>/comments/get-unread-count", methods=["GET"])
 @utils.set_content_type(ContentType.JSON)
 @utils.require_login()
 @bp_utils.require_valid_post()
 @bp_utils.redir_to_post_after_login()
-def get_unread_comment_count(post, post_sanitized_title, *args, **kwargs):
+def get_unread_comment_count(post, post_id, *args, **kwargs):
     return jsonify(count=post.get_unread_comment_count())
 
 
@@ -595,10 +604,10 @@ def get_unread_comment_count(post, post_sanitized_title, *args, **kwargs):
 
 
 # alternate, less cumbersome endpoint than the default static endpoint for post files
-@bp.route("/<string:post_sanitized_title>/files/<string:file_name>", methods=["GET"])
+@bp.route("/<int:post_id>/files/<string:file_name>", methods=["GET"])
 @utils.set_content_type(ContentType.HTML)
 @bp_utils.require_valid_post()
-def get_file(post, post_sanitized_title, file_name, *args, **kwargs):
+def get_file(post, post_id, file_name, *args, **kwargs):
     return send_from_directory(
         f"{current_app.config['ROOT_TO_BLOGPAGE_STATIC']}/{post.blogpage_id}/files/{post.id}", file_name
     )

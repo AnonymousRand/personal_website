@@ -23,11 +23,9 @@ def index():
 # (MySQL also does not change id on delete)
 @bp.route("/<int:post_id>", methods=["GET"])
 def post_by_id(post_id):
-    post = db.session.get(Post, post_id)
+    post = blog_utils.get_post(post_id)
     if post is None:
-        return redirect(url_for(
-            f"blog.get_posts", flash_msg=utils.encode_uri_component("That post doesn't exist :/"), _external=True
-        ))
+        return blog_utils.on_nonexistent_post(ContentType.HTML)
 
     # don't allow unlisted posts to be accessed this way to prevent brute-force enumeration with post IDs
     if post.blogpage.is_login_required and not current_user.is_authenticated:
@@ -35,7 +33,7 @@ def post_by_id(post_id):
         if result:
             return result
     return redirect(url_for(
-        f"blog.{post.blogpage_id}.get_post", post_sanitized_title=post.sanitized_title, _external=True
+        f"blog.{post.blogpage_id}.get_post", post_id=post_id, post_sanitized_title=post.sanitized_title, _external=True
     ))
 
 
