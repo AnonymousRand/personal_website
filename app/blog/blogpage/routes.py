@@ -127,7 +127,7 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
                         "coro_thm": {
                             "thm_type": "Corollary",
                             "thm_counter_incr": "0,0,1",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxxlight"
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-orange"
                         },
                         "coro_impt": {
                             "thm_type": "Corollary",
@@ -137,11 +137,11 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
                         "defn": {
                             "thm_type": "Definition",
                             "thm_counter_incr": "0,0,1",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-blue-xlight"
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-green"
                         },
                         r"defn\\\*": {
                             "thm_type": "Definition",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-blue-xlight"
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-green"
                         },
                         "ex": {
                             "thm_type": "Example",
@@ -177,11 +177,11 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
                         "thm": {
                             "thm_type": "Theorem",
                             "thm_counter_incr": "0,0,1",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxxlight"
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-orange"
                         },
                         r"thm\\\*": {
                             "thm_type": "Theorem",
-                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-pink-deep-xxxlight"
+                            "html_class": "md-textbox last-child-no-mb border--4px border--custom-orange"
                         },
                         "thm_impt": {
                             "thm_type": "Theorem",

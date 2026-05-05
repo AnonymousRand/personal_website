@@ -9,84 +9,72 @@ const DARKREADER_FIXES = {
     // CSS to apply when dark mode is on, e.g. remapping colors
     css: `
         :root {
-            --darkreader-border--custom-blue: var(--custom-blue);
-            --darkreader-border--custom-blue-light: var(--custom-blue-xlight);
-            --darkreader-border--custom-green: var(--custom-green);
-            --darkreader-border--custom-orange: var(--custom-orange);
+            --darkreader-border--bs-border-color: gray;
+            --darkreader-border--bs-border-color-translucent: gray;
+            --darkreader-border--bs-dropdown-border-color: gray;
+            --darkreader-border--custom-blue: var(-custom-blue); /* used in form */
+            --darkreader-border--custom-blue-xlight: var(--custom-blue-xlight);
+            --darkreader-border--custom-green: var(--custom-green); /* used in form */
+            --darkreader-border--custom-orange: var(--custom-orange); /* used in form */
             --darkreader-border--custom-orange-light: var(--custom-orange-light);
-            --darkreader-border--custom-orange-deep: var(--custom-orange-deep);
-            --darkreader-border--custom-pink-xlight: var(--custom-pink-xlight);
-            --darkreader-border--custom-pink-deep-xxlight: var(--custom-pink-xlight);
-            --darkreader-border--custom-pink-deep-xxxlight: var(--custom-pink-xxlight);
+            --darkreader-border--custom-pink-light: var(--custom-pink-light); /* used in form */
+            --darkreader-border--dimgray: lightgray;
+            --darkreader-border--gray: gray;
+            --darkreader-border--lightgray: gray;
 
-            --darkreader-bg--custom-blue: var(--custom-blue);
-            --darkreader-bg--custom-green: var(--custom-green);
+            --darkreader-bg--custom-blue: var(--custom-blue); /* used in form */
+            --darkreader-bg--custom-blue-xxlight: var(--custom-blue-deep-xlight); /* used in menu */
+            --darkreader-bg--custom-green: var(--custom-green); /* used in form */
             --darkreader-bg--custom-green-light: var(--custom-green-light);
             --darkreader-bg--custom-green-xlight: var(--custom-green-light);
-            --darkreader-bg--custom-orange: var(--custom-orange);
-            --darkreader-bg--custom-orange-light: var(--custom-orange-light);
+            --darkreader-bg--custom-orange: var(--custom-orange); /* used in form */
+            --darkreader-bg--custom-orange-light: var(--custom-orange-light); /* used in menu */
             --darkreader-bg--custom-orange-shallow-light: var(--custom-orange-shallow-light);
             --darkreader-bg--custom-orange-shallow-xlight: var(--custom-orange-light);
+            --darkreader-bg--custom-pink-light: var(--custom-pink-light); /* used in form */
+            --darkreader-bg--custom-pink-shallow-xxxxlight: var(--custom-pink-xshallow-xxlight); /* used in menu */
 
             --darkreader-text--custom-blue-deep: var(--custom-blue);
             --darkreader-text--custom-blue-deep-dark: var(--custom-blue-light);
-            --darkreader-text--custom-blue-xdeep: var(--custom-blue-light);
-            --darkreader-text--custom-blue-xxdeep: var(--custom-blue-xlight);
+            --darkreader-text--custom-blue-xdeep: var(--custom-blue-deep-light);
+            --darkreader-text--custom-blue-xxdeep: var(--custom-blue-deep-xlight);
             --darkreader-text--custom-green-deep-xdark: var(--custom-green);
             --darkreader-text--custom-green-deep-xxdark: var(--custom-green-light);
-            --darkreader-text--custom-pink-deep-light: var(--custom-pink-xxlight);
-            --darkreader-text--custom-pink-deep-xlight: var(--custom-pink-xlight);
-            --darkreader-text--custom-pink-deep-xxlight: var(--custom-pink-light);
+            --darkreader-text--custom-orange-xdeep: var(--custom-orange-light);
+            --darkreader-text--custom-orange-xxdeep: var(--custom-orange-xlight);
+            --darkreader-text--custom-pink-shallow: var(--custom-pink-xshallow-xxlight);
+            --darkreader-text--custom-pink-shallow-light: var(--custom-pink-xshallow-xxlight);
+            --darkreader-text--custom-pink-shallow-xlight: var(--custom-pink-xshallow-xlight);
+            --darkreader-text--custom-pink-shallow-xxlight: var(--custom-pink-xshallow-light);
+            --darkreader-text--black: var(--black-darkmode);
+            --darkreader-text--blue: var(--blue-darkmode);
+            --darkreader-text--dimgray: var(--dimgray-darkmode);
+            --darkreader-text--dimmergray: var(--dimmergray-darkmode);
+            --darkreader-text--gray: var(--gray-darkmode);
+            --darkreader-text--red: var(--red-darkmode);
 
             /* turn blue links into green actually on dark mode since it's cooler, but green doesn't show up well normally in light mode */
-            --darkreader-text--default-link-color: var(--custom-green-light);
-            --darkreader-text--default-link-hover-color: var(--custom-green-xlight);
+            --darkreader-text--default-link-color: var(--default-link-color-darkmode);
+            --darkreader-text--default-link-hover-color: var(--default-link-color-hover-darkmode);
+            --darkreader-text--default-link-disabled-color: var(--default-link-color-disabled-darkmode);
         }
 
         /* layer for specificity */
         @layer css-makes-me-want-to-stick-my-head-in-a-blender {
             hr {
-                color: white !important;
+                opacity: 0.6 !important;
             }
 
             option:active, .dropdown-item:hover, .dropdown-item:active {
                 color: var(--bs-body-color) !important;
             }
 
-            pre:not(table pre, .pre--inline) code {
-                border-color: gray !important;
-            }
-
-            table {
-                border-color: gray !important;
-            }
-
-            .border--lightgray {
-                border-color: gray !important;
-            }
-
             .btn--custom-orange-light {
                 color: black !important;
             }
 
-            .btn-link--custom-pink-deep-xlight {
-                color: var(--custom-pink-deep-xlight) !important;
-            }
-
-            .btn-link--custom-pink-deep-xlight:hover {
-                color: var(--custom-pink-deep-light) !important;
-            }
-
             .cell--top-header, .cell--left-header {
                 background-color: #242424 !important;
-            }
-
-            .md-dropdown .md-dropdown__content {
-                border-top-color: gray !important;
-            }
-
-            :is(.post__content, .comment__content) img:hover {
-                border-color: gray !important;
             }
 
             .redacted {

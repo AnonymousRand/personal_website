@@ -3,23 +3,23 @@
 /**********/
 
 .black {
-    color: black !important;
+    color: var(--black) !important;
 }
 
 .blue {
-    color: blue !important;
+    color: var(--blue) !important;
 }
 
 .dimgray {
-    color: dimgray !important;
+    color: var(--dimgray) !important;
 }
 
 .gray {
-    color: gray !important;
+    color: var(--gray) !important;
 }
 
 .red {
-    color: red !important;
+    color: var(--red) !important;
 }
 
 .custom-blue-deep-dark {
@@ -30,12 +30,12 @@
     color: var(--custom-orange-deep) !important;
 }
 
-.custom-pink-deep-xlight {
-    color: var(--custom-pink-deep-xlight) !important;
+.custom-pink-shallow-xlight {
+    color: var(--custom-pink-shallow-xlight) !important;
 }
 
-.custom-pink-deep-xxlight {
-    color: var(--custom-pink-deep-xxlight) !important;
+.custom-pink-shallow-xxlight {
+    color: var(--custom-pink-shallow-xxlight) !important;
 }
 
 /********/
@@ -226,8 +226,8 @@
         var(--custom-green-light) 95deg,
         var(--custom-blue-xxlight) 112.5deg,
         var(--custom-blue-xxlight) 242.5deg,
-        var(--custom-pink-xxlight) 260deg,
-        var(--custom-pink-xxlight) 280deg,
+        var(--custom-pink-xlight) 260deg,
+        var(--custom-pink-xlight) 280deg,
         var(--custom-orange-light) 312.5deg
     ) 1 !important;
     /* use when `background-clip` is better supported for `border-radius` support
@@ -237,28 +237,24 @@
         var(--custom-green-light) 95deg,
         var(--custom-blue-xxlight) 112.5deg,
         var(--custom-blue-xxlight) 242.5deg,
-        var(--custom-pink-xxlight) 260deg,
-        var(--custom-pink-xxlight) 280deg,
+        var(--custom-pink-xlight) 260deg,
+        var(--custom-pink-xlight) 280deg,
         var(--custom-orange-light) 312.5deg
     ) border-box;
     background-clip: border-area;
     */
 }
 
-.border--custom-blue-xlight {
-    border-color: var(--custom-blue-xlight) !important;
+.border--custom-green {
+    border-color: var(--custom-green) !important;
 }
 
 .border--custom-orange {
     border-color: var(--custom-orange) !important;
 }
 
-.border--custom-pink-deep-xxlight {
-    border-color: var(--custom-pink-deep-xxlight) !important;
-}
-
 .border--lightgray {
-    border-color: lightgray !important;
+    border-color: var(--lightgray) !important;
 }
 
 /*********/
@@ -292,12 +288,12 @@
     color: var(--custom-orange-xxdeep) !important;
 }
 
-.btn-link--custom-pink-deep-xlight {
-    color: var(--custom-pink-deep-xlight) !important;
+.btn-link--custom-pink-shallow-xlight {
+    color: var(--custom-pink-shallow-xlight) !important;
 }
 
-.btn-link--custom-pink-deep-xlight:hover {
-    color: var(--custom-pink-deep-light) !important;
+.btn-link--custom-pink-shallow-xlight:hover {
+    color: var(--custom-pink-shallow-light) !important;
 }
 
 /**********/
@@ -308,23 +304,13 @@
 .link--discreet .MathJax * {
     text-decoration: underline !important;
     text-decoration-style: dotted !important;
-    text-decoration-color: dimgray !important;
-    color: dimgray !important;
+    text-decoration-color: currentcolor !important;
+    color: var(--dimgray) !important;
 }
 
-.link--discreet:hover {
-    text-decoration-color: currentcolor !important;
-    color: #282828 !important;
-}
-
-.link--custom-blue-deep-dark {
-    text-decoration-color: currentcolor !important;
-    color: var(--custom-blue-deep-dark) !important;
-}
-
-.link--custom-blue-deep-dark:hover {
-    text-decoration-color: currentcolor !important;
-    color: var(--custom-blue-xdeep) !important;
+.link--discreet:hover,
+.link--discreet:hover .MathJax * {
+    color: var(--dimmergray) !important;
 }
 
 .link--custom-blue-xdeep {
@@ -333,7 +319,6 @@
 }
 
 .link--custom-blue-xdeep:hover {
-    text-decoration-color: currentcolor !important;
     color: var(--custom-blue-xxdeep) !important;
 }
 
@@ -343,8 +328,7 @@
 }
 
 .link--custom-green-deep-dark:hover {
-    text-decoration-color: currentcolor !important;
-    color: var(--custom-green-deep-xxdark) !important;
+    color: var(--custom-green-deep-xdark) !important;
 }
 
 .link--custom-orange-deep {
@@ -353,46 +337,33 @@
 }
 
 .link--custom-orange-deep:hover {
-    text-decoration-color: currentcolor !important;
     color: var(--custom-orange-xdeep) !important;
 }
 
-.link--custom-pink-deep-xlight {
+.link--custom-pink-shallow-xlight {
     text-decoration-color: currentcolor !important;
-    color: var(--custom-pink-deep-xlight) !important;
+    color: var(--custom-pink-shallow-xlight) !important;
 }
 
-.link--custom-pink-deep-xlight:hover {
-    text-decoration-color: currentcolor !important;
-    color: var(--custom-pink-deep-light) !important;
+.link--custom-pink-shallow-xlight:hover {
+    color: var(--custom-pink-shallow-light) !important;
 }
 
-.link--custom-pink-deep-xxlight {
+.link--custom-pink-shallow-xxlight {
     text-decoration-color: currentcolor !important;
-    color: var(--custom-pink-deep-xxlight) !important;
+    color: var(--custom-pink-shallow-xxlight) !important;
 }
 
-.link--custom-pink-deep-xxlight:hover {
-    text-decoration-color: currentcolor !important;
-    color: var(--custom-pink-deep-xlight) !important;
-}
-
-.link--gray {
-    text-decoration-color: currentcolor !important;
-    color: gray !important;
-}
-
-.link--gray:hover {
-    text-decoration-color: currentcolor !important;
-    color: dimgray !important;
+.link--custom-pink-shallow-xxlight:hover {
+    color: var(--custom-pink-shallow-xlight) !important;
 }
 
 /***************/
 /* `underline` */
 /***************/
 
-.underline--custom-pink-deep-xxlight {
-    text-decoration-color: var(--custom-pink-deep-xxlight) !important;
+.underline--custom-pink-shallow-xxlight {
+    text-decoration-color: var(--custom-pink-shallow-xxlight) !important;
 }
 
 /*********/
@@ -436,7 +407,7 @@
     margin-bottom: 1rem;
     border-bottom: 3px solid currentcolor;
     padding-bottom: 0.5rem;
-    color: var(--custom-pink-deep-xxlight);
+    color: var(--custom-pink-shallow-xxlight);
     font-size: calc(1.3rem + 2.4vw); /* fs-3 */
 }
 
@@ -486,7 +457,7 @@
 
 .post-img:hover,
 :is(.post__content, .comment__content) img:hover {
-    border-color: silver;
+    border-color: var(--gray) !important;
 }
 
 /* post images are 100% width if not specified in `width` attribute */

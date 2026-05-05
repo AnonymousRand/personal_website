@@ -45,12 +45,12 @@ const TOTAL_PAGES = {{ total_pages }};
               <span class="flex-basis-75 me-3 mb-0">{{ moment(post.timestamp).format("Y/M/D") }}</span>
             {% endif %}
             <span class="d-flex align-items-center ms-auto gray">
-              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="custom-pink-deep-light">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
+              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="custom-pink-shallow-light">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
             </span>
           </div>
       {% else %}
-        <a class="post-list__post underline-on-hover-only underline--custom-pink-deep-xxlight" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_post', post_id=post.id, post_sanitized_title=post.sanitized_title, _external=True) }}">
-          <h1 class="mb-0 p-mb-0 custom-pink-deep-xxlight fs-5">{{ post.title|safe }}</h1>
+        <a class="post-list__post underline-on-hover-only underline--custom-pink-shallow-xxlight" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_post', post_id=post.id, post_sanitized_title=post.sanitized_title, _external=True) }}">
+          <h1 class="mb-0 p-mb-0 custom-pink-shallow-xxlight fs-5">{{ post.title|safe }}</h1>
   
           {% if post.subtitle is not none %}
             <h2 class="mt-1 mb-0 p-mb-0 custom-blue-deep-dark fs-8">{{ post.subtitle|safe }}</h2>
@@ -63,7 +63,7 @@ const TOTAL_PAGES = {{ total_pages }};
               <span class="flex-basis-75 me-3 mb-0 black">{{ moment(post.timestamp).format("Y/M/D") }}</span>
             {% endif %}
             <span class="d-flex align-items-center gray ms-auto">
-              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="custom-pink-deep-light show-when-logged-in">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
+              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="custom-pink-shallow-light show-when-logged-in">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
             </span>
           </div>
       {% endif %}

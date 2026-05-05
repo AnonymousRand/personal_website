@@ -48,14 +48,14 @@ const colorChoices = {
         selection: "--custom-orange-shallow-light"
     },
     pink: {
-        menuHighlight: "--custom-pink-deep-xxxxlight",
+        menuHighlight: "--custom-pink-shallow-xxxxlight",
         form: {
-            accent: "--custom-pink-xlight",
-            border: "--custom-pink-xlight",
-            boxShadow: "color-mix(in srgb, var(--custom-pink-xlight) 50%, transparent)"
+            accent: "--custom-pink-light",
+            border: "--custom-pink-light",
+            boxShadow: "color-mix(in srgb, var(--custom-pink-light) 50%, transparent)"
         },
-        flashBorder: "--custom-pink-xlight",
-        selection: "--custom-pink-deep-xxxxlight"
+        flashBorder: "--custom-pink-light",
+        selection: "--custom-pink-shallow-xxxxlight"
     }
 };
 

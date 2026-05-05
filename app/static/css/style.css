@@ -25,9 +25,9 @@ a:not(#navbar a):hover {
 
 blockquote {
     margin-left: 0rem;
-    border-left: 4px solid lightgray;
+    border-left: 4px solid var(--lightgray);
     padding-left: 1rem;
-    color: dimgray;
+    color: var(--dimgray);
 }
 
 body {
@@ -38,7 +38,7 @@ body {
 }
 
 code {
-    color: var(--custom-pink-deep);
+    color: var(--custom-pink-shallow);
     font-size: 100%;
 }
 
@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
 
 label:has(+ [required]):after,
 label:has(+ * [required]):after {
-    color: red;
+    color: var(--red);
     content:" *";
 }
 
@@ -94,14 +94,14 @@ pre {
  * (i.e. text-wrapping, non-bordered, non-syntax-highlighted code blocks) */
 pre:not(table pre, .pre--inline) code {
     margin-bottom: 0.5rem;
-    border: 2px solid lightgray;
+    border: 2px solid var(--lightgray);
     border-radius: var(--bs-border-radius);
     padding: 0.75rem 1rem;
 }
 
 table {
     margin-bottom: 0.5rem;
-    border-color: dimgray;
+    border-color: var(--dimgray);
     width: max-content;
 }
 
@@ -141,19 +141,19 @@ textarea.form-control {
 
 /* tooltip arrow */
 .bs-tooltip-top .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
-    border-top-color: var(--custom-pink-deep-xlight) !important;
+    border-top-color: var(--custom-pink-shallow-xlight) !important;
 }
 
 .bs-tooltip-right .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
-    border-right-color: var(--custom-pink-deep-xlight) !important;
+    border-right-color: var(--custom-pink-shallow-xlight) !important;
 }
 
 .bs-tooltip-bottom .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
-    border-bottom-color: var(--custom-pink-deep-xlight) !important;
+    border-bottom-color: var(--custom-pink-shallow-xlight) !important;
 }
 
 .bs-tooltip-left .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
-    border-left-color: var(--custom-pink-deep-xlight) !important;
+    border-left-color: var(--custom-pink-shallow-xlight) !important;
 }
 
 .btn-close {
@@ -217,6 +217,11 @@ textarea.form-control {
 .nav-link {
     border-width: 0;
     background-color: transparent !important;
+    color: var(--dimgray) !important;
+}
+
+.nav-link:hover {
+    color: var(--dimmergray) !important;
 }
 
 /* for (approx) centering due to larger font */
@@ -253,11 +258,11 @@ textarea.form-control {
 }
 
 .tooltip .tooltip-inner {
-    border: 2px solid var(--custom-pink-xlight) !important;
+    border: 2px solid var(--custom-pink-light) !important;
     border-radius: var(--bs-border-radius);
     background-color: var(--bs-body-bg) !important;
     max-width: 30rem !important;
-    color: #2b2b2b !important;
+    color: var(--bs-body-color) !important;
 }
 
 .tooltip-inner > :last-child,
@@ -268,7 +273,7 @@ textarea.form-control {
 }
 
 /* CSS is so stupid that `hidden` HTML attribute is overriden by `display` property in CSS, so I HAVE TO MANUALLY GO
- * AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the absolute gobsmacking gobsmacker is this */
+ * AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the absolute gobsmacking gobsmacker gobsmackery freak is this */
 [hidden] {
     display: none !important;
 }

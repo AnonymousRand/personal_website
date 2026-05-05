@@ -3,5 +3,5 @@
 }
 
 .blogpage__subname {
-    color: dimgray;
+    color: var(--dimgray);
 }

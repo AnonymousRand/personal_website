@@ -4,12 +4,12 @@ input[value="Reply"][value="Delete"] {
 }
 
 .blogpage__name {
-    color: black;
+    color: var(--black);
 }
 
 .blogpage__subname {
     line-height: 1.4em;
-    color: gray;
+    color: var(--gray);
 }
 
 .comment__nest-limit-text {
@@ -36,7 +36,7 @@ input[value="Reply"][value="Delete"] {
 
 .footnotes__wrapper {
     margin-bottom: 1rem;
-    color: dimgray;
+    color: var(--dimgray);
 }
 
 .goto-page-form__page-input {
@@ -62,10 +62,16 @@ input[value="Reply"][value="Delete"] {
     visibility: visible;
 }
 
+:is(.md-pf, .md-exer .md-dropdown__content) hr {
+    opacity: 100%;
+    border-width: 2px;
+    border-color: var(--lightgray);
+}
+
 .md-captioned-figure__caption {
     margin-top: -0.5rem;
     text-align: center;
-    color: dimgray;
+    color: var(--dimgray);
     font-size: 0.95rem;
 }
 
@@ -114,15 +120,8 @@ input[value="Reply"][value="Delete"] {
 
 .md-dropdown .md-dropdown__content {
     margin-top: 0.75rem;
-    border-top: 2px solid lightgray;
+    border-top: 2px solid var(--lightgray);
     padding-top: 0.75rem;
-}
-
-/* no class since can't add attribute lists to `<hr>` */
-:is(.md-pf, .md-exer .md-dropdown__content) hr {
-    opacity: 100%;
-    border-width: 2px;
-    border-color: lightgray;
 }
 
 .md-textbox {
@@ -169,7 +168,7 @@ input[value="Reply"][value="Delete"] {
 
 .post__toc {
     z-index: 999;
-    border-color: gray;
+    border-color: var(--gray);
     margin-top: 1rem;
     padding: 1rem 1rem 0rem 1rem;
     max-height: max(33.3333svh, 15rem);
@@ -226,8 +225,8 @@ input[value="Reply"][value="Delete"] {
     margin-bottom: -0.25rem;
 }
 
-.post-list__post:hover .custom-pink-deep-xlight {
-    color: var(--custom-pink-deep-light) !important;
+.post-list__post:hover .custom-pink-shallow-xlight {
+    color: var(--custom-pink-shallow-light) !important;
 }
 
 .post-list__post:hover .custom-blue-deep{
@@ -255,6 +254,6 @@ input[value="Reply"][value="Delete"] {
     background-color: var(--bs-body-bg); /* to match card body */
 }
 
-.underline--custom-pink-deep-xlight.post-list__post:hover {
-    text-decoration-color: var(--custom-pink-deep-light) !important;
+.underline--custom-pink-shallow-xlight.post-list__post:hover {
+    text-decoration-color: var(--custom-pink-shallow-light) !important;
 }

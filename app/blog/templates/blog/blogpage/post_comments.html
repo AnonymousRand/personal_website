@@ -14,7 +14,7 @@
             {{ comment.author }}<i class="bi bi-check-circle ms-2" title="(actually verified, unlike twitter &gt;:3)"></i>
           </h3>
     {% else %}
-    <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--custom-pink-deep-xlight{% else %} border--lightgray{% endif %} border--2px">
+    <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--custom-pink-shallow-xlight{% else %} border--lightgray{% endif %} border--2px">
         <div class="card-body pb-2">
           <h3 class="mb-3 border-b border--1px border--lightgray pb-3 fs-7">{{ comment.author }}</h3>
     {% endif %}
@@ -29,7 +29,7 @@
           {% endif %}
 
           <div class="d-flex align-items-center"{% if not current_user.is_authenticated %} hidden{% endif %}>
-            <button id="comment__make-edit-btn-{{ comment.id }}" class="comment__make-edit-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Edit</button><span class="pipe--0_85em mx-2 custom-pink-deep-xlight"></span><button id="comment__delete-btn-{{ comment.id }}" class="comment__delete-btn btn btn-link btn-link--custom-pink-deep-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Delete</button>
+            <button id="comment__make-edit-btn-{{ comment.id }}" class="comment__make-edit-btn btn btn-link btn-link--custom-pink-shallow-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Edit</button><span class="pipe--0_85em mx-2 custom-pink-shallow-xlight"></span><button id="comment__delete-btn-{{ comment.id }}" class="comment__delete-btn btn btn-link btn-link--custom-pink-shallow-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">Delete</button>
           </div>
         </div>
       </div>

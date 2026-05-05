@@ -46,7 +46,7 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
 <hr class="mt-2 mb-0">
 
 <div class="mt-4">
-  <h1 class="mb-0 p-mb-0 custom-pink-deep-xxlight fs-3">{{ post.title|safe }}</h1>
+  <h1 class="mb-0 p-mb-0 custom-pink-shallow-xxlight fs-3">{{ post.title|safe }}</h1>
   {% if post.subtitle is not none %}
     <h2 class="mt-2 mb-0 p-mb-0 custom-blue-deep-dark fs-7">{{ post.subtitle|safe }}</h2>
   {% endif %}
@@ -76,9 +76,9 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
         {% for toc_token in toc_tokens recursive %}
           {% set class = "" %}
           {% if toc_token.level == 1 %}
-            {% set class = "link--custom-pink-deep-xlight" %}
+            {% set class = "link--custom-pink-shallow-xlight" %}
           {% elif toc_token.level == 2 %}
-            {% set class = "link--custom-blue-deep-xdark" %}
+            {% set class = "link--custom-blue-xdeep" %}
           {% endif %}
     
           <li>
