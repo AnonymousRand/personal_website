@@ -79,7 +79,7 @@ class Config(object):
         "POST_TITLE_MAX_LEN": 1000,
         "POST_SUBTITLE_MAX_LEN": 1000,
         # can't enforce this db-side because it's `MEDIUMTEXT` so just don't be more than 2^24 - 1 okayge
-        "POST_CONTENT_MAX_LEN": 1000000,
+        "POST_CONTENT_MAX_LEN": 10000000,
         "COMMENT_AUTHOR_MAX_LEN": 100,
         "COMMENT_CONTENT_MAX_LEN": 5000,
         "USER_USERNAME_MAX_LEN": 25,
