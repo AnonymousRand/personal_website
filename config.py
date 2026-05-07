@@ -78,7 +78,7 @@ class Config(object):
         "BLOGPAGE_COLOR_MAX_LEN": 100,
         "POST_TITLE_MAX_LEN": 1000,
         "POST_SUBTITLE_MAX_LEN": 1000,
-        # can't enforce this db-side because it's `MEDIUMTEXT` so just don't be more than 2^24 - 1 okayge
+        # can't enforce this db-side because it's `MEDIUMTEXT` so just don't be more than 2^24 - 1 okayge :3
         "POST_CONTENT_MAX_LEN": 10000000,
         "COMMENT_AUTHOR_MAX_LEN": 100,
         "COMMENT_CONTENT_MAX_LEN": 5000,
