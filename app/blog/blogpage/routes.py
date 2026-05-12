@@ -257,20 +257,18 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
 @utils.require_login()
 def create_post_form(*args, **kwargs):
     form = CreateBlogpostForm()
-    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
-    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
 
     # automatically populate blogpage form field to current blogpage if possible
     blogpage_id = bp_utils.get_blogpage_id()
     if blogpage_id is None:
         return "ok im actually impressed how did you do that"
     blogpage = db.session.get(Blogpage, blogpage_id)
-    # create initially in backrooms blogpage by default
+    # also create initially in corresponding backrooms blogpage by default
     if blogpage.backrooms_blogpage_id:
         blogpage_id = blogpage.backrooms_blogpage_id
         blogpage = db.session.get(Blogpage, blogpage_id)
         if blogpage is None:
-            return "your database is bwoken >_<"
+            return "your database is bwoken >~<"
     if blogpage.is_writeable:
         form.blogpage_id.data = blogpage_id
 
@@ -285,8 +283,6 @@ def create_post_form(*args, **kwargs):
 @utils.require_login()
 def create_post(*args, **kwargs):
     form = CreateBlogpostForm(request.form)
-    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
-    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
     if not form.validate():
         return jsonify(submission_errors=form.errors)
 
@@ -323,18 +319,7 @@ def create_post(*args, **kwargs):
 @bp_utils.require_valid_post()
 def edit_post_form(post, post_id, *args, **kwargs):
     # pre-populate form fields with existing post content
-    form = EditBlogpostForm(obj=post)
-    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
-    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
-    files_base_path = bp_utils.get_files_base_path(post)
-    if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
-        files_choices = []
-        for f in os.listdir(files_base_path):
-            if os.path.isfile(os.path.join(files_base_path, f)) and not f.startswith("."):
-                files_choices.append((f, f))
-        files_choices.sort(key=lambda t: t[0])
-        form.delete_files.choices = files_choices
-
+    form = EditBlogpostForm(post=post, obj=post)
     blogpage_id = bp_utils.get_blogpage_id()
     return render_template(
         "blog/blogpage/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form,
@@ -348,9 +333,7 @@ def edit_post_form(post, post_id, *args, **kwargs):
 @utils.require_login()
 @bp_utils.require_valid_post()
 def edit_post(post, post_id, *args, **kwargs):
-    form = EditBlogpostForm(request.form)
-    blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
-    form.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
+    form = EditBlogpostForm(request.form, post=post)
     if not form.validate():
         return jsonify(submission_errors=form.errors)
 
