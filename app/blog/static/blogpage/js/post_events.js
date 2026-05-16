@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#copy-permanent-link-btn").on("click", function() {
         navigator.clipboard.writeText(PERMANENT_LINK_URL);
-        flashMsg(`Link copied: ${PERMANENT_LINK_URL}`);
+        flashMsg(`Permanent link copied: ${PERMANENT_LINK_URL}`);
     });
 
     $("#delete-post-btn").on("click", confirmWrapper(async function(e) {
