@@ -27,7 +27,7 @@ def post_by_id(post_id):
     if post is None:
         return blog_utils.on_nonexistent_post(ContentType.HTML)
 
-    # don't allow unlisted posts to be accessed this way to prevent brute-force enumeration with post IDs
+    # don't allow unlisted posts to be accessed this way to prevent brute-force enumeration of post IDs
     if post.blogpage.is_login_required and not current_user.is_authenticated:
         result = utils.custom_unauthorized(ContentType.HTML)
         if result:

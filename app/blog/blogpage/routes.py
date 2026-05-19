@@ -14,6 +14,7 @@ from markdown_environments import *
 from markdown.extensions.toc import TocExtension
 
 import app.blog.blogpage.utils as bp_utils
+import app.blog.utils as blog_utils
 import app.utils as utils
 from app import db
 from app.blog.blogpage import bp
@@ -72,14 +73,21 @@ def get_posts(*args, **kwargs):
 
 # private posts, unlike blogpages, are still accessible by link (like YouTube's "unlisted")
 # hence the lack of `@require_login_if_restricted_bp()`
+# however, if they are being accessed by a public user, we require they provide the full sanitized title in the link
+# to prevent brute-force enumeration of post IDs and make being unlisted at least somewhat meaningful
 @bp.get("/<int:post_id>/", defaults={"post_sanitized_title": ""})
 @bp.get("/<int:post_id>/<string:post_sanitized_title>")
 @utils.set_content_type(ContentType.HTML)
 @bp_utils.require_valid_post()
-def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` param is from `@require_valid_post`
+def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` param is from `@require_valid_post()`
     # only use `post_id` to determine what post to get (in case titles change), but if `post_sanitized_title`
     # given in request doesn't match that of the post with id `post_id`, redirect to the correct URL
     if post_sanitized_title != post.sanitized_title:
+        # enforce providing full sanitized title for non-admin, unlisted accesses
+        if post.blogpage.is_login_required and not current_user.is_authenticated:
+            result = utils.custom_unauthorized(ContentType.HTML)
+            if result:
+                return result
         return redirect(url_for(
             f"{request.blueprint}.get_post", post_id=post_id,
             post_sanitized_title=post.sanitized_title, _external=True

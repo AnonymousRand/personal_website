@@ -57,7 +57,7 @@ def require_login_if_restricted_bp():
 
 def require_valid_post():
     """
-    Make sure URL points to a post that exists, and if so, fetches the post from the db and passes it to its inner
+    Make sure URL points to a post that exists; and if it does, fetch the post from the db and passes it to its inner
     function as a parameter for later use.
     """
 
