@@ -77,6 +77,14 @@ const DARKREADER_FIXES = {
                 background-color: #242424 !important;
             }
 
+            /* change dark mode switch to moon icon */
+            /* (using global url here since CSS is now inline, so relative URL is weird) */
+            .form-switch .dark-mode-switch:checked {
+                border-color: #909090 !important;
+                background-color: var(--custom-pink-xshallow-xlight) !important;
+                background-image: url("${BASE_STATIC_URL}files/moon.svg") !important;
+            }
+
             .redacted {
                 background-color: var(--darkreader-text--bs-body-color, #ffffff) !important;
                 color: var(--darkreader-text--bs-body-color, #ffffff) !important;
@@ -139,7 +147,7 @@ function disableDarkMode(isVoluntary) {
 }
 
 $(document).ready(function() {
-    jqSwitchDarkMode = $("#switch--dark-mode");
+    jqSwitchDarkMode = $("#dark-mode-switch");
 
     // if set to dark mode on JS load, make sure to sync switch state once the switch loads in
     // also make sure `onDarkModeChange()` is called once everything is loaded

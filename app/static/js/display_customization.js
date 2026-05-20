@@ -69,7 +69,7 @@ function randomizeColors() {
                 background-color: var(${colorChoice.selection});
             }
 
-            :is(select, input:not([type="button"], [type="submit"]), textarea):focus {
+            :is(select, input:not([type="button"], [type="submit"]), textarea):is(:hover, :focus) {
                 box-shadow: 0 0 0 0.25rem ${colorChoice.form.boxShadow} !important;
                 border-color: var(${colorChoice.form.border}) !important;
             }

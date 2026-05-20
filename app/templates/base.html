@@ -83,6 +83,7 @@
     <!-- JS -->
       <!-- inline (passing vars from Jinja to JS, for example) -->
       <script nonce="{{ csp_nonce() }}">
+          const BASE_STATIC_URL = "{{ url_for('static', filename="", _external=True) }}";
           const DEFAULT_BACKGROUND_IMG_URL = "{{ url_for('static', filename='files/background_default.svg', _external=True) }}";
           const LOGIN_URL = "{{ url_for(config['LOGIN_ENDPOINT'], _external=True) }}";
           const LOGOUT_URL = "{{ url_for('admin.logout', _external=True) }}";
@@ -171,8 +172,8 @@
 
             <li class="nav-item d-inline-flex align-items-center">
               <div class="nav-link form-check form-switch mb-0 pe-0">
-                <input id="switch--dark-mode" class="switch--dark-mode form-check-input me-2 ms-0" type="checkbox" role="switch">
-                <label class="form-check-label px-0" for="switch--dark-mode">High contrast</label>
+                <input id="dark-mode-switch" class="dark-mode-switch form-check-input ms-0" type="checkbox" role="switch">
+                <label class="form-check-label visually-hidden px-0" for="dark-mode-switch">High contrast</label>
               </div>
             </li>
           </ul>

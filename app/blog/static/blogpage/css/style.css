@@ -221,8 +221,9 @@ input[value="Reply"][value="Delete"] {
 }
 
 .post-list__comment-icon {
-    font-size: 14px;
     margin-bottom: -0.25rem;
+    padding-right: 1px; /* since otherwise it seems to jut out ever so slightly */
+    font-size: 14px;
 }
 
 .post-list__post:hover .custom-pink-shallow-xlight {

@@ -180,6 +180,15 @@ textarea.form-control {
     white-space: normal;
 }
 
+/* need specificity gah i freaking hate css. it is a lawless land that would make even an anarchist cower. */
+.form-switch .dark-mode-switch {
+    margin-top: 0;
+    width: 2.5em;
+    background-color: #e8e8e8;
+    background-image: url("../files/sun.svg");
+    height: 1.25em;
+}
+
 .flash {
     border-width: 3px;
     border-style: solid;
@@ -236,10 +245,6 @@ textarea.form-control {
 
 .pre--inline {
     white-space: pre-wrap;
-}
-
-.switch--dark-mode { /* for (approx) centering due to low descender height and thus typefacing biasing upwards */
-    margin-top: 0.3125em;
 }
 
 .toggle-password-visibility {
