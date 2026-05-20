@@ -61,9 +61,9 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
   </div>
   
   <div class="d-flex flex-equal-children align-items-center show-when-logged-in sticky-btns"{% if not current_user.is_authenticated %} hidden{% endif %}>
-    <a class="btn btn-primary btn--custom-orange-light me-3 mt-0 w-100" href="{{ url_for('blog.' ~ blogpage_id ~ '.edit_post_form', post_id=post.id, _external=True) }}" role="button" target="_self">Edit post</a>
+    <a class="btn btn-primary btn--custom-orange-light me-3 mt-0 w-100" href="{{ url_for('blog.' ~ blogpage_id ~ '.edit_post_form', post_id=post.id, _external=True) }}" role="button" target="_self">Edit Post</a>
     <!-- `<form>`s don't take DELETE method; frontend web is maybe the stupidest thing i've ever had the misfortunate of experiencing -->
-    <button id="delete-post-btn" class="delete-post-btn btn btn-primary btn--custom-orange-light type="button">Delete post</button>
+    <button id="delete-post-btn" class="delete-post-btn btn btn-primary btn--custom-orange-light type="button">Delete Post</button>
   </div>
 
   <hr class="mb-0">
