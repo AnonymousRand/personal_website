@@ -81,7 +81,7 @@ const DARKREADER_FIXES = {
             /* (using global url here since CSS is now inline, so relative URL is weird) */
             .form-switch .dark-mode-switch:checked {
                 border-color: #909090 !important;
-                background-color: var(--custom-pink-xshallow-xlight) !important;
+                background-color: var(--custom-pink-xshallow-xxlight) !important;
                 background-image: url("${BASE_STATIC_URL}files/moon.svg") !important;
             }
 
