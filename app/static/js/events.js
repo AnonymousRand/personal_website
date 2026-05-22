@@ -8,7 +8,21 @@ $(document).ready(function() {
     });
 
     $("#meow-btn").on("click", function() {
-        let meowText = Math.floor(Math.random() * 10) < 1 ? "꒰ 𓂂• ⩊ •𓈒꒱" : "meow :3";
+        let rand = Math.random();
+        let meowText;
+        if (rand < 0.04) {
+            meowText = "꒰ 𓂂• ⩊ •𓈒꒱";
+        } else if (rand < 0.08) {
+            meowText = "ฅ^>⩊<^ ฅ";
+        } else if (rand < 0.12) {
+            meowText = "♡ ₍^. .^₎Ⳋ";
+        } else if (rand < 0.16) {
+            meowText = "nya >⩊<";
+        } else if (rand < 0.2) {
+            meowText = "rawr >:333";
+        } else {
+            meowText = "meow :3";
+        }
         flashMsg(meowText);
     });
 });

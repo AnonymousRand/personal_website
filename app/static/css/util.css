@@ -145,16 +145,16 @@
     margin-right: 0.75rem !important;
 }
 
+.mb-2_5rem {
+    margin-bottom: 2.5rem !important;
+}
+
 .p-mb-0 p {
     margin-bottom: 0 !important;
 }
 
 .pt-0_75rem {
     padding-top: 0.75rem !important;
-}
-
-.pt-2_5rem {
-    padding-top: 2.5rem !important;
 }
 
 .pb-0_75rem {
@@ -385,6 +385,11 @@
 .extend-off-page {
     white-space: nowrap;
     overflow: hidden;
+    /* extend exactly to edge of screen and clip */
+    width: calc(
+        var(--container-content-width) + var(--container-content-padding-x) + /* distance to edge of main container */
+        (100svw - var(--container-content-max-width)) / 2 /* distance from edge of main container to edge of screen */
+    );
 }
 
 .min-svh-100 {
