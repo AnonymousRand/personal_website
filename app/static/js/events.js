@@ -10,15 +10,22 @@ $(document).ready(function() {
     $("#meow-btn").on("click", function() {
         let rand = Math.random();
         let meowText;
-        if (rand < 0.04) {
+        /* the first ones on here are the ones in the page footers :3 */
+        if (rand < 0.03) {
             meowText = "꒰ 𓂂• ⩊ •𓈒꒱";
-        } else if (rand < 0.08) {
+        } else if (rand < 0.06) {
             meowText = "ฅ^>⩊<^ ฅ";
-        } else if (rand < 0.12) {
+        } else if (rand < 0.09) {
             meowText = "♡ ₍^. .^₎Ⳋ";
-        } else if (rand < 0.16) {
+        } else if (rand < 0.12) {
+            meowText = "≽^•⩊•^≼ ₊˚⊹♡";
+        } else if (rand < 0.15) {
+            meowText = "^>⩊<^";
+        } else if (rand < 0.18) {
+            meowText = "₊˚⊹♡ ᓚ₍ ^. .^₎";
+        } else if (rand < 0.21) {
             meowText = "nya >⩊<";
-        } else if (rand < 0.2) {
+        } else if (rand < 0.24) {
             meowText = "rawr >:333";
         } else {
             meowText = "meow :3";
