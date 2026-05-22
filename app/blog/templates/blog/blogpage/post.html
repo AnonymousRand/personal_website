@@ -38,8 +38,8 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
 
 {% block content %}
 <div class="d-flex flex-equal-children gap-5 justify-content-between align-items-center mt-3 text-nowrap">
-  <a class="text-start overflow-hidden underline-on-hover-only text-overflow-ellipsis{% if prev_post is none %} invisible"{% else %}" href="{{ url_for('blog.post_by_id', post_id=prev_post.id, _external=True) }}" title="{{ prev_post.title }}"{% endif %}  target="_self">{{ prev_post.title }}</a>
-  <a class="text-center underline-on-hover-only overflow-hidden text-overflow-ellipsis text-nowrap" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_posts', _external=True) }}" target="_self">{{ blogpage.name }}</a>
+  <a class="text-start overflow-hidden underline-on-hover-only text-overflow-ellipsis{% if prev_post is none %} invisible"{% else %}" href="{{ url_for('blog.post_by_id', post_id=prev_post.id, _external=True) }}" title="{{ prev_post.title }}"{% endif %} target="_self">{{ prev_post.title }}</a>
+  <a class="text-center underline-on-hover-only overflow-hidden text-overflow-ellipsis text-nowrap" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_posts', _external=True) }}" title="{{ blogpage.name }}" target="_self">{{ blogpage.name }}</a>
   <a class="text-end overflow-hidden underline-on-hover-only text-overflow-ellipsis{% if next_post is none %} invisible"{% else %}" href="{{ url_for('blog.post_by_id', post_id=next_post.id, _external=True) }}" title="{{ next_post.title }}"{% endif %} target="_self">{{ next_post.title }}</a>
 </div>
 
