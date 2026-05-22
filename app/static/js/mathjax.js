@@ -9,9 +9,6 @@ window.MathJax = {
         // custom macros from my notes (or all the ones MathJax supports, at least)
         macros: {
             ab: "\\mathrm{ab}",
-            arccot: "\\operatorname{arccot}",
-            arccsc: "\\operatorname{arccsc}",
-            arcsec: "\\operatorname{arcsec}",
             Aut: "\\operatorname{Aut}",
             blue: ["\\textcolor{blue}{#1}", 1],
             C: "\\mathbb{C}",
@@ -22,12 +19,8 @@ window.MathJax = {
             codom: "\\operatorname{codom}",
             coloneq: "\\mathrel{≔}",
             comb: ["{}^{#1}C_{#2}", 2],
-            combv: ["\\begin{pmatrix} #1 \\\\ #2 \\end{pmatrix}", 2],
-            ddx: ["\\frac{\\mathrm{d}}{\\mathrm{d} #1}", 1],
             dist: "\\operatorname{dist}",
             dom: "\\operatorname{dom}",
-            dx: ["\\,\\mathrm{d} #1", 1],
-            dydx: ["\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}", 2],
             eqcolon: "\\mathrel{≕}",
             ev: "\\operatorname{ev}",
             F: "\\mathbb{F}",
@@ -35,7 +28,6 @@ window.MathJax = {
             floor: ["\\left\\lfloor #1 \\right\\rfloor", 1],
             Frac: "\\operatorname{Frac}",
             from: "\\leftarrow",
-            ftc: ["\\left[#3\\right]_{#1}^{#2}", 3],
             Gal: "\\operatorname{Gal}",
             generator: ["\\langle #1 \\rangle", 1],
             GL: "\\operatorname{GL}",
@@ -48,14 +40,12 @@ window.MathJax = {
             impliesshort: "\\Rightarrow",
             Inn: "\\operatorname{Inn}",
             innprod: ["\\langle #1 \\rangle", 1],
-            linmaps: "\\mathcal{L}",
             lcm: "\\operatorname{lcm}",
             M: "\\operatorname{M}",
             Maps: "\\operatorname{Maps}",
             mapsfrom: "\\leftarrow\\!\\shortmid",
             N: "\\mathbb{N}",
             nequiv: "\\not\\equiv",
-            niff: "\\centernot\\iff",
             nimplies: "\\mathrel{\\rlap{\\hskip .5em/}}\\Longrightarrow",
             nul: "\\operatorname{nul}",
             nullity: "\\operatorname{nullity}",
@@ -63,12 +53,6 @@ window.MathJax = {
             Orb: "\\operatorname{Orb}",
             Out: "\\operatorname{Out}",
             perm: ["{}^{#1}P_{#2}", 2],
-            pfpxpy: ["\\frac{\\partial^2 #1}{\\partial #2 \\partial #3}", 3],
-            powerset: "\\mathcal{P}",
-            ppx: ["\\frac{\\partial}{\\partial #1}", 1],
-            ppxpy: ["\\frac{\\partial^2}{\\partial #1 \\partial #2}", 2],
-            preim: "\\operatorname{preim}",
-            pypx: ["\\frac{\\partial #1}{\\partial #2}", 2],
             Q: "\\mathbb{Q}",
             quats: "\\mathbb{H}",
             R: "\\mathbb{R}",
@@ -97,9 +81,6 @@ window.MathJax = {
     startup: {
         // render nothing at first since this can be very slow on huge posts
         typeset: false
-    },
-    options: {
-        enableEnrichment: true
     }
 };
 
