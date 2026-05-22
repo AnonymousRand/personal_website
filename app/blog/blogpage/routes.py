@@ -363,11 +363,13 @@ def edit_post(post, post_id, *args, **kwargs):
     )
 
     # delete files if any
+    deleted_files_list = []
     try:
         for file_name in request.form.getlist("delete_files"):
             file_path = os.path.join(files_base_path, file_name)
             if os.path.exists(file_path):
                 os.remove(file_path)
+                deleted_files_list.append(file_name)
         bp_utils.delete_dir_if_empty(files_base_path)
     except Exception as e:
         return jsonify(flash_msg=f"File delete exception: {e}")
@@ -395,6 +397,7 @@ def edit_post(post, post_id, *args, **kwargs):
                         should_delete = True
                 if should_delete:
                     os.remove(os.path.join(files_base_path, file_name))
+                    deleted_files_list.append(file_name)
             bp_utils.delete_dir_if_empty(files_base_path)
         except Exception as e:
             return jsonify(flash_msg=f"File delete unused exception: {e}")
@@ -415,15 +418,21 @@ def edit_post(post, post_id, *args, **kwargs):
 
     # commit changes to db
     db.session.commit()
+    flash_msg = "post updated :3"
+    if deleted_files_list:
+        flash_msg += f" (deleted {len(deleted_files_list)} file(s):"
+        for file_name in deleted_files_list:
+            flash_msg += f" {file_name},"
+        flash_msg = flash_msg[:-1] + ")"
     if "save_blogpost" in request.form:
-        return jsonify(flash_msg="post updated :3")
+        return jsonify(flash_msg=flash_msg)
     else:
         return jsonify(
             redir_url=url_for(
                 f"blog.{post.blogpage_id}.get_post", post_id=post_id,
                 post_sanitized_title=post.sanitized_title, _external=True
             ),
-            flash_msg="post updated :3"
+            flash_msg=flash_msg
         ) # view updated post if using "submit" and not "save" button
 
 
