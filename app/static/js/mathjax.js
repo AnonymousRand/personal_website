@@ -53,7 +53,6 @@ window.MathJax = {
             M: "\\operatorname{M}",
             Maps: "\\operatorname{Maps}",
             mapsfrom: "\\leftarrow\\!\\shortmid",
-            mult: "\\operatorname{mult}",
             N: "\\mathbb{N}",
             nequiv: "\\not\\equiv",
             niff: "\\centernot\\iff",
