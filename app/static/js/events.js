@@ -16,7 +16,7 @@ $(document).ready(function() {
         } else if (rand < 0.06) {
             meowText = "ฅ^>⩊<^ ฅ";
         } else if (rand < 0.09) {
-            meowText = "♡⊹˚₊ ₍^. .^₎Ⳋ";
+            meowText = "♡ ₍^. .^₎Ⳋ";
         } else if (rand < 0.12) {
             meowText = "≽^•⩊•^≼ ₊˚⊹♡";
         } else if (rand < 0.15) {
