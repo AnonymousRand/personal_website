@@ -101,15 +101,15 @@ const MARK_COMMENTS_AS_READ_URL = "{{ url_for('blog.' ~ blogpage_id ~ '.mark_com
   <hr id="post__end">
   
   <div id="leave-a-comment">
-    <h2 class="fs-4">Leave a comment</h2>
-    {{ wtf.quick_form(add_comment_form, class="comment__add-form mb-2", autofocus=false) }}
+    <h2 class="mb-3 fs-4">Leave a comment</h2>
+    {{ wtf.quick_form(add_comment_form, class="comment__add-form mb-3", autofocus=false) }}
   </div>
   
   <hr>
   
   <div id="comments" class="mb-3">
     <!-- populate after page load with JS to avoid slow initial loads if there are a lot of comments -->
-    <h2 class="mb-0 fs-4">Comments <span id="comment-counts" class="gray">(loading…)</span></h2>
+    <h2 class="mb-1 fs-4">Comments <span id="comment-counts" class="gray">(loading…)</span></h2>
     <div id="comment-list" class="d-flex flex-column flex-shrink-0"></div>
   </div>
 {% endblock %}
