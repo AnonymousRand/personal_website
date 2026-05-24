@@ -88,9 +88,9 @@ let isScrollingToUrlFrag = true;
 let mathJaxUrlFragScrollRenderQueue = new Map();
 let scrollToNodeTimer;
 
-function renderMathJax(selectorOrNode) {
-    MathJax.typesetClear([selectorOrNode]); // otherwise index size errros
-    MathJax.typesetPromise([selectorOrNode]);
+async function renderMathJax(selectorOrNode) {
+    MathJax.typesetClear();                         // otherwise things are re-rendered? and it breaks horizontal scroll
+    await MathJax.typesetPromise([selectorOrNode]); // use `await` to make sure we have finished rendering
 
     // make `\[\]` LaTeX blocks scroll horizontally on overflow
     const jqNode = $(selectorOrNode);
@@ -161,11 +161,12 @@ $(document).ready(function() {
     }
 
     // MathJax only renders when in view (so huge mathy posts don't crash phones)
-    const intersectionObserver = new IntersectionObserver(function(entries) {
+    const intersectionObserver = new IntersectionObserver(function(entries, observer) {
         for (entry of entries) {
             if (entry.isIntersecting) {
                 if (!isScrollingToUrlFrag) {
                     renderMathJax(entry.target);
+                    observer.unobserve(entry.target);
                 } else {
                     // if currently scrolling to a URL fragment, don't render everything we scroll past just yet;
                     // add to a queue instead and wait until scroll finished to see which elements are still on screen
@@ -182,7 +183,7 @@ $(document).ready(function() {
                 }
             }
         }
-    }, {rootMargin: "50% 0% 50% 0%"});
+    });
     const nodesToObserve = document.querySelectorAll("#post__content > *, #post__toc");
     nodesToObserve.forEach(function(node) {
         intersectionObserver.observe(node);

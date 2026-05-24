@@ -314,7 +314,7 @@ def create_post(*args, **kwargs):
     db.session.commit() # only commit at very end in case error happened above
     return jsonify(
         redir_url=url_for(
-            f"blog.{post.blogpage_id}.get_post", post_id=post_id,
+            f"blog.{post.blogpage_id}.get_post", post_id=post.id,
             post_sanitized_title=post.sanitized_title, _external=True
         ),
         flash_msg="post created :3"
