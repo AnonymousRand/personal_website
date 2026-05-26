@@ -49,9 +49,9 @@
     --blue: blue;
     --blue-darkmode: cyan;
     --dimgray: dimgray;
-    --dimgray-darkmode: #c4bcb1;              /* 35 , 10 , 77  */ /* (try to get to h = 36 on grays to mimic original DarkReader */
+    --dimgray-darkmode: #c7bfb3;              /* 36 , 10 , 78  */ /* (try to get to h = 36 on grays to mimic original DarkReader) */
     --dimmergray: #282828;
-    --dimmergray-darkmode: #d9d4cc;         /* 37 , 6  , 85  */
+    --dimmergray-darkmode: #d9d4cc;           /* 37 , 6  , 85  */
     --gray: gray;
     --gray-darkmode: #c7c1b7;                 /* 38 , 8  , 78  */
     --lightgray: lightgray;
