@@ -39,6 +39,7 @@ window.MathJax = {
             impliedbyshort: "\\Leftarrow",
             impliesshort: "\\Rightarrow",
             Inn: "\\operatorname{Inn}",
+            Iso: "\\operatorname{Iso}",
             innprod: ["\\langle #1 \\rangle", 1],
             lcm: "\\operatorname{lcm}",
             M: "\\operatorname{M}",
