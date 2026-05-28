@@ -65,6 +65,8 @@
     --default-link-hover-color-darkmode: var(--custom-green-xlight);
     --default-link-disabled-color: var(--custom-blue);
     --default-link-disabled-color-darkmode: var(--custom-green-deep-xxdark);
+    --switch-background: #f0f0f0;
+    --switch-background-darkmode: white;
 
     /* other */
 

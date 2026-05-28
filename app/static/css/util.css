@@ -502,7 +502,7 @@
 .form-switch .switch--navbar {
     margin-top: 0;
     border-color: var(--lightgray);
-    background-color: #F0F0F0;
+    background-color: var(--switch-background);
     width: 2.5rem;
     height: 1.25rem;
 }

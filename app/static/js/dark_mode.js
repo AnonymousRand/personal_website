@@ -34,6 +34,7 @@ const DARKREADER_FIXES = {
             --darkreader-bg--custom-pink-light: var(--custom-pink-light); /* used in form */
             --darkreader-bg--custom-pink-xshallow-xxlight: var(--custom-pink-xshallow-xxlight); /* used in navbar switch */
             --darkreader-bg--custom-pink-shallow-xxxxlight: var(--custom-pink-xshallow-xxlight); /* used in menu */
+            --darkreader-bg--switch-background: var(--switch-background-darkmode);
 
             --darkreader-text--custom-blue-deep: var(--custom-blue);
             --darkreader-text--custom-blue-deep-dark: var(--custom-blue-light);
