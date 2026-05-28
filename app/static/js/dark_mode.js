@@ -32,6 +32,7 @@ const DARKREADER_FIXES = {
             --darkreader-bg--custom-orange-shallow-light: var(--custom-orange-shallow-light);
             --darkreader-bg--custom-orange-shallow-xlight: var(--custom-orange-light);
             --darkreader-bg--custom-pink-light: var(--custom-pink-light); /* used in form */
+            --darkreader-bg--custom-pink-xshallow-xxlight: var(--custom-pink-xshallow-xxlight); /* used in navbar switch */
             --darkreader-bg--custom-pink-shallow-xxxxlight: var(--custom-pink-xshallow-xxlight); /* used in menu */
 
             --darkreader-text--custom-blue-deep: var(--custom-blue);
@@ -80,9 +81,15 @@ const DARKREADER_FIXES = {
             /* change dark mode switch to moon icon */
             /* (using global url here since CSS is now inline, so relative URL is weird) */
             .form-switch .dark-mode-switch:checked {
-                border-color: #909090 !important;
-                background-color: var(--custom-pink-xshallow-xxlight) !important;
                 background-image: url("${BASE_STATIC_URL}files/moon.svg") !important;
+            }
+
+            .form-switch .silly-mode-switch {
+                background-image: url("${BASE_STATIC_URL}files/colon_3_dark.svg") !important;
+            }
+
+            .form-switch .silly-mode-switch:checked {
+                background-image: url("${BASE_STATIC_URL}files/colon_3_silly_dark.svg") !important;
             }
 
             .redacted {
@@ -106,7 +113,7 @@ DarkReader.setFetchMethod(window.fetch); // solves CORS issue
 let onDarkModeChange = function(enabled) {};
 
 // out here so it's immediately applied on JS load instead of at `$(document).ready()`
-let jqSwitchDarkMode = null;
+let jqDarkModeSwitch = null;
 if (localStorage.getItem("darkMode") === "true") {
     enableDarkMode(false);
 } else if (
@@ -120,8 +127,8 @@ if (localStorage.getItem("darkMode") === "true") {
 function enableDarkMode(isVoluntary) {
     DarkReader.enable(DARKREADER_OPTIONS, DARKREADER_FIXES);
 
-    if (jqSwitchDarkMode && jqSwitchDarkMode.length > 0 && !jqSwitchDarkMode.prop("checked")) {
-        jqSwitchDarkMode.prop("checked", true);
+    if (jqDarkModeSwitch && jqDarkModeSwitch.length > 0 && !jqDarkModeSwitch.prop("checked")) {
+        jqDarkModeSwitch.prop("checked", true);
     }
     if (isVoluntary) {
         localStorage.setItem("darkMode", "true");
@@ -135,8 +142,8 @@ function enableDarkMode(isVoluntary) {
 function disableDarkMode(isVoluntary) {
     DarkReader.disable();
 
-    if (jqSwitchDarkMode && jqSwitchDarkMode.length > 0 && jqSwitchDarkMode.prop("checked")) {
-        jqSwitchDarkMode.prop("checked", false);
+    if (jqDarkModeSwitch && jqDarkModeSwitch.length > 0 && jqDarkModeSwitch.prop("checked")) {
+        jqDarkModeSwitch.prop("checked", false);
     }
     if (isVoluntary) {
         localStorage.setItem("darkMode", "false");
@@ -147,15 +154,15 @@ function disableDarkMode(isVoluntary) {
 }
 
 $(document).ready(function() {
-    jqSwitchDarkMode = $("#dark-mode-switch");
+    jqDarkModeSwitch = $("#dark-mode-switch");
 
     // if set to dark mode on JS load, make sure to sync switch state once the switch loads in
     // also make sure `onDarkModeChange()` is called once everything is loaded
     if (DarkReader.isEnabled()) {
-        jqSwitchDarkMode.prop("checked", true);
+        jqDarkModeSwitch.prop("checked", true);
         onDarkModeChange(true);
     } else {
-        jqSwitchDarkMode.prop("checked", false);
+        jqDarkModeSwitch.prop("checked", false);
         onDarkModeChange(false);
     }
 
@@ -172,7 +179,7 @@ $(document).ready(function() {
     });
 
     // not triggered by `prop()`; detects manual change in switch state and activates/deactivates DarkReader
-    jqSwitchDarkMode.on("change", function(e) {
+    jqDarkModeSwitch.on("change", function(e) {
         if (e.target.checked) {
             enableDarkMode(true);
         } else {

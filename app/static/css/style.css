@@ -12,6 +12,12 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Hachi Maru Pop";
+    src: url("../fonts/hachi_maru_pop.ttf") format(TrueType);
+    font-display: swap;
+}
+
 /* `:not(#navbar) a` doesn't work here becuase f&ck you, i guess */
 a:not(#navbar a) {
     text-decoration-color: currentcolor;
@@ -180,13 +186,17 @@ textarea.form-control {
     white-space: normal;
 }
 
-/* need specificity gah i freaking hate css. it is a lawless land that would make even an anarchist cower. */
+/* need specificity gah i freaking hate css. it is a lawless land that would make even the toughest anarchist cower. */
 .form-switch .dark-mode-switch {
-    margin-top: 0;
-    width: 2.5em;
-    background-color: #F0F0F0;
     background-image: url("../files/sun.svg");
-    height: 1.25em;
+}
+
+.form-switch .silly-mode-switch {
+    background-image: url("../files/colon_3.svg");
+}
+
+.form-switch .silly-mode-switch:checked {
+    background-image: url("../files/colon_3_silly.svg");
 }
 
 .flash {

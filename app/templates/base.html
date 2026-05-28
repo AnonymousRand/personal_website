@@ -113,6 +113,7 @@
       <script src="{{ url_for('static', filename='js/events.js', _external=True) }}" defer></script>
       <script src="{{ url_for('static', filename='js/main_form_submit.js', _external=True) }}" defer></script>
       <script src="{{ url_for('static', filename='js/password_visibility_toggle.js', _external=True) }}" defer></script>
+      <script src="{{ url_for('static', filename='js/silly_mode.js', _external=True) }}" defer></script>
 
       {% block js_head_linked_deferred %}{% endblock %}
 
@@ -146,7 +147,7 @@
               </ul>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item show-when-logged-out"{% if current_user.is_authenticated %} hidden{% endif %}>
               <a class="nav-link" href="{{ url_for('main.legal', _external=True) }}" target="_self">Legal</a>
             </li>
             <li class="nav-item show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}>
@@ -171,9 +172,16 @@
             {% block navbar_additions_right %}{% endblock %}
 
             <li class="nav-item d-inline-flex align-items-center">
+              <div class="nav-link form-check form-switch mb-0">
+                <input id="silly-mode-switch" class="silly-mode-switch switch--navbar form-check-input ms-0" type="checkbox" role="switch">
+                <label class="form-check-label visually-hidden px-0" for="silly-mode-switch">Silly Mode</label>
+              </div>
+            </li>
+
+            <li class="nav-item d-inline-flex align-items-center">
               <div class="nav-link form-check form-switch mb-0 pe-0">
-                <input id="dark-mode-switch" class="dark-mode-switch form-check-input ms-0" type="checkbox" role="switch">
-                <label class="form-check-label visually-hidden px-0" for="dark-mode-switch">High contrast</label>
+                <input id="dark-mode-switch" class="dark-mode-switch switch--navbar form-check-input ms-0" type="checkbox" role="switch">
+                <label class="form-check-label visually-hidden px-0" for="dark-mode-switch">Dark Mode/High Contrast</label>
               </div>
             </li>
           </ul>

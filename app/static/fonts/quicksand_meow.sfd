@@ -1,9 +1,9 @@
 SplineFontDB: 3.2
-FontName: Quicksand-Medium
-FullName: Quicksand Medium
-FamilyName: Quicksand Medium
+FontName: QuicksandMeow-Medium
+FullName: Quicksand :3
+FamilyName: Quicksand :3
 Weight: Medium
-Copyright: Copyright 2019 The Quicksand Project Authors (https://github.com/andrew-paglinawan/QuicksandFamily.git), with Reserved Font Name "Quicksand"
+Copyright: 
 Version: 3.006
 ItalicAngle: 0
 UnderlinePosition: -125
@@ -15,14 +15,14 @@ sfntRevision: 0x00030189
 LayerCount: 2
 Layer: 0 1 "Back" 1
 Layer: 1 1 "Fore" 0
-XUID: [1021 390 -927612150 22212]
+XUID: [1021 390 -927612150 3332]
 StyleMap: 0x0040
 FSType: 0
 OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1560784718
-ModificationTime: 1779699911
+ModificationTime: 1780009151
 PfmFamily: 81
 TTFWeight: 500
 TTFWidth: 5
@@ -103,6 +103,7 @@ Lookup: 261 0 0 "'mark' Mark Positioning in Latin lookup 2" { "'mark' Mark Posit
 Lookup: 262 16 0 "'mkmk' Mark to Mark in Latin lookup 3" { "'mkmk' Mark to Mark in Latin lookup 3 subtable"  } ['mkmk' ('DFLT' <'dflt' > 'latn' <'dflt' > ) ]
 Lookup: 262 65552 0 "'mkmk' Mark to Mark in Latin lookup 4" { "'mkmk' Mark to Mark in Latin lookup 4 subtable"  } ['mkmk' ('DFLT' <'dflt' > 'latn' <'dflt' > ) ]
 Lookup: 262 131088 0 "'mkmk' Mark to Mark in Latin lookup 5" { "'mkmk' Mark to Mark in Latin lookup 5 subtable"  } ['mkmk' ('DFLT' <'dflt' > 'latn' <'dflt' > ) ]
+MarkAttachClasses: 1
 MarkAttachSets: 3
 "MarkSet-0" 143 dotbelowcomb uni0324 uni0326 uni0327 uni032D uni032E uni0331 dotbelowcomb.case uni0324.case uni0326.case uni0327.case uni032E.case uni0331.case
 "MarkSet-1" 421 gravecomb acutecomb uni0302 tildecomb uni0304 uni0306 uni0307 uni0308 hookabovecomb uni030A uni030B uni030C uni030F uni0311 uni0312 uni03060301 uni03060300 uni03060309 uni03060303 uni03020301 uni03020300 uni03020309 uni03020303 uni0308.case uni0307.case gravecomb.case acutecomb.case uni030B.case uni0302.case uni030C.case uni0306.case uni030A.case tildecomb.case uni0304.case hookabovecomb.case uni030F.case uni0311.case
@@ -303,7 +304,7 @@ ShortTable: maxp 16
   6
   1
 EndShort
-LangName: 1033 "" "" "Regular" "3.006;NONE;Quicksand-Medium" "" "Version 3.006" "" "" "Andrew Paglinawan" "Andrew Paglinawan" "" "http://www.andrewpaglinawan.com" "http://www.andrewpaglinawan.com" "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL" "https://scripts.sil.org/OFL" "" "Quicksand" "Medium"
+LangName: 1033 "" "" "Regular" "3.006;NONE;QuicksandMeow-Medium" "" "Version 1.0" "" "" "AnonymousRand" "AnonymousRand" "" "http://anonymousrand.xyz" "http://anonymousrand.xyz" "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL" "https://scripts.sil.org/OFL" "" "Quicksand :3" "Medium"
 GaspTable: 1 65535 15 1
 Encoding: UnicodeBmp
 UnicodeInterp: none
@@ -312,6 +313,8 @@ DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
 WinInfo: 51 51 18
+BeginPrivate: 0
+EndPrivate
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65652 810
 
@@ -4104,49 +4107,48 @@ EndChar
 StartChar: w
 Encoding: 119 119 91
 Width: 726
-VWidth: 891
 GlyphClass: 2
-Flags: WO
+Flags: W
 LayerCount: 2
 Fore
 SplineSet
-361 364 m 132,-1,1
- 379 364 379 364 387.807617188 354.705078125 c 4,2,3
- 400 343 400 343 399.528320312 315.977539062 c 4,4,5
- 398 227 398 227 413.8828125 173.780273438 c 4,6,7
- 427 129 427 129 447.954101562 104.979492188 c 4,8,9
- 468 82 468 82 494.249023438 82 c 4,10,11
- 537 82 537 82 562.11328125 154.611328125 c 4,12,13
- 583 215 583 215 581.928710938 298.530273438 c 4,14,15
- 581 379 581 379 561.45703125 450.735351562 c 4,16,17
- 555 475 555 475 558.181640625 482.5 c 4,18,19
- 562 493 562 493 569 497.5 c 4,20,21
- 582 506 582 506 600 506 c 132,-1,22
- 618 506 618 506 628.159179688 490.501953125 c 4,23,24
- 638 476 638 476 647.712890625 429.508789062 c 4,25,26
- 661 365 661 365 661 280.109375 c 4,27,28
- 661 99 661 99 574.58203125 24.5263671875 c 4,29,30
- 538 -7 538 -7 495.58203125 -7 c 4,31,32
- 458 -7 458 -7 421.329101562 18.9140625 c 4,33,34
- 383 46 383 46 361 90 c 5,35,36
- 339 46 339 46 300.670898438 18.9140625 c 4,37,38
- 264 -7 264 -7 226.41796875 -7 c 4,39,40
- 184 -7 184 -7 147.41796875 24.5263671875 c 4,41,42
- 61 99 61 99 61 280.109375 c 4,43,44
- 61 365 61 365 74.287109375 429.508789062 c 4,45,46
- 84 476 84 476 93.8408203125 490.501953125 c 4,47,48
- 104 506 104 506 122 506 c 132,-1,49
- 140 506 140 506 153 497.5 c 4,50,51
- 160 493 160 493 163.818359375 482.5 c 4,52,53
- 167 475 167 475 160.54296875 450.735351562 c 4,54,55
- 141 379 141 379 140.071289062 298.530273438 c 4,56,57
- 139 215 139 215 159.88671875 154.611328125 c 4,58,59
- 185 82 185 82 227.750976562 82 c 4,60,61
- 254 82 254 82 274.045898438 104.979492188 c 4,62,63
- 295 129 295 129 308.1171875 173.780273438 c 4,64,65
- 324 227 324 227 322.471679688 315.977539062 c 4,66,67
- 322 343 322 343 334.192382812 354.705078125 c 4,68,0
- 343 364 343 364 361 364 c 132,-1,1
+361 364 m 128,-1,1
+ 379 364 379 364 388 355 c 0,2,3
+ 400 343 400 343 400 316 c 0,4,5
+ 398 227 398 227 414 174 c 0,6,7
+ 427 129 427 129 448 105 c 0,8,9
+ 468 82 468 82 494 82 c 0,10,11
+ 537 82 537 82 562 155 c 0,12,13
+ 583 215 583 215 582 299 c 0,14,15
+ 581 379 581 379 561 451 c 0,16,17
+ 555 475 555 475 558 482 c 0,18,19
+ 562 493 562 493 569 498 c 0,20,21
+ 582 506 582 506 600 506 c 128,-1,22
+ 618 506 618 506 628 491 c 256,23,24
+ 638 476 638 476 648 430 c 0,25,26
+ 661 365 661 365 661 280 c 0,27,28
+ 661 99 661 99 575 25 c 0,29,30
+ 538 -7 538 -7 496 -7 c 0,31,32
+ 458 -7 458 -7 421 19 c 0,33,34
+ 383 46 383 46 361 90 c 1,35,36
+ 339 46 339 46 301 19 c 0,37,38
+ 264 -7 264 -7 226 -7 c 0,39,40
+ 184 -7 184 -7 147 25 c 0,41,42
+ 61 99 61 99 61 280 c 0,43,44
+ 61 365 61 365 74 430 c 0,45,46
+ 84 476 84 476 94 491 c 256,47,48
+ 104 506 104 506 122 506 c 128,-1,49
+ 140 506 140 506 153 498 c 0,50,51
+ 160 493 160 493 164 482 c 0,52,53
+ 167 475 167 475 161 451 c 0,54,55
+ 141 379 141 379 140 299 c 0,56,57
+ 139 215 139 215 160 155 c 0,58,59
+ 185 82 185 82 228 82 c 0,60,61
+ 254 82 254 82 274 105 c 0,62,63
+ 295 129 295 129 308 174 c 0,64,65
+ 324 227 324 227 322 316 c 0,66,67
+ 322 343 322 343 334 355 c 0,68,0
+ 343 364 343 364 361 364 c 128,-1,1
 EndSplineSet
 EndChar
 
@@ -9321,7 +9323,7 @@ AnchorPoint: "Anchor-0" 384 708 basechar 0
 LayerCount: 2
 Fore
 Refer: 91 119 N 1 0 0 1 0 0 3
-Refer: 416 770 N 1 0 0 1 511.876 -15 2
+Refer: 416 770 N 1 0 0 1 512 -15 2
 EndChar
 
 StartChar: Ycircumflex
@@ -13099,7 +13101,7 @@ AnchorPoint: "Anchor-0" 339 695 basechar 0
 LayerCount: 2
 Fore
 Refer: 91 119 N 1 0 0 1 0 0 3
-Refer: 414 768 N 1 0 0 1 523.876 -10 2
+Refer: 414 768 N 1 0 0 1 524 -10 2
 EndChar
 
 StartChar: Wacute
@@ -13125,7 +13127,7 @@ AnchorPoint: "Anchor-0" 404 674 basechar 0
 LayerCount: 2
 Fore
 Refer: 91 119 N 1 0 0 1 0 0 3
-Refer: 415 769 N 1 0 0 1 588.876 -25 2
+Refer: 415 769 N 1 0 0 1 589 -25 2
 EndChar
 
 StartChar: Wdieresis
@@ -13151,7 +13153,7 @@ AnchorPoint: "Anchor-0" 379 660 basechar 0
 LayerCount: 2
 Fore
 Refer: 91 119 N 1 0 0 1 0 0 3
-Refer: 421 776 N 1 0 0 1 481.876 -10 2
+Refer: 421 776 N 1 0 0 1 482 -10 2
 EndChar
 
 StartChar: uni1E8E

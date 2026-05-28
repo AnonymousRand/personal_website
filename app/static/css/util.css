@@ -44,97 +44,97 @@
 
 /* override all Bootstrap `fs` classes */
 .fs-1 {
-    font-size: calc(1.46rem + 3.68vw) !important;
+    font-size: calc(1.46em + 3.68vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-1 {
-        font-size: 3.3rem !important;
+        font-size: 3.3em !important;
     }
 }
 
 .fs-2 {
-    font-size: calc(1.4rem + 3.2vw) !important;
+    font-size: calc(1.4em + 3.2vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-2 {
-        font-size: 3rem !important;
+        font-size: 3em !important;
     }
 }
 
 .fs-3 {
-    font-size: calc(1.3rem + 2.4vw) !important;
+    font-size: calc(1.3em + 2.4vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-3 {
-        font-size: 2.5rem !important;
+        font-size: 2.5em !important;
     }
 }
 
 .fs-4 {
-    font-size: calc(1.25rem + 2vw) !important;
+    font-size: calc(1.25em + 2vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-4 {
-        font-size: 2.25rem !important;
+        font-size: 2.25em !important;
     }
 }
 
 .fs-5 {
-    font-size: calc(1.2rem + 1.6vw) !important;
+    font-size: calc(1.2em + 1.6vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-5 {
-        font-size: 2rem !important;
+        font-size: 2em !important;
     }
 }
 
 .fs-6 {
-    font-size: calc(1.15rem + 1.2vw) !important;
+    font-size: calc(1.15em + 1.2vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-6 {
-        font-size: 1.75rem !important;
+        font-size: 1.75em !important;
     }
 }
 
 .fs-7 {
-    font-size: calc(1.1rem + 0.8vw) !important;
+    font-size: calc(1.1em + 0.8vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-7 {
-        font-size: 1.5rem !important;
+        font-size: 1.5em !important;
     }
 }
 
 .fs-8 {
-    font-size: calc(1.05rem + 0.4vw) !important;
+    font-size: calc(1.05em + 0.4vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-8 {
-        font-size: 1.25rem !important;
+        font-size: 1.25em !important;
     }
 }
 
 .fs-9 {
-    font-size: calc(1.025rem + 0.2vw) !important;
+    font-size: calc(1.025em + 0.2vw) !important;
 }
 
 @media (min-width: 800px) {
     .fs-9 {
-        font-size: 1.125rem !important;
+        font-size: 1.125em !important;
     }
 }
 
 .fs-10 {
-    font-size: 0.875rem !important;
+    font-size: 0.875em !important;
 }
 
 /*************/
@@ -478,6 +478,11 @@
     overflow-y: hidden !important; /* for MathJax equation environments with `\\[pt]` extra line spacing */
 }
 
+.silly-mode {
+    font-family: "Hachi Maru Pop", sans-serif;
+    font-size: 14px;
+}
+
 .spoiler,
 .spoiler * {
     background-color: gainsboro !important;
@@ -491,6 +496,19 @@
     background-color: transparent !important;
     text-decoration-color: unset !important;
     color: unset !important;
+}
+
+/* need specificity gah i freaking hate css. it is a lawless land that would make even the toughest anarchist cower. */
+.form-switch .switch--navbar {
+    margin-top: 0;
+    border-color: var(--lightgray);
+    background-color: #F0F0F0;
+    width: 2.5rem;
+    height: 1.25rem;
+}
+
+.form-switch .switch--navbar:checked {
+    background-color: var(--custom-pink-xshallow-xxlight) !important;
 }
 
 .text-overflow-ellipsis {
