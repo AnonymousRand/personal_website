@@ -19,7 +19,6 @@ window.MathJax = {
             codom: "\\operatorname{codom}",
             coloneq: "\\mathrel{≔}",
             comb: ["{}^{#1}C_{#2}", 2],
-            dist: "\\operatorname{dist}",
             dom: "\\operatorname{dom}",
             eqcolon: "\\mathrel{≕}",
             ev: "\\operatorname{ev}",
