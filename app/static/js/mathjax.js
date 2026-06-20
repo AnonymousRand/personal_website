@@ -50,6 +50,7 @@ window.MathJax = {
             nimplies: "\\mathrel{\\rlap{\\hskip .5em/}}\\Longrightarrow",
             nul: "\\operatorname{nul}",
             nullity: "\\operatorname{nullity}",
+            op: "\\operatorname{op}",
             Orb: "\\operatorname{Orb}",
             Out: "\\operatorname{Out}",
             perm: ["{}^{#1}P_{#2}", 2],
