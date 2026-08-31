@@ -354,6 +354,15 @@
     color: var(--custom-pink-shallow-xlight) !important;
 }
 
+.link--gray {
+    text-decoration-color: currentcolor !important;
+    color: var(--gray) !important;
+}
+
+.link--gray:hover {
+    color: var(--dimgray) !important;
+}
+
 /***************/
 /* `underline` */
 /***************/

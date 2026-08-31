@@ -4,12 +4,12 @@ input[value="Reply"][value="Delete"] {
 }
 
 .blogpage__name {
-    color: var(--black);
+    color: var(--custom-pink-shallow-xxlight);
 }
 
 .blogpage__subname {
     line-height: 1.4em;
-    color: var(--gray);
+    color: var(--custom-blue-deep-dark);
 }
 
 .comment__nest-limit-text {

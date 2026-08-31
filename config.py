@@ -103,8 +103,8 @@ class Config(object):
     # using `/backrooms` instead of `-backrooms` creates image relative pathing issues due to extra nested "directory"!
     BLOGPAGE_ID_URL_PREFIXES = {
          "1": "/all",
-         "2": "/brain-fruits",
-        "-2": "/brain-fruits-backrooms",
+         "2": "/the-cat-cafe-:3",
+         "-2": "/the-cat-cafe-:3-backrooms",
          "3": "/proof-by-logical-wormhole",
         "-3": "/proof-by-logical-wormhole-backrooms",
          "4": "/typewriter-monkey-does-ctfs",
