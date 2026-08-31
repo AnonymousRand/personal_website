@@ -186,6 +186,10 @@ textarea.form-control {
     white-space: normal;
 }
 
+.footnote-ref {
+    text-decoration: none;
+}
+
 /* need specificity gah i freaking hate css. it is a lawless land that would make even the toughest anarchist cower. */
 .form-switch .dark-mode-switch {
     background-image: url("../files/sun.svg");

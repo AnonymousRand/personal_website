@@ -5,13 +5,13 @@ import markdown
 import os
 import shutil
 
+import markdown_environments
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 import sqlalchemy.sql.functions as sa_func
 from flask import current_app, jsonify, render_template, redirect, request, send_from_directory, url_for
 from flask_login import current_user
-from markdown_environments import *
-from markdown.extensions.toc import TocExtension
+from markdown.extensions import attr_list, fenced_code, footnotes, md_in_html, tables, toc
 
 import app.blog.blogpage.utils as bp_utils
 import app.blog.utils as blog_utils
@@ -103,20 +103,30 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
             return value
 
         content_md = markdown.Markdown(extensions=[
-            "extra",
-            "image_titles", # images use `alt` text as `title` too
-            CaptionedFigureExtension(
+            # officially supported/included extensions
+            attr_list.AttrListExtension(),
+            fenced_code.FencedCodeExtension(),
+            footnotes.FootnoteExtension(SUPERSCRIPT_TEXT="[{}]"),
+            md_in_html.MarkdownInHtmlExtension(),
+            tables.TableExtension(),
+            toc.TocExtension(
+                marker="", permalink="\uf470", permalink_class="heading-link link-target-self",
+                permalink_title="", slugify=generate_anchors, toc_depth=2
+            ),
+            # other extensions
+            image_titles.ImageTitleExtension(), # images use `alt` text as `title` too
+            markdown_environments.CaptionedFigureExtension(
                 html_class="md-captioned-figure", caption_html_class="md-captioned-figure__caption"
             ),
-            CitedBlockquoteExtension(
+            markdown_environments.CitedBlockquoteExtension(
                 html_class="md-cited-blockquote", citation_html_class="md-cited-blockquote__citation"
             ),
-            DivExtension(
+            markdown_environments.DivExtension(
                 types={
                     "textbox": {"html_class": "md-textbox last-child-no-mb border--2px border--lightgray"}
                 }
             ),
-            DropdownExtension(
+            markdown_environments.DropdownExtension(
                 types = {
                     "dropdown": {"html_class": "border--2px border--lightgray dimgray"}
                 },
@@ -124,7 +134,7 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
                 summary_html_class="md-dropdown__summary last-child-no-mb",
                 content_html_class="md-dropdown__content last-child-no-mb"
             ),
-            ThmsExtension(
+            markdown_environments.ThmsExtension(
                 div_config={
                     "types": {
                         "coro": {
@@ -237,10 +247,6 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
                     "html_class": "md-thm-heading",
                     "emph_html_class": "md-thm-heading__emph"
                 }
-            ),
-            TocExtension(
-                marker="", permalink="\uf470", permalink_class="heading-link link-target-self",
-                permalink_title="", slugify=generate_anchors, toc_depth=2
             )
         ])
         post.content = content_md.convert(post.content)
