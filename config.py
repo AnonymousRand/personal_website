@@ -8,46 +8,63 @@ class Config(object):
     # basics
 
     SERVER_NAME = "anonymousrand.xyz"
-    ALLOWED_ORIGINS = [
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+
+    ############################################################################
+    # security
+
+    # (this should include this website's own URLs too in case one subdomain needs to
+    # make a request to another, as subdomains are counted as different origins)
+    # IMPORTANT: sometimes updating this requires purging cloudflare's cache, as if requested
+    # resources are cached, the server may return a 304 not modified without considering if
+    # the `Access-Control-Allow-Origin` header has changed, so the changes don't get seen
+    CORS_ALLOWED_ORIGINS = [
         f"https://{SERVER_NAME}",
         f"https://blog.{SERVER_NAME}",
-        "https://http.cat"
+        "https://http.cat",                 # error messages
+        "https://anonymousrand.tumblr.com", # tumblr blog
+        "https://assets.txmblr.com"         # tumblr edit blog HTML previewer
     ]
-    SECRET_KEY = os.environ.get("SECRET_KEY")
+
     _csp_self = ["\'self\'", SERVER_NAME, f"blog.{SERVER_NAME}"]
-    _csp_default_src = _csp_self
     CSP = {
-        "default-src": _csp_default_src,
-        "connect-src": _csp_default_src + [
-            "data:",                                                # DarkReader
-            "cdn.jsdelivr.net",                                     # MathJax
-            "cdnjs.cloudflare.com",                                 # Highlight.js
-            "http.cat"                                              # error pages :3
+        "default-src": _csp_self,
+        "connect-src": _csp_self + [
+            "data:",                # DarkReader
+            "cdn.jsdelivr.net",     # MathJax
+            "cdnjs.cloudflare.com", # Highlight.js
+            "http.cat"              # error pages :3
         ],
-        "font-src": _csp_default_src + [
-            "cdn.jsdelivr.net"                                      # MathJax
+        "font-src": _csp_self + [
+            "cdn.jsdelivr.net" # MathJax
         ],
-        "img-src": _csp_default_src + [
-            "data:",                                                # Bootstrap, DarkReader
-            "http.cat"                                              # error pages :3
+        "img-src": _csp_self + [
+            "data:",   # Bootstrap, DarkReader
+            "http.cat" # error pages :3
         ],
-        "script-src": _csp_default_src + [
+        "script-src": _csp_self + [
             "cdn.jsdelivr.net",
             "cdnjs.cloudflare.com",
             "code.jquery.com"
         ],
-        "style-src": _csp_default_src + [
+        "style-src": _csp_self + [
             "cdn.jsdelivr.net",
             "cdnjs.cloudflare.com",
             "code.jquery.com",
-            "\'unsafe-inline\'"                                     # a lot of things apparently
+            "\'unsafe-inline\'" # a lot of things apparently :(
         ],
-        "worker-src": _csp_default_src + [
-            "blob:"                                                 # MathJax
+        "worker-src": _csp_self + [
+            "blob:" # MathJax
         ],
-        "base-uri": _csp_default_src,
-        "frame-ancestors": _csp_default_src
+        "base-uri": _csp_self,
+        "frame-ancestors": _csp_self
     }
+    # CSP directives to add a nonce value to
+    CSP_DIRECTIVES_WITH_NONCE = [
+        "script-src",
+        "script-src-attr",
+        "script-src-elem"
+    ]
 
     ############################################################################
     # cookies
