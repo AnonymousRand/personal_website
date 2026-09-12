@@ -59,11 +59,11 @@
     --red: red;
     --red-darkmode: red;
 
-    --default-link-color: var(--custom-blue-xdeep);
+    --default-link-color: var(--custom-pink-shallow-xlight);
     --default-link-color-darkmode: var(--custom-green-light);
-    --default-link-hover-color: var(--custom-blue-xxdeep);
+    --default-link-hover-color: var(--custom-pink-shallow-light);
     --default-link-hover-color-darkmode: var(--custom-green-xlight);
-    --default-link-disabled-color: var(--custom-blue);
+    --default-link-disabled-color: var(--custom-pink-shallow-xxxlight);
     --default-link-disabled-color-darkmode: var(--custom-green-deep-xxdark);
     --switch-background: #f0f0f0;
     --switch-background-darkmode: white;

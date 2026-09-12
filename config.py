@@ -15,9 +15,12 @@ class Config(object):
 
     # (this should include this website's own URLs too in case one subdomain needs to
     # make a request to another, as subdomains are counted as different origins)
-    # IMPORTANT: sometimes updating this requires purging cloudflare's cache, as if requested
-    # resources are cached, the server may return a 304 not modified without considering if
-    # the `Access-Control-Allow-Origin` header has changed, so the changes don't get seen
+    #
+    # IMPORTANT: sometimes updating this requires purging cloudflare's cache (and by
+    # path prefix, not by single URL, as otherwise the multiple cached versions of
+    # `Access-Control-Allow-Origin` may not all be deleted?), as if resources are cached,
+    # the server may return a 304 not modified to cloudflare without considering if the
+    # `Access-Control-Allow-Origin` header has changed, so the changes don't get seen
     CORS_ALLOWED_ORIGINS = [
         f"https://{SERVER_NAME}",
         f"https://blog.{SERVER_NAME}",

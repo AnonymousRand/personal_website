@@ -57,7 +57,7 @@ const DARKREADER_FIXES = {
 
             /* turn blue links into green actually on dark mode since it's cooler, but green doesn't show up well normally in light mode */
             --darkreader-text--default-link-color: var(--default-link-color-darkmode);
-            --darkreader-text--default-link-hover-color: var(--default-link-color-hover-darkmode);
+            --darkreader-text--default-link-hover-color: var(--default-link-hover-color-darkmode);
             --darkreader-text--default-link-disabled-color: var(--default-link-color-disabled-darkmode);
         }
 
