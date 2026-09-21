@@ -17,6 +17,14 @@
 }
 
 @font-face {
+    font-family: "Maple Mono NL";
+    src: url("../fonts/maple_mono_nl.woff2") format(woff2);
+    font-weight: 400;
+    font-display: swap;
+    font-feature-settings: "cv61" on, "calt" off;
+}
+
+@font-face {
     font-family: "Hachi Maru Pop";
     src: url("../fonts/hachi_maru_pop.ttf") format(TrueType);
     font-display: swap;

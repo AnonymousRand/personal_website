@@ -25,6 +25,7 @@ body {
 
 code {
     color: var(--custom-pink-shallow);
+    font-family: "Maple Mono NL", monospace;
     font-size: 100%;
 }
 
