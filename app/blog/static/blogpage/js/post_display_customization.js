@@ -8,7 +8,7 @@ function addCommentSyntaxGuideTooltip() {
                 "data-bs-title",
                 "markdown:" +
                   "<ul>" +
-                    "<li>python-markdown with `attr_list`, `fenced_code`, `md_in_html`, `tables` extensions</li>" +
+                    "<li>python-markdown with <code>attr_list</code>, <code>fenced_code</code>, <code>md_in_html</code>, <code>tables</code> extensions</li>" +
                     "<li>plaintext links only, no images or footnotes</li>" +
                   "</ul>" +
                 "latex (mathjax):" +
