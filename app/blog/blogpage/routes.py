@@ -42,7 +42,7 @@ def get_posts(*args, **kwargs):
     blogpage_id = bp_utils.get_blogpage_id()
     blogpage = db.session.get(Blogpage, blogpage_id)
     if blogpage is None:
-        return "ok im actually impressed how did you do that"
+        return "ok im actually impressed how did you do that :3"
 
     posts = None
     if blogpage.is_all_posts:
@@ -58,7 +58,7 @@ def get_posts(*args, **kwargs):
             page=page_num, per_page=current_app.config["POSTS_PER_PAGE"], error_out=False
         )
     if posts is None:
-        return "ok im actually impressed how did you do that"
+        return "ok im actually impressed how did you do that :3"
 
     next_page_url = url_for(f"blog.{blogpage_id}.get_posts", page=posts.next_num, _external=True) if posts.has_next \
             else None
@@ -275,19 +275,19 @@ def create_post_form(*args, **kwargs):
     # automatically populate blogpage form field to current blogpage if possible
     blogpage_id = bp_utils.get_blogpage_id()
     if blogpage_id is None:
-        return "ok im actually impressed how did you do that"
+        return "ok im actually impressed how did you do that :3"
     blogpage = db.session.get(Blogpage, blogpage_id)
     # also create initially in corresponding backrooms blogpage by default
     if blogpage.backrooms_blogpage_id:
         blogpage_id = blogpage.backrooms_blogpage_id
         blogpage = db.session.get(Blogpage, blogpage_id)
         if blogpage is None:
-            return "your database is bwoken >~<"
+            return "silly's database is bwoken >~<"
     if blogpage.is_writeable:
         form.blogpage_id.data = blogpage_id
 
     return render_template(
-        "blog/blogpage/form_base.html", title="Create post", prompt="Create post", form=form,
+        "blog/blogpage/form_base.html", title="create post", prompt="create post", form=form,
         action=url_for(f"blog.{blogpage_id}.create_post", _external=True), method="POST"
     )
 
@@ -336,8 +336,8 @@ def edit_post_form(post, post_id, *args, **kwargs):
     form = EditBlogpostForm(post=post, obj=post)
     blogpage_id = bp_utils.get_blogpage_id()
     return render_template(
-        "blog/blogpage/form_base.html", title=f"Edit Post: {post.title}", prompt="Edit post", form=form,
-        action=url_for(f"blog.{blogpage_id}.edit_post", post_id=post_id, _external=True),
+        "blog/blogpage/form_base.html", title=f"editing: {post.title}", prompt="edit post",
+        form=form, action=url_for(f"blog.{blogpage_id}.edit_post", post_id=post_id, _external=True),
         method="PUT"
     )
 
@@ -378,7 +378,7 @@ def edit_post(post, post_id, *args, **kwargs):
                 deleted_files_list.append(file_name)
         bp_utils.delete_dir_if_empty(files_base_path)
     except Exception as e:
-        return jsonify(flash_msg=f"File delete exception: {e}")
+        return jsonify(flash_msg=f"file delete exception >~<: {e}")
 
     # delete unused files if applicable
     if request.form.get("delete_unused_files") and os.path.exists(files_base_path):
@@ -406,7 +406,7 @@ def edit_post(post, post_id, *args, **kwargs):
                     deleted_files_list.append(file_name)
             bp_utils.delete_dir_if_empty(files_base_path)
         except Exception as e:
-            return jsonify(flash_msg=f"File delete unused exception: {e}")
+            return jsonify(flash_msg=f"file delete unused exception >~<: {e}")
     
     # upload files if any (after deletes)
     err = bp_utils.upload_files(request.files.getlist("files"), files_base_path)
@@ -420,7 +420,7 @@ def edit_post(post, post_id, *args, **kwargs):
                 new_files_base_path = bp_utils.get_files_base_path(post)
                 shutil.move(files_base_path, new_files_base_path)
             except Exception as e:
-                return jsonify(flash_msg=f"File move exception: {e}")
+                return jsonify(flash_msg=f"file move exception >~<: {e}")
 
     # commit changes to db
     db.session.commit()
@@ -456,7 +456,7 @@ def delete_post(post, post_id, *args, **kwargs):
         if os.path.exists(files_base_path) and os.path.isdir(files_base_path):
             shutil.rmtree(files_base_path)
     except Exception as e:
-        return jsonify(flash_msg=f"Directory delete exception: {e}")
+        return jsonify(flash_msg=f"directory delete exception >~<: {e}")
 
     db.session.commit()
     return jsonify(
@@ -527,14 +527,14 @@ def add_comment(post, post_id, *args, **kwargs):
     author = request.form.get("author")
     is_verified_author = author.strip() == current_app.config["VERIFIED_AUTHOR"]
     if is_verified_author and not current_user.is_authenticated:
-        return jsonify(submission_errors={"author": ["$8 isn't going to buy you a verified checkmark here."]})
+        return jsonify(submission_errors={"author": ["$8 isn't going to buy you a verified checkmark here, choose a different name :3"]})
 
     # add comment to db
     # make sure my own comments aren't unread when I add them, cause duh
     comment = Comment(author=author, content=request.form.get("content"), post=post, is_unread=not is_verified_author)
     with db.session.no_autoflush: # otherwise there's a warning
         if not comment.insert_comment(post, db.session.get(Comment, request.form.get("parent"))):
-            return jsonify(flash_msg="please no hack :3")
+            return jsonify(flash_msg="pwease no hack 0~0")
     db.session.add(comment)
     db.session.commit()
     return jsonify(success=True, flash_msg="comment added :3")
@@ -580,7 +580,7 @@ def delete_comment(post, post_id, comment, comment_id, *args, **kwargs):
     # delete comment and its descendants from db
     descendants = comment.get_descendants(post)
     if not comment.remove_comment(post):
-        return jsonify(flash_msg="please no hack :3")
+        return jsonify(flash_msg="pwease no hack 0~0")
     for descendant in descendants:
         db.session.delete(descendant)
     db.session.delete(comment)

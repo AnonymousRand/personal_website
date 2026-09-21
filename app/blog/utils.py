@@ -25,16 +25,16 @@ def on_nonexistent_post(content_type: ContentType):
         case ContentType.HTML:
             return redirect(url_for(
                 f"{request.blueprint}.get_posts",
-                flash_msg=utils.encode_uri_component("That post doesn't exist :/"),
+                flash_msg=utils.encode_uri_component("that post doesn't exist 3:"),
                 _external=True
             ))
         case ContentType.JSON:
             return jsonify(
                 redir_url=url_for(f"{request.blueprint}.get_posts", _external=True), 
-                flash_msg="That post doesn't exist :/"
+                flash_msg="that post doesn't exist 3:"
             )
         case _:
-            return "app/blog/blogpage/utils.py: `on_nonexistent_post()` somehow reached end of switch statement", 500
+            return "app/blog/blogpage/utils.py: `on_nonexistent_post()` somehow reached end of switch statement 0~0", 500
 
 
 def redirs_to_index_after_login():

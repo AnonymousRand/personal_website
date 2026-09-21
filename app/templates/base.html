@@ -128,7 +128,7 @@
       <nav id="navbar" class="navbar navbar-expand-md sticky-top bg-white">
         <a class="navbar__home navbar-brand d-inline-flex align-items-center" href="{{ url_for('main.index', _external=True) }}" target="_self">
           <img class="navbar__logo me-2" src="{{ url_for('static', filename='files/favicon.ico', _external=True) }}" alt="favicon">
-          <span>Home</span>
+          <span>home</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="icon-navbar-toggler"></span>
@@ -137,7 +137,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item dropdown">
-              <button type="button" class="nav-link btn dropdown-toggle" data-bs-toggle="dropdown">Blogs</button>
+              <button type="button" class="nav-link btn dropdown-toggle" data-bs-toggle="dropdown">blogs</button>
               <ul class="dropdown-menu">
                 {% for blogpage in blogpages %}
                   <li{% if blogpage.is_login_required %} class="show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}{% endif %}>
@@ -148,17 +148,17 @@
             </li>
 
             <li class="nav-item show-when-logged-out"{% if current_user.is_authenticated %} hidden{% endif %}>
-              <a class="nav-link" href="{{ url_for('main.legal', _external=True) }}" target="_self">Legal</a>
+              <a class="nav-link" href="{{ url_for('main.legal', _external=True) }}" target="_self">legal</a>
             </li>
             <li class="nav-item show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}>
-              <a class="nav-link" href="{{ url_for('admin.choose_action', _external=True) }}" target="_self">Admin</a>
+              <a class="nav-link" href="{{ url_for('admin.choose_action', _external=True) }}" target="_self">admin</a>
             </li>
 
             <li class="nav-item show-when-logged-out"{% if current_user.is_authenticated %} hidden{% endif %}>
-              <button class="nav-link btn" type="button" data-bs-toggle="modal" data-bs-target="#login-modal">Admin login</button>
+              <button class="nav-link btn" type="button" data-bs-toggle="modal" data-bs-target="#login-modal">admin login</button>
             </li>
             <li class="nav-item show-when-logged-in"{% if not current_user.is_authenticated %} hidden{% endif %}>
-              <button id="logout-link" class="nav-link btn" type="button">Log out pls :3</button>
+              <button id="logout-link" class="nav-link btn" type="button">log out pls :3</button>
             </li>
 
             <li class="nav-item">
@@ -174,14 +174,14 @@
             <li class="nav-item d-inline-flex align-items-center">
               <div class="nav-link form-check form-switch mb-0">
                 <input id="silly-mode-switch" class="silly-mode-switch switch--navbar form-check-input ms-0" type="checkbox" role="switch">
-                <label class="form-check-label visually-hidden px-0" for="silly-mode-switch">Silly Mode</label>
+                <label class="form-check-label visually-hidden px-0" for="silly-mode-switch">silly mode :3</label>
               </div>
             </li>
 
             <li class="nav-item d-inline-flex align-items-center">
               <div class="nav-link form-check form-switch mb-0 pe-0">
                 <input id="dark-mode-switch" class="dark-mode-switch switch--navbar form-check-input ms-0" type="checkbox" role="switch">
-                <label class="form-check-label visually-hidden px-0" for="dark-mode-switch">Dark Mode/High Contrast</label>
+                <label class="form-check-label visually-hidden px-0" for="dark-mode-switch">dark mode/high contrast</label>
               </div>
             </li>
           </ul>
@@ -192,7 +192,7 @@
         <!-- display flash()ed messages as alerts -->
         <div id="flash" class="flash alert alert-info alert-dismissible fade show mb-0" role="alert" hidden>
           <span id="flash__text"></span>
-          <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Dismiss"></button>
+          <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="dismiss"></button>
         </div>
       </div>
 

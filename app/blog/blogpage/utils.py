@@ -33,7 +33,7 @@ def require_login_if_restricted_bp():
                     case ContentType.HTML:
                         return redirect(url_for(
                             f"main.index",
-                            flash_msg=utils.encode_uri_component("That blogpage doesn't exist :/"),
+                            flash_msg=utils.encode_uri_component("that blogpage doesn't exist 3:"),
                             _external=True
                         ))
                     case ContentType.JSON:
@@ -43,7 +43,7 @@ def require_login_if_restricted_bp():
                         )
                     case _:
                         return ("app/blog/blogpage/utils.py: `require_login_if_restricted_bp()` somehow reached end of "
-                                "switch statement"), 500
+                                "switch statement 0~0"), 500
 
             if blogpage.is_login_required:
                 result = utils.custom_unauthorized(content_type)
@@ -81,7 +81,7 @@ def require_valid_comment():
         def wrapped(content_type: ContentType, comment_id: str, *args, **kwargs):
             comment = db.session.get(Comment, comment_id)
             if comment is None:
-                return jsonify(success=True, flash_msg=f"That comment doesn't exist :/")
+                return jsonify(success=True, flash_msg=f"that comment doesn't exist 3:")
             return func(comment=comment, comment_id=comment_id, content_type=content_type, *args, **kwargs)
         return wrapped
     return inner_decorator
@@ -127,12 +127,12 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             if file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]:
                 detected_file_ext = validate_img(file.stream)
                 if file_ext != detected_file_ext:
-                    return f"corrupted file: \"{file_name}\" (my magic box says this is actually a {detected_file_ext})"
+                    return f"corrupted file: \"{file_name}\" (my magic box says this is actually a {detected_file_ext} :3)"
 
             # sanitize file name and upload
             sanitized_file_name = sanitize_file_name(file_name)
             if sanitized_file_name == "":
-                return f"file {file_name} did not survive sanitization"
+                return f"file {file_name} did not survive sanitization 3:"
             final_path = os.path.join(files_base_path, sanitized_file_name)
             os.makedirs(files_base_path, exist_ok=True) # make image directory if it doesn't exist
             file.save(final_path)                       # this can replace existing images
