@@ -62,6 +62,10 @@
     color: var(--custom-orange-deep) !important;
 }
 
+.custom-pink-shallow-light {
+    color: var(--custom-pink-shallow-light) !important;
+}
+
 .custom-pink-shallow-xlight {
     color: var(--custom-pink-shallow-xlight) !important;
 }
