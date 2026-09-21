@@ -14,14 +14,14 @@ from config import Config
 
 
 class BlogpostBaseForm(FlaskForm):
-    blogpage_id = SelectField("Blog", coerce=int, validators=[InputRequired()])
-    title = StringField("Title", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["POST_TITLE_MAX_LEN"])])
-    subtitle = StringField("Subtitle", validators=[Length(max=Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"])])
+    blogpage_id = SelectField("blog", coerce=int, validators=[InputRequired()])
+    title = StringField("title", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["POST_TITLE_MAX_LEN"])])
+    subtitle = StringField("subtitle", validators=[Length(max=Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"])])
     content = TextAreaField(
-        "Content (Markdown, LaTeX supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAX_LEN"])]
+        "content (markdown, latex supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAX_LEN"])]
     )
-    files = MultipleFileField(f"Upload files (supported: {', '.join(Config.FILE_UPLOAD_EXTS)})")
-    cancel_file_uploads = SubmitField("Clear files to upload", render_kw={"type": "button"})
+    files = MultipleFileField(f"upload files (supported: {', '.join(Config.FILE_UPLOAD_EXTS)})")
+    cancel_file_uploads = SubmitField("clear files to upload", render_kw={"type": "button"})
 
     # custom constructor which automatically and dynamically generates necessary form data at runtime
     def __init__(self, *args, **kwargs):
@@ -32,15 +32,15 @@ class BlogpostBaseForm(FlaskForm):
 
 
 class CreateBlogpostForm(BlogpostBaseForm):
-    create_blogpost_form_submit = SubmitField("Submit")
+    create_blogpost_form_submit = SubmitField("submit")
 
 
 class EditBlogpostForm(BlogpostBaseForm):
-    delete_files = SelectMultipleField("Delete files")
-    delete_unused_files = BooleanField("Delete unused files")
-    update_updated_timestamp = BooleanField("Update updated timestamp")
-    save_blogpost = SubmitField("Save")
-    edit_blogpost_form_submit = SubmitField("Submit")
+    delete_files = SelectMultipleField("delete files")
+    delete_unused_files = BooleanField("delete unused files")
+    update_updated_timestamp = BooleanField("update updated timestamp")
+    save_blogpost = SubmitField("save")
+    edit_blogpost_form_submit = SubmitField("submit")
 
     def __init__(self, *args, post, **kwargs):
         super().__init__(*args, **kwargs)
@@ -58,13 +58,13 @@ class EditBlogpostForm(BlogpostBaseForm):
 class AddCommentForm(FlaskForm):
     parent = HiddenField(default=None)
     author = StringField(
-        "Display name",validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"])]
+        "display name",validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"])]
     )
     content = TextAreaField(
-        "Comment", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"])]
+        "comment", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"])]
     )
-    add_comment_form_submit = SubmitField("Submit")
+    add_comment_form_submit = SubmitField("submit")
 
 
 class EditCommentForm(AddCommentForm):
-    cancel_edit_comment = SubmitField("Cancel", render_kw={"type": "button"})
+    cancel_edit_comment = SubmitField("cancel", render_kw={"type": "button"})

@@ -6,17 +6,16 @@ function addCommentSyntaxGuideTooltip() {
             .attr("data-bs-html", "true")
             .attr(
                 "data-bs-title",
-                "Markdown:" +
+                "markdown:" +
                   "<ul>" +
-                    "<li>Python-Markdown with <code>extra</code> extensions</li>" +
-                    "<li>Plaintext links only</li>" +
-                    "<li>No images or footnotes</li>" +
+                    "<li>python-markdown with `attr_list`, `fenced_code`, `md_in_html`, `tables` extensions</li>" +
+                    "<li>plaintext links only, no images or footnotes</li>" +
                   "</ul>" +
-                "LaTeX (MathJax):" +
+                "latex (mathjax):" +
                   "<ul>" +
-                    "<li>Escape anything that is also Markdown: <code>\\(</code>, <code>\\)</code>, " +
+                    "<li>escape anything that is also narkdown: <code>\\(</code>, <code>\\)</code>, " +
                             "<code>\\{</code>, <code>\\\\</code>, <code>\*</code> etc.</li>" +
-                    "<li>My custom macros are available if you can find them :3" +
+                    "<li>my custom macros are available if you can find them :3" +
                   "</ul>"
             );
     refreshTooltips("#leave-a-comment");
@@ -30,7 +29,7 @@ function tweakFootnotes() {
         jqFootnotes.addClass("footnotes");
         jqFootnotes.removeClass("footnote");
         jqFootnotes.wrap('<details id="footnotes__wrapper" class="footnotes__wrapper"></details>')
-        jqFootnotes.before("<summary>Footnotes</summary>");
+        jqFootnotes.before("<summary>footnotes</summary>");
     }
 
     // footnotes collapsible opens if footnote link clicked on and the collapsible is closed

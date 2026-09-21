@@ -10,39 +10,39 @@ from config import Config
 
 class LoginForm(FlaskForm):
     password = PasswordField(
-        "Password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
+        "pawssword :3", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
-    login_form_submit = SubmitField("Submit")
+    login_form_submit = SubmitField("submit")
 
 
 class ChooseActionForm(FlaskForm):
     action = RadioField(
-        "Actions", choices=[
-            ("create", "Create post"),
-            ("edit", "Edit/delete post"),
-            ("change_admin_password", "Change admin password")
+        "actions", choices=[
+            ("create", "create post"),
+            ("edit", "edit/delete post"),
+            ("change_admin_password", "change admin pawssword")
         ],
         validators=[InputRequired()]
     )
-    choose_action_form_submit = SubmitField("Submit")
+    choose_action_form_submit = SubmitField("submit")
 
 
 class SearchBlogpostForm(FlaskForm):
     post = QuerySelectField(
-        "Post", validators=[InputRequired()],
+        "post", validators=[InputRequired()],
         query_factory=lambda: db.session.query(Post).order_by(Post.title), get_label="title"
     )
-    search_blogpost_form_submit = SubmitField("Submit")
+    search_blogpost_form_submit = SubmitField("submit")
 
 
 class ChangeAdminPasswordForm(FlaskForm):
     old_password = PasswordField(
-        "Old password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
+        "old pawssword", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
     new_password_1 = PasswordField(
-        "New password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
+        "new pawssword", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
     new_password_2 = PasswordField(
-        "Repeat new password", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
+        "repeat new pawssword", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
-    change_admin_password_submit = SubmitField("Submit")
+    change_admin_password_submit = SubmitField("submit")

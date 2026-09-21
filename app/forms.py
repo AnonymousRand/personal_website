@@ -9,8 +9,8 @@ class LoginForm(FlaskForm):
     is_modal = HiddenField(default="no")
 
     password = PasswordField(
-        "Password",
+        "pawssword :3",
         validators=[InputRequired(), Length(max=Config.DB_CONFIGS["USER_PASSWORD_MAX_LEN"])]
     )
 
-    login_form_submit = SubmitField("Submit")
+    login_form_submit = SubmitField("submit")
