@@ -75,7 +75,7 @@
       <!-- global custom CSS -->
       <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_hljs.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', _external=True) }}">
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/util.css', _external=True) }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/utils.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css', _external=True) }}">
 
       {% block css %}{% endblock %}
@@ -97,10 +97,10 @@
       </script>
 
       <!-- global custom JS -->
-      <!-- no defer because util -->
-      <script src="{{ url_for('static', filename='js/util.js', _external=True) }}"></script>
-      <script src="{{ url_for('static', filename='js/util_ajax.js', _external=True) }}"></script>
-      <script src="{{ url_for('static', filename='js/util_session.js', _external=True) }}"></script>
+      <!-- no defer because utils -->
+      <script src="{{ url_for('static', filename='js/utils.js', _external=True) }}"></script>
+      <script src="{{ url_for('static', filename='js/utils_ajax.js', _external=True) }}"></script>
+      <script src="{{ url_for('static', filename='js/utils_session.js', _external=True) }}"></script>
       <!-- no defer to avoid brief light mode flash -->
       <script src="{{ url_for('static', filename='js/dark_mode.js', _external=True) }}"></script>
       <!-- no defer because `post_display_customization.js`, which is not deferred, requires this -->

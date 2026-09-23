@@ -91,6 +91,14 @@ input[value="Reply"][value="Delete"] {
     margin-bottom: 0.25rem;
 }
 
+.md-cmd-line {
+    color: var(--dimgray);
+}
+
+.md-cmd-line .md-cmd-line__cmd {
+    color: var(--custom-pink-shallow-light);
+}
+
 .md-dropdown {
     margin-bottom: 1rem;
     border-style: solid;

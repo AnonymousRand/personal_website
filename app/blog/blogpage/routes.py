@@ -115,24 +115,46 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs): # `post` par
             ),
             # other extensions
             image_titles.ImageTitleExtension(), # images use `alt` text as `title` too
-            markdown_environments.CaptionedFigureExtension(
-                html_class="md-captioned-figure", caption_html_class="md-captioned-figure__caption"
-            ),
-            markdown_environments.CitedBlockquoteExtension(
-                html_class="md-cited-blockquote", citation_html_class="md-cited-blockquote__citation"
-            ),
             markdown_environments.DivExtension(
                 types={
                     "textbox": {"html_class": "md-textbox last-child-no-mb border--2px border--lightgray"}
                 }
             ),
             markdown_environments.DropdownExtension(
-                types = {
+                types={
                     "dropdown": {"html_class": "border--2px border--lightgray dimgray"}
                 },
                 html_class="md-dropdown",
                 summary_html_class="md-dropdown__summary last-child-no-mb",
                 content_html_class="md-dropdown__content last-child-no-mb"
+            ),
+            markdown_environments.NestedEnvExtension(
+                types={
+                    "captioned_figure": {
+                        "html_tag": "figure",
+                        "html_class": "md-captioned-figure",
+                        "inner": "caption",
+                        "inner_html_tag": "figcaption",
+                        "inner_html_class": "md-captioned-figure__caption",
+                        "inner_pos": "end"
+                    },
+                    "cited_blockquote": {
+                        "html_tag": "blockquote",
+                        "html_class": "md-cited-blockquote",
+                        "inner": "citation",
+                        "inner_html_tag": "cite",
+                        "inner_html_class": "md-cited-blockquote__citation",
+                        "inner_pos": "end"
+                    },
+                    "cmd_line": {
+                        "html_tag": "div",
+                        "html_class": "md-cmd-line",
+                        "inner": "cmd",
+                        "inner_html_tag": "div",
+                        "inner_html_class": "md-cmd-line__cmd",
+                        "inner_pos": "start"
+                    }
+                }
             ),
             markdown_environments.ThmsExtension(
                 div_config={

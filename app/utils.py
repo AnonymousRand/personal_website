@@ -35,7 +35,7 @@ def require_login():
     Usage:
         ```
         @bp.route(...)
-        @util.require_login(...)
+        @utils.require_login(...)
         def view_func():
             pass
         ```
@@ -65,7 +65,7 @@ def custom_unauthorized(content_type: ContentType):
 
     Usage:
         ```
-        result = util.custom_unauthorized(...)
+        result = utils.custom_unauthorized(...)
         if result:
             return result
         ```
@@ -86,7 +86,7 @@ def custom_unauthorized(content_type: ContentType):
             case ContentType.JSON:
                 return jsonify(needs_login=True)
             case _:
-                return "app/util.py: `custom_unauthorized()` somehow reached end of switch statement 0~0", 500
+                return "app/utils.py: `custom_unauthorized()` somehow reached end of switch statement 0~0", 500
     return None
 
 

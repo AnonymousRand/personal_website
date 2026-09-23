@@ -1,5 +1,5 @@
 /*********/
-/* Fonts */
+/* fonts */
 /*********/
 
 @font-face {
@@ -55,54 +55,6 @@
     src: url("../fonts/hachi_maru_pop.ttf") format(TrueType);
     font-display: swap;
 }
-
-/**********/
-/* Colors */
-/**********/
-
-.black {
-    color: var(--black) !important;
-}
-
-.blue {
-    color: var(--blue) !important;
-}
-
-.dimgray {
-    color: var(--dimgray) !important;
-}
-
-.gray {
-    color: var(--gray) !important;
-}
-
-.red {
-    color: var(--red) !important;
-}
-
-.custom-blue-deep-dark {
-    color: var(--custom-blue-deep-dark) !important;
-}
-
-.custom-orange-deep {
-    color: var(--custom-orange-deep) !important;
-}
-
-.custom-pink-shallow-light {
-    color: var(--custom-pink-shallow-light) !important;
-}
-
-.custom-pink-shallow-xlight {
-    color: var(--custom-pink-shallow-xlight) !important;
-}
-
-.custom-pink-shallow-xxlight {
-    color: var(--custom-pink-shallow-xxlight) !important;
-}
-
-/********/
-/* Font */
-/********/
 
 /* override all Bootstrap `fs` classes */
 .fs-1 {
@@ -199,8 +151,52 @@
     font-size: 0.875em !important;
 }
 
+/**********/
+/* colors */
+/**********/
+
+.black {
+    color: var(--black) !important;
+}
+
+.blue {
+    color: var(--blue) !important;
+}
+
+.dimgray {
+    color: var(--dimgray) !important;
+}
+
+.gray {
+    color: var(--gray) !important;
+}
+
+.red {
+    color: var(--red) !important;
+}
+
+.custom-blue-deep-dark {
+    color: var(--custom-blue-deep-dark) !important;
+}
+
+.custom-orange-deep {
+    color: var(--custom-orange-deep) !important;
+}
+
+.custom-pink-shallow-light {
+    color: var(--custom-pink-shallow-light) !important;
+}
+
+.custom-pink-shallow-xlight {
+    color: var(--custom-pink-shallow-xlight) !important;
+}
+
+.custom-pink-shallow-xxlight {
+    color: var(--custom-pink-shallow-xxlight) !important;
+}
+
 /*************/
-/* Box Model */
+/* box model */
 /*************/
 
 .me-0_75rem {
@@ -241,7 +237,7 @@
 }
 
 /********/
-/* Flex */
+/* flex */
 /********/
 
 .flex-equal-children > * {
@@ -434,7 +430,7 @@
 }
 
 /*********/
-/* Other */
+/* other */
 /*********/
 
 .cell--left-header {
