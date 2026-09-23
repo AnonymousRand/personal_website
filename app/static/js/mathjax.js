@@ -90,8 +90,10 @@ let mathJaxUrlFragScrollRenderQueue = new Map();
 let scrollToNodeTimer;
 
 async function renderMathJax(selectorOrNode) {
-    MathJax.typesetClear();                         // otherwise things are re-rendered? and it breaks horizontal scroll
-    await MathJax.typesetPromise([selectorOrNode]); // use `await` to make sure we have finished rendering
+    // without `typsetClear()`, it seems things are re-rendered? and it breaks horizontal scroll
+    MathJax.typesetClear();
+    // use `await` to make sure we have finished rendering
+    await MathJax.typesetPromise([selectorOrNode]);
 
     // make `\[\]` LaTeX blocks scroll horizontally on overflow
     const jqNode = $(selectorOrNode);
@@ -109,9 +111,10 @@ async function renderMathJax(selectorOrNode) {
     });
 }
 
-// from https://github.com/w3c/csswg-drafts/issues/3744#issuecomment-2451949981; allow callback on `scrollIntoView()` finish
-// so we can halt detection of MathJax to render until URL fragment scroll is done to avoid lag spike
-// basically refresh a timer every time a scroll event is detected, and only call callback when timer finishes
+// from https://github.com/w3c/csswg-drafts/issues/3744#issuecomment-2451949981;
+// allow callback on `scrollIntoView()` finish so we can halt detection of MathJax to render
+// until URL fragment scroll is done to avoid lag spike. basically, we refresh a timer every time
+// a scroll event is detected, and only call the callback when the timer finishes
 function scrollToNodeWithCallback(node, callback) {
     const eventListenerCb = function() {
         clearTimeout(scrollToNodeTimer);
@@ -128,7 +131,8 @@ function scrollToNodeWithCallback(node, callback) {
 };
 
 function onUrlFragNavigate(urlFrag) {
-    const jqTarget = $(urlFrag); // using JQuery selector since `querySelector()` doesn't allow `id`s starting with number
+    // (using JQuery selector since `querySelector()` doesn't allow `id`s starting with number)
+    const jqTarget = $(urlFrag);
     if (jqTarget.length === 0) {
         isScrollingToUrlFrag = false;
         return;
@@ -137,7 +141,8 @@ function onUrlFragNavigate(urlFrag) {
     isScrollingToUrlFrag = true;
     scrollToNodeWithCallback(jqTarget.get(0), function() {
         isScrollingToUrlFrag = false;
-        // render queued elements that are still on screen at the end of the scroll, and then clear the queue
+        // render queued elements that are still on screen at the end of the scroll,
+        // and then clear the queue
         for (const [k, v] of mathJaxUrlFragScrollRenderQueue) {
             if (v === true) {
                 renderMathJax(k);
@@ -169,17 +174,20 @@ $(document).ready(function() {
                     renderMathJax(entry.target);
                     observer.unobserve(entry.target);
                 } else {
-                    // if currently scrolling to a URL fragment, don't render everything we scroll past just yet;
-                    // add to a queue instead and wait until scroll finished to see which elements are still on screen
-                    // (need to do this since intersection observer fires on visible elements at the end of the scroll
-                    // a bit before the scroll ends, so without this queue, we can't detect them after setting
+                    // if currently scrolling to a URL fragment, don't render everything we scroll
+                    // past just yet; add to a queue instead and wait until scroll finished to see
+                    // which elements are still on screen (need to do this since the intersection
+                    // observer fires on visible elements at the end of the scroll a bit before the
+                    // scroll ends, so without this queue, we can't detect them after setting
                     // `isScrollingToUrlFrag` after the scroll ends)
                     mathJaxUrlFragScrollRenderQueue.set(entry.target, true);
                 }
             } else {
-                // if currently scrolling to a URL fragment and an element previously detected on screen
-                // during the same scroll leaves the screen, then unmark it for rendering
-                if (isScrollingToUrlFrag && mathJaxUrlFragScrollRenderQueue.get(entry.target) === true) {
+                // if currently scrolling to a URL fragment and an element previously detected
+                // on screen during the same scroll leaves the screen, then unmark it for rendering
+                if (isScrollingToUrlFrag
+                    && mathJaxUrlFragScrollRenderQueue.get(entry.target) === true)
+                {
                     mathJaxUrlFragScrollRenderQueue.set(entry.target, false);
                 }
             }

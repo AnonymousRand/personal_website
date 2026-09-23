@@ -433,6 +433,16 @@
 /* other */
 /*********/
 
+/* use `.inline-code-block` for "inline code blocks", i.e. a code block that respects whitespace
+ * unlike inline code, but still does things like word wrapping */
+pre:not(table pre, .inline-code-block *) code,
+.code-box {
+    margin-bottom: 1rem;
+    border: 2px solid var(--lightgray);
+    border-radius: var(--bs-border-radius);
+    padding: 0.75rem 1rem;
+}
+
 .cell--left-header {
     border-right-width: 3px !important;
     border-right-style: double !important;
@@ -450,9 +460,15 @@
     overflow: hidden;
     /* extend exactly to edge of screen and clip */
     width: calc(
-        var(--container-content-width) + var(--container-content-padding-x) + /* distance to edge of main container */
-        (100svw - var(--container-content-max-width)) / 2 /* distance from edge of main container to edge of screen */
+        /* distance to edge of main container */
+        var(--container-content-width) + var(--container-content-padding-x) +
+        /* distance from edge of main container to edge of screen */
+        (100svw - var(--container-content-max-width)) / 2
     );
+}
+
+.inline-code-block code {
+    white-space: pre-wrap;
 }
 
 .min-svh-100 {
@@ -540,9 +556,9 @@
 }
 
 .scroll-overflow-x {
-    margin-bottom: 0.5rem !important;
     overflow-x: auto !important;
-    overflow-y: hidden !important; /* for MathJax equation environments with `\\[pt]` extra line spacing */
+    /* for MathJax equation environments with `\\[pt]` extra line spacing */
+    overflow-y: hidden !important;
 }
 
 .silly-mode {
@@ -565,7 +581,7 @@
     color: unset !important;
 }
 
-/* need specificity gah i freaking hate css. it is a lawless land that would make even the toughest anarchist cower. */
+/* need specificity gah i freaking hate css */
 .form-switch .switch--navbar {
     margin-top: 0;
     border-color: var(--lightgray);

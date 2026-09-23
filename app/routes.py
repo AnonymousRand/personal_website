@@ -30,8 +30,8 @@ def get_url_for():
     """
     Get `url_for()` from externally-linked JS.
 
-    Set `const`s in inline template JS where `url_for()` is callable from Jinja normally, but use this when URLs need to
-    be dynamically built during JS runtime.
+    Set `const`s in inline template JS where `url_for()` is callable from Jinja normally,
+    but use this when URLs need to be dynamically built during JS runtime.
 
     Usage: `/url-for?endpoint=[endpoint]&arg1=[...]&...`
     """

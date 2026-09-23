@@ -23,7 +23,7 @@ body {
     font-size: 16px;
 }
 
-code {
+pre, code {
     color: var(--custom-pink-shallow);
     font-family: "Maple Mono NL", monospace;
     font-size: 100%;
@@ -56,7 +56,9 @@ li > :last-child > :last-child > :last-child > :last-child {
 nav .dropdown-menu {
     width: max-content;
     min-width: min-content !important;
-    max-width: calc(0.75 * (var(--container-content-max-width) - 2 * var(--container-content-padding-x)));
+    max-width: calc(
+        0.75 * (var(--container-content-max-width) - 2 * var(--container-content-padding-x))
+    );
 }
 
 @media (max-width: 768px) {
@@ -77,17 +79,8 @@ pre {
     font-size: 100%;
 }
 
-/* use `.pre--inline` for inline code that respects whitespace
- * (i.e. text-wrapping, non-bordered, non-syntax-highlighted code blocks) */
-pre:not(table pre, .pre--inline) code {
-    margin-bottom: 0.5rem;
-    border: 2px solid var(--lightgray);
-    border-radius: var(--bs-border-radius);
-    padding: 0.75rem 1rem;
-}
-
 table {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     border-color: var(--dimgray);
     width: max-content;
 }
@@ -110,7 +103,8 @@ textarea.form-control {
     max-height: 60svh;
 }
 
-/* to compensate for fixed navbar; can be inaccurate on page load still with JS-based layout shifts but oh well */
+/* to compensate for fixed navbar; can be inaccurate on page load still with JS-based
+ * layout shifts but oh well */
 [id] {
     scroll-margin-top: var(--navbar-outer-height);
 }
@@ -127,19 +121,23 @@ textarea.form-control {
 }
 
 /* tooltip arrow */
-.bs-tooltip-top .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
+.bs-tooltip-top .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
     border-top-color: var(--custom-pink-shallow-xlight) !important;
 }
 
-.bs-tooltip-right .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
+.bs-tooltip-right .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
     border-right-color: var(--custom-pink-shallow-xlight) !important;
 }
 
-.bs-tooltip-bottom .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
+.bs-tooltip-bottom .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
     border-bottom-color: var(--custom-pink-shallow-xlight) !important;
 }
 
-.bs-tooltip-left .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
+.bs-tooltip-left .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
     border-left-color: var(--custom-pink-shallow-xlight) !important;
 }
 
@@ -171,7 +169,8 @@ textarea.form-control {
     text-decoration: none;
 }
 
-/* need specificity gah i freaking hate css. it is a lawless land that would make even the toughest anarchist cower. */
+/* need specificity gah i freaking hate css. it is a lawless land that would make even
+ * the most resolute anarchist cower. */
 .form-switch .dark-mode-switch {
     background-image: url("../files/sun.svg");
 }
@@ -193,7 +192,8 @@ textarea.form-control {
 
 .flash__wrapper {
     position: fixed;
-    /* this and `transform` horizontally centers this, which we have to do manually since it is `position: fixed` */
+    /* this and `transform` horizontally centers this, which we have to do manually
+     * since it is `position: fixed` */
     left: 50%;
     top: 0.75rem;
     transform: translate(-50%);
@@ -210,7 +210,8 @@ textarea.form-control {
 }
 
 /* undo weird Bootstrap rule */
-.input-group.has-validation > :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+.input-group.has-validation >
+    :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
 .input-group.has-validation > .dropdown-toggle:nth-last-child(n + 4),
 .input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-control,
 .input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-select {
@@ -236,10 +237,6 @@ textarea.form-control {
 .navbar__logo {
     width: 2rem;
     height: 2rem;
-}
-
-.pre--inline {
-    white-space: pre-wrap;
 }
 
 .toggle-password-visibility {
@@ -272,8 +269,9 @@ textarea.form-control {
     margin-bottom: 0 !important;
 }
 
-/* CSS is so stupid that `hidden` HTML attribute is overriden by `display` property in CSS, so I HAVE TO MANUALLY GO
- * AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the absolute gobsmacking gobsmacker gobsmackery freak is this */
+/* CSS is so stupid that `hidden` HTML attribute is overriden by `display` property in CSS,
+ * so I HAVE TO MANUALLY GO AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the
+ * absolute gobsmacking gobsmacker gobsmackery freak is this */
 [hidden] {
     display: none !important;
 }

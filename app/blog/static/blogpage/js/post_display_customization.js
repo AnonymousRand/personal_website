@@ -8,13 +8,15 @@ function addCommentSyntaxGuideTooltip() {
                 "data-bs-title",
                 "markdown:" +
                   "<ul>" +
-                    "<li>python-markdown with <code>attr_list</code>, <code>fenced_code</code>, <code>md_in_html</code>, <code>tables</code> extensions</li>" +
+                    "<li>python-markdown with <code>attr_list</code>, <code>fenced_code</code>, " +
+                        "<code>md_in_html</code>, <code>tables</code> extensions</li>" +
                     "<li>plaintext links only, no images or footnotes</li>" +
                   "</ul>" +
                 "latex (mathjax):" +
                   "<ul>" +
-                    "<li>escape anything that is also narkdown: <code>\\(</code>, <code>\\)</code>, " +
-                            "<code>\\{</code>, <code>\\\\</code>, <code>\*</code> etc.</li>" +
+                    "<li>escape anything that is also narkdown: <code>\\(</code>, " +
+                        "<code>\\)</code>, <code>\\{</code>, <code>\\\\</code>, <code>\*</code> " +
+                        "etc.</li>" +
                     "<li>my custom macros are available if you can find them :3" +
                   "</ul>"
             );
@@ -41,4 +43,6 @@ function tweakFootnotes() {
 addCommentSyntaxGuideTooltip();
 tweakFootnotes();
 // for making sure TOC is vertically centered
-document.documentElement.style.setProperty("--toc-heading-outer-height", `${$("#toc__heading").outerHeight()}px`);
+document.documentElement.style.setProperty(
+    "--toc-heading-outer-height", `${$("#toc__heading").outerHeight()}px`
+);

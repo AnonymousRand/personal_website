@@ -1,6 +1,7 @@
 const jqIconBell = $("#unread-comments-notif-btn-icon");
 
-// when logging in via modal on a `blog.` page/opening a `blog.` page as admin, check for notifications
+// when logging in via modal on a `blog.` page/opening a `blog.` page as admin,
+// check for notifications
 onSamePageLogin = addToFunc(onSamePageLogin, function() {
     updateUnreadComments();
 });

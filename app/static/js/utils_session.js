@@ -10,8 +10,8 @@ let onSamePageLogin = function() {
 };
 
 // this can't do anything to prevent users from just closing the modal
-// my principle is that letting an expired session simply continue viewing a restricted page with no ability to
-// interact (since it will always ask for modal and not do anything) is not a huge deal
+// my principle is that letting an expired session simply continue viewing a restricted page with no
+// ability to interact (since it will always ask for modal and not do anything) is not a huge deal
 // (if I forgot to log out at public computer or something then we have a LOT of other problems)
 function showLoginModal() {
     flashMsg("please log in :3");

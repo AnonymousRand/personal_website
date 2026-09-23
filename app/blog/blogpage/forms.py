@@ -15,20 +15,27 @@ from config import Config
 
 class BlogpostBaseForm(FlaskForm):
     blogpage_id = SelectField("blog", coerce=int, validators=[InputRequired()])
-    title = StringField("title", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["POST_TITLE_MAX_LEN"])])
-    subtitle = StringField("subtitle", validators=[Length(max=Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"])])
+    title = StringField(
+        "title", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["POST_TITLE_MAX_LEN"])]
+    )
+    subtitle = StringField(
+        "subtitle", validators=[Length(max=Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"])]
+    )
     content = TextAreaField(
-        "content (markdown, latex supported)", validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAX_LEN"])]
+        "content (markdown, latex supported)",
+        validators=[Length(max=Config.DB_CONFIGS["POST_CONTENT_MAX_LEN"])]
     )
     files = MultipleFileField(f"upload files (supported: {', '.join(Config.FILE_UPLOAD_EXTS)})")
     cancel_file_uploads = SubmitField("clear files to upload", render_kw={"type": "button"})
 
-    # custom constructor which automatically and dynamically generates necessary form data at runtime
+    # custom constructor which automatically dynamically generates necessary form data at runtime
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # dynamically generate `blogpage_id`'s choices
         blogpages = db.session.query(Blogpage).order_by(Blogpage.ordering).all()
-        self.blogpage_id.choices = [(blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable]
+        self.blogpage_id.choices = [
+            (blogpage.id, blogpage.name) for blogpage in blogpages if blogpage.is_writeable
+        ]
 
 
 class CreateBlogpostForm(BlogpostBaseForm):
@@ -58,10 +65,12 @@ class EditBlogpostForm(BlogpostBaseForm):
 class AddCommentForm(FlaskForm):
     parent = HiddenField(default=None)
     author = StringField(
-        "display name",validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"])]
+        "display name",
+        validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"])]
     )
     content = TextAreaField(
-        "comment", validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"])]
+        "comment",
+        validators=[InputRequired(), Length(max=Config.DB_CONFIGS["COMMENT_CONTENT_MAX_LEN"])]
     )
     add_comment_form_submit = SubmitField("submit")
 

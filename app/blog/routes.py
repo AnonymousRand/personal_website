@@ -27,13 +27,15 @@ def post_by_id(post_id):
     if post is None:
         return blog_utils.on_nonexistent_post(ContentType.HTML)
 
-    # don't allow unlisted posts to be accessed this way to prevent brute-force enumeration of post IDs
+    # don't allow unlisted posts to be accessed this way to prevent brute-force enumeration
+    # of post IDs
     if post.blogpage.is_login_required and not current_user.is_authenticated:
         result = utils.custom_unauthorized(ContentType.HTML)
         if result:
             return result
     return redirect(url_for(
-        f"blog.{post.blogpage_id}.get_post", post_id=post_id, post_sanitized_title=post.sanitized_title, _external=True
+        f"blog.{post.blogpage_id}.get_post", post_id=post_id,
+        post_sanitized_title=post.sanitized_title, _external=True
     ))
 
 

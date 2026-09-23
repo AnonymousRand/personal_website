@@ -42,8 +42,10 @@ def require_login_if_restricted_bp():
                             flash_msg="That post doesn't exist :/"
                         )
                     case _:
-                        return ("app/blog/blogpage/utils.py: `require_login_if_restricted_bp()` somehow reached end of "
-                                "switch statement 0~0"), 500
+                        return (
+                            "app/blog/blogpage/utils.py: require_login_if_restricted_bp(): "
+                            "somehow reached end of switch statement 0~0"
+                        ), 500
 
             if blogpage.is_login_required:
                 result = utils.custom_unauthorized(content_type)
@@ -57,19 +59,20 @@ def require_login_if_restricted_bp():
 
 def require_valid_post():
     """
-    Make sure URL points to a post that exists; and if it does, fetch the post from the db and passes it to its inner
-    function as a parameter for later use.
+    Make sure URL points to a post that exists; and if it does, fetch the post from the db
+    and pass it to the inner function as a parameter for later use.
     """
 
     def inner_decorator(func):
         @wraps(func)
         def wrapped(content_type: ContentType, *args, **kwargs):
             blogpage_id = get_blogpage_id()
-            # Flask view functions seem to turn `args` into `kwargs` (but I'm not complaining :D)
+            # flask view functions seem to turn `args` into `kwargs` (but I'm not complaining :D)
             post = blog_utils.get_post(kwargs.get("post_id"), kwargs.get("post"))
             if post is None:
                 return blog_utils.on_nonexistent_post(content_type)
-            # also return `post` in addition since functions with these decorators probably need `post` anyway
+            # also return `post` in addition since functions with these decorators
+            # probably need `post` anyway
             return func(post=post, content_type=content_type, *args, **kwargs)
         return wrapped
     return inner_decorator
@@ -82,15 +85,17 @@ def require_valid_comment():
             comment = db.session.get(Comment, comment_id)
             if comment is None:
                 return jsonify(success=True, flash_msg=f"that comment doesn't exist 3:")
-            return func(comment=comment, comment_id=comment_id, content_type=content_type, *args, **kwargs)
+            return func(
+                comment=comment, comment_id=comment_id, content_type=content_type, *args, **kwargs
+            )
         return wrapped
     return inner_decorator
 
 
 def redir_to_post_after_login():
     """
-    If redirecting to a view function decorated by this via the `next` parameter after logging in, instead redirect to
-    the GET endpoint for the current post.
+    If redirecting to a view function decorated by this via the `next` parameter after logging in,
+    instead redirect to the GET endpoint for the current post.
     """
 
     def inner_decorator(func):
@@ -100,10 +105,11 @@ def redir_to_post_after_login():
             if post is None:
                 return blog_utils.on_nonexistent_post(content_type)
             if request.args.get("is_redir_after_login"):
-                # here it's always `redirect()` aka HTML content type because this view function must've been called
-                # by JS changing `window.location.href` after successful login + seeing `redir_url` JSON key from
-                # `login()` view func. `window.location.href` change is always just the same as a `redirect()` via
-                # GET an HTML page, as we typically do on loading a new page.
+                # here it's always `redirect()` aka HTML content type because this view function
+                # must've been called by JS changing `window.location.href` after successful login
+                # + seeing `redir_url` JSON key from `login()` view func. `window.location.href`
+                # change is always just the same as a `redirect()` via GET an HTML page, as we
+                # typically do on loading a new page
                 return redirect(url_for("blog.post_by_id", post_id=post.id, _external=True))
             return func(content_type=content_type, *args, **kwargs)
         return wrapped
@@ -119,7 +125,8 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
 
             # validate file type
             file_ext = os.path.splitext(file_name)[1]
-            if file_ext == ".jpg":                      # `imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`
+            # (`imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`)
+            if file_ext == ".jpg":
                 file_ext = ".jpeg"
             # `imghdr` can't check SVG; trustable since admin-only ig
             if file_ext not in current_app.config["FILE_UPLOAD_EXTS"]:
@@ -127,7 +134,10 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             if file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]:
                 detected_file_ext = validate_img(file.stream)
                 if file_ext != detected_file_ext:
-                    return f"corrupted file: \"{file_name}\" (my magic box says this is actually a {detected_file_ext} :3)"
+                    return (
+                        f"corrupted file: \"{file_name}\" (my magic box says this is actually a "
+                        f"{detected_file_ext} :3)"
+                    )
 
             # sanitize file name and upload
             sanitized_file_name = sanitize_file_name(file_name)

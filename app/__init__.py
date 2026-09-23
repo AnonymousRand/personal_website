@@ -17,14 +17,14 @@ from config import Config
 # declare extension instances outside so blueprints can still do `from app import db` etc.
 cors = CORS()
 csrf = CSRFProtect()
-# `autoflush` can unintentionally flush temporary changes on Python objects retrieved from the db back into the db.
-# at the same time, using `make_transient()` on those objects to prevent flushing removes their db relationships, while
-# `make_transient_detached()` removes their Python-only relationships (`sqlalchemy.orm.relationship()`).
-# so, manually controlling flushing is the best option here
+# `autoflush` can unintentionally flush temporary changes on python objects retrieved from the db
+# back into the db. at the same time, using `make_transient()` on those objects to prevent flushing
+# removes their db relationships, while `make_transient_detached()` removes their python-only
+# relationships (`sqlalchemy.orm.relationship()`). so, manually flushing is the best option here
 # (also note that `session_options` cannot be passed in `db.init_app()` later)
 db = SQLAlchemy(session_options={"autoflush": False}) 
-# not using `session_protection="strong"` to avoid potential security mess of finding original IP through Cloudflare
-# and Nginx; and more crucially IPv4 vs. IPv6 hell
+# not using `session_protection="strong"` to avoid potential security mess of finding original IP
+# through Cloudflare and Nginx; and more crucially IPv4 vs. IPv6 hell
 login_manager = LoginManager()
 login_manager.login_view = Config.LOGIN_ENDPOINT
 migrate = Migrate()
@@ -33,7 +33,8 @@ moment = Moment()
 talisman = Talisman()
 
 
-import app.routes as global_routes # after initializing global extension variables to prevent circular imports
+# only import this after initializing global extension variables to prevent circular imports
+import app.routes as global_routes
 
 
 def create_app():
@@ -78,14 +79,18 @@ def create_app():
     return app
 
 
-from app import models # at the bottom to prevent circular imports
+# only import here to prevent circular imports
+from app import models
 
 
-# Can't use `@app.route` etc. decorators in global routes.py (no global `app` variable), hence doing it this way
+# can't use `@app.route` etc. decorators in global routes.py (no global `app` variable),
+# hence doing it this way
 def register_global_routes(app):
     app.context_processor(global_routes.inject_forms)
     app.context_processor(global_routes.inject_blogpages)
     app.register_error_handler(HTTPException, global_routes.handle_general_http_error)
     app.add_url_rule("/favicon.ico", endpoint="favicon", view_func=global_routes.favicon)
-    app.add_url_rule("/auth-status", endpoint="get_auth_status", view_func=global_routes.get_auth_status)
+    app.add_url_rule(
+        "/auth-status", endpoint="get_auth_status", view_func=global_routes.get_auth_status
+    )
     app.add_url_rule("/url-for", endpoint="get_url_for", view_func=global_routes.get_url_for)

@@ -29,7 +29,8 @@ $(document).ready(function() {
         enableSillyMode(false);
     }
 
-    // not triggered by `prop()`; detects manual change in switch state and activates/deactivates silly mode
+    // not triggered by `prop()`; detects manual change in switch state and activates/deactivates
+    // silly mode
     jqSillyModeSwitch.on("change", function(e) {
         if (e.target.checked) {
             enableSillyMode(true);

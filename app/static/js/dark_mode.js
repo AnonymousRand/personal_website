@@ -2,7 +2,8 @@ const DARKREADER_OPTIONS = {
     contrast: 130
 };
 const DARKREADER_FIXES = {
-    // CSS selectors for elements that are not automatically inverted by DarkReader (images, SVG icons etc.)
+    // CSS selectors for elements that are not automatically inverted by DarkReader
+    // (images, SVG icons etc.)
     invert: [
         ".dark-mode-manual"
     ],
@@ -32,8 +33,10 @@ const DARKREADER_FIXES = {
             --darkreader-bg--custom-orange-shallow-light: var(--custom-orange-shallow-light);
             --darkreader-bg--custom-orange-shallow-xlight: var(--custom-orange-light);
             --darkreader-bg--custom-pink-light: var(--custom-pink-light); /* used in form */
-            --darkreader-bg--custom-pink-xshallow-xxlight: var(--custom-pink-xshallow-xxlight); /* used in navbar switch */
-            --darkreader-bg--custom-pink-shallow-xxxxlight: var(--custom-pink-xshallow-xxlight); /* used in menu */
+            /* used in navbar switch */
+            --darkreader-bg--custom-pink-xshallow-xxlight: var(--custom-pink-xshallow-xxlight);
+            /* used in menu */
+            --darkreader-bg--custom-pink-shallow-xxxxlight: var(--custom-pink-xshallow-xxlight);
             --darkreader-bg--switch-background: var(--switch-background-darkmode);
 
             --darkreader-text--custom-blue-deep: var(--custom-blue);
@@ -55,10 +58,12 @@ const DARKREADER_FIXES = {
             --darkreader-text--gray: var(--gray-darkmode);
             --darkreader-text--red: var(--red-darkmode);
 
-            /* turn blue links into green actually on dark mode since it's cooler, but green doesn't show up well normally in light mode */
+            /* turn blue links into green actually on dark mode since it's cooler, but green
+             * doesn't show up well normally in light mode */
             --darkreader-text--default-link-color: var(--default-link-color-darkmode);
             --darkreader-text--default-link-hover-color: var(--default-link-hover-color-darkmode);
-            --darkreader-text--default-link-disabled-color: var(--default-link-color-disabled-darkmode);
+            --darkreader-text--default-link-disabled-color:
+                var(--default-link-color-disabled-darkmode);
         }
 
         /* layer for specificity */
@@ -179,7 +184,8 @@ $(document).ready(function() {
         }
     });
 
-    // not triggered by `prop()`; detects manual change in switch state and activates/deactivates DarkReader
+    // not triggered by `prop()`; detects manual change in switch state and activates/deactivates
+    // DarkReader
     jqDarkModeSwitch.on("change", function(e) {
         if (e.target.checked) {
             enableDarkMode(true);

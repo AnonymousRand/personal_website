@@ -43,13 +43,15 @@
     --custom-pink-xshallow-xlight: #ffbff4;   /* 310, 25 , 100 */
     --custom-pink-xshallow-xxlight: #ffd1f7;  /* 310, 18 , 100 */
 
-    /* these are existing colors in HTML, but they're so that DarkReader generates a dark mode variable for them that we can then override in one go */
+    /* these are existing colors in HTML, but they're so that DarkReader generates
+     * a dark mode variable for them that we can then override in one go */
+    /* (try to get to h = 36 on grays to mimic original DarkReader) */
     --black: black;
     --black-darkmode: white;
     --blue: blue;
     --blue-darkmode: cyan;
     --dimgray: dimgray;
-    --dimgray-darkmode: #c7bfb3;              /* 36 , 10 , 78  */ /* (try to get to h = 36 on grays to mimic original DarkReader) */
+    --dimgray-darkmode: #c7bfb3;              /* 36 , 10 , 78  */
     --dimmergray: #282828;
     --dimmergray-darkmode: #d9d4cc;           /* 37 , 6  , 85  */
     --gray: gray;
@@ -76,5 +78,7 @@
 /* for scoping issues on accessing `--bs-gutter-x` */
 .container--content {
     --container-content-padding-x: calc(0.5 * var(--bs-gutter-x));
-    --container-content-width: calc(var(--container-content-max-width) - 2 * var(--container-content-padding-x));
+    --container-content-width: calc(
+        var(--container-content-max-width) - 2 * var(--container-content-padding-x)
+    );
 }

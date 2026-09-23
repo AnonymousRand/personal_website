@@ -91,11 +91,15 @@ input[value="Reply"][value="Delete"] {
     margin-bottom: 0.25rem;
 }
 
-.md-cmd-line {
+/* bunch of specificity hacks; this whole system with the code formatting is extremely fragile... */
+.md-cmd-line,
+.md-cmd-line pre {
+    width: 100%;
     color: var(--dimgray);
 }
 
-.md-cmd-line .md-cmd-line__cmd {
+.md-cmd-line .md-cmd-line__cmd,
+.md-cmd-line .md-cmd-line__cmd pre {
     color: var(--custom-pink-shallow-light);
 }
 
@@ -110,9 +114,10 @@ input[value="Reply"][value="Delete"] {
     margin-top: 0.5rem;
 }
 
-/* need first paragraph to be `inline` to start on same line as open/close dropdown marker
- * but still have padding between it and any subsequent elements
- * `display: inline-block` is so close to working but occasionally still starts on new line for some stupid reason */
+/* need first paragraph to be `inline` to start on same line as open/close dropdown marker,
+ * but still have padding between it and any subsequent elements */
+/* `display: inline-block` is so close to working but occasionally it still starts on
+ * a new line for some stupid reason */
 .md-dropdown__summary > :first-child {
     display: inline;
 }
@@ -130,14 +135,6 @@ input[value="Reply"][value="Delete"] {
     margin-top: 0.75rem;
     border-top: 2px solid var(--lightgray);
     padding-top: 0.75rem;
-}
-
-.md-textbox {
-    margin-bottom: 1rem;
-    border-style: solid;
-    border-radius: var(--bs-border-radius);
-    padding: 0.75rem 1rem;
-    width: 100%;
 }
 
 .md-thm-heading__emph {
@@ -165,7 +162,8 @@ input[value="Reply"][value="Delete"] {
 }
 
 /* tables that don't specify pixel (and thus non-relative) widths on columns fill up whole width */
-/* can still specify relative percentage widths between cols, with the whole table being `min-width: 100%` of parent */
+/* can still specify relative percentage widths between cols, with the whole table being
+ * `min-width: 100%` of parent */
 .post__content table:not(:has(th[width$="px"], td[width$="px"])) {
     min-width: 100%;
 }
@@ -184,11 +182,14 @@ input[value="Reply"][value="Delete"] {
 
 @media (min-width: 1536px) and (min-height: 660px) {
     :root {
-        /* left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen (up to the size it would be on a
-         * 1728px screen), and is centered within the left margin (with 1/6 of the margin on each side of the TOC) */
+        /* left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen
+         * (up to the size it would be on a 1728px screen), and is centered within the
+         * left margin (with 1/6 of the margin on each side of the TOC) */
         /* i'm sure there are better ways to do this but im a frontend noob so math it is */
         --sticky-width: calc((min(100vw, 1728px) - var(--container-content-max-width)) / 3);
-        --left-sticky-margin-left: calc(-5 * (min(100vw, 1728px) - var(--container-content-max-width)) / 12);
+        --left-sticky-margin-left: calc(
+            -5 * (min(100vw, 1728px) - var(--container-content-max-width)) / 12
+        );
     }
 
     .post__toc {
@@ -197,8 +198,8 @@ input[value="Reply"][value="Delete"] {
         margin-top: 0 !important;
         border: none !important;
         padding: 0 !important;
-        /* TOC takes up max 2/3 of the screen height, and is vertically centered (as if it took 75% of the screen
-         * height) when stickied */
+        /* TOC takes up max 2/3 of the screen height, and is vertically centered
+         * (as if it took 75% of the screen height) when stickied */
         top: calc(16.667svh + var(--toc-heading-outer-height)) !important;
         max-height: calc(66.667svh - var(--toc-heading-outer-height)) !important;
         margin-left: var(--left-sticky-margin-left) !important;

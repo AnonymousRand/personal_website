@@ -1,14 +1,16 @@
 let commentLoadIntervalId = 0;
 
-// when logging in via modal on a post page/opening a post page as admin and scrolling to the bottom, reload
-// comments to make sure we are seeing all of them, and then mark all of them as read
+// when logging in via modal on a post page/opening a post page as admin and scrolling to the
+// bottom, reload comments to make sure we are seeing all of them, and then mark all of them as read
 onSamePageLogin = addToFunc(onSamePageLogin, function() {
     reloadComments();
 });
 $(document).ready(function() {
-    // we don't load in comments with the rest of the post to avoid long load times; wait until scroll to bottom
+    // we don't load in comments with the rest of the post to avoid long load times; wait until
+    // scroll to bottom
     commentLoadIntervalId = setInterval(function() {
-        if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 32.0) { // 32 px leeway
+        // 32 px leeway
+        if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 32.0) {
             reloadComments();
         }
     }, 1000);
@@ -22,11 +24,13 @@ async function reloadComments() {
         clearInterval(commentLoadIntervalId);
     }
 
-    // refresh the main "leave a comment" form's author autofill; don't do for replies as that should be easy
-    // enough manually and could be slow automatically if there's a lot of comments
-    $("#leave-a-comment").find("input[name='author']").first().val(isUserAuthenticated ? VERIFIED_AUTHOR : "");
+    // refresh the main "leave a comment" form's author autofill; don't do for replies as that
+    // should be easy enough manually and could be slow automatically if there's a lot of comments
+    $("#leave-a-comment").find("input[name='author']").first()
+        .val(isUserAuthenticated ? VERIFIED_AUTHOR : "");
     
-    // get comment count in the heading; JQuery `load()` fragment doesn't seem to work with Jinja variables
+    // get comment count in the heading; JQuery `load()` fragment doesn't seem to work with
+    // Jinja variables
     let commentCount = 0;
     let commentUnreadCount = 0;
     let respJson = await fetchWrapper({url: GET_COMMENT_COUNT_URL, method: "GET"});
@@ -113,7 +117,8 @@ function getCommentId(nodeForm) {
     return $(nodeForm).attr("id").match(/\d+/)[0];
 }
 
-// no `$(document).ready()` listener attachments for the remaining listeners since comments can be reloaded
+// no `$(document).ready()` listener attachments for the remaining listeners since comments
+// can be reloaded
 
 // reveals form for adding a comment on clicking a "reply" button
 $(document).on("click", ".comment__reply-btn", async function(e) {
@@ -128,7 +133,8 @@ $(document).on("click", ".comment__reply-btn", async function(e) {
 
     jqFormAddReply.removeAttr("hidden");
     e.target.setAttribute("hidden", "");
-    // insert under correct parent; use `name` instead of `id` in case duplicate `id`s in comments causes issues
+    // insert under correct parent; use `name` instead of `id` in case duplicate `id`s
+    // in comments causes issues
     jqFormAddReply.find("[name='parent']").val(id);
     if (await IS_USER_AUTHENTICATED()) {
         // automatically fill in username if admin

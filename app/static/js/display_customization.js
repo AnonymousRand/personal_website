@@ -6,7 +6,7 @@ function applyStyles(selector) {
 
     // tables and non-table code blocks scroll horizontally on overflow
     jqBase.find("table").wrap(HORIZ_SCROLL_DIV_HTML);
-    jqBase.find("pre:not(table pre, .pre--inline) code").each(function() {
+    jqBase.find("pre:not(table pre, .inline-code-block *) code").each(function() {
         $(this).wrap(HORIZ_SCROLL_DIV_HTML);
         // also syntax highlight bordered code blocks
         hljs.highlightElement($(this).get(0));
@@ -60,7 +60,8 @@ const colorChoices = {
 };
 
 function randomizeColors() {
-    const color = Object.keys(colorChoices)[Math.floor(Math.random() * Object.keys(colorChoices).length)];
+    const rand = Math.floor(Math.random() * Object.keys(colorChoices).length);
+    const color = Object.keys(colorChoices)[rand];
     const colorChoice = colorChoices[color];
     // can't use `css()` here since it doesn't support `!important`, which is needed sometimes
     $("body").append(`
@@ -103,4 +104,6 @@ randomizeColors();
 reloadBackgroundImg();
 applyStyles("body");
 // for making sure navigating to a URL fragment doesn't hide it in the sticky navbar
-document.documentElement.style.setProperty("--navbar-outer-height", `${$("#navbar").outerHeight()}px`);
+document.documentElement.style.setProperty(
+    "--navbar-outer-height", `${$("#navbar").outerHeight()}px`
+);

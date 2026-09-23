@@ -57,11 +57,11 @@ def custom_unauthorized(content_type: ContentType):
     """
     Make sure `current_user` is authenticated. If not:
         - `Content-Type: text/html`: redirects to login page (GET using Flask's `redirect()`)
-        - `Content-Type: application/json`: returns `needs_login` key in JSON response which is universally handled by
-          my `fetchWrapper()` and triggers a modal log in. This prevents redirects as in the earlier case, which
-          can cause loss of form data etc.
-    In addition, these use *absolute* URLs unlike Flask-Login's built-in `unauthorized()`, which is essential
-    because I have subdomains.
+        - `Content-Type: application/json`: returns `needs_login` key in JSON response which is
+          universally handled by my `fetchWrapper()` and triggers a modal log in. This prevents
+          redirects as in the earlier case, which can cause loss of form data etc.
+    In addition, these use *absolute* URLs unlike Flask-Login's built-in `unauthorized()`,
+    which is essential because I have subdomains.
 
     Usage:
         ```
@@ -71,7 +71,8 @@ def custom_unauthorized(content_type: ContentType):
         ```
 
     Params:
-        - `content_type`: specifies the `Content-Type` of the expected server response from the view function
+        - `content_type`: specifies the `Content-Type` of the expected server response from
+          the view function.
     """
 
     if not current_user.is_authenticated:
@@ -86,7 +87,10 @@ def custom_unauthorized(content_type: ContentType):
             case ContentType.JSON:
                 return jsonify(needs_login=True)
             case _:
-                return "app/utils.py: `custom_unauthorized()` somehow reached end of switch statement 0~0", 500
+                return (
+                    "app/utils.py: custom_unauthorized(): "
+                    "somehow reached end of switch statement 0~0"
+                ), 500
     return None
 
 

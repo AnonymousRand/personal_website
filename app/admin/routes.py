@@ -20,7 +20,9 @@ def login():
         logout_user()
 
     if request.method == "GET":
-        return render_template("admin/form_base.html", title="Login", prompt="login pls meow :3", form=form)
+        return render_template(
+            "admin/form_base.html", title="Login", prompt="login pls meow :3", form=form
+        )
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)
@@ -29,11 +31,14 @@ def login():
         # check admin password
         if user is None or not user.check_password(request.form.get("password")):
             # display in submission errors section instead of flash
-            return jsonify(submission_errors={"password": ["no, the pawssword is not \"solarwinds123\" :3"]})
+            return jsonify(
+                submission_errors={"password": ["no, the pawssword is not \"solarwinds123\" :3"]}
+            )
 
-        # `remember=False`, so session expires on both browser close (if it isn't running in background)
-        # and on `PERMANENT_SESSION_LIFETIME` timeout (`session.permanent = True` only also makes sure cookie is deleted
-        # upon this timeout instead of just invalidated by Flask; check readme for more details)
+        # `remember=False`, so session expires on both browser close (if it isn't running in
+        # the background) and on `PERMANENT_SESSION_LIFETIME` timeout (`session.permanent = True`
+        # only also makes sure cookie is deleted upon this timeout instead of just invalidated
+        # by flask; check readme for more details)
         login_user(user, remember=False)
         session.permanent = True
 
@@ -42,22 +47,26 @@ def login():
             return jsonify(success=True, flash_msg="the universe is at your paws :333")
 
         # if not modal login, then try to redirect back to previous page
-        next_url = utils.decode_uri_component(request.args.get("next", url_for("admin.choose_action", _external=True)))
+        next_url = utils.decode_uri_component(
+            request.args.get("next", url_for("admin.choose_action", _external=True))
+        )
         next_url_extracted = tldextract.extract(next_url)
         # make sure we can only redirect within the same domain
-        if f"{next_url_extracted.domain}.{next_url_extracted.suffix}" == current_app.config["SERVER_NAME"]:
-            # when we do the redir back after logging in, we need to let our server know that it is a post-login
-            # redir, so if we were trying to redir back to an API endpoint or something instead of a typical
-            # webpage, we can handle it properly
+        if f"{next_url_extracted.domain}.{next_url_extracted.suffix}" \
+                == current_app.config["SERVER_NAME"]:
+            # when we do the redir back after logging in, we need to let our server know that
+            # it is a post-login redirect, so if we were trying to redir back to an API endpoint
+            # or something instead of a typical webpage, we can handle it properly
             #
             # the `is_redir_after_login` key takes the following path:
             #     `login()` view func (here) adds to response JSON ->
-            #     `doAjaxBaseResponse()` handles response JSON and adds to params of url being redirected to ->
+            #     `doAjaxBaseResponse()` handles response JSON & adds to params of dest url ->
             #     view func of url being redirected to handles this
             return jsonify(success=True, redir_url=next_url, is_redir_after_login=True)
 
         return jsonify(
-            success=True, redir_url=url_for("admin.choose_action", flash_msg="pwease no hack 0~0", _external=True)
+            success=True,
+            redir_url=url_for("admin.choose_action", flash_msg="pwease no hack 0~0", _external=True)
         )
 
 
@@ -66,7 +75,8 @@ def logout():
     if current_user.is_authenticated:
         logout_user()
     return jsonify(
-        redir_url=url_for(current_app.config["AFTER_LOGOUT_ENDPOINT"], _external=True), flash_msg="okie bye!! :3"
+        redir_url=url_for(current_app.config["AFTER_LOGOUT_ENDPOINT"], _external=True),
+        flash_msg="oki bye!! :3"
     )
 
 
@@ -77,7 +87,9 @@ def choose_action(*args, **kwargs):
     form = ChooseActionForm()
 
     if request.method == "GET":
-        return render_template("admin/form_base.html", title="choose action", prompt="meow :3", form=form)
+        return render_template(
+            "admin/form_base.html", title="choose action", prompt="meow :3", form=form
+        )
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)
@@ -102,7 +114,9 @@ def search_posts(*args, **kwargs):
     form = SearchBlogpostForm()
 
     if request.method == "GET":
-        return render_template("admin/form_base.html", title="search posts", prompt="search posts", form=form)
+        return render_template(
+            "admin/form_base.html", title="search posts", prompt="search posts", form=form
+        )
     elif request.method == "POST":
         if not form.validate():
             return jsonify(submission_errors=form.errors)
@@ -114,7 +128,8 @@ def search_posts(*args, **kwargs):
         if post is None:
             return jsonify(flash_msg="that post doesn't exist 3:")
         return jsonify(redir_url=url_for(
-            f"blog.{post.blogpage_id}.edit_post_form", post_sanitized_title=post.sanitized_title, _external=True
+            f"blog.{post.blogpage_id}.edit_post_form", post_sanitized_title=post.sanitized_title,
+            _external=True
         ))
 
 
@@ -127,7 +142,11 @@ def change_admin_password(*args, **kwargs):
     if request.method == "GET":
         return render_template(
             "admin/form_base.html", title="change admin password",
-            prompt="don't make it \"solarwinds123\" or else my incorrect pawssword message will be wrong", form=form
+            prompt=(
+                "don't make it \"solarwinds123\" or else my incorrect pawssword message "
+                "will be wrong 0~0"
+            ),
+            form=form
         )
     elif request.method == "POST":
         if not form.validate():
@@ -150,5 +169,6 @@ def change_admin_password(*args, **kwargs):
         db.session.commit()
         return jsonify(
             redir_url=url_for("main.index", _external=True),
-            flash_msg="your pawssword has been changed! here's some randomart: ꒰ 𓂂• ⩊ •𓈒꒱" # this works!?
+            # (this works!?)
+            flash_msg="your pawssword has been changed! here's some randomart: ꒰ 𓂂• ⩊ •𓈒꒱"
         )

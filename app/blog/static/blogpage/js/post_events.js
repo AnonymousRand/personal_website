@@ -16,8 +16,9 @@ $(document).ready(function() {
         flashMsg(`Link copied: ${url}`);
     });
 
-    // use `link-target-self` class to override default behavior of `target="_blank"` for links on post pages
-    // for links where you can't override `target` attribute in the HTML itself (e.g. dynamically generated links)
+    // use `link-target-self` class to override default behavior of `target="_blank"` for
+    // links on post pages where you can't override `target` attribute in the HTML itself
+    // (e.g. dynamically generated links)
     $(".link-target-self, .footnote-ref, .footnote-backref").on("click", function(e) {
         e.target.setAttribute("target", "_self");
     });

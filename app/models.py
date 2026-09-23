@@ -1,4 +1,4 @@
-# MYSQL-SPECIFIC!!!
+# IMPORTANT: the current setup here is MySQL-specific!!
 
 from __future__ import annotations
 
@@ -23,7 +23,10 @@ class Blogpage(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True, nullable=False, autoincrement=False)    
 
     name: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["BLOGPAGE_NAME_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(
+            Config.DB_CONFIGS["BLOGPAGE_NAME_MAX_LEN"],
+            charset="utf8mb4", collation="utf8mb4_0900_ai_ci"
+        ),
         nullable=False
     )
 
@@ -35,7 +38,8 @@ class Blogpage(db.Model):
         ),
         nullable=True,
         default=None,
-        server_default=None # i think this default is for migrations? since this is db-side instead of SQL-Alchemy-side
+        # (i think this default is for migrations? since this is db-side instead of SQLAlchemy-side)
+        server_default=None
     )
 
     description: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
@@ -50,18 +54,27 @@ class Blogpage(db.Model):
     )
 
     color: so.Mapped[str] = so.mapped_column(
-        sa.String(Config.DB_CONFIGS["BLOGPAGE_COLOR_MAX_LEN"]), nullable=False, default="black", server_default="black"
+        sa.String(Config.DB_CONFIGS["BLOGPAGE_COLOR_MAX_LEN"]),
+        nullable=False, default="black", server_default="black"
     )
 
     ordering: so.Mapped[int] = so.mapped_column(unique=True, nullable=False, index=True)
 
-    is_all_posts: so.Mapped[bool] = so.mapped_column(nullable=False, default=False, server_default=sa.false())
+    is_all_posts: so.Mapped[bool] = so.mapped_column(
+        nullable=False, default=False, server_default=sa.false()
+    )
 
-    is_login_required: so.Mapped[bool] = so.mapped_column(nullable=False, default=True, server_default=sa.true())
+    is_login_required: so.Mapped[bool] = so.mapped_column(
+        nullable=False, default=True, server_default=sa.true()
+    )
 
-    is_published: so.Mapped[bool] = so.mapped_column(nullable=False, default=False, server_default=sa.false())
+    is_published: so.Mapped[bool] = so.mapped_column(
+        nullable=False, default=False, server_default=sa.false()
+    )
 
-    is_writeable: so.Mapped[bool] = so.mapped_column(nullable=False, default=False, server_default=sa.false())
+    is_writeable: so.Mapped[bool] = so.mapped_column(
+        nullable=False, default=False, server_default=sa.false()
+    )
 
     ############################################################################
     # relationship: `Post`
@@ -73,9 +86,9 @@ class Blogpage(db.Model):
     ############################################################################
     # relationship: `Blogpage`
 
-    # one-way relationship only, thus no SQL-Alchemy `relationship` and no `backrooms_blogpage` field
+    # one-way relationship only, thus no SQLAlchemy `relationship` and no `backrooms_blogpage` field
     backrooms_blogpage_id: so.Mapped[int] = so.mapped_column(
-        # `ForeignKey()` needs to use lowercase SQL table name instead of Python class name
+        # `ForeignKey()` requires lowercase SQL table name instead of python class name
         sa.ForeignKey("blogpage.id"), nullable=True, default=None, server_default=None
     )
 
@@ -87,27 +100,39 @@ class Post(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True, nullable=False)
 
     title: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_TITLE_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(
+            Config.DB_CONFIGS["POST_TITLE_MAX_LEN"],
+            charset="utf8mb4", collation="utf8mb4_0900_ai_ci"
+        ),
         nullable=False
     )
 
     sanitized_title: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_TITLE_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(
+            Config.DB_CONFIGS["POST_TITLE_MAX_LEN"],
+            charset="utf8mb4", collation="utf8mb4_0900_ai_ci"
+        ),
         unique=True, nullable=False
     )
 
     subtitle: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(
+            Config.DB_CONFIGS["POST_SUBTITLE_MAX_LEN"],
+            charset="utf8mb4", collation="utf8mb4_0900_ai_ci"
+        ),
         nullable=True, default=None, server_default=None
     )
 
     timestamp: so.Mapped[datetime] = so.mapped_column(
         nullable=False, default=lambda: datetime.now(timezone.utc),
-        # `current_timestamp()` evaulates to `CURRENT_TIMESTAMP` in SQL which in MySQL is always stored in UTC
+        # note that `current_timestamp()` evaulates to `CURRENT_TIMESTAMP` in SQL,
+        # which in MySQL is always stored in UTC
         server_default=sa.func.current_timestamp(), index=True
     )
 
-    updated_timestamp: so.Mapped[datetime] = so.mapped_column(nullable=True, default=None, server_default=None)
+    updated_timestamp: so.Mapped[datetime] = so.mapped_column(
+        nullable=True, default=None, server_default=None
+    )
 
     content: so.Mapped[sa_mysql.MEDIUMTEXT()] = so.mapped_column(
         sa_mysql.MEDIUMTEXT(charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
@@ -117,7 +142,9 @@ class Post(db.Model):
     ############################################################################
     # relationship: `Blogpage`
 
-    blogpage_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Blogpage.id, ondelete="CASCADE"), nullable=False)
+    blogpage_id: so.Mapped[int] = so.mapped_column(
+        sa.ForeignKey(Blogpage.id, ondelete="CASCADE"), nullable=False
+    )
 
     blogpage: so.Mapped[Blogpage] = so.relationship(back_populates="posts")
 
@@ -135,8 +162,8 @@ class Post(db.Model):
 
     def sanitize_title(self) -> None:
         """
-        Replace whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric and non-hyphen
-        characters.
+        Replace whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric
+        and non-hyphen characters.
         """
 
         self.sanitized_title = ("-".join(self.title.split())).lower()
@@ -149,7 +176,8 @@ class Post(db.Model):
         # standardize empty subtitles to `None` (SQL `NULL`)
         if self.subtitle == "":
             self.subtitle = None
-        # check that sanitized title is unique (couldn't find reliable way besides try/catch *sigh* my poor LBYL brain)
+        # check that sanitized title is unique (couldn't find a reliable way besides try/catch
+        # *sigh* my poor LBYL brain >~<)
         try:
             if should_add_to_db:
                 db.session.add(self)
@@ -184,7 +212,10 @@ class Post(db.Model):
         return db.session.scalar(query)
 
     def get_unread_comment_count(self) -> int:
-        query = sa.select(sa.func.count()).select_from(self.comments.select().filter_by(is_unread=True).subquery())
+        query = (
+            sa.select(sa.func.count())
+            .select_from(self.comments.select().filter_by(is_unread=True).subquery())
+        )
         return db.session.scalar(query)
 
     def __repr__(self):
@@ -198,7 +229,10 @@ class Comment(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
 
     author: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(
+            Config.DB_CONFIGS["COMMENT_AUTHOR_MAX_LEN"],
+            charset="utf8mb4", collation="utf8mb4_0900_ai_ci"
+        ),
         nullable=False
     )
 
@@ -216,12 +250,16 @@ class Comment(db.Model):
         nullable=False
     )
 
-    is_unread: so.Mapped[bool] = so.mapped_column(nullable=False, default=True, server_default=sa.true())
+    is_unread: so.Mapped[bool] = so.mapped_column(
+        nullable=False, default=True, server_default=sa.true()
+    )
 
     ############################################################################
     # relationship: `Post`
 
-    post_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(Post.id, ondelete="CASCADE"), nullable=False)
+    post_id: so.Mapped[int] = so.mapped_column(
+        sa.ForeignKey(Post.id, ondelete="CASCADE"), nullable=False
+    )
 
     post: so.Mapped[Post] = so.relationship(back_populates="comments")
 
@@ -286,7 +324,10 @@ class Comment(db.Model):
         Get all descendants of a comment, excluding itself.
         """
 
-        comments_query = post.comments.select().filter(sa.and_(Comment.left > self.left, Comment.right < self.right))
+        comments_query = (
+            post.comments.select()
+            .filter(sa.and_(Comment.left > self.left, Comment.right < self.right))
+        )
         return db.session.scalars(comments_query).all()
 
     def __repr__(self):
@@ -304,7 +345,10 @@ class User(UserMixin, db.Model):
     )
 
     username: so.Mapped[sa_mysql.VARCHAR()] = so.mapped_column(
-        sa_mysql.VARCHAR(Config.DB_CONFIGS["USER_USERNAME_MAX_LEN"], charset="utf8mb4", collation="utf8mb4_0900_ai_ci"),
+        sa_mysql.VARCHAR(
+            Config.DB_CONFIGS["USER_USERNAME_MAX_LEN"],
+            charset="utf8mb4", collation="utf8mb4_0900_ai_ci"
+        ),
         unique=True, nullable=False
     )
 
