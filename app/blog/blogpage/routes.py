@@ -86,12 +86,13 @@ def get_posts(*args, **kwargs):
 @bp_utils.require_valid_post()
 # (`post` param is from `@require_valid_post()`)
 def get_post(post, post_id, post_sanitized_title, *args, **kwargs):
+    is_unprivileged_mode = post.blogpage.is_login_required and not current_user.is_authenticated;
     # only use `post_id` to determine what post to get (in case titles change), so if
     # the `post_sanitized_title` given in the request doesn't match that of the post
     # with id `post_id`, redirect to the correct URL
     if post_sanitized_title != post.sanitized_title:
         # enforce providing full sanitized title for non-admin, unlisted accesses
-        if post.blogpage.is_login_required and not current_user.is_authenticated:
+        if is_unprivileged_mode:
             result = utils.custom_unauthorized(ContentType.HTML)
             if result:
                 return result
@@ -110,12 +111,17 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs):
     posts_in_curr_bp = db.session.query(Post).filter_by(blogpage_id=post.blogpage_id)
     curr_coalesced_timestamp = post.updated_timestamp if post.updated_timestamp is not None \
             else post.timestamp
-    prev_post = posts_in_curr_bp.filter(
-        sa_func.coalesce(Post.updated_timestamp, Post.timestamp) < curr_coalesced_timestamp
-    ).order_by(sa_func.coalesce(Post.updated_timestamp, Post.timestamp).desc()).first()
-    next_post = posts_in_curr_bp.filter(
-        sa_func.coalesce(Post.updated_timestamp, Post.timestamp) > curr_coalesced_timestamp
-    ).order_by(sa_func.coalesce(Post.updated_timestamp, Post.timestamp)).first()
+    # non-admin users viewing an unlisted post cannot enumerate via previous/next post
+    if is_unprivileged_mode:
+        prev_post = None
+        next_post = None
+    else:
+        prev_post = posts_in_curr_bp.filter(
+            sa_func.coalesce(Post.updated_timestamp, Post.timestamp) < curr_coalesced_timestamp
+        ).order_by(sa_func.coalesce(Post.updated_timestamp, Post.timestamp).desc()).first()
+        next_post = posts_in_curr_bp.filter(
+            sa_func.coalesce(Post.updated_timestamp, Post.timestamp) > curr_coalesced_timestamp
+        ).order_by(sa_func.coalesce(Post.updated_timestamp, Post.timestamp)).first()
     return render_template(
         "blog/blogpage/post.html", post=post, prev_post=prev_post, next_post=next_post,
         toc_tokens=content_md.toc_tokens if content_md is not None else None,
