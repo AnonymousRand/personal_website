@@ -5,7 +5,7 @@ $(document).ready(function() {
         // non-state-changing GET shouldn't need CSRF protection
         let pageNum = parseInt($("#goto-page-form__page-input").val(), 10);
         if (isNaN(pageNum) || pageNum <= 0 || pageNum > TOTAL_PAGES) {
-            flashMsg("please enter a page number :3");
+            flashMsg("pwease enter a page number 0~0");
             return;
         }
         window.location.href = window.location.pathname + `?page=${pageNum}`;

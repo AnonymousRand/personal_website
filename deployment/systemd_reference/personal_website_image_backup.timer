@@ -1,5 +1,5 @@
 [Unit]
-Description=Timer for `personal_website_image_backup`
+Description=timer for `personal_website_image_backup`
 After=network.target
 
 [Timer]

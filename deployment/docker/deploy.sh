@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if ! id "$DOCKER_USER"; then
     echo '[ERROR] $DOCKER_USER "'"$DOCKER_USER"'" does not exist'

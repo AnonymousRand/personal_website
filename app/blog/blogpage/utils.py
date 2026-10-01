@@ -144,8 +144,10 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             if sanitized_file_name == "":
                 return f"file {file_name} did not survive sanitization 3:"
             final_path = os.path.join(files_base_path, sanitized_file_name)
-            os.makedirs(files_base_path, exist_ok=True) # make image directory if it doesn't exist
-            file.save(final_path)                       # this can replace existing images
+            # create image directory if it doesn't exist
+            os.makedirs(files_base_path, exist_ok=True)
+            # this allows overwriting of existing images with the same name
+            file.save(final_path)
     except Exception as e:
         return f"File upload exception: {e}"
     return ""

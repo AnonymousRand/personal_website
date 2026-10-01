@@ -3,18 +3,25 @@ services:
     container_name: personal_website_flask
     user: "$DOCKER_USER_STR"
     ports:
-      - "8080:8080"                                         # SYNC: Nginx and entrypoint Gunicorn ports
+      # SYNC: Nginx and entrypoint Gunicorn ports
+      - "8080:8080"
     build:
-      context: ../../                                       # must be parent; Dockerfile can't access parent dirs
-      dockerfile: deployment/docker/flask/Dockerfile        # SYNC: path, relative to `context`
+      # must be parent; Dockerfile can't access parent dirs
+      context: ../../
+      # SYNC: path, relative to `context`
+      dockerfile: deployment/docker/flask/Dockerfile
       network: host
-    env_file:                                               # SYNC: env file paths
+    # SYNC: env file paths
+    env_file:
       - ./flask/.env
       - ./flask/.flaskenv
     volumes:
-      - type: bind                                          # for persisting uploaded images in static folders
-        source: ../../app/blog/static/blogpage/             # SYNC: path
-        target: /personal_website/app/blog/static/blogpage/ # SYNC: path, Dockerfile WORKDIR
+      # for persisting uploaded images in static folders
+      - type: bind
+        # SYNC: path
+        source: ../../app/blog/static/blogpage/
+        # SYNC: path, Dockerfile WORKDIR
+        target: /personal_website/app/blog/static/blogpage/
     restart: always
   personal_website_mysql:
     container_name: personal_website_mysql
@@ -24,9 +31,12 @@ services:
     ports:
       - "3306:3306"
       - "33060:33060"
-    image: "mysql:8.0.37"                                   # SYNC: host's MySQL version if using bind mount
+    # SYNC: host's MySQL version if using bind mount
+    image: "mysql:8.0.37"
     volumes:
-      - type: bind                                          # for persisting database
-        source: ./mysql/mysql_data_dir/                     # SYNC: MySql data directory for persistence
+      # for persisting database
+      - type: bind
+        # SYNC: MySql data directory for persistence
+        source: ./mysql/mysql_data_dir/
         target: /var/lib/mysql/
     restart: always

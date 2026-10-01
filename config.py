@@ -116,9 +116,15 @@ class Config(object):
     JINJA_TRIM_BLOCKS = True
 
     ############################################################################
-    # other configs
+    # endpoints and paths
 
     AFTER_LOGOUT_ENDPOINT = "main.index"
+    LOGIN_ENDPOINT = "admin.login"
+    ROOT_TO_BLOGPAGE_STATIC = "blog/static/blogpage"
+
+    ############################################################################
+    # other
+
     # this is not in db as it's only used for initializing blueprints, during which db is not yet accessible
     # using `/backrooms` instead of `-backrooms` creates image relative pathing issues due to extra nested "directory"!
     BLOGPAGE_ID_URL_PREFIXES = {
@@ -141,7 +147,5 @@ class Config(object):
     FILE_UPLOAD_EXTS_IN_TEXT = [".gif", ".jpeg", ".jpg", ".png", ".webp", ".zip"]
     MAX_CONTENT_LENGTH = 100 * 1024 * 1024  # 100 MB max request size
     MAX_FORM_MEMORY_SIZE = 10 * 1024 * 1024 # 10 MB max non-file form field (on `multipart/form-data`) size
-    LOGIN_ENDPOINT = "admin.login"
     POSTS_PER_PAGE = 20
-    ROOT_TO_BLOGPAGE_STATIC = "blog/static/blogpage"
     VERIFIED_AUTHOR = "AnonymousRand"

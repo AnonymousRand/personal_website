@@ -180,14 +180,16 @@ def create_post(*args, **kwargs):
     if err:
         return jsonify(flash_msg=err)
 
-    db.session.commit() # only commit at very end in case error happened above
+    # only commit at the very end in case an error happened above
+    db.session.commit()
+    # view completed post
     return jsonify(
         redir_url=url_for(
             f"blog.{post.blogpage_id}.get_post", post_id=post.id,
             post_sanitized_title=post.sanitized_title, _external=True
         ),
         flash_msg="post created :3"
-    )                   # view completed post
+    )
 
 
 @bp.get("/<int:post_id>/edit")
@@ -216,7 +218,8 @@ def edit_post(post, post_id, *args, **kwargs):
 
     # edit post in db
     old_blogpage_id = post.blogpage_id
-    files_base_path = bp_utils.get_files_base_path(post) # need to be before `blogpage_id` changes
+    # this needs to be before `blogpage_id` changes
+    files_base_path = bp_utils.get_files_base_path(post)
     post.blogpage_id = request.form.get("blogpage_id")
     post.title = request.form.get("title")
     post.subtitle = request.form.get("subtitle")
@@ -296,13 +299,14 @@ def edit_post(post, post_id, *args, **kwargs):
     if "save_blogpost" in request.form:
         return jsonify(flash_msg=flash_msg)
     else:
+        # view updated post if using "submit" and not "save" button
         return jsonify(
             redir_url=url_for(
                 f"blog.{post.blogpage_id}.get_post", post_id=post_id,
                 post_sanitized_title=post.sanitized_title, _external=True
             ),
             flash_msg=flash_msg
-        ) # view updated post if using "submit" and not "save" button
+        )
 
 
 @bp.delete("/<int:post_id>")
@@ -397,7 +401,7 @@ def add_comment(post, post_id, *args, **kwargs):
     if is_verified_author and not current_user.is_authenticated:
         return jsonify(submission_errors={
             "author": [(
-                "$8 isn't going to buy you a verified checkmark here, "
+                "$8 isn't going to buy you a verified checkmark here; "
                 "please choose a different name :3"
             )]
         })
@@ -418,7 +422,8 @@ def add_comment(post, post_id, *args, **kwargs):
 
 @bp.get("/<int:post_id>/comments/<int:comment_id>/edit")
 @utils.set_content_type(ContentType.JSON)
-@utils.require_login() # only admins can edit comments, since there's no other user account system
+# only admins can edit comments, since there's no other user account system
+@utils.require_login()
 @bp_utils.require_valid_post()
 @bp_utils.require_valid_comment()
 @bp_utils.redir_to_post_after_login()

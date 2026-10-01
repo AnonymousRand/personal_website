@@ -72,7 +72,7 @@ Keep up-to-date:
 ### Access control notes:
 - Assume the user can reach all endpoints, so **access-control must be perfect server-side**
     - Use the functions defined in [app/utils.py](app/utils.py) for access control
-- It doesn't matter as much if client-side is lax on updating hidden HTML links etc. on session expiry. This is good because my client-side is an absolute dumpster fire.
+- It doesn't matter as much if client-side is lax on updating hidden HTML links etc. on session expiry. This is good because my client-side is an absolute dumpster fire :3
 
 ### Adding new blogpages:
 - Add to database (reference current database entries)
@@ -119,38 +119,7 @@ Keep up-to-date:
 
 ### Markdown syntax and custom syntax:
 - Make sure to check out the documentation for Python-Markdown's [official extensions](https://python-markdown.github.io/extensions/)
-    - Check code in [app/blog/blogpage/routes.py](app/blog/blogpage/routes.py) to see which ones are used
-    - Attribute Lists allows you to take advantage of the many util CSS classes in [app/static/css/util.css](app/static/css/util.css)
-- Custom Markdown syntax:
-    - Check source code for detailed documentation and usages
-    - Inline:
-        - `~~<text>~~`: strikethrough
-    **TODO: update once finalized**
-    - Blocks (all delimiters must be surrounded by a blank line on both sides; not allowed in comments due to potential bugs):
-        - `\begin{<block type>}` and `end{<block type>}`, surrounded by a blank line on both sides, puts everything in between in the specified `<block type>`
-        - Available `<block type>`s:
-            - `captioned_figure`: a figure with a caption underneath
-                - Requires nested `caption` block inside
-            - `cited_blockquote`: a blockquote with a citation underneath
-                - Requires nested `citation` block inside
-            - `dropdown`: an expandable/collapsible dropdown
-                - Alternative `<block type>`s:
-                    - `exer`: exercise
-                    - `pf`: proof
-                    - `rmk`: remark
-                - Requires nested `summary` block inside, except for the following `<block type>`s that get defaults:
-                    - `pf`
-                    - `rmk`
-            - `textbox`: a textbox
-                - Alternative `<block type>`s:
-                    - `coro`: corollary
-                    - `defn`: definition
-                    - `impt`: important
-                    - `notat`: notation
-                    - `prop`: proposition
-                    - `thm`: theorem
-    - Images:
-        - Only give the filename for images in Markdown; the full path will be automatically expanded (won't work if you put in full path because I'm bad at regex!!!)
+    - Check source code for extensions available (particularly [app/blog/blogpage/markdown_config.py](app/blog/blogpage/markdown_config.py)
 
 ### Other syntax notes:
 - Raw HTML (including with attributes!) will be rendered, which is useful for additional styling or in environments where Markdown equivalents may not always work (footnotes, tables, blockquotes etc.). Examples:

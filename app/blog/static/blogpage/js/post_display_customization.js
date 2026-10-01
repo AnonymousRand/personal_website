@@ -1,25 +1,24 @@
 function addCommentSyntaxGuideTooltip() {
     $("#leave-a-comment #content-field label").first()
-            .append(" (mouse over to show formatting options)")
-            .attr("data-bs-toggle", "tooltip")
-            .attr("data-bs-custom-class", "comment-tooltip")
-            .attr("data-bs-html", "true")
-            .attr(
-                "data-bs-title",
-                "markdown:" +
-                  "<ul>" +
-                    "<li>python-markdown with <code>attr_list</code>, <code>fenced_code</code>, " +
-                        "<code>md_in_html</code>, <code>tables</code> extensions</li>" +
-                    "<li>plaintext links only, no images or footnotes</li>" +
-                  "</ul>" +
-                "latex (mathjax):" +
-                  "<ul>" +
-                    "<li>escape anything that is also narkdown: <code>\\(</code>, " +
-                        "<code>\\)</code>, <code>\\{</code>, <code>\\\\</code>, <code>\*</code> " +
-                        "etc.</li>" +
-                    "<li>my custom macros are available if you can find them :3" +
-                  "</ul>"
-            );
+        .append(" (mouse over to show formatting options)")
+        .attr("data-bs-toggle", "tooltip")
+        .attr("data-bs-custom-class", "comment-tooltip")
+        .attr("data-bs-html", "true")
+        .attr(
+            "data-bs-title",
+            "markdown:" +
+              "<ul>" +
+                "<li>python-markdown with <code>attr_list</code>, <code>fenced_code</code>, " +
+                    "<code>md_in_html</code>, <code>tables</code> extensions</li>" +
+                "<li>plaintext links only, no images or footnotes</li>" +
+              "</ul>" +
+            "latex (mathjax):" +
+              "<ul>" +
+                "<li>escape anything that is also narkdown: <code>\\(</code>, <code>\\)</code>, " +
+                    "<code>\\{</code>, <code>\\\\</code>, <code>\*</code> etc.</li>" +
+                "<li>my custom macros are available if you can find them :3" +
+              "</ul>"
+        );
     refreshTooltips("#leave-a-comment");
 }
 

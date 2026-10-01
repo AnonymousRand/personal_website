@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
-# SYNC: relative path to Git repo base
+# SYNC: relative path to git repo base
 for file in ../../app/blog/static/blogpage/*; do
     if [[ -d "$file/files/" ]]; then
         git add "$file/files/"

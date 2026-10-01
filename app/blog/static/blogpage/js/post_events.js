@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $("#copy-permanent-link-btn").on("click", function() {
         navigator.clipboard.writeText(PERMANENT_LINK_URL);
-        flashMsg(`Permanent link copied: ${PERMANENT_LINK_URL}`);
+        flashMsg(`permanent link copied: ${PERMANENT_LINK_URL}`);
     });
 
     $("#delete-post-btn").on("click", confirmWrapper(async function(e) {
@@ -13,7 +13,7 @@ $(document).ready(function() {
     $(".heading-link").on("click", function(e) {
         let url = PERMANENT_LINK_URL + e.target.getAttribute("href");
         navigator.clipboard.writeText(url);
-        flashMsg(`Link copied: ${url}`);
+        flashMsg(`link copied: ${url}`);
     });
 
     // use `link-target-self` class to override default behavior of `target="_blank"` for
