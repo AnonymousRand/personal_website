@@ -15,7 +15,7 @@ class ContentType(Enum):
     @classmethod
     def resolve_depending_on_req_method(cls):
         """
-        Resolve `ContentType.DEPENDS_ON_REQ_METHOD` by checking the current request method.
+        resolve `ContentType.DEPENDS_ON_REQ_METHOD` by checking the current request method.
         """
 
         def inner_decorator(func):
@@ -30,9 +30,9 @@ class ContentType(Enum):
 
 def require_login():
     """
-    Same functionality as `custom_unauthorized()`, but as a decorator.
+    same functionality as `custom_unauthorized()`, but as a decorator.
 
-    Usage:
+    usage:
         ```
         @bp.route(...)
         @utils.require_login(...)
@@ -55,22 +55,22 @@ def require_login():
 @ContentType.resolve_depending_on_req_method()
 def custom_unauthorized(content_type: ContentType):
     """
-    Make sure `current_user` is authenticated. If not:
-        - `Content-Type: text/html`: redirects to login page (GET using Flask's `redirect()`)
-        - `Content-Type: application/json`: returns `needs_login` key in JSON response which is
-          universally handled by my `fetchWrapper()` and triggers a modal log in. This prevents
+    make sure `current_user` is authenticated. If not:
+        - `Content-Type: text/html`: redirects to login page (GET using flask's `redirect()`)
+        - `Content-Type: application/json`: returns `needs_login` key in json response which is
+          universally handled by my `fetchWrapper()` and triggers a modal log in. this prevents
           redirects as in the earlier case, which can cause loss of form data etc.
-    In addition, these use *absolute* URLs unlike Flask-Login's built-in `unauthorized()`,
+    in addition, these use *absolute* urls unlike flask-login's built-in `unauthorized()`,
     which is essential because I have subdomains.
 
-    Usage:
+    usage:
         ```
         result = utils.custom_unauthorized(...)
         if result:
             return result
         ```
 
-    Params:
+    params:
         - `content_type`: specifies the `Content-Type` of the expected server response from
           the view function.
     """
@@ -105,7 +105,7 @@ def set_content_type(content_type: ContentType):
 
 def encode_uri_component(s: str) -> str:
     """
-    Mimic JavaScript's `encodeURIComponent()`.
+    mimic javascript's `encodeURIComponent()`.
     """
 
     return parse.quote(s, safe="~!*()'")
@@ -113,7 +113,7 @@ def encode_uri_component(s: str) -> str:
 
 def decode_uri_component(s: str) -> str:
     """
-    Mimic JavaScript's `decodeURIComponent()`.
+    mimic javascript's `decodeURIComponent()`.
     """
 
     return parse.unquote(s)

@@ -23,8 +23,8 @@ csrf = CSRFProtect()
 # relationships (`sqlalchemy.orm.relationship()`). so, manually flushing is the best option here
 # (also note that `session_options` cannot be passed in `db.init_app()` later)
 db = SQLAlchemy(session_options={"autoflush": False}) 
-# not using `session_protection="strong"` to avoid potential security mess of finding original IP
-# through Cloudflare and Nginx; and more crucially IPv4 vs. IPv6 hell
+# not using `session_protection="strong"` to avoid potential security mess of finding original ip
+# through cloudflare and nginx; and more crucially ipv4 vs. ipv6 hell >_<
 login_manager = LoginManager()
 login_manager.login_view = Config.LOGIN_ENDPOINT
 migrate = Migrate()

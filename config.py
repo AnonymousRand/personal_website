@@ -1,5 +1,5 @@
 import os
-# note that while `python-dotenv` is not explicity used, it must still be installed for Flask to load `.env` and
+# note that while `python-dotenv` is not explicity used, it must still be installed for flask to load `.env` and
 # `.flaskenv`; it just does so automatically
 
 
@@ -13,11 +13,11 @@ class Config(object):
     ############################################################################
     # security
 
-    # (this should include this website's own URLs too in case one subdomain needs to
+    # (this should include this website's own urls too in case one subdomain needs to
     # make a request to another, as subdomains are counted as different origins)
     #
     # IMPORTANT: sometimes updating this requires purging cloudflare's cache (and by
-    # path prefix, not by single URL, as otherwise the multiple cached versions of
+    # path prefix, not by single url, as otherwise the multiple cached versions of
     # `Access-Control-Allow-Origin` may not all be deleted?), as if resources are cached,
     # the server may return a 304 not modified to cloudflare without considering if the
     # `Access-Control-Allow-Origin` header has changed, so the changes don't get seen
@@ -33,16 +33,16 @@ class Config(object):
     CSP = {
         "default-src": _csp_self,
         "connect-src": _csp_self + [
-            "data:",                # DarkReader
-            "cdn.jsdelivr.net",     # MathJax
-            "cdnjs.cloudflare.com", # Highlight.js
+            "data:",                # darkreader
+            "cdn.jsdelivr.net",     # mathjax
+            "cdnjs.cloudflare.com", # highlight.js
             "http.cat"              # error pages :3
         ],
         "font-src": _csp_self + [
-            "cdn.jsdelivr.net" # MathJax
+            "cdn.jsdelivr.net" # mathjax
         ],
         "img-src": _csp_self + [
-            "data:",   # Bootstrap, DarkReader
+            "data:",   # bootstrap, darkreader
             "http.cat" # error pages :3
         ],
         "script-src": _csp_self + [
@@ -54,15 +54,15 @@ class Config(object):
             "cdn.jsdelivr.net",
             "cdnjs.cloudflare.com",
             "code.jquery.com",
-            "\'unsafe-inline\'" # a lot of things apparently :(
+            "\'unsafe-inline\'" # a lot of things apparently 3:
         ],
         "worker-src": _csp_self + [
-            "blob:" # MathJax
+            "blob:" # mathjax
         ],
         "base-uri": _csp_self,
         "frame-ancestors": _csp_self
     }
-    # CSP directives to add a nonce value to
+    # csp directives to add a nonce value to
     CSP_DIRECTIVES_WITH_NONCE = [
         "script-src",
         "script-src-attr",
@@ -72,8 +72,8 @@ class Config(object):
     ############################################################################
     # cookies
 
-    # this affects non-logged in sessions too since they have a cookie as well to store the Flask session,
-    # and it's annoying to have CSRF expiring all the time when browser is left open, hence one year expiration
+    # this affects non-logged in sessions too since they have a cookie as well to store the flask session,
+    # and it's annoying to have csrf expiring all the time when browser is left open, hence one year expiration
     PERMANENT_SESSION_LIFETIME = 31536000 
     SESSION_COOKIE_DOMAIN = f".{SERVER_NAME}"
     SESSION_COOKIE_HTTPONLY = True
@@ -82,13 +82,15 @@ class Config(object):
     SESSION_REFRESH_EACH_REQUEST = False
 
     ############################################################################
-    # Flask-WTF
+    # flask-wtf
 
-    WTF_CSRF_SSL_STRICT = False # allows cross-site Ajax POST (Flask-CORS whitelisting not enough)
-    WTF_CSRF_TIME_LIMIT = None  # CSRF token lasts until session expires
+    # allows cross-site aja POST (flask-cors whitelisting is not enough)
+    WTF_CSRF_SSL_STRICT = False
+    # csrf token lasts until session expires
+    WTF_CSRF_TIME_LIMIT = None
 
     ############################################################################
-    # Flask-SQLAlchemy/database
+    # db/flask-sqlalchemy
 
     DB_CONFIGS = {
         "BLOGPAGE_NAME_MAX_LEN": 50,
@@ -98,7 +100,7 @@ class Config(object):
         "BLOGPAGE_COLOR_MAX_LEN": 100,
         "POST_TITLE_MAX_LEN": 1000,
         "POST_SUBTITLE_MAX_LEN": 1000,
-        # can't enforce this db-side because it's `MEDIUMTEXT` so just don't be more than 2^24 - 1 okayge :3
+        # can't enforce this db-side because it's `MEDIUMTEXT` so just don't be more than 2^24 - 1 :3
         "POST_CONTENT_MAX_LEN": 10000000,
         "COMMENT_AUTHOR_MAX_LEN": 100,
         "COMMENT_CONTENT_MAX_LEN": 5000,
@@ -110,7 +112,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
     ############################################################################
-    # Jinja (must be explicitly configured in `app/__init__.py`)
+    # jinja (must be explicitly configured in `app/__init__.py`)
 
     JINJA_LSTRIP_BLOCKS = True
     JINJA_TRIM_BLOCKS = True

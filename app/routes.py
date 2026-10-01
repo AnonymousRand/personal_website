@@ -28,12 +28,12 @@ def handle_general_http_error(e):
 
 def get_url_for():
     """
-    Get `url_for()` from externally-linked JS.
+    get `url_for()` from externally-linked js.
 
-    Set `const`s in inline template JS where `url_for()` is callable from Jinja normally,
-    but use this when URLs need to be dynamically built during JS runtime.
+    set `const`s in inline template js where `url_for()` is callable from jinja normally,
+    but use this when urls need to be dynamically built during js runtime.
 
-    Usage: `/url-for?endpoint=[endpoint]&arg1=[...]&...`
+    usage: `/url-for?endpoint=[endpoint]&arg1=[...]&...`
     """
 
     return jsonify(url=url_for(**request.args, _external=True))

@@ -19,9 +19,9 @@ from app.utils import ContentType
 
 def require_login_if_restricted_bp():
     """
-    Enforce login to access private blogpages.
+    enforce login to access private blogpages.
 
-    Use before every view function potentially accessing private blogpages!!!
+    use before every view function potentially accessing private blogpages!!!
     """
 
     def inner_decorator(func):
@@ -59,7 +59,7 @@ def require_login_if_restricted_bp():
 
 def require_valid_post():
     """
-    Make sure URL points to a post that exists; and if it does, fetch the post from the db
+    make sure url points to a post that exists; and if it does, fetch the post from the db
     and pass it to the inner function as a parameter for later use.
     """
 
@@ -94,7 +94,7 @@ def require_valid_comment():
 
 def redir_to_post_after_login():
     """
-    If redirecting to a view function decorated by this via the `next` parameter after logging in,
+    if redirecting to a view function decorated by this via the `next` parameter after logging in,
     instead redirect to the GET endpoint for the current post.
     """
 
@@ -160,7 +160,7 @@ def delete_dir_if_empty(path: str) -> None:
 
 def get_blogpage_id() -> int:
     """
-    Get blogpage id from `request.blueprint`.
+    get blogpage id from `request.blueprint`.
     """
 
     return int(request.blueprint.split('.')[-1])

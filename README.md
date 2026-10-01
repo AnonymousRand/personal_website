@@ -27,7 +27,7 @@
 - make sure to check out the documentation for python-markdown's [official extensions](https://python-markdown.github.io/extensions/)
     - check source code for extensions available (particularly [app/blog/blogpage/markdown_config.py](app/blog/blogpage/markdown_config.py)
 - raw html (including with attributes!) will be rendered, which is useful for additional styling or in environments where markdown equivalents may not always work (footnotes, tables, blockquotes etc.). examples:
-    - `<span></span>` with pretty much any custom css styling you want (or with existing styling classes, once CSP is able to block inline `style` attributes)
+    - `<span></span>` with pretty much any custom css styling you want (or with existing styling classes, once csp is able to block inline `style` attributes)
     - `<pre><code></code></pre>` with `<br>` newlines for multiline code blocks in a table, as raw newlines would interfere with the table syntax
     - `<small></small>` for small text
     - `<p></p>` for paragraphs and line breaks (note: not supported in footnotes; use `<br><br>` instead)

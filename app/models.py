@@ -1,4 +1,4 @@
-# IMPORTANT: the current setup here is MySQL-specific!!
+# IMPORTANT: the current setup here is mysql-specific!!
 
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ class Blogpage(db.Model):
         ),
         nullable=True,
         default=None,
-        # (i think this default is for migrations? since this is db-side instead of SQLAlchemy-side)
+        # (i think this default is for migrations? since this is db-side instead of sqlalchemy-side)
         server_default=None
     )
 
@@ -86,9 +86,9 @@ class Blogpage(db.Model):
     ############################################################################
     # relationship: `Blogpage`
 
-    # one-way relationship only, thus no SQLAlchemy `relationship` and no `backrooms_blogpage` field
+    # one-way relationship only, thus no sqlalchemy `relationship` and no `backrooms_blogpage` field
     backrooms_blogpage_id: so.Mapped[int] = so.mapped_column(
-        # `ForeignKey()` requires lowercase SQL table name instead of python class name
+        # `ForeignKey()` requires lowercase sql table name instead of python class name
         sa.ForeignKey("blogpage.id"), nullable=True, default=None, server_default=None
     )
 
@@ -125,8 +125,8 @@ class Post(db.Model):
 
     timestamp: so.Mapped[datetime] = so.mapped_column(
         nullable=False, default=lambda: datetime.now(timezone.utc),
-        # note that `current_timestamp()` evaulates to `CURRENT_TIMESTAMP` in SQL,
-        # which in MySQL is always stored in UTC
+        # note that `current_timestamp()` evaulates to `CURRENT_TIMESTAMP` in sql,
+        # which in mysql is always stored in utc time
         server_default=sa.func.current_timestamp(), index=True
     )
 
@@ -162,7 +162,7 @@ class Post(db.Model):
 
     def sanitize_title(self) -> None:
         """
-        Replace whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric
+        replace whitespace with hyphens, uses all lowercase, and removes all non-alphanumeric
         and non-hyphen characters.
         """
 
@@ -172,25 +172,25 @@ class Post(db.Model):
     def validate_titles_and_flush(self, should_add_to_db: bool) -> str:
         # check that title still exists after sanitization
         if self.sanitized_title == "":
-            return "Post must have alphanumeric characters in its title."
-        # standardize empty subtitles to `None` (SQL `NULL`)
+            return "post must have alphanumeric characters in its title :3"
+        # standardize empty subtitles to `None` (sql `NULL`)
         if self.subtitle == "":
             self.subtitle = None
         # check that sanitized title is unique (couldn't find a reliable way besides try/catch
-        # *sigh* my poor LBYL brain >~<)
+        # *sigh* my poor LBYL bwain >~<)
         try:
             if should_add_to_db:
                 db.session.add(self)
             db.session.flush()
         except sa.exc.IntegrityError:
-            return "There is already a post with that title or sanitized title."
+            return "there is already a post with that title or sanitized title 0~0"
         return ""
 
     def add_timestamps(self, should_update_updated_timestamp: bool, old_blogpage_id=None) -> None:
         """
-        Preconditions:
-            - Post must already be added to the db or at least the transaction (`db.session.add()`)
-            - Post must have `blogpage` field auto-generated (`db.session.flush()`)
+        preconditions:
+            - post must already be added to the db or at least the transaction (`db.session.add()`).
+            - post must have `blogpage` field auto-generated (`db.session.flush()`).
         """
 
         if should_update_updated_timestamp:
@@ -321,7 +321,7 @@ class Comment(db.Model):
 
     def get_descendants(self, post: Post) -> list:
         """
-        Get all descendants of a comment, excluding itself.
+        get all descendants of a comment, excluding itself.
         """
 
         comments_query = (
@@ -366,7 +366,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 
-# required for Flask-Login
+# required for flask-login
 @login_manager.user_loader
 def load_user(id: str) -> User:
     return db.session.get(User, int(id))

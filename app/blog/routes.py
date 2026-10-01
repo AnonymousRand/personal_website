@@ -20,7 +20,7 @@ def index():
 
 
 # for more permanent links that don't change if a post changes title/moves between blogs
-# (MySQL also does not change id on delete)
+# (mysql also does not change id on delete)
 @bp.get("/<int:post_id>")
 def post_by_id(post_id):
     post = blog_utils.get_post(post_id)
