@@ -1,12 +1,13 @@
 services:
   personal_website_flask:
     container_name: personal_website_flask
-    user: "$DOCKER_USER_STR"
+    restart: unless-stopped
     ports:
-      # SYNC: Nginx and entrypoint Gunicorn ports
+      # SYNC: nginx and entrypoint gunicorn ports
       - "8080:8080"
+    user: "$DOCKER_USER_STR"
     build:
-      # must be parent; Dockerfile can't access parent dirs
+      # must be parent; dockerfile can't access parent dirs
       context: ../../
       # SYNC: path, relative to `context`
       dockerfile: deployment/docker/flask/Dockerfile
@@ -20,23 +21,22 @@ services:
       - type: bind
         # SYNC: path
         source: ../../app/blog/static/blogpage/
-        # SYNC: path, Dockerfile WORKDIR
+        # SYNC: path, dockerfile `WORKDIR`
         target: /personal_website/app/blog/static/blogpage/
-    restart: unless-stopped
   personal_website_mysql:
     container_name: personal_website_mysql
-    environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-    user: "$DOCKER_USER_STR"
+    # SYNC: host's mysql version if using bind mount
+    image: "mysql:8.0.37"
+    restart: unless-stopped
     ports:
       - "3306:3306"
       - "33060:33060"
-    # SYNC: host's MySQL version if using bind mount
-    image: "mysql:8.0.37"
+    user: "$DOCKER_USER_STR"
     volumes:
       # for persisting database
       - type: bind
-        # SYNC: MySql data directory for persistence
+        # SYNC: mysql data directory for persistence
         source: ./mysql/mysql_data_dir/
         target: /var/lib/mysql/
-    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
