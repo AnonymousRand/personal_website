@@ -8,7 +8,7 @@ Group=docker
 WorkingDirectory=[REPLACE: PATH TO `docker/` FOLDER]
 # use `DOCKER_USER` to allow container access to bind-mounted MySQL data dir without messing with `uid`s
 Environment='DOCKER_USER=[REPLACE: NAME OF USER THAT CONTAINER WILL RUN AS]'
-ExecStart=/bin/bash deploy.sh
+ExecStart=/usr/bin/env bash deploy.sh
 
 [Install]
 WantedBy=multi-user.target
