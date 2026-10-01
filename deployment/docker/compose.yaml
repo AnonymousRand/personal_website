@@ -22,7 +22,7 @@ services:
         source: ../../app/blog/static/blogpage/
         # SYNC: path, Dockerfile WORKDIR
         target: /personal_website/app/blog/static/blogpage/
-    restart: always
+    restart: unless-stopped
   personal_website_mysql:
     container_name: personal_website_mysql
     environment:
@@ -39,4 +39,4 @@ services:
         # SYNC: MySql data directory for persistence
         source: ./mysql/mysql_data_dir/
         target: /var/lib/mysql/
-    restart: always
+    restart: unless-stopped
