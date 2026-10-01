@@ -35,8 +35,8 @@
     - `<br>` for line breaks that aren't new paragraphs and don't leave extra space, like between lines in a stanza, and `<br>` surrounded by two empty lines for more space than a normal paragraph, like between stanzas
 - tables:
     - uses [markdown tables](https://www.tablesgenerator.com/markdown_tables) with "Compact mode" and "Line breaks as \<br\>" checked
-    - for merged cells, use the [Attribute Lists](https://python-markdown.github.io/extensions/attr_list/) extension to set `colspan`. to keep valid table syntax, put `<span></span> {: hidden }` in cells that have been merged into other ones.
-    - to specify column `width` attributes (in html, not css) for example with Attribute Lists, either specify in pixels or percentages. pixels are absolute while percentages are relative to the width of the table. if percentages are used, or if no width specified at all, table will have `min-width: 100%` of parent div.
+    - for merged cells, use the [attribute lists](https://python-markdown.github.io/extensions/attr_list/) extension to set `colspan`. to keep valid table syntax, put `<span></span> {: hidden }` in cells that have been merged into other ones.
+    - to specify column `width` attributes (in html, not css) for example with attribute lists, either specify in pixels or percentages. pixels are absolute while percentages are relative to the width of the table. if percentages are used, or if no width specified at all, table will have `min-width: 100%` of parent div.
 
 ### other notes
 
