@@ -16,6 +16,7 @@ docker compose --profile "$DOCKER_DEFAULT_PROFILE" down
 # otherwise (e.g. if they were started by the root docker project), we do a project-agnostic restart
 # also, unfortunately this restarts the entire proxy stack since we `depend_on` it, and removing
 # the `depend_on`s seem to break things 3:
+# SYNC: containers and depended on containers!
 docker stop personal_website && docker rm -v personal_website
 docker stop personal_website_mysql && docker rm -v personal_website_mysql
 docker stop personal_website_anubis && docker rm -v personal_website_anubis
