@@ -7,7 +7,7 @@ set -ex
 script_path="$(dirname "$(realpath "${BASH_SOURCE[0]:-$0}")")"
 cd "$script_path"
 
-source .env
+source ./.env
 
 # try this in our current directory first in case the services to restart were started by
 # this project originally
