@@ -2,7 +2,7 @@ let flashMsgTimeoutId;
 
 function flashMsg(msg) {
     clearTimeout(flashMsgTimeoutId);
-    $("#flash__text").text(msg); // `text()` by itself is XSS-safe
+    $("#flash__text").text(msg); // `text()` by itself is xss-safe
     $("#flash").removeAttr("hidden");
     $("#flash__wrapper").css("z-index", "9999");
     flashMsgTimeoutId = setTimeout(function() {
@@ -21,8 +21,8 @@ function flashMsgFromQueryStr() {
 $(document).ready(flashMsgFromQueryStr);
 
 /**
- * Regenerate flash element on dismiss so we can flash again.
- * We do this instead of changing close button behavior to preserve the fade animation.
+ * regenerate flash element on dismiss so we can flash again.
+ * we do this instead of changing close button behavior to preserve the fade animation.
  */
 $(document).on("close.bs.alert", "#flash", function(e) {
     const nodeDuplicateFlash = e.target.cloneNode(true);

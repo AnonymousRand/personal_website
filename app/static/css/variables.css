@@ -43,9 +43,9 @@
     --custom-pink-xshallow-xlight: #ffbff4;   /* 310, 25 , 100 */
     --custom-pink-xshallow-xxlight: #ffd1f7;  /* 310, 18 , 100 */
 
-    /* these are existing colors in HTML, but they're so that DarkReader generates
+    /* these are existing colors in html, but they're so that darkreader generates
      * a dark mode variable for them that we can then override in one go */
-    /* (try to get to h = 36 on grays to mimic original DarkReader) */
+    /* (try to get to h = 36 on grays to mimic original darkreader) */
     --black: black;
     --black-darkmode: white;
     --blue: blue;

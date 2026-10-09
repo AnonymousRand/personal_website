@@ -2,12 +2,12 @@ const DARKREADER_OPTIONS = {
     contrast: 130
 };
 const DARKREADER_FIXES = {
-    // CSS selectors for elements that are not automatically inverted by DarkReader
-    // (images, SVG icons etc.)
+    // css selectors for elements that are not automatically inverted by darkreader
+    // (images, svg icons etc.)
     invert: [
         ".dark-mode-manual"
     ],
-    // CSS to apply when dark mode is on, e.g. remapping colors
+    // css to apply when dark mode is on, e.g. remapping colors
     css: `
         :root {
             --darkreader-border--bs-border-color: gray;
@@ -85,7 +85,7 @@ const DARKREADER_FIXES = {
             }
 
             /* change dark mode switch to moon icon */
-            /* (using global url here since CSS is now inline, so relative URL is weird) */
+            /* (using global url here since css is now inline, so relative url is weird) */
             .form-switch .dark-mode-switch:checked {
                 background-image: url("${BASE_STATIC_URL}files/moon.svg") !important;
             }
@@ -114,11 +114,11 @@ const DARKREADER_FIXES = {
     `
 }
 
-DarkReader.setFetchMethod(window.fetch); // solves CORS issue
+DarkReader.setFetchMethod(window.fetch); // solves cors issue
 
 let onDarkModeChange = function(enabled) {};
 
-// out here so it's immediately applied on JS load instead of at `$(document).ready()`
+// out here so it's immediately applied on js load instead of at `$(document).ready()`
 let jqDarkModeSwitch = null;
 if (localStorage.getItem("darkMode") === "true") {
     enableDarkMode(false);
@@ -162,7 +162,7 @@ function disableDarkMode(isVoluntary) {
 $(document).ready(function() {
     jqDarkModeSwitch = $("#dark-mode-switch");
 
-    // if set to dark mode on JS load, make sure to sync switch state once the switch loads in
+    // if set to dark mode on js load, make sure to sync switch state once the switch loads in
     // also make sure `onDarkModeChange()` is called once everything is loaded
     if (DarkReader.isEnabled()) {
         jqDarkModeSwitch.prop("checked", true);
@@ -184,8 +184,8 @@ $(document).ready(function() {
         }
     });
 
-    // not triggered by `prop()`; detects manual change in switch state and activates/deactivates
-    // DarkReader
+    // not triggered by `prop()`; detects manual change in switch state and
+    // activates/deactivates darkreader
     jqDarkModeSwitch.on("change", function(e) {
         if (e.target.checked) {
             enableDarkMode(true);

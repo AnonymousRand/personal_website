@@ -105,10 +105,10 @@ def redir_to_post_after_login():
             if post is None:
                 return blog_utils.on_nonexistent_post(content_type)
             if request.args.get("is_redir_after_login"):
-                # here it's always `redirect()` aka HTML content type because this view function
-                # must've been called by JS changing `window.location.href` after successful login
-                # + seeing `redir_url` JSON key from `login()` view func. `window.location.href`
-                # change is always just the same as a `redirect()` via GET an HTML page, as we
+                # here it's always `redirect()` aka html content type because this view function
+                # must've been called by js changing `window.location.href` after successful login
+                # + seeing `redir_url` json key from `login()` view func. `window.location.href`
+                # change is always just the same as a `redirect()` via GET an html page, as we
                 # typically do on loading a new page
                 return redirect(url_for("blog.post_by_id", post_id=post.id, _external=True))
             return func(content_type=content_type, *args, **kwargs)
@@ -128,7 +128,7 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             # (`imghdr.what()` in `validate_img()` returns `jpg` as `jpeg`)
             if file_ext == ".jpg":
                 file_ext = ".jpeg"
-            # `imghdr` can't check SVG; trustable since admin-only ig
+            # `imghdr` can't check svg; trustable since admin-only ig
             if file_ext not in current_app.config["FILE_UPLOAD_EXTS"]:
                 return f"unsupported file extension for {file_name}"
             if file_ext in current_app.config["FILE_UPLOAD_EXTS_CAN_VALIDATE"]:
@@ -149,7 +149,7 @@ def upload_files(files: list[werkzeug.datastructures.FileStorage], files_base_pa
             # this allows overwriting of existing images with the same name
             file.save(final_path)
     except Exception as e:
-        return f"File upload exception: {e}"
+        return f"file upload exception >~<: {e}"
     return ""
 
 

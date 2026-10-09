@@ -10,6 +10,7 @@ from flask_login import current_user
 class ContentType(Enum):
     HTML = "text/html"
     JSON = "application/json"
+    # this string is just a placeholder
     DEPENDS_ON_REQ_METHOD = "`text/html` if GET, else `application/json`"
 
     @classmethod

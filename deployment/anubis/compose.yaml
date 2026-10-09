@@ -1,0 +1,26 @@
+include:
+  # note that this should also include the files needed for `depends_on` (since that key is
+  # inherited with `extends`, but the actual files for the services it lists are not)
+  - ${PATH_TO_ROOT_DOCKER_PROJ_LOCAL:?}/${PATH_FROM_ROOT_TO_ANUBIS:?}/compose.yaml
+
+services:
+  personal_website_anubis:
+    container_name: personal_website_anubis
+    extends:
+      file: ${PATH_TO_ROOT_DOCKER_PROJ_LOCAL:?}/${PATH_FROM_ROOT_TO_ANUBIS:?}/compose.yaml
+      service: anubis_base
+    profiles:
+      - ${DOCKER_DEFAULT_PROFILE:?}
+    volumes:
+      # container-generated data (use bind mount instead if host needs to control/know the path)
+      # SYNC: paths in which container produces data (e.g. in config)
+      - type: volume
+        source: personal_website_anubis_var
+        target: /var/anubis/
+    environment:
+      BIND_NETWORK: unix
+      BIND: ${PERSONAL_WEBSITE_ANUBIS_IN_SCKT:?}
+      TARGET: unix://${PERSONAL_WEBSITE_ANUBIS_OUT_SCKT:?}
+
+volumes:
+  personal_website_anubis_var:

@@ -89,7 +89,7 @@ def get_post(post, post_id, post_sanitized_title, *args, **kwargs):
     is_unprivileged_mode = post.blogpage.is_login_required and not current_user.is_authenticated;
     # only use `post_id` to determine what post to get (in case titles change), so if
     # the `post_sanitized_title` given in the request doesn't match that of the post
-    # with id `post_id`, redirect to the correct URL
+    # with id `post_id`, redirect to the correct url
     if post_sanitized_title != post.sanitized_title:
         # enforce providing full sanitized title for non-admin, unlisted accesses
         if is_unprivileged_mode:

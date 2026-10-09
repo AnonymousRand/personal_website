@@ -25,7 +25,7 @@ async function fetchWrapper({url, method, body=null, params={}}) {
 
     // no error; base response
     if (resp.ok && respJson !== null) {
-        // catch `needs_login` key and make sure Ajax response doesn't continue to proceed
+        // catch `needs_login` key and make sure ajax response doesn't continue to proceed
         if (respJson.needs_login) {
             showLoginModal();
             return {errorStatus: 401, hasHandledError: false};
@@ -49,7 +49,7 @@ async function fetchWrapper({url, method, body=null, params={}}) {
 }
 
 /**
- * Always-supported JSON keys:
+ * always-supported json keys:
  *     - `needs_login`
  *     - `redir_url`
  *     - `flash_msg`
@@ -59,7 +59,7 @@ function doAjaxBaseResponse(respJson) {
     if (respJson.redir_url) {
         let newUrl = new URL(decodeURIComponent(respJson.redir_url));
 
-        // flash message after page load by appending message to URL as custom `flash_msg` param
+        // flash message after page load by appending message to url as custom `flash_msg` param
         if (respJson.flash_msg) {
             newUrl.searchParams.append("flash_msg", encodeURIComponent(respJson.flash_msg));
         }

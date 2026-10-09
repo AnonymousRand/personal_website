@@ -2,8 +2,6 @@
 
 FROM nikolaik/python-nodejs:python3.10-nodejs23-slim
 
-EXPOSE 8008
-
 RUN mkdir personal_website/
 WORKDIR /personal_website/
 

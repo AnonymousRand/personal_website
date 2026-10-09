@@ -1,17 +1,20 @@
 # security
 .env
+# SYNC: naming convention!
+*_privkey
 deployment/docker/flask/.env
 deployment/docker/mysql/mysql_data_dir/
 deployment/backup_scripts/db_backup_config.sh
 deployment/backup_scripts/backup*.sql
 
-# package managers
+# package data
+.venv/
 venv/
 app/static/node_modules/
-app/static/css/custom_bootstrap.*
 
 # python
 __pycache__/
 
 # vim
 *.swp
+*.swo

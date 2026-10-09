@@ -1,6 +1,5 @@
-import tldextract
-
 import sqlalchemy as sa
+import tldextract
 from flask import current_app, jsonify, render_template, request, session, url_for
 from flask_login import current_user, login_user, logout_user
 
@@ -59,8 +58,8 @@ def login():
             # or something instead of a typical webpage, we can handle it properly
             #
             # the `is_redir_after_login` key takes the following path:
-            #     `login()` view func (here) adds to response JSON ->
-            #     `doAjaxBaseResponse()` handles response JSON & adds to params of dest url ->
+            #     `login()` view func (here) adds to response json ->
+            #     `doAjaxBaseResponse()` handles response json & adds to params of dest url ->
             #     view func of url being redirected to handles this
             return jsonify(success=True, redir_url=next_url, is_redir_after_login=True)
 

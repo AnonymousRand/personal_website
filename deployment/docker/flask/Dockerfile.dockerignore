@@ -1,0 +1,8 @@
+.git/
+.github/
+.venv/
+venv/
+__pycache__/
+deployment/docker/mysql/mysql_data_dir/
+deployment/backup_scripts/
+deployment/systemd_reference/

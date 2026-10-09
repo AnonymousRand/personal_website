@@ -1,0 +1,85 @@
+include:
+  - ${PATH_TO_ROOT_DOCKER_PROJ:?}/shared_sckts.yaml
+  - ${PATH_TO_ROOT_DOCKER_PROJ:?}/${PATH_FROM_ROOT_TO_NGINX:?}/compose.yaml
+  - ${PATH_TO_ROOT_DOCKER_PROJ:?}/${PATH_FROM_ROOT_TO_IOCAINE:?}/compose.yaml
+  - ./deployment/anubis/compose.yaml
+
+services:
+  personal_website:
+    container_name: personal_website
+    extends:
+      file: ${PATH_TO_ROOT_DOCKER_PROJ:?}/shared_sckts.yaml
+      service: shared_sckts_user
+    profiles:
+      - ${DOCKER_DEFAULT_PROFILE:?}
+    build:
+      # note that dockerfile cannot access directories above this
+      context: ./
+      # SYNC: path, relative to `context`
+      dockerfile: deployment/docker/flask/Dockerfile
+      # uncomment the following for better performance if using tcp/ip ports
+      #network: host
+    restart: unless-stopped
+    user: ${DOCKER_NONROOT_USER:?}
+    volumes:
+      # for persisting uploaded images in static folders
+      - type: bind
+        # SYNC: path, relative to current path containing compose file
+        source: ./app/blog/static/blogpage/
+        # SYNC: path, inside container
+        target: /personal_website/app/blog/static/blogpage/
+    # SYNC: env file paths, relative to current path containing compose file
+    env_file:
+      - ./.env
+      - ./deployment/docker/flask/.env
+      - ./deployment/docker/flask/.flaskenv
+    environment:
+      DATABASE_URL: "mysql+pymysql://${MYSQL_USERNAME:?}:${MYSQL_PASSWORD:?}@localhost/\
+                     ${MYSQL_DB_NAME:?}?unix_socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}\
+                     &charset=${MYSQL_CHARSET:?}"
+    healthcheck:
+      test: ["CMD", "curl", "-I", "https://${SITE_DOMAIN:?}"]
+      interval: 1m
+      timeout: 3s
+      retries: 3
+      start_period: 1m
+    # activating this service first starts all services listed below
+    depends_on:
+      nginx:
+        condition: service_healthy
+      iocaine:
+        condition: service_started
+      personal_website_anubis:
+        condition: service_healthy
+      personal_website_mysql:
+        condition: service_healthy
+
+  personal_website_mysql:
+    container_name: personal_website_mysql
+    extends:
+      file: ${PATH_TO_ROOT_DOCKER_PROJ:?}/shared_sckts.yaml
+      service: shared_sckts_user
+    profiles:
+      - ${DOCKER_DEFAULT_PROFILE:?}
+    # SYNC: host's mysql version if using bind mount
+    image: mysql:8.0.37
+    restart: unless-stopped
+    user: ${DOCKER_NONROOT_USER:?}
+    # disable TCP/IP port and only use unix socket
+    command: --skip-networking --socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}
+    volumes:
+      # for persisting database
+      - type: bind
+        # SYNC: mysql data directory for persistence
+        source: ./deployment/docker/mysql/mysql_data_dir/
+        target: /var/lib/mysql/
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    healthcheck:
+      # make sure this uses the unix socket specified in `command`!
+      test: ["CMD", "mysqladmin", "ping", "-u", "root", "-S", "${PERSONAL_WEBSITE_MYSQL_SCKT:?}"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      # make this like 30s if not bind mounting data directory!
+      start_period: 10s

@@ -1,13 +1,15 @@
+# note that while `python-dotenv` is not explicity used, it must still be installed
+# for flask to load `.env` and `.flaskenv`; it just does so automatically!
+
 import os
-# note that while `python-dotenv` is not explicity used, it must still be installed for flask to load `.env` and
-# `.flaskenv`; it just does so automatically
 
 
 class Config(object):
     ############################################################################
     # basics
 
-    SERVER_NAME = "anonymousrand.xyz"
+    # this needs to be named `SERVER_NAME` as flask needs to recognize it!
+    SERVER_NAME = os.environ.get("SITE_DOMAIN")
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
     ############################################################################
@@ -39,6 +41,7 @@ class Config(object):
             "http.cat"              # error pages :3
         ],
         "font-src": _csp_self + [
+            "data:",           # anubis
             "cdn.jsdelivr.net" # mathjax
         ],
         "img-src": _csp_self + [
@@ -47,17 +50,18 @@ class Config(object):
         ],
         "script-src": _csp_self + [
             "cdn.jsdelivr.net",
-            "cdnjs.cloudflare.com",
-            "code.jquery.com"
+            "cdnjs.cloudflare.com", # highlight.js, flask-moment/moment.js
+            "code.jquery.com",
+            "\'unsafe-inline\'"     # anubis 3:
         ],
         "style-src": _csp_self + [
             "cdn.jsdelivr.net",
-            "cdnjs.cloudflare.com",
+            "cdnjs.cloudflare.com", # highlight.js
             "code.jquery.com",
-            "\'unsafe-inline\'" # a lot of things apparently 3:
+            "\'unsafe-inline\'"     # a lot of things apparently 3:
         ],
         "worker-src": _csp_self + [
-            "blob:" # mathjax
+            "blob:" # mathjax, anubis
         ],
         "base-uri": _csp_self,
         "frame-ancestors": _csp_self

@@ -1,0 +1,74 @@
+bots:
+  # the docker bind mount/extends setup i have sould ensure that this relative path
+  # is correct inside the container :3
+  # SYNC: absolute paths inside the container since it seems that relative paths are
+  # actually currently broken!! >:(
+  #- import: ./base_bot_policies.yaml
+  - import: /data/cfg/base_bot_policies.yaml
+
+  - name: "allow-ajax"
+    expression:
+      all:
+        - '"Accept" in headers'
+        - 'headers["Accept"] == "application/json"'
+    action: ALLOW
+
+  - name: "allow-auth-status"
+    # TODO ensure that if no response for auth starus, it defaults to false!
+    # this is probably covered under ajax, but just in case
+    expression: 'path == "/auth-status"'
+    action: ALLOW
+
+  - name: "allow-css-js"
+    expression: 'path.endsWith(".css") || path.endsWith(".js")'
+    action: ALLOW
+
+  - name: "allow-fonts"
+    expression:
+      all:
+        - '"Accept" in headers'
+        - 'headers["Accept"].contains("font")'
+    action: ALLOW
+
+  - name: "allow-images"
+    expression:
+      all:
+        - '"Accept" in headers'
+        - 'headers["Accept"].contains("image")'
+    action: ALLOW
+
+  # import this at end since policies are evaluated in written order
+  #- import: ./catch_all_bot_policies.yaml
+  - import: /data/cfg/catch_all_bot_policies.yaml
+
+# data storage
+store:
+  backend: bbolt
+  parameters:
+    path: /var/anubis/anubis.bdb
+
+# honeypot
+honeypot:
+  enabled: true
+  # currently the only supported implementation is the naive method
+  implementation: naive
+  # write ips that keep hitting honeypots to a file that can be used for e.g. fail2ban
+  ip_log_file: /var/anubis/honeypot.addrs
+
+# don't use dns black list due to false positives and privacy concerns
+dnsbl: false
+
+# by default, send http 200 back to clients that either get issued a challenge
+# or a denial. this seems weird, but this is load-bearing due to the fact that
+# the most aggressive scraper bots seem to really, really, want an http 200 and
+# will stop sending requests once they get it
+status_codes:
+  CHALLENGE: 200
+  DENY: 200
+
+## metrics
+#metrics:
+#  # SYNC: socket with nginx!! (i don't think there's a way to fill this from an env var >w<)
+#  bind: "/run/sockets/personal_website_anubis_metrics.sock"
+#  network: "unix"
+#  socketMode: "0660"

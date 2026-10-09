@@ -55,7 +55,7 @@ def create_app():
     from app.blog import bp as blog_bp
     from app.blog.blogpage import bp as blog_blogpage_bp
     # "name" param must match blogpage_id in "Post" db table
-    # This makes the endpoints "blog.0.index", "blog.1.index" etc.
+    # this makes the endpoints "blog.0.index", "blog.1.index" etc.
     for blogpage_id, url_prefix in Config.BLOGPAGE_ID_URL_PREFIXES.items():
         blog_bp.register_blueprint(blog_blogpage_bp, url_prefix=url_prefix, name=blogpage_id)
     app.register_blueprint(blog_bp, subdomain="blog")
@@ -73,7 +73,10 @@ def create_app():
     login_manager.init_app(app)
     talisman.init_app(
         app, content_security_policy=Config.CSP,
-        content_security_policy_nonce_in=["script-src", "script-src-attr", "script-src-elem"]
+        content_security_policy_nonce_in=["script-src", "script-src-attr", "script-src-elem"],
+        # disabled as currently this causes infinite redirects with my nginx setup,
+        # even if I do set `X-Forwarded-Proto` for some reason
+        force_https=False
     )
 
     return app

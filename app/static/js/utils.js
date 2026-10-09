@@ -2,12 +2,12 @@ const HORIZ_SCROLL_DIV_HTML = '<div class="scroll-overflow-x"></div>';
 const HORIZ_SCROLL_DIV_HTML_FULL_WIDTH = '<div class="scroll-overflow-x" width="full"></div>';
 
 /**
- * Add code to an existing function/merges two functions.
+ * add code to an existing function/merges two functions.
  *
- * Preconditions:
- *     - The two functions must have the same params.
+ * preconditions:
+ *     - the two functions must have the same params.
  *
- * Usage:
+ * usage:
  *     ```
  *     func1 = addToFunc(func1, func2);
  *     ```
@@ -29,7 +29,7 @@ function confirmWrapper(inner) {
 }
 
 /**
- * For debugging: prints out dead self-links on current page.
+ * for debugging: prints out dead self-links on current page.
  */
 function debugTestSelfLinks() {
     $("a").each(function() {

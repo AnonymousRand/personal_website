@@ -10,22 +10,22 @@
     
     {% block head %}{% endblock %}
 
-    <!-- CDNs -->
-      <!-- JQuery -->
+    <!-- cdns -->
+      <!-- jquery -->
       <script
           src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
           integrity="sha384-5AkRS45j4ukf+JbWAfHL8P4onPA9p0KwwP7pUdjSQA3ss9edbJUJc/XcYAiheSSz"
           crossorigin="anonymous">
       </script>
 
-      <!-- DarkReader -->
+      <!-- darkreader -->
       <!-- no defer to avoid flash; no SRI because dynamically generated minify :( (and it's a 100kb+ diff) -->
       <script
           src=" https://cdn.jsdelivr.net/npm/darkreader@4.9.85/darkreader.min.js"
           crossorigin="anonymous">
       </script>
 
-      <!-- Highlight.js -->
+      <!-- highlight.js -->
       <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css"
@@ -38,7 +38,7 @@
           crossorigin="anonymous">
       </script>
 
-      <!-- Flask-Moment (the JS which bundles moment.js to Flask is included separately for CSP) -->
+      <!-- flask-moment (the js which bundles moment.js to flask is included separately for csp) -->
       <script
           src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js"
           integrity="sha384-Jx7nF8Lr+lkOLpB9WqQqk6OK83W8P87BGQxdNEFvHM5SEiItXH87Ednyl0soQZs8"
@@ -47,9 +47,9 @@
       </script>
       <script src="{{ url_for('static', filename='js/flask_moment.js', _external=True) }}" defer></script>
 
-      <!-- MathJax -->
+      <!-- mathjax -->
       <!-- no defer because needed for display customization -->
-      <!-- this script must actually be run immediately before MathJax is loaded! -->
+      <!-- it seems this script must actually run before mathjax is loaded for config to be applied -->
       <script src="{{ url_for('static', filename='js/mathjax.js', _external=True) }}"></script>
       <script
           id="MathJax-script"
@@ -59,8 +59,8 @@
           crossorigin="anonymous">
       </script>
 
-    <!-- CSS -->
-      <!-- Bootstrap -->
+    <!-- css -->
+      <!-- bootstrap -->
       <link
           rel="stylesheet"
           href="{{ url_for('static', filename='css/custom_bootstrap.css', _external=True) }}"
@@ -72,7 +72,7 @@
           crossorigin="anonymous"
       >
 
-      <!-- global custom CSS -->
+      <!-- global custom css -->
       <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_hljs.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/utils.css', _external=True) }}">
@@ -80,8 +80,8 @@
 
       {% block css %}{% endblock %}
 
-    <!-- JS -->
-      <!-- inline (passing vars from Jinja to JS, for example) -->
+    <!-- js -->
+      <!-- inline (passing vars from jinja to js, for example) -->
       <script nonce="{{ csp_nonce() }}">
           const BASE_STATIC_URL = "{{ url_for('static', filename="", _external=True) }}";
           const DEFAULT_BACKGROUND_IMG_URL = "{{ url_for('static', filename='files/background_default.svg', _external=True) }}";
@@ -96,7 +96,7 @@
           {% block js_head_inline %}{% endblock %}
       </script>
 
-      <!-- global custom JS -->
+      <!-- global custom js -->
       <!-- no defer because utils -->
       <script src="{{ url_for('static', filename='js/utils.js', _external=True) }}"></script>
       <script src="{{ url_for('static', filename='js/utils_ajax.js', _external=True) }}"></script>
@@ -231,15 +231,15 @@
     </div>
   </div>
 
-  <!-- CDNs -->
-    <!-- Bootstrap -->
+  <!-- cdns -->
+    <!-- bootstrap -->
     <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous">
     </script>
 
-  <!-- JS -->
+  <!-- js -->
     <!-- here to execute after all elements loaded, but before `$(document).ready()` to avoid page briefly appearing without the display changes -->
     <script src="{{ url_for('static', filename='js/display_customization.js', _external=True) }}"></script>
     {% block js_end_linked %}{% endblock %}

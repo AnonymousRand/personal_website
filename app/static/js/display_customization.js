@@ -103,7 +103,7 @@ function reloadBackgroundImg() {
 randomizeColors();
 reloadBackgroundImg();
 applyStyles("body");
-// for making sure navigating to a URL fragment doesn't hide it in the sticky navbar
+// makes sure that navigating to a url fragment doesn't hide it in the sticky navbar
 document.documentElement.style.setProperty(
     "--navbar-outer-height", `${$("#navbar").outerHeight()}px`
 );

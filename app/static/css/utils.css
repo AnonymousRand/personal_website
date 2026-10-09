@@ -228,7 +228,7 @@
 }
 
 /* can't use descendant selector; must strictly be last child of last child of ... etc. */
-/* CSS was invented by a troglodyte who took a gamma ray burst to the brain */
+/* css was invented by a troglodyte who took a gamma ray burst to the brain */
 .last-child-no-mb > :last-child,
 .last-child-no-mb > :last-child > :last-child,
 .last-child-no-mb > :last-child > :last-child > :last-child,
@@ -557,7 +557,7 @@ pre:not(table pre, .inline-code-block *) code,
 
 .scroll-overflow-x {
     overflow-x: auto !important;
-    /* for MathJax equation environments with `\\[pt]` extra line spacing */
+    /* for mathjax equation environments with `\\[pt]` extra line spacing */
     overflow-y: hidden !important;
 }
 

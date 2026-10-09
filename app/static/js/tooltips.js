@@ -23,7 +23,7 @@ function genFootnoteTooltips(selector) {
         const nodeFootnote = document.getElementById($(this).attr("href").replace("#", ""));
         let tooltipContents = nodeFootnote.innerHTML.replace(REMOVE_BACKREF_RE, "");
 
-        // replace serialized MathML HTML with its corresponding original LaTeX
+        // replace serialized mathml html with its corresponding original latex
         // to render with `MathJax.typeset()` on mouseover
         const mathItems = MathJax.startup.document.getMathItemsWithin(nodeFootnote);
         const matches = tooltipContents.match(MATCH_MATHJAX_RE);
@@ -41,7 +41,7 @@ function genFootnoteTooltips(selector) {
 }
 
 $(document).ready(function() {
-    // must wait until `$(document).ready()` to make sure MathJax has been loaded
+    // must wait until `$(document).ready()` to make sure mathjax has been loaded
     genFootnoteTooltips("body");
 });
 

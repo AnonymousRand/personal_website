@@ -47,7 +47,7 @@ li > :last-child > :last-child > :last-child > :last-child {
     margin-bottom: 0;
 }
 
-/* to get MathJax `\overline` to show, because they can never fix it themselves */
+/* to get mathjax `\overline` to show, because they can never fix it themselves */
 .mjx-c2013 mjx-c {
     font-size: 1.25em !important;
 }
@@ -103,7 +103,7 @@ textarea.form-control {
     max-height: 60svh;
 }
 
-/* to compensate for fixed navbar; can be inaccurate on page load still with JS-based
+/* to compensate for fixed navbar; can be inaccurate on page load still with js-based
  * layout shifts but oh well */
 [id] {
     scroll-margin-top: var(--navbar-outer-height);
@@ -269,7 +269,7 @@ textarea.form-control {
     margin-bottom: 0 !important;
 }
 
-/* CSS is so stupid that `hidden` HTML attribute is overriden by `display` property in CSS,
+/* css is so stupid that `hidden` html attribute is overriden by `display` property in css,
  * so I HAVE TO MANUALLY GO AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the
  * absolute gobsmacking gobsmacker gobsmackery freak is this */
 [hidden] {

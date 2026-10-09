@@ -29,8 +29,8 @@ async function reloadComments() {
     $("#leave-a-comment").find("input[name='author']").first()
         .val(isUserAuthenticated ? VERIFIED_AUTHOR : "");
     
-    // get comment count in the heading; JQuery `load()` fragment doesn't seem to work with
-    // Jinja variables
+    // get comment count in the heading; jquery `load()` fragment doesn't seem to work with
+    // jinja variables
     let commentCount = 0;
     let commentUnreadCount = 0;
     let respJson = await fetchWrapper({url: GET_COMMENT_COUNT_URL, method: "GET"});
@@ -52,16 +52,16 @@ async function reloadComments() {
         }
     }
 
-    // add comment counts to HTML
-    let HTML = `(${commentCount}`;
+    // add comment counts to html
+    let html = `(${commentCount}`;
     if (isUserAuthenticated && commentUnreadCount > 0) {
-        HTML +=
+        html +=
             '<span class="show-when-logged-in">' +
               `, <span class="custom-pink-shallow-light">${commentUnreadCount} unread</span>` +
             "</span>";
     }
-    HTML += ")";
-    $("#comment-counts").html(HTML);
+    html += ")";
+    $("#comment-counts").html(html);
 
     // load in comments if there are any
     if (commentCount === 0) {
@@ -75,7 +75,7 @@ async function reloadComments() {
             return;
         }
 
-        // render timestamps, LaTeX, and custom styling in comments
+        // render timestamps, latex, and custom styling in comments
         flask_moment_render_all();
         renderMathJax("#comment-list");
         applyStyles("#comment-list");
@@ -154,7 +154,7 @@ $(document).on("submit", ".comment__add-form", async function(e) {
     onModifyCommentAjaxDone(respJson, e);
 });
 
-// replace comment HTML with edit comment form
+// replace comment html with edit comment form
 $(document).on("click", ".comment__make-edit-btn", async function(e) {
     e.preventDefault();
 

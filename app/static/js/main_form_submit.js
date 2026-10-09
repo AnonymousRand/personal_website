@@ -1,4 +1,4 @@
-// use Ajax and `FormData` for all main form submissions for async error handling and stuff
+// use ajax and `FormData` for all main form submissions for async error handling and stuff
 $(document).ready(function() {
     $(".main-form").on("submit", async function(e) {
         e.preventDefault();
