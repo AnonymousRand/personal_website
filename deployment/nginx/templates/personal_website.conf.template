@@ -1,4 +1,4 @@
-# route `anonymousrand.xyz:443` and `blog.anonymousrand.xyz` to which is my personal website
+# route `anonymousrand.xyz:443` and `blog.anonymousrand.xyz:443` to my personal website
 # (subdomain routing will be handled by web app backend)
 
 
