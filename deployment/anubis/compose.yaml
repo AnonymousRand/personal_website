@@ -13,7 +13,7 @@ services:
       - ${DOCKER_DEFAULT_PROFILE:?}
     volumes:
       # container-generated data (use bind mount instead if host needs to control/know the path)
-      # SYNC: paths in which container produces data (e.g. in config)
+      # SYNC: paths in which the container produces data (e.g. in config)
       - type: volume
         source: personal_website_anubis_var
         target: /var/anubis/
