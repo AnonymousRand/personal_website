@@ -15,8 +15,8 @@ server {
         # only set these on first proxying "hop"!
         include conf.d/snippets/inbound_edge_forwarding_headers.func;
 
+        set $anubis_in_loc http://unix:${PERSONAL_WEBSITE_ANUBIS_IN_SCKT};
         include conf.d/snippets/anubis.func;
-        proxy_pass http://unix:${PERSONAL_WEBSITE_ANUBIS_IN_SCKT};
     }
 
     ## Cloudflare authenticated origin pull

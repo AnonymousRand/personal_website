@@ -1,22 +1,22 @@
 bots:
-  # the docker bind mount/extends setup i have sould ensure that this relative path
+  # the docker bind mount/extends setup i have should ensure that this relative path
   # is correct inside the container :3
   # SYNC: absolute paths inside the container since it seems that relative paths are
   # actually currently broken!! >:(
   #- import: ./base_bot_policies.yaml
   - import: /data/cfg/base_bot_policies.yaml
 
+  - name: "allow-auth-status"
+    # TODO ensure that if no response for auth status, it defaults to false!
+    # this is probably covered under ajax, but just in case
+    expression: 'path == "/auth-status"'
+    action: ALLOW
+
   - name: "allow-ajax"
     expression:
       all:
         - '"Accept" in headers'
         - 'headers["Accept"] == "application/json"'
-    action: ALLOW
-
-  - name: "allow-auth-status"
-    # TODO ensure that if no response for auth starus, it defaults to false!
-    # this is probably covered under ajax, but just in case
-    expression: 'path == "/auth-status"'
     action: ALLOW
 
   - name: "allow-css-js"
