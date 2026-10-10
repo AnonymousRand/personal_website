@@ -5,6 +5,7 @@
 # first send requests through anubis
 server {
     listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl;
     server_name anonymousrand.xyz blog.anonymousrand.xyz;
 
     access_log /var/log/nginx/personal_website_access.log;
@@ -59,6 +60,7 @@ server {
 # redirect `www.anonymousrand.xyz:443` to `anonymousrand.xyz:443` so both www and non-www work
 server {
     listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl;
     server_name www.anonymousrand.xyz;
 
     ## Cloudflare authenticated origin pull
@@ -79,6 +81,7 @@ server {
 # redirect http requests to https
 server {
     listen 80;
+    listen [::]:80;
     server_name anonymousrand.xyz www.anonymousrand.xyz blog.anonymousrand.xyz;
 
     ## Cloudflare authenticated origin pull
