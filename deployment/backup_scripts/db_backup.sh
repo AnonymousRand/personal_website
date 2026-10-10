@@ -7,7 +7,7 @@
 #     - `$1`: destination path for backup, formatted identically to the destination path of `scp`.
 #     - `$2`: backup number to be appended to the backup name.
 
-set -e
+set -ex
 
 source ./db_backup_config.sh
 
