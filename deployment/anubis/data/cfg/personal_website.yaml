@@ -6,10 +6,10 @@ bots:
   #- import: ./base_bot_policies.yaml
   - import: /data/cfg/base_bot_policies.yaml
 
-  - name: "allow-auth-status"
-    # TODO ensure that if no response for auth status, it defaults to false!
-    # this is probably covered under ajax, but just in case
-    expression: 'path == "/auth-status"'
+    # (this is probably covered under ajax below, but just in case)
+    # SYNC: urls/endpoints!
+  - name: "allow-util-endpoints"
+    expression: 'path == "/auth-status" || path == "/url-for"'
     action: ALLOW
 
   - name: "allow-ajax"
