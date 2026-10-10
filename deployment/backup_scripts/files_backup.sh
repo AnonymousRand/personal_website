@@ -2,7 +2,7 @@
 
 set -ex
 
-# SYNC: relative path to git repo base
+# SYNC: path to personal website's base directory
 for file in ../../app/blog/static/blogpage/*; do
     if [[ -d "$file/files/" ]]; then
         git add "$file/files/"
