@@ -6,6 +6,7 @@ async function fetchWrapper({url, method, body=null, params={}}) {
 
     let options = {headers: {}};
     options.headers["X-CSRFToken"] = csrfToken;
+    // this must be set for anubis to detect and allow all these requests!!
     options.headers["Accept"] = "application/json";
     options.credentials = "include";
     options.mode = "cors";

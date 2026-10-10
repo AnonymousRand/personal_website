@@ -8,11 +8,12 @@ bots:
 
     # (this is probably covered under ajax below, but just in case)
     # SYNC: urls/endpoints!
-  - name: "allow-util-endpoints"
-    expression: 'path == "/auth-status" || path == "/url-for"'
+  - name: "allow-auth-status"
+    expression: 'path == "/auth-status"'
     action: ALLOW
 
   - name: "allow-ajax"
+    # SYNC: make sure all requests that should be always allowed are matched by this!
     expression:
       all:
         - '"Accept" in headers'
@@ -24,10 +25,10 @@ bots:
     action: ALLOW
 
   - name: "allow-fonts"
-    expression:
-      all:
-        - '"Accept" in headers'
-        - 'headers["Accept"].contains("font")'
+    # SYNC: all font file types used! since some browsers (safari) don't send specific `Accept` >:(
+    expression: >-
+      ("Accept" in headers && headers["Accept"].contains("font"))
+      || (path.endsWith(".ttf") || path.endsWith(".woff2"))
     action: ALLOW
 
   - name: "allow-images"

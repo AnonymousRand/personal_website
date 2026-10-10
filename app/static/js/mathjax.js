@@ -158,7 +158,8 @@ $(window).on("hashchange", function(e) {
     onUrlFragNavigate(document.location.hash);
 });
 
-$(document).ready(function() {
+//$(document).ready(function() {
+$(window).on("load", function() {
     // for when url fragment is navigated to as part of initially loaded url
     if (document.location.hash !== "") {
         onUrlFragNavigate(document.location.hash);
