@@ -84,7 +84,7 @@ services:
       # (gosh darn it why didn't i document things back then >~<)
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-u", "root", "-S", "${PERSONAL_WEBSITE_MYSQL_SCKT:?}"]
+      test: ["CMD", "mysqladmin", "ping", "-S", "${PERSONAL_WEBSITE_MYSQL_SCKT:?}", "-u", "root"]
       interval: 30s
       timeout: 5s
       retries: 3

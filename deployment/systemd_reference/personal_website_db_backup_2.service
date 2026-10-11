@@ -5,4 +5,4 @@ Description=periodic second backup of personal website's database
 Type=oneshot
 User=<REPLACE: preferably non-root user>
 WorkingDirectory=<REPLACE: absolute path to `backup_scripts/` directory>
-ExecStart=/usr/bin/env bash db_backup.sh <REPLACE: backup destination path>
+ExecStart=/usr/bin/env bash db_backup.sh <REPLACE: backup destination path> 2
