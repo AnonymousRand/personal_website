@@ -1,5 +1,5 @@
 include:
-  - ${PATH_TO_ROOT_DOCKER_PROJ:?}/shared_sckts.yaml
+  - ${PATH_TO_ROOT_DOCKER_PROJ:?}/${PATH_FROM_ROOT_TO_UTILS:?}/shared_sckts.yaml
   - ${PATH_TO_ROOT_DOCKER_PROJ:?}/${PATH_FROM_ROOT_TO_NGINX:?}/compose.yaml
   - ${PATH_TO_ROOT_DOCKER_PROJ:?}/${PATH_FROM_ROOT_TO_IOCAINE:?}/compose.yaml
   - ./deployment/anubis/compose.yaml
@@ -8,7 +8,7 @@ services:
   personal_website:
     container_name: personal_website
     extends:
-      file: ${PATH_TO_ROOT_DOCKER_PROJ:?}/shared_sckts.yaml
+      file: ${PATH_TO_ROOT_DOCKER_PROJ:?}/${PATH_FROM_ROOT_TO_UTILS:?}/shared_sckts.yaml
       service: shared_sckts_user
     profiles:
       - ${DOCKER_DEFAULT_PROFILE:?}
@@ -19,10 +19,15 @@ services:
       dockerfile: deployment/docker/flask/Dockerfile
       # uncomment the following for better performance if using tcp/ip ports
       #network: host
+      args:
+        DOCKER_ROOT_USER: ${DOCKER_ROOT_USER:?}
+        DOCKER_NONROOT_USER: ${DOCKER_NONROOT_USER:?}
+    # this passes the socket to entrypoint script as an arg
+    command: ${PERSONAL_WEBSITE_SCKT:?}
     restart: unless-stopped
     user: ${DOCKER_NONROOT_USER:?}
     volumes:
-      # for persisting uploaded images in static folders
+      # for persisting files uploaded from the web ui in static folders
       - type: bind
         # SYNC: path, relative to current path containing compose file
         source: ./app/blog/static/blogpage/
@@ -34,13 +39,15 @@ services:
       - ./deployment/docker/flask/.env
       - ./deployment/docker/flask/.flaskenv
     environment:
-      DATABASE_URL: "mysql+pymysql://${MYSQL_USERNAME:?}:${MYSQL_PASSWORD:?}@localhost/\
-                     ${MYSQL_DB_NAME:?}?unix_socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}\
-                     &charset=${MYSQL_CHARSET:?}"
+      DATABASE_URL: "mysql+pymysql://${PERSONAL_WEBSITE_MYSQL_USERNAME:?}\
+                     :${PERSONAL_WEBSITE_MYSQL_PASSWORD:?}@localhost/\
+                     ${PERSONAL_WEBSITE_MYSQL_DB_NAME:?}\
+                     ?unix_socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}\
+                     &charset=${PERSONAL_WEBSITE_MYSQL_CHARSET:?}"
     healthcheck:
       test: ["CMD", "curl", "-I", "https://${SITE_DOMAIN:?}"]
       interval: 1m
-      timeout: 3s
+      timeout: 5s
       retries: 3
       start_period: 1m
     # activating this service first starts all services listed below
@@ -57,29 +64,28 @@ services:
   personal_website_mysql:
     container_name: personal_website_mysql
     extends:
-      file: ${PATH_TO_ROOT_DOCKER_PROJ:?}/shared_sckts.yaml
+      file: ${PATH_TO_ROOT_DOCKER_PROJ:?}/${PATH_FROM_ROOT_TO_UTILS:?}/shared_sckts.yaml
       service: shared_sckts_user
     profiles:
       - ${DOCKER_DEFAULT_PROFILE:?}
-    # SYNC: host's mysql version if using bind mount
-    image: mysql:8.0.37
-    restart: unless-stopped
-    user: ${DOCKER_NONROOT_USER:?}
+    image: mysql:9.7
     # disable TCP/IP port and only use unix socket
     command: --skip-networking --socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}
+    restart: unless-stopped
+    user: ${DOCKER_NONROOT_USER:?}
     volumes:
       # for persisting database
+      # SYNC: source path with mysql data directory on host
       - type: bind
-        # SYNC: mysql data directory for persistence
         source: ./deployment/docker/mysql/mysql_data_dir/
         target: /var/lib/mysql/
     environment:
+      # i think i created the root user with no password, so this is needed? idk
+      # (gosh darn it why didn't i document things back then >~<)
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
     healthcheck:
-      # make sure this uses the unix socket specified in `command`!
       test: ["CMD", "mysqladmin", "ping", "-u", "root", "-S", "${PERSONAL_WEBSITE_MYSQL_SCKT:?}"]
-      interval: 15s
+      interval: 30s
       timeout: 5s
       retries: 3
-      # make this like 30s if not bind mounting data directory!
       start_period: 10s

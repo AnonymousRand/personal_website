@@ -17,6 +17,9 @@ services:
       - type: volume
         source: personal_website_anubis_var
         target: /var/anubis/
+    env_file:
+      # for `envsubst`
+      - ./.env
     environment:
       BIND_NETWORK: unix
       BIND: ${PERSONAL_WEBSITE_ANUBIS_IN_SCKT:?}

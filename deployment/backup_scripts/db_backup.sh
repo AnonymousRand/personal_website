@@ -9,8 +9,15 @@
 
 set -ex
 
-source ./db_backup_config.sh
+# SYNC: path to personal website's base directory `.env`! (for db name, etc.)
+source ../../.env
+source ./.db_backup.env
 
-# make sure there is a secured MySQL config file providing `$db_username`'s password!
-mysqldump --protocol=tcp -u "$db_username" "$db_name" > "$host_backup_path"
-rsync -e "ssh -i $ssh_private_key_location" --backup --suffix=`date +'.%F_%H-%M-%S'` "$host_backup_path" "$1"
+host_backup_path="./backup_$2.sql"
+
+mysqldump --protocol=tcp \
+    -u "$PERSONAL_WEBSITE_MYSQL_USERNAME" \
+    -password="$PERSONAL_WEBSITE_MYSQL_PASSWORD" \
+    "$PERSONAL_WEBSITE_MYSQL_DB_NAME" > "$host_backup_path"
+rsync -e "ssh -i $ssh_private_key_location" --backup --suffix=`date +'.%F_%H-%M-%S'` \
+    "$host_backup_path" "$1"

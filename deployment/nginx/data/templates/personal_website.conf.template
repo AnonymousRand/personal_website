@@ -20,7 +20,10 @@ server {
         include conf.d/snippets/anubis.func;
     }
 
-    ## Cloudflare authenticated origin pull
+    # for certbot (bypasses anubis etc. and also ensures it works with nginx in a container)
+    include conf.d/snippets/acme_challs.func;
+
+    ## cloudflare authenticated origin pull
     #ssl_verify_client on;
     #ssl_client_certificate /etc/nginx/ssl/cloudflare.crt;
 
@@ -63,7 +66,7 @@ server {
     listen [::]:443 ssl;
     server_name www.anonymousrand.xyz;
 
-    ## Cloudflare authenticated origin pull
+    ## cloudflare authenticated origin pull
     #ssl_verify_client on;
     #ssl_client_certificate /etc/nginx/ssl/cloudflare.crt;
 
@@ -84,7 +87,7 @@ server {
     listen [::]:80;
     server_name anonymousrand.xyz www.anonymousrand.xyz blog.anonymousrand.xyz;
 
-    ## Cloudflare authenticated origin pull
+    ## cloudflare authenticated origin pull
     #ssl_verify_client on;
     #ssl_client_certificate /etc/nginx/ssl/cloudflare.crt;
 

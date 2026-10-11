@@ -1,10 +1,9 @@
 # security
-.env
+*.env
+.*.env
 # SYNC: naming convention!
 *_privkey
-deployment/docker/flask/.env
 deployment/docker/mysql/mysql_data_dir/
-deployment/backup_scripts/db_backup_config.sh
 deployment/backup_scripts/backup*.sql
 
 # package data

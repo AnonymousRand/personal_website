@@ -2,8 +2,8 @@
 
 ## setup if i brick another machine
 
-1. set up docker, MySQL, and nginx on host machine
-    - MySQL data directory should be in the bind-mounted directory specified in [deployment/docker/compose.yaml](deployment/docker/compose.yaml)
+1. set up docker, mysql, and nginx on host machine
+    - mysql data directory should be in the bind-mounted directory specified in [deployment/docker/compose.yaml](deployment/docker/compose.yaml)
     - recover database data from backups
     - make sure default key for ssh and for github pushing has no passcode if planning to use automatic db/image backup scripts. (no hack pwease 0~0)
 2. `git clone`
@@ -12,10 +12,10 @@
     - install python modules from [requirements.txt](requirements.txt) by running `pip install -r requirements.txt` (ideally within a virtualenv)
     - install js modules from [app/static/package.json](app/static/package.json) by running `npm install` in the [app/static/](app/static/) directory
 4. add back gitignored files:
-    - `.env`: randomly generated `SECRET_KEY` and SQLAlchemy `DATABASE_URL` for connecting to MySQL from host
+    - `.env`: randomly generated `SECRET_KEY` and SQLAlchemy `DATABASE_URL` for connecting to mysql from host
         - `DATABASE_URL` should be something like `mysql+pymysql://[db username]:[db password]@[hostname]:[port]/[database name]?charset=utf8mb4`
-    - `deployment/docker/flask/envs/.env`: same as `.env` but with `DATABASE_URL` modified to connect to the MySQL docker container (i.e. the `hostname` part of the url is the name of the MySQL container *service* in [deployment/docker/compose.yaml](deployment/docker/compose.yaml), in this case `mysql`)
-    - `deployment/docker/mysql/envs/.mysqlenv`: nothing yet (no environment variables if bind-mounting existing MySQL data directory)
+    - `deployment/docker/flask/envs/.env`: same as `.env` but with `DATABASE_URL` modified to connect to the mysql docker container (i.e. the `hostname` part of the url is the name of the mysql container *service* in [deployment/docker/compose.yaml](deployment/docker/compose.yaml), in this case `mysql`)
+    - `deployment/docker/mysql/envs/.mysqlenv`: nothing yet (no environment variables if bind-mounting existing mysql data directory)
     - `deployment/backup_scripts/db_backup_config.sh`: set the variables referenced in [deployment/backup_scripts/db_backup.sh](deployment/backup_scripts/db_backup.sh)
     - `app/static/css/custom_bootstrap.css` and `app/static/css/custom_bootstrap.css.map`: run `npm compile_bootstrap` from within the [app/static/](app/static/) folder
 5. navigate to [deployment/docker/](deployment/docker/) and run `deploy.sh` (or use a `systemd` service, for example [deployment/systemd_reference/personal_website.service](deployment/systemd_reference/personal_website.service))
@@ -64,13 +64,17 @@ keep up-to-date:
     - `deployment/backup_scripts/db_backup_config.sh` configs
     - backup scripts
     - `systemd` services
-- to connect to the MySQL instance running in docker from the host:
-    - make sure the MySQL port (default 3306) is exposed from docker and there is a `.env` file on the host with `DATABASE_URL` pointing to `localhost`
-    - use `mysql --protocol=tcp` to connect so it doesn't try to use a unix socket; make sure to use the MySQL user that has `%` as its host (because that means it can connect from any host, whereas `localhost` would mean that it can only connect from within the docker container)
+- to connect to the mysql instance running in docker from the host:
+    - if using mysql via unix socket:
+        - get the path to the unix socket on the host (it should be in a docker volume, something like `/var/lib/docker/volumes/shared_sckts/personal_website_mysql.sock`, i.e. the `PERSONAL_WEBSITE_MYSQL_SCKT` variable in `./.env`)
+        - use `mysql -u anonrand -p -S <path to unix socket>` (or whatever the db user name is; make sure to use the mysql user that has `%` as its host (because that means it can connect from any host, whereas `localhost` would mean that it can only connect from within the docker container))
+    - if using mysql via tcp/ip port:
+        - make sure the mysql port (default 3306) is exposed from docker and there is a `.env` file on the host with `DATABASE_URL` pointing to `localhost`
+        - use `mysql -u anonrand -p --protocol=tcp` to connect so it doesn't try to use a unix socket
 - to edit database schema:
     - edit [app/models.py](app/models.py) on the host
-        - IMPORTANT: currently MySQL-specific!!!
-    - run `flask db migrate` on the host in the python venv; this requires MySQL connectivity from the host
+        - IMPORTANT: currently mysql-specific!!!
+    - run `flask db migrate` on the host in the python venv; this requires mysql connectivity from the host
     - CHECK MIGRATION SCRIPT IN [migrations/versions/](migrations/versions/)!!!
         - if renaming columns, you will probably have to edit the alembic script in [migrations/versions/](migrations/versions/) to use `alter_column()`! `existing_type` is a required argument:
         
@@ -91,7 +95,7 @@ keep up-to-date:
             ```
             batch_op.drop_constraint("[constraint_name]", type_='unique')
             ```
-    - tun `flask db upgrade` on the host in the python venv or restart the docker containers
+    - run `flask db upgrade` on the host in the python venv or restart the docker containers
 
 ### access control notes
 

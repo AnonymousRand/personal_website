@@ -158,7 +158,7 @@ $(window).on("hashchange", function(e) {
     onUrlFragNavigate(document.location.hash);
 });
 
-//$(document).ready(function() {
+// note that `$(document).ready` seems to be too early (layout shifts?)
 $(window).on("load", function() {
     // for when url fragment is navigated to as part of initially loaded url
     if (document.location.hash !== "") {
