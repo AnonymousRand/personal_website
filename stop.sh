@@ -11,8 +11,7 @@ source ./.env
 path_to_utils="$PATH_TO_SERVER_ROOT/$PATH_FROM_ROOT_TO_UTILS"
 
 # still need this for `docker compose down` to succeed
-chmod +x "$path_to_utils/sync_dotenvs.sh"
-"$path_to_utils/sync_dotenvs.sh"
+chmod +x "$path_to_utils/sync_dotenvs.sh" && "$path_to_utils/sync_dotenvs.sh"
 
 # try this in our current directory first in case the services to stop were started by
 # this project originally
