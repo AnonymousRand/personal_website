@@ -24,7 +24,6 @@ RUN npm run compile_bootstrap
 WORKDIR ../../
 
 COPY deployment/docker/flask/entrypoint.sh ./
-RUN chmod a+x entrypoint.sh
-
+RUN chmod +x entrypoint.sh
 USER ${DOCKER_NONROOT_USER}
 ENTRYPOINT ["./entrypoint.sh"]
