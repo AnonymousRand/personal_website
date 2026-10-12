@@ -3,6 +3,7 @@ Description=periodic backup of personal website's blogpost images
 
 [Service]
 Type=oneshot
-User=<REPLACE: preferably non-root user that has git credentials>
+# this user needs to have git credentials
+User=<REPLACE: preferably non-root user>
 WorkingDirectory=<REPLACE: absolute path to `backup_scripts/` directory>
 ExecStart=/usr/bin/env bash image_backup.sh
