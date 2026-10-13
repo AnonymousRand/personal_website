@@ -1,6 +1,6 @@
 # janky flask personal website™
 
-this readme is kinda bad and weird
+this readme is kinda bad >~<
 
 ## setup if i brick another machine
 
