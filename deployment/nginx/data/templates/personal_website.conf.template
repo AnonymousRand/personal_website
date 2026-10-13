@@ -6,7 +6,8 @@
 server {
     listen 443 ssl; # managed by Certbot
     listen [::]:443 ssl;
-    server_name anonymousrand.xyz blog.anonymousrand.xyz;
+    # SYNC: subdomains
+    server_name ${PERSONAL_WEBSITE_SITE_DOMAIN} blog.${PERSONAL_WEBSITE_SITE_DOMAIN};
 
     access_log /var/log/nginx/personal_website_access.log;
     error_log /var/log/nginx/personal_website_error.log;
@@ -39,7 +40,7 @@ server {
 # then send traffic that passed anubis through iocaine
 server {
     listen unix:${PERSONAL_WEBSITE_ANUBIS_OUT_SCKT};
-    server_name anonymousrand.xyz blog.anonymousrand.xyz;
+    server_name ${PERSONAL_WEBSITE_SITE_DOMAIN} blog.${PERSONAL_WEBSITE_SITE_DOMAIN};
 
     location / {
         include conf.d/snippets/general_forwarding_headers.func;
@@ -64,7 +65,7 @@ server {
 server {
     listen 443 ssl; # managed by Certbot
     listen [::]:443 ssl;
-    server_name www.anonymousrand.xyz;
+    server_name www.${PERSONAL_WEBSITE_SITE_DOMAIN};
 
     ## cloudflare authenticated origin pull
     #ssl_verify_client on;
@@ -75,7 +76,7 @@ server {
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
-    return 301 https://anonymousrand.xyz$request_uri;
+    return 301 https://${PERSONAL_WEBSITE_SITE_DOMAIN}$request_uri;
 
     client_max_body_size 100M;
 }
@@ -85,7 +86,10 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name anonymousrand.xyz www.anonymousrand.xyz blog.anonymousrand.xyz;
+    server_name
+        ${PERSONAL_WEBSITE_SITE_DOMAIN}
+        www.${PERSONAL_WEBSITE_SITE_DOMAIN}
+        blog.${PERSONAL_WEBSITE_SITE_DOMAIN};
 
     ## cloudflare authenticated origin pull
     #ssl_verify_client on;

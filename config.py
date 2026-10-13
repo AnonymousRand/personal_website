@@ -9,7 +9,7 @@ class Config(object):
     # basics
 
     # this needs to be named `SERVER_NAME` as flask needs to recognize it!
-    SERVER_NAME = os.environ.get("SITE_DOMAIN")
+    SERVER_NAME = os.environ.get("PERSONAL_WEBSITE_SITE_DOMAIN")
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
     ############################################################################

@@ -45,12 +45,11 @@ services:
                      ?unix_socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}\
                      &charset=${PERSONAL_WEBSITE_MYSQL_CHARSET:?}"
     healthcheck:
-      test: ["CMD", "curl", "-I", "https://${SITE_DOMAIN:?}"]
-      interval: 1m
+      test: ["CMD", "curl", "-I", "https://${PERSONAL_WEBSITE_SITE_DOMAIN:?}"]
+      interval: 30s
       timeout: 5s
       retries: 3
       start_period: 1m
-    # activating this service first starts all services listed below
     depends_on:
       nginx:
         condition: service_healthy
