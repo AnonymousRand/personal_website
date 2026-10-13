@@ -22,10 +22,10 @@ services:
       args:
         DOCKER_ROOT_USER: ${DOCKER_ROOT_USER:?}
         DOCKER_NONROOT_USER: ${DOCKER_NONROOT_USER:?}
-    # this passes the socket to entrypoint script as an arg
-    command: ${PERSONAL_WEBSITE_SCKT:?}
     restart: unless-stopped
     user: ${DOCKER_NONROOT_USER:?}
+    # this passes the socket to entrypoint script as an arg
+    command: ${PERSONAL_WEBSITE_SCKT:?}
     volumes:
       # for persisting files uploaded from the web ui in static folders
       - type: bind
@@ -68,10 +68,10 @@ services:
     profiles:
       - ${DOCKER_DEFAULT_PROFILE:?}
     image: mysql:9.7
-    # disable TCP/IP port and only use unix socket
-    command: --skip-networking --socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}
     restart: unless-stopped
     user: ${DOCKER_NONROOT_USER:?}
+    # disable TCP/IP port and only use unix socket
+    command: --skip-networking --socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}
     volumes:
       # for persisting database
       # SYNC: source path with mysql data directory on host
