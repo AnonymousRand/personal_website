@@ -18,44 +18,44 @@ function applyStyles(selector) {
 
 const colorChoices = {
     blue: {
-        menuHighlight: "--custom-blue-xxlight",
+        menuHighlight: "--bg--custom-blue-xxlight",
         form: {
-            accent: "--custom-blue",
-            border: "--custom-blue",
-            boxShadow: "color-mix(in srgb, var(--custom-blue) 25%, transparent)"
+            accent: "--bg--custom-blue",
+            border: "--border--custom-blue",
+            boxShadow: "color-mix(in srgb, var(--border--custom-blue) 25%, transparent)"
         },
-        flashBorder: "--custom-blue-xlight",
-        selection: "--custom-blue-xxlight"
+        flashBorder: "--border--custom-blue-xlight",
+        selection: "--bg--custom-blue-xxlight"
     },
     green: {
-        menuHighlight: "--custom-green-light",
+        menuHighlight: "--bg--custom-green-light",
         form: {
-            accent: "--custom-green",
-            border: "--custom-green",
-            boxShadow: "color-mix(in srgb, var(--custom-green) 50%, transparent)"
+            accent: "--bg--custom-green",
+            border: "--border--custom-green",
+            boxShadow: "color-mix(in srgb, var(--border--custom-green) 50%, transparent)"
         },
-        flashBorder: "--custom-green",
-        selection: "--custom-green-light"
+        flashBorder: "--border--custom-green",
+        selection: "--bg--custom-green-light"
     },
     orange: {
-        menuHighlight: "--custom-orange-shallow-light",
+        menuHighlight: "--bg--custom-orange-shallow-light",
         form: {
-            accent: "--custom-orange",
-            border: "--custom-orange",
-            boxShadow: "color-mix(in srgb, var(--custom-orange) 40%, transparent)"
+            accent: "--bg--custom-orange",
+            border: "--border--custom-orange",
+            boxShadow: "color-mix(in srgb, var(--border--custom-orange) 40%, transparent)"
         },
-        flashBorder: "--custom-orange-light",
-        selection: "--custom-orange-shallow-light"
+        flashBorder: "--border--custom-orange-light",
+        selection: "--bg--custom-orange-shallow-light"
     },
     pink: {
-        menuHighlight: "--custom-pink-shallow-xxxxlight",
+        menuHighlight: "--bg--custom-pink-shallow-xxxxlight",
         form: {
-            accent: "--custom-pink-light",
-            border: "--custom-pink-light",
-            boxShadow: "color-mix(in srgb, var(--custom-pink-light) 50%, transparent)"
+            accent: "--bg--custom-pink-light",
+            border: "--border--custom-pink-light",
+            boxShadow: "color-mix(in srgb, var(--border--custom-pink-light) 50%, transparent)"
         },
-        flashBorder: "--custom-pink-light",
-        selection: "--custom-pink-shallow-xxxxlight"
+        flashBorder: "--border--custom-pink-light",
+        selection: "--bg--custom-pink-shallow-xxxxlight"
     }
 };
 
@@ -82,7 +82,7 @@ function randomizeColors() {
 
             option:active, .dropdown-item:hover, .dropdown-item:active {
                 background-color: var(${colorChoice.menuHighlight}) !important;
-                color: var(--bs-body-color) !important;
+                color: var(--body-fg) !important;
             }
 
             .flash {

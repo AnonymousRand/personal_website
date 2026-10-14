@@ -1,5 +1,5 @@
 .hljs {
-    background: white;
+    background: var(--body-bg);
 }
 
 .hljs-addition,
@@ -8,7 +8,7 @@
 .hljs-keyword,
 .hljs-meta,
 .hljs-type {
-    color: var(--custom-pink-shallow-light);
+    color: var(--text--custom-pink-shallow-light);
 }
 
 .hljs-built_in,
@@ -16,11 +16,11 @@
 .hljs-tag,
 .hljs-tag .hljs-name,
 .hljs-title {
-    color: var(--custom-orange-xdeep);
+    color: var(--text--custom-orange-xdeep);
 }
 
 .hljs-comment {
-    color: var(--custom-green-deep-xdark);
+    color: var(--text--custom-green-deep-xdark);
 }
 
 .hljs-deletion,
@@ -32,7 +32,7 @@
 .hljs-selector-id,
 .hljs-string,
 .hljs-template-tag {
-    color: var(--custom-blue-xdeep);
+    color: var(--text--custom-blue-xdeep);
 }
 
 .hljs-variable {

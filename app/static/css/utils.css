@@ -4,21 +4,24 @@
 
 @font-face {
     font-family: "Quicksand :3";
-    src: url("../fonts/quicksand_meow.ttf") format(TrueType);
+    src: url("../fonts/quicksand_meow.ttf") format(TrueType),
+         url("https://anonymousrand.xyz/static/fonts/quicksand_meow.ttf") format(TrueType);
     font-weight: 500;
     font-display: swap;
 }
 
 @font-face {
     font-family: "Quicksand :3";
-    src: url("../fonts/quicksand_meow_bold.ttf") format(TrueType);
+    src: url("../fonts/quicksand_meow_bold.ttf") format(TrueType),
+         url("https://anonymousrand.xyz/static/fonts/quicksand_meow_bold.ttf") format(TrueType);
     font-weight: bold;
     font-display: swap;
 }
 
 @font-face {
     font-family: "Maple Mono NL";
-    src: url("../fonts/maple_mono_nl.woff2") format(woff2);
+    src: url("../fonts/maple_mono_nl.woff2") format(woff2),
+         url("https://anonymousrand.xyz/static/fonts/maple_mono_nl.woff2") format(woff2);
     font-weight: normal;
     font-display: swap;
     font-feature-settings: "cv61" on, "calt" off;
@@ -26,7 +29,8 @@
 
 @font-face {
     font-family: "Maple Mono NL";
-    src: url("../fonts/maple_mono_nl_bold.woff2") format(woff2);
+    src: url("../fonts/maple_mono_nl_bold.woff2") format(woff2),
+         url("https://anonymousrand.xyz/static/fonts/maple_mono_nl_bold.woff2") format(woff2);
     font-weight: bold;
     font-display: swap;
     font-feature-settings: "cv61" on, "calt" off;
@@ -34,7 +38,8 @@
 
 @font-face {
     font-family: "Maple Mono NL";
-    src: url("../fonts/maple_mono_nl_italic.woff2") format(woff2);
+    src: url("../fonts/maple_mono_nl_italic.woff2") format(woff2),
+         url("https://anonymousrand.xyz/static/fonts/maple_mono_nl_italic.woff2") format(woff2);
     font-weight: normal;
     font-style: italic;
     font-feature-settings: "cv61" on, "calt" off;
@@ -43,7 +48,9 @@
 
 @font-face {
     font-family: "Maple Mono NL";
-    src: url("../fonts/maple_mono_nl_bold_italic.woff2") format(woff2);
+    src: url("../fonts/maple_mono_nl_bold_italic.woff2") format(woff2),
+         url("https://anonymousrand.xyz/static/fonts/maple_mono_nl_bold_italic.woff2")
+            format(woff2);
     font-weight: bold;
     font-style: italic;
     font-feature-settings: "cv61" on, "calt" off;
@@ -52,7 +59,8 @@
 
 @font-face {
     font-family: "Hachi Maru Pop";
-    src: url("../fonts/hachi_maru_pop.ttf") format(TrueType);
+    src: url("../fonts/hachi_maru_pop.ttf") format(TrueType),
+         url("https://anonymousrand.xyz/static/fonts/hachi_maru_pop.ttf") format(TrueType);
     font-display: swap;
 }
 
@@ -156,43 +164,47 @@
 /**********/
 
 .black {
-    color: var(--black) !important;
+    color: var(--text--black) !important;
 }
 
 .blue {
-    color: var(--blue) !important;
+    color: var(--text--blue) !important;
 }
 
 .dimgray {
-    color: var(--dimgray) !important;
+    color: var(--text--dimgray) !important;
 }
 
 .gray {
-    color: var(--gray) !important;
+    color: var(--text--gray) !important;
 }
 
 .red {
-    color: var(--red) !important;
+    color: var(--text--red) !important;
 }
 
 .custom-blue-deep-dark {
-    color: var(--custom-blue-deep-dark) !important;
+    color: var(--text--custom-blue-deep-dark) !important;
 }
 
 .custom-orange-deep {
-    color: var(--custom-orange-deep) !important;
+    color: var(--text--custom-orange-deep) !important;
+}
+
+.custom-orange-xdeep {
+    color: var(--text--custom-orange-deep) !important;
 }
 
 .custom-pink-shallow-light {
-    color: var(--custom-pink-shallow-light) !important;
+    color: var(--text--custom-pink-shallow-light) !important;
 }
 
 .custom-pink-shallow-xlight {
-    color: var(--custom-pink-shallow-xlight) !important;
+    color: var(--text--custom-pink-shallow-xlight) !important;
 }
 
 .custom-pink-shallow-xxlight {
-    color: var(--custom-pink-shallow-xxlight) !important;
+    color: var(--text--custom-pink-shallow-xxlight) !important;
 }
 
 /*************/
@@ -275,40 +287,40 @@
 .border--colorful {
     border-color: transparent !important;
     border-image: conic-gradient(
-        var(--custom-orange-light) 62.5deg,
-        var(--custom-green-light) 85deg,
-        var(--custom-green-light) 95deg,
-        var(--custom-blue-xxlight) 112.5deg,
-        var(--custom-blue-xxlight) 242.5deg,
-        var(--custom-pink-xlight) 260deg,
-        var(--custom-pink-xlight) 280deg,
-        var(--custom-orange-light) 312.5deg
+        var(--border--custom-orange-light) 62.5deg,
+        var(--border--custom-green-light) 85deg,
+        var(--border--custom-green-light) 95deg,
+        var(--border--custom-blue-xxlight) 112.5deg,
+        var(--border--custom-blue-xxlight) 242.5deg,
+        var(--border--custom-pink-xlight) 260deg,
+        var(--border--custom-pink-xlight) 280deg,
+        var(--border--custom-orange-light) 312.5deg
     ) 1 !important;
     /* use when `background-clip` is better supported for `border-radius` support
     background: conic-gradient(
-        var(--custom-orange-light) 62.5deg,
-        var(--custom-green-light) 85deg,
-        var(--custom-green-light) 95deg,
-        var(--custom-blue-xxlight) 112.5deg,
-        var(--custom-blue-xxlight) 242.5deg,
-        var(--custom-pink-xlight) 260deg,
-        var(--custom-pink-xlight) 280deg,
-        var(--custom-orange-light) 312.5deg
+        var(--border--custom-orange-light) 62.5deg,
+        var(--border--custom-green-light) 85deg,
+        var(--border--custom-green-light) 95deg,
+        var(--border--custom-blue-xxlight) 112.5deg,
+        var(--border--custom-blue-xxlight) 242.5deg,
+        var(--border--custom-pink-xlight) 260deg,
+        var(--border--custom-pink-xlight) 280deg,
+        var(--border--custom-orange-light) 312.5deg
     ) border-box;
     background-clip: border-area;
     */
 }
 
 .border--custom-green {
-    border-color: var(--custom-green) !important;
+    border-color: var(--border--custom-green) !important;
 }
 
 .border--custom-orange {
-    border-color: var(--custom-orange) !important;
+    border-color: var(--border--custom-orange) !important;
 }
 
 .border--lightgray {
-    border-color: var(--lightgray) !important;
+    border-color: var(--border--lightgray) !important;
 }
 
 /*********/
@@ -321,13 +333,13 @@
 }
 
 .btn--custom-orange-light {
-    border-color: var(--custom-orange-deep) !important;
-    background-color: var(--custom-orange-light) !important;
-    color: black !important;
+    border-color: var(--border--custom-orange-deep) !important;
+    background-color: var(--bg--custom-orange-light) !important;
+    color: var(--text--black) !important;
 }
 
 .btn--custom-orange-light:hover {
-    background-color: var(--custom-orange) !important;
+    background-color: var(--bg--custom-orange) !important;
 }
 
 /**************/
@@ -335,19 +347,19 @@
 /**************/
 
 .btn-link--custom-orange-xdeep {
-    color: var(--custom-orange-xdeep) !important;
+    color: var(--text--custom-orange-xdeep) !important;
 }
 
 .btn-link--custom-orange-xdeep:hover {
-    color: var(--custom-orange-xxdeep) !important;
+    color: var(--text--custom-orange-xxdeep) !important;
 }
 
 .btn-link--custom-pink-shallow-xlight {
-    color: var(--custom-pink-shallow-xlight) !important;
+    color: var(--text--custom-pink-shallow-xlight) !important;
 }
 
 .btn-link--custom-pink-shallow-xlight:hover {
-    color: var(--custom-pink-shallow-light) !important;
+    color: var(--text--custom-pink-shallow-light) !important;
 }
 
 /**********/
@@ -359,66 +371,66 @@
     text-decoration: underline !important;
     text-decoration-style: dotted !important;
     text-decoration-color: currentcolor !important;
-    color: var(--dimgray) !important;
+    color: var(--text--dimgray) !important;
 }
 
 .link--discreet:hover,
 .link--discreet:hover .MathJax * {
-    color: var(--dimmergray) !important;
+    color: var(--text--dimmergray) !important;
 }
 
 .link--custom-blue-xdeep {
     text-decoration-color: currentcolor !important;
-    color: var(--custom-blue-xdeep) !important;
+    color: var(--text--custom-blue-xdeep) !important;
 }
 
 .link--custom-blue-xdeep:hover {
-    color: var(--custom-blue-xxdeep) !important;
+    color: var(--text--custom-blue-xxdeep) !important;
 }
 
 .link--custom-green-deep-dark {
     text-decoration-color: currentcolor !important;
-    color: var(--custom-green-deep-dark) !important;
+    color: var(--text--custom-green-deep-dark) !important;
 }
 
 .link--custom-green-deep-dark:hover {
-    color: var(--custom-green-deep-xdark) !important;
+    color: var(--text--custom-green-deep-xdark) !important;
 }
 
 .link--custom-orange-deep {
     text-decoration-color: currentcolor !important;
-    color: var(--custom-orange-deep) !important;
+    color: var(--text--custom-orange-deep) !important;
 }
 
 .link--custom-orange-deep:hover {
-    color: var(--custom-orange-xdeep) !important;
+    color: var(--text--custom-orange-xdeep) !important;
 }
 
 .link--custom-pink-shallow-xlight {
     text-decoration-color: currentcolor !important;
-    color: var(--custom-pink-shallow-xlight) !important;
+    color: var(--text--custom-pink-shallow-xlight) !important;
 }
 
 .link--custom-pink-shallow-xlight:hover {
-    color: var(--custom-pink-shallow-light) !important;
+    color: var(--text--custom-pink-shallow-light) !important;
 }
 
 .link--custom-pink-shallow-xxlight {
     text-decoration-color: currentcolor !important;
-    color: var(--custom-pink-shallow-xxlight) !important;
+    color: var(--text--custom-pink-shallow-xxlight) !important;
 }
 
 .link--custom-pink-shallow-xxlight:hover {
-    color: var(--custom-pink-shallow-xlight) !important;
+    color: var(--text--custom-pink-shallow-xlight) !important;
 }
 
 .link--gray {
     text-decoration-color: currentcolor !important;
-    color: var(--gray) !important;
+    color: var(--text--gray) !important;
 }
 
 .link--gray:hover {
-    color: var(--dimgray) !important;
+    color: var(--text--dimgray) !important;
 }
 
 /***************/
@@ -426,7 +438,7 @@
 /***************/
 
 .underline--custom-pink-shallow-xxlight {
-    text-decoration-color: var(--custom-pink-shallow-xxlight) !important;
+    text-decoration-color: var(--text--custom-pink-shallow-xxlight) !important;
 }
 
 /*********/
@@ -438,7 +450,7 @@
 pre:not(table pre, .inline-code-block *) code,
 .code-box {
     margin-bottom: 1rem;
-    border: 2px solid var(--lightgray);
+    border: 2px solid var(--border--lightgray);
     border-radius: var(--bs-border-radius);
     padding: 0.75rem 1rem;
 }
@@ -446,13 +458,13 @@ pre:not(table pre, .inline-code-block *) code,
 .cell--left-header {
     border-right-width: 3px !important;
     border-right-style: double !important;
-    background-color: whitesmoke !important;
+    background-color: var(--bg--whitesmoke) !important;
 }
 
 .cell--top-header {
     border-bottom-width: 3px !important;
     border-bottom-style: double !important;
-    background-color: whitesmoke !important;
+    background-color: var(--bg--whitesmoke) !important;
 }
 
 .extend-off-page {
@@ -491,7 +503,7 @@ pre:not(table pre, .inline-code-block *) code,
     margin-bottom: 1rem;
     border-bottom: 3px solid currentcolor;
     padding-bottom: 0.5rem;
-    color: var(--custom-pink-shallow-xxlight);
+    color: var(--text--custom-pink-shallow-xxlight);
     font-size: calc(1.3rem + 2.4vw); /* fs-3 */
 }
 
@@ -507,7 +519,7 @@ pre:not(table pre, .inline-code-block *) code,
     margin-bottom: 1rem !important;
     border-bottom: 2px solid currentcolor;
     padding-bottom: 0.25rem;
-    color: var(--custom-blue-deep-dark);
+    color: var(--text--custom-blue-deep-dark);
     font-size: calc(1.2rem + 1.6vw); /* fs-5 */
 }
 
@@ -541,7 +553,7 @@ pre:not(table pre, .inline-code-block *) code,
 
 .post-img:hover,
 :is(.post__content, .comment__content) img:hover {
-    border-color: var(--gray) !important;
+    border-color: var(--border--gray) !important;
 }
 
 /* post images are 100% width if not specified in `width` attribute */
@@ -584,14 +596,14 @@ pre:not(table pre, .inline-code-block *) code,
 /* need specificity gah i freaking hate css */
 .form-switch .switch--navbar {
     margin-top: 0;
-    border-color: var(--lightgray);
-    background-color: var(--switch-background);
+    border-color: var(--border--lightgray);
+    background-color: var(--switch-unchecked-bg-color);
     width: 2.5rem;
     height: 1.25rem;
 }
 
 .form-switch .switch--navbar:checked {
-    background-color: var(--custom-pink-xshallow-xxlight) !important;
+    background-color: var(--bg--custom-pink-xshallow-xxlight) !important;
 }
 
 .text-overflow-ellipsis {

@@ -1,0 +1,42 @@
+:root {
+    --bs-body-bg: var(--body-bg);
+    --bs-body-color: var(--body-fg);
+
+    --bs-border-color: var(--default-border-color);
+    --bs-border-color-translucent: var(--translucent-border-color);
+    --bs-dropdown-border-color: var(--dropdown-border-color);
+}
+
+/* tooltip arrow */
+.bs-tooltip-top .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
+    border-top-color: var(--border--custom-pink-shallow-xlight) !important;
+}
+
+.bs-tooltip-right .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
+    border-right-color: var(--border--custom-pink-shallow-xlight) !important;
+}
+
+.bs-tooltip-bottom .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
+    border-bottom-color: var(--border--custom-pink-shallow-xlight) !important;
+}
+
+.bs-tooltip-left .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
+    border-left-color: var(--border--custom-pink-shallow-xlight) !important;
+}
+
+:not(.post__toc) :is(ol ol, ul ul, ol ul, ul ol) {
+    margin-bottom: 1rem;
+}
+
+.input-group.has-validation >
+    :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+.input-group.has-validation > .dropdown-toggle:nth-last-child(n + 4),
+.input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-control,
+.input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-select {
+    border-top-right-radius: var(--bs-border-radius);
+    border-bottom-right-radius: var(--bs-border-radius);
+}

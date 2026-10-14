@@ -1,0 +1,71 @@
+:root {
+    /* general colors */
+
+    --body-bg: black;
+    --body-fg: #e9e4dc;
+
+    --border--custom-blue: var(---custom-blue); /* used in form */
+    --border--custom-blue-xlight: var(---custom-blue-xlight);
+    --border--custom-blue-xxlight: var(---custom-blue-xlight); /* used in `.border--colorful` */
+    --border--custom-green: var(---custom-green); /* used in form */
+    --border--custom-green-light: var(---custom-green); /* used in `.border--colorful` */
+    --border--custom-orange: var(---custom-orange); /* used in form */
+    --border--custom-orange-light: var(---custom-orange); /* used in `.border--colorful` */
+    --border--custom-orange-shallow-light: var(---custom-orange); /* used in select */
+    --border--custom-orange-deep: var(---custom-orange-light); /* used in btn */
+    --border--custom-pink-light: var(---custom-pink-light); /* used in form */
+    --border--custom-pink-xlight: var(---custom-pink-light); /* used in `.border--colorful` */
+    --border--custom-pink-shallow-xlight: var(---custom-pink); /* used in tooltip */
+    --border--dimgray: lightgray;
+    --border--gray: gray;
+    --border--lightgray: gray;
+
+    --bg--custom-blue: var(---custom-blue); /* used in form */
+    --bg--custom-blue-xxlight: var(---custom-blue-deep-xlight); /* used in menu */
+    --bg--custom-green: var(---custom-green); /* used in form */
+    --bg--custom-green-light: var(---custom-green-light); /* used in menu, select */
+    --bg--custom-orange: var(---custom-orange); /* used in form */
+    --bg--custom-orange-light: var(---custom-orange-light); /* used in menu */
+    --bg--custom-orange-shallow-light: var(---custom-orange-shallow-light);
+    --bg--custom-orange-shallow-xlight: var(---custom-orange-light);
+    --bg--custom-pink-light: var(---custom-pink-light); /* used in form */
+    --bg--custom-pink-shallow-xxxxlight: var(---custom-pink-xshallow-xxlight); /* used in menu */
+    --bg--custom-pink-xshallow-xxlight: var(---custom-pink-xshallow-xxlight); /* used in switch */
+    --bg--whitesmoke: var(---dimmergray); /* used in table cell headers (TODO) */
+
+    --text--custom-blue-deep: var(---custom-blue);
+    --text--custom-blue-deep-dark: var(---custom-blue-light);
+    --text--custom-blue-xdeep: var(---custom-blue-deep-light);
+    --text--custom-blue-xxdeep: var(---custom-blue-deep-xlight);
+    --text--custom-green-deep-dark: var(---custom-green-deep);
+    --text--custom-green-deep-xdark: var(---custom-green);
+    --text--custom-green-deep-xxdark: var(---custom-green-light);
+    --text--custom-orange-deep: var(---custom-orange);
+    --text--custom-orange-xdeep: var(---custom-orange-light);
+    --text--custom-orange-xxdeep: var(---custom-orange-xlight);
+    --text--custom-pink-shallow: var(---custom-pink-xshallow-xxlight);
+    --text--custom-pink-shallow-light: var(---custom-pink-xshallow-xxlight);
+    --text--custom-pink-shallow-xlight: var(---custom-pink-xshallow-xlight);
+    --text--custom-pink-shallow-xxlight: var(---custom-pink-xshallow-light);
+    --text--black: white;
+    --text--blue: cyan;
+    --text--dimmergray: #d9d4cc;
+    --text--dimgray: #c7bfb3;
+    --text--gray: #c7c1b7;
+    --text--white: black;
+    --text--red: red;
+
+    /* specifics */
+
+    /* turn blue links into green actually on dark mode since it's cooler, but green
+     * doesn't show up well normally in light mode */
+    --link-color: var(---custom-green-light);
+    --link-hover-color: var(---custom-green-xlight);
+    --link-disabled-color: var(---custom-green-deep-xxdark);
+
+    --default-border-color: gray;
+    --translucent-border-color: gray;
+    --dropdown-border-color: var(--translucent-border-color);
+
+    --switch-unchecked-bg-color: white;
+}

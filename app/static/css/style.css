@@ -1,19 +1,19 @@
 /* `:not(#navbar) a` doesn't work here becuase f&ck you, i guess */
 a:not(#navbar a) {
     text-decoration-color: currentcolor;
-    color: var(--default-link-color);
+    color: var(--link-color);
 }
 
 a:not(#navbar a):hover {
     text-decoration-color: currentcolor;
-    color: var(--default-link-hover-color);
+    color: var(--link-hover-color);
 }
 
 blockquote {
     margin-left: 0rem;
-    border-left: 4px solid var(--lightgray);
+    border-left: 4px solid var(--border--lightgray);
     padding-left: 1rem;
-    color: var(--dimgray);
+    color: var(--text--dimgray);
 }
 
 body {
@@ -24,7 +24,7 @@ body {
 }
 
 pre, code {
-    color: var(--custom-pink-shallow);
+    color: var(--text--custom-pink-shallow);
     font-family: "Maple Mono NL", monospace;
     font-size: 100%;
 }
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 
 label:has(+ [required]):after,
 label:has(+ * [required]):after {
-    color: var(--red);
+    color: var(--text--red);
     content:" *";
 }
 
@@ -68,11 +68,6 @@ nav .dropdown-menu {
     }
 }
 
-/* to undo weird Bootstrap stuff */
-:not(.post__toc) :is(ol ol, ul ul, ol ul, ul ol) {
-    margin-bottom: 1rem;
-}
-
 /* god i hate specificity; have to separate this from `code`'s stuff */
 pre {
     margin-bottom: 0;
@@ -81,7 +76,7 @@ pre {
 
 table {
     margin-bottom: 1rem;
-    border-color: var(--dimgray);
+    border-color: var(--border--dimgray);
     width: max-content;
 }
 
@@ -120,36 +115,15 @@ textarea.form-control {
     font-size: 1.125em;
 }
 
-/* tooltip arrow */
-.bs-tooltip-top .tooltip-arrow::before,
-.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
-    border-top-color: var(--custom-pink-shallow-xlight) !important;
-}
-
-.bs-tooltip-right .tooltip-arrow::before,
-.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
-    border-right-color: var(--custom-pink-shallow-xlight) !important;
-}
-
-.bs-tooltip-bottom .tooltip-arrow::before,
-.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
-    border-bottom-color: var(--custom-pink-shallow-xlight) !important;
-}
-
-.bs-tooltip-left .tooltip-arrow::before,
-.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
-    border-left-color: var(--custom-pink-shallow-xlight) !important;
-}
-
 .btn-close {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23909090'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")
 }
 
 .btn-link {
-    --bs-btn-color: var(--default-link-color);
-    --bs-btn-hover-color: var(--default-link-hover-color);
-    --bs-btn-active-color: var(--default-link-color);
-    --bs-btn-disabled-color: var(--default-link-disabled-color);
+    --bs-btn-color: var(--link-color);
+    --bs-btn-hover-color: var(--link-hover-color);
+    --bs-btn-active-color: var(--link-color);
+    --bs-btn-disabled-color: var(--link-disabled-color);
     background-color: transparent !important;
     padding: 0;
 }
@@ -186,8 +160,8 @@ textarea.form-control {
 .flash {
     border-width: 3px;
     border-style: solid;
-    background-color: var(--bs-body-bg);
-    color: var(--bs-body-color);
+    background-color: var(--body-bg);
+    color: var(--body-fg);
 }
 
 .flash__wrapper {
@@ -209,24 +183,14 @@ textarea.form-control {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23909090' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 }
 
-/* undo weird Bootstrap rule */
-.input-group.has-validation >
-    :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
-.input-group.has-validation > .dropdown-toggle:nth-last-child(n + 4),
-.input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-control,
-.input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-select {
-    border-top-right-radius: var(--bs-border-radius);
-    border-bottom-right-radius: var(--bs-border-radius);
-}
-
 .nav-link {
     border-width: 0;
     background-color: transparent !important;
-    color: var(--dimgray) !important;
+    color: var(--text--dimgray) !important;
 }
 
 .nav-link:hover {
-    color: var(--dimmergray) !important;
+    color: var(--text--dimmergray) !important;
 }
 
 /* for (approx) centering due to larger font */
@@ -255,11 +219,11 @@ textarea.form-control {
 }
 
 .tooltip .tooltip-inner {
-    border: 2px solid var(--custom-pink-light) !important;
+    border: 2px solid var(--border--custom-pink-light) !important;
     border-radius: var(--bs-border-radius);
-    background-color: var(--bs-body-bg) !important;
+    background-color: var(--body-bg) !important;
     max-width: 30rem !important;
-    color: var(--bs-body-color) !important;
+    color: var(--body-fg) !important;
 }
 
 .tooltip-inner > :last-child,

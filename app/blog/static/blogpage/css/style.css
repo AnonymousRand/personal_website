@@ -4,12 +4,12 @@ input[value="Reply"][value="Delete"] {
 }
 
 .blogpage__name {
-    color: var(--custom-pink-shallow-xxlight);
+    color: var(--text--custom-pink-shallow-xxlight);
 }
 
 .blogpage__subname {
     line-height: 1.4em;
-    color: var(--custom-blue-deep-dark);
+    color: var(--text--custom-blue-deep-dark);
 }
 
 .comment__nest-limit-text {
@@ -36,7 +36,7 @@ input[value="Reply"][value="Delete"] {
 
 .footnotes__wrapper {
     margin-bottom: 1rem;
-    color: var(--dimgray);
+    color: var(--text--dimgray);
 }
 
 .goto-page-form__page-input {
@@ -65,13 +65,13 @@ input[value="Reply"][value="Delete"] {
 :is(.md-pf, .md-exer .md-dropdown__content) hr {
     opacity: 100%;
     border-width: 2px;
-    border-color: var(--lightgray);
+    border-color: var(--border--lightgray);
 }
 
 .md-captioned-figure__caption {
     margin-top: -0.5rem;
     text-align: center;
-    color: var(--dimgray);
+    color: var(--text--dimgray);
     font-size: 0.95rem;
 }
 
@@ -95,12 +95,12 @@ input[value="Reply"][value="Delete"] {
 .md-cmd-line,
 .md-cmd-line pre {
     width: 100%;
-    color: var(--dimgray);
+    color: var(--text--dimgray);
 }
 
 .md-cmd-line .md-cmd-line__cmd,
 .md-cmd-line .md-cmd-line__cmd pre {
-    color: var(--custom-pink-shallow-light);
+    color: var(--text--custom-pink-shallow-light);
 }
 
 .md-dropdown {
@@ -133,7 +133,7 @@ input[value="Reply"][value="Delete"] {
 
 .md-dropdown .md-dropdown__content {
     margin-top: 0.75rem;
-    border-top: 2px solid var(--lightgray);
+    border-top: 2px solid var(--border--lightgray);
     padding-top: 0.75rem;
 }
 
@@ -182,7 +182,7 @@ input[value="Reply"][value="Delete"] {
 
 .post__toc {
     z-index: 999;
-    border-color: var(--gray);
+    border-color: var(--border--gray);
     margin-top: 1rem;
     padding: 1rem 1rem 0rem 1rem;
     max-height: max(33.3333svh, 15rem);
@@ -244,11 +244,11 @@ input[value="Reply"][value="Delete"] {
 }
 
 .post-list__post:hover .custom-pink-shallow-xlight {
-    color: var(--custom-pink-shallow-light) !important;
+    color: var(--text--custom-pink-shallow-light) !important;
 }
 
 .post-list__post:hover .custom-blue-deep{
-    color: var(--custom-blue-deep) !important;
+    color: var(--text--custom-blue-deep) !important;
 }
 
 .sticky-btns {
@@ -269,9 +269,9 @@ input[value="Reply"][value="Delete"] {
 }
 
 .toc__heading {
-    background-color: var(--bs-body-bg); /* to match card body */
+    background-color: var(--body-bg); /* to match card body */
 }
 
 .underline--custom-pink-shallow-xlight.post-list__post:hover {
-    text-decoration-color: var(--custom-pink-shallow-light) !important;
+    text-decoration-color: var(--text--custom-pink-shallow-light) !important;
 }
