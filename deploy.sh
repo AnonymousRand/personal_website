@@ -14,7 +14,7 @@ chmod +x "$path_to_utils/sync_dotenvs.sh" && "$path_to_utils/sync_dotenvs.sh"
 chmod +x ./stop.sh && ./stop.sh
 
 docker system prune --force
-docker compose --profile "$DOCKER_DEFAULT_PROFILE" build --no-cache
+docker compose --profile "$DOCKER_DEFAULT_PROFILE" build --no-cache --progress=plain
 if [[ "$1" == "-d" ]]; then
     docker compose --profile "$DOCKER_DEFAULT_PROFILE" up --force-recreate -d
 else

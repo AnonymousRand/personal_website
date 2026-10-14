@@ -27,6 +27,7 @@ class Config(object):
         f"https://{SERVER_NAME}",
         f"https://blog.{SERVER_NAME}",
         "https://http.cat",                 # error messages
+        f"https://git.{SERVER_NAME}",       # forgejo instance
         "https://anonymousrand.tumblr.com", # tumblr blog
         "https://assets.txmblr.com"         # tumblr edit blog HTML previewer
     ]

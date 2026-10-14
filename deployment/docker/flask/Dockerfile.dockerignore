@@ -3,6 +3,7 @@
 .venv/
 venv/
 __pycache__/
+app/static/node_modules/
 deployment/docker/mysql/mysql_data_dir/
 deployment/backup_scripts/
 deployment/systemd_reference/
