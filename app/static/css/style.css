@@ -11,27 +11,28 @@ a:not(#navbar a):hover {
 
 blockquote {
     margin-left: 0rem;
-    border-left: 4px solid var(--border--lightgray);
+    border-left: 4px solid var(--border--custom-pink-xxlight);
     padding-left: 1rem;
     color: var(--text--dimgray);
 }
 
-body {
+/* need `:root` to set `rem` size but also `body` to override any defaults */
+:root, body {
     text-decoration-thickness: 1px;
     overflow-wrap: anywhere;
     font-family: "Quicksand :3", sans-serif;
     font-size: 16px;
 }
 
-pre, code {
-    color: var(--text--custom-pink-shallow);
-    font-family: "Maple Mono NL", monospace;
-    font-size: 100%;
-}
-
 /* need to do this for DarkReader to affect blogpage index page posts (i hate css) */
 h1, h2, h3, h4, h5, h6 {
     color: inherit;
+}
+
+hr {
+    opacity: 100%;
+    border-width: 2px;
+    border-color: var(--border--custom-pink-xxlight);
 }
 
 label:has(+ [required]):after,
@@ -40,10 +41,9 @@ label:has(+ * [required]):after {
     content:" *";
 }
 
-li > :last-child,
-li > :last-child > :last-child,
-li > :last-child > :last-child > :last-child,
-li > :last-child > :last-child > :last-child > :last-child {
+/* make list elements that have multiple lines (and are hence wrapped in a `<p>`) not inject extra
+ * spacing after itself unless it ends with display math, so that nested list spacing is correct */
+li > p:last-of-type:not(:has(.display-math)) {
     margin-bottom: 0;
 }
 
@@ -74,9 +74,25 @@ pre {
     font-size: 100%;
 }
 
+pre, code {
+    color: var(--code-color);
+    font-family: "Maple Mono NL", monospace;
+    font-size: 100%;
+}
+
+/* use `.inline-code-block` for "inline code blocks", i.e. a code block that respects whitespace
+ * unlike inline code, but still does things like word wrapping */
+pre:not(table pre, .inline-code-block *) code,
+.code-box {
+    margin-bottom: 1rem;
+    border: 2px solid var(--border--custom-pink-xxlight);
+    border-radius: var(--bs-border-radius);
+    padding: 0.75rem 1rem;
+}
+
 table {
     margin-bottom: 1rem;
-    border-color: var(--border--dimgray);
+    border-color: var(--border--custom-pink-light);
     width: max-content;
 }
 
@@ -160,8 +176,8 @@ textarea.form-control {
 .flash {
     border-width: 3px;
     border-style: solid;
-    background-color: var(--body-bg);
-    color: var(--body-fg);
+    background-color: var(--default-bg);
+    color: var(--default-fg);
 }
 
 .flash__wrapper {
@@ -203,6 +219,30 @@ textarea.form-control {
     height: 2rem;
 }
 
+.post-img,
+:is(.post__content, .comment__content) img {
+    display: block;
+    margin: 1rem auto 1rem auto;
+    border: 2px solid transparent;
+    max-width: 100%;
+}
+
+.post-img:hover,
+:is(.post__content, .comment__content) img:hover {
+    border-color: var(--border--custom-pink-xlight) !important;
+}
+
+/* post images are 100% width if not specified in `width` attribute */
+.post-img,
+:is(.post__content, .comment__content) img:not([width]) {
+    width: 100%;
+}
+
+.silly-mode {
+    font-family: "Hachi Maru Pop", sans-serif;
+    font-size: 14px;
+}
+
 .toggle-password-visibility {
     display: flex;
     align-items: center;
@@ -219,11 +259,11 @@ textarea.form-control {
 }
 
 .tooltip .tooltip-inner {
-    border: 2px solid var(--border--custom-pink-light) !important;
+    border: 2px solid var(--border--custom-pink-xlight) !important;
     border-radius: var(--bs-border-radius);
-    background-color: var(--body-bg) !important;
+    background-color: var(--default-bg) !important;
     max-width: 30rem !important;
-    color: var(--body-fg) !important;
+    color: var(--default-fg) !important;
 }
 
 .tooltip-inner > :last-child,
@@ -233,7 +273,7 @@ textarea.form-control {
     margin-bottom: 0 !important;
 }
 
-/* css is so stupid that `hidden` html attribute is overriden by `display` property in css,
+/* css is so stupid that `hidden` html attribute is overridden by `display` property in css,
  * so I HAVE TO MANUALLY GO AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the
  * absolute gobsmacking gobsmacker gobsmackery freak is this */
 [hidden] {

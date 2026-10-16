@@ -1,8 +1,25 @@
 :root {
-    /* general colors */
+    /**************************************************************************/
+    /* special colors :3 */
 
-    --body-bg: black;
-    --body-fg: #e9e4dc;
+    --default-bg: black;
+    --default-fg: #e9e4dc;
+    --lighter-fg: #909090;
+
+    --variant-bg: var(---dimmergray);
+    --variant-fg: var(---custom-pink-shallow-xxlight);
+
+    --accent-border:       var(---custom-pink-light);
+    --accent-bg:           var(---custom-pink-xlight);
+    --accent-fg:           var(---custom-pink);
+    --accent-hover-border: var(---custom-pink-xlight);
+    --accent-hover-bg:     var(---custom-pink-xxlight);
+    --accent-active-bg:    var(---custom-pink-xxxlight);
+    --strong-accent-bg:    var(---custom-pink-xxlight);
+    --strong-accent-fg:    var(---custom-pink);
+
+    /**************************************************************************/
+    /* palette colors */
 
     --border--custom-blue: var(---custom-blue); /* used in form */
     --border--custom-blue-xlight: var(---custom-blue-xlight);
@@ -13,8 +30,9 @@
     --border--custom-orange-light: var(---custom-orange); /* used in `.border--colorful` */
     --border--custom-orange-shallow-light: var(---custom-orange); /* used in select */
     --border--custom-orange-deep: var(---custom-orange-light); /* used in btn */
-    --border--custom-pink-light: var(---custom-pink-light); /* used in form */
-    --border--custom-pink-xlight: var(---custom-pink-light); /* used in `.border--colorful` */
+    --border--custom-pink-light: var(---custom-pink-xxlight); /* used in tables */
+    --border--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
+    --border--custom-pink-xxlight: var(---custom-pink-xlight); /* used in `.border--colorful` */
     --border--custom-pink-shallow-xlight: var(---custom-pink); /* used in tooltip */
     --border--dimgray: lightgray;
     --border--gray: gray;
@@ -28,7 +46,9 @@
     --bg--custom-orange-light: var(---custom-orange-light); /* used in menu */
     --bg--custom-orange-shallow-light: var(---custom-orange-shallow-light);
     --bg--custom-orange-shallow-xlight: var(---custom-orange-light);
-    --bg--custom-pink-light: var(---custom-pink-light); /* used in form */
+    --bg--custom-pink-light: var(---custom-pink-xxlight); /* used in forgejo */
+    --bg--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
+    --bg--custom-pink-shallow-xxxlight: var(---custom-pink-shallow-xxxxlight); /* used in forgejo */
     --bg--custom-pink-shallow-xxxxlight: var(---custom-pink-xshallow-xxlight); /* used in menu */
     --bg--custom-pink-xshallow-xxlight: var(---custom-pink-xshallow-xxlight); /* used in switch */
     --bg--whitesmoke: var(---dimmergray); /* used in table cell headers (TODO) */
@@ -43,25 +63,28 @@
     --text--custom-orange-deep: var(---custom-orange);
     --text--custom-orange-xdeep: var(---custom-orange-light);
     --text--custom-orange-xxdeep: var(---custom-orange-xlight);
-    --text--custom-pink-shallow: var(---custom-pink-xshallow-xxlight);
+    --text--custom-pink-shallow: var(---custom-pink-xshallow-xlight);
     --text--custom-pink-shallow-light: var(---custom-pink-xshallow-xxlight);
     --text--custom-pink-shallow-xlight: var(---custom-pink-xshallow-xlight);
     --text--custom-pink-shallow-xxlight: var(---custom-pink-xshallow-light);
     --text--black: white;
-    --text--blue: cyan;
     --text--dimmergray: #d9d4cc;
     --text--dimgray: #c7bfb3;
     --text--gray: #c7c1b7;
     --text--white: black;
+    --text--blue: cyan;
     --text--red: red;
 
-    /* specifics */
+    /**************************************************************************/
+    /* specific colors */
 
     /* turn blue links into green actually on dark mode since it's cooler, but green
      * doesn't show up well normally in light mode */
     --link-color: var(---custom-green-light);
     --link-hover-color: var(---custom-green-xlight);
     --link-disabled-color: var(---custom-green-deep-xxdark);
+
+    --code-color: var(---custom-pink-xshallow-xxlight);
 
     --default-border-color: gray;
     --translucent-border-color: gray;

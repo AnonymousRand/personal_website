@@ -1,5 +1,5 @@
 .hljs {
-    background: var(--body-bg);
+    background: var(--default-bg);
 }
 
 .hljs-addition,
@@ -8,7 +8,7 @@
 .hljs-keyword,
 .hljs-meta,
 .hljs-type {
-    color: var(--text--custom-pink-shallow-light);
+    color: var(--text--custom-pink-shallow-xlight);
 }
 
 .hljs-built_in,

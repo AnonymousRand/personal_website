@@ -13,10 +13,9 @@ services:
     profiles:
       - ${DOCKER_DEFAULT_PROFILE:?}
     build:
-      # note that dockerfile cannot access directories above this
       context: ./
       # SYNC: path, relative to `context`
-      dockerfile: deployment/docker/flask/Dockerfile
+      dockerfile: ./deployment/docker/flask/Dockerfile
       # uncomment the following for better performance if using tcp/ip ports
       #network: host
       args:
@@ -45,11 +44,11 @@ services:
                      ?unix_socket=${PERSONAL_WEBSITE_MYSQL_SCKT:?}\
                      &charset=${PERSONAL_WEBSITE_MYSQL_CHARSET:?}"
     healthcheck:
-      test: ["CMD", "curl", "-I", "https://${PERSONAL_WEBSITE_SITE_DOMAIN:?}"]
+      test: ["CMD", "wget", "--spider", "https://${PERSONAL_WEBSITE_SITE_DOMAIN:?}"]
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 1m
+      start_period: 10s
     depends_on:
       nginx:
         condition: service_healthy

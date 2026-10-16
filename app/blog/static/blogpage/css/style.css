@@ -62,12 +62,6 @@ input[value="Reply"][value="Delete"] {
     visibility: visible;
 }
 
-:is(.md-pf, .md-exer .md-dropdown__content) hr {
-    opacity: 100%;
-    border-width: 2px;
-    border-color: var(--border--lightgray);
-}
-
 .md-captioned-figure__caption {
     margin-top: -0.5rem;
     text-align: center;
@@ -133,8 +127,23 @@ input[value="Reply"][value="Delete"] {
 
 .md-dropdown .md-dropdown__content {
     margin-top: 0.75rem;
-    border-top: 2px solid var(--border--lightgray);
+    border-top-width: 2px;
+    border-top-style: solid;
     padding-top: 0.75rem;
+}
+
+/* to match appearance of border when opening dropdown */
+.md-dropdown hr {
+    border-width: 2px;
+}
+
+/* `inherit` doesn't work for some reason so we are setting manually */
+:is(.md-dropdown).border--custom-pink-xlight :is(hr, .md-dropdown__content) {
+    border-color: var(--border--custom-pink-xlight);
+}
+
+:is(.md-dropdown).border--lightgray :is(hr, .md-dropdown__content) {
+    border-color: var(--border--lightgray);
 }
 
 .md-textbox {
@@ -182,10 +191,14 @@ input[value="Reply"][value="Delete"] {
 
 .post__toc {
     z-index: 999;
-    border-color: var(--border--gray);
+    border: 2px solid var(--border--custom-pink-xlight);
     margin-top: 1rem;
     padding: 1rem 1rem 0rem 1rem;
     max-height: max(33.3333svh, 15rem);
+}
+
+.post__toc > hr {
+    z-index: 999;
 }
 
 @media (min-width: 1536px) and (min-height: 660px) {
@@ -269,7 +282,7 @@ input[value="Reply"][value="Delete"] {
 }
 
 .toc__heading {
-    background-color: var(--body-bg); /* to match card body */
+    background-color: var(--default-bg); /* to match card body */
 }
 
 .underline--custom-pink-shallow-xlight.post-list__post:hover {

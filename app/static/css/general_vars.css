@@ -27,10 +27,12 @@
     ---custom-orange-deep-light: #ffc226;      /* 43 , 85 , 100 */
     ---custom-orange-xdeep: #ff9d00;           /* 37 , 100, 100 */
     ---custom-orange-xxdeep: #ff8800;          /* 32 , 100, 100 */
-
+2
     ---custom-pink: #ff0080;                   /* 330, 100, 100 */
-    ---custom-pink-light: #ffbfdf;             /* 330, 25 , 100 */
-    ---custom-pink-xlight: #ffcce6;            /* 329, 20 , 100 */
+    ---custom-pink-light: #ff73b9;             /* 330, 55 , 100 */
+    ---custom-pink-xlight: #ffbfdf;            /* 330, 25 , 100 */
+    ---custom-pink-xxlight: #ffcce6;           /* 329, 20 , 100 */
+    ---custom-pink-xxxlight: #ffe6f2;          /* 331, 10 , 100 */
     ---custom-pink-shallow: #ff0099;           /* 324, 100, 100 */
     ---custom-pink-shallow-light: #ff4db8;     /* 324, 70 , 100 */
     ---custom-pink-shallow-xlight: #ff73c7;    /* 324, 55 , 100 */
@@ -41,6 +43,7 @@
     ---custom-pink-xshallow-light: #ffa8f1;    /* 310, 34 , 100 */
     ---custom-pink-xshallow-xlight: #ffbff4;   /* 310, 25 , 100 */
     ---custom-pink-xshallow-xxlight: #ffd1f7;  /* 310, 18 , 100 */
+
 
     /* these are existing colors in html, but they're so that darkreader generates
      * a dark mode variable for them that we can then override in one go */

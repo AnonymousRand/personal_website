@@ -4,6 +4,8 @@
 venv/
 __pycache__/
 app/static/node_modules/
+# since this is bind mounted
+app/blog/static/blogpage/
 deployment/docker/mysql/mysql_data_dir/
 deployment/backup_scripts/
 deployment/systemd_reference/

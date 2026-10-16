@@ -118,15 +118,33 @@ async function addDarkModeCssFixes() {
     // this will prevent it from being flipped again by darkreader
     const darkReaderFixCss = `
         :root {
+            /******************************************************************/
             /* theme */
 
-            --darkreader-bg--body-bg:
-                ${darkModeVars.getPropertyValue("--body-bg")};
-            --darkreader-text--body-fg:
-                ${darkModeVars.getPropertyValue("--body-fg")};
+            --darkreader-bg--default-bg:
+                ${darkModeVars.getPropertyValue("--default-bg")};
+            --darkreader-text--default-fg:
+                ${darkModeVars.getPropertyValue("--default-fg")};
+            --darkreader-text--lighter-fg:
+                ${darkModeVars.getPropertyValue("--lighter-fg")};
 
-            --darkreader-border--border--dropdown-color:
-                ${darkModeVars.getPropertyValue("--border--dropdown-color")};
+            --darkreader-border--accent-border:
+                ${darkModeVars.getPropertyValue("--accent-border")};
+            --darkreader-bg--accent-bg:
+                ${darkModeVars.getPropertyValue("--accent-bg")};
+            --darkreader-text--accent-fg:
+                ${darkModeVars.getPropertyValue("--accent-fg")};
+            --darkreader-border--accent-hover-border:
+                ${darkModeVars.getPropertyValue("--accent-hover-border")};
+            --darkreader-bg--accent-hover-bg:
+                ${darkModeVars.getPropertyValue("--accent-hover-bg")};
+            --darkreader-bg--accent-active-bg:
+                ${darkModeVars.getPropertyValue("--accent-active-bg")};
+            --darkreader-bg--strong-accent-bg:
+                ${darkModeVars.getPropertyValue("--strong-accent-bg")};
+            --darkreader-text--strong-accent-fg:
+                ${darkModeVars.getPropertyValue("--strong-accent-fg")};
+
             --darkreader-border--border--custom-blue:
                 ${darkModeVars.getPropertyValue("--border--custom-blue")};
             --darkreader-border--border--custom-blue-xlight:
@@ -141,12 +159,16 @@ async function addDarkModeCssFixes() {
                 ${darkModeVars.getPropertyValue("--border--custom-orange")};
             --darkreader-border--border--custom-orange-light:
                 ${darkModeVars.getPropertyValue("--border--custom-orange-light")};
+            --darkreader-border--border--custom-orange-shallow-light:
+                ${darkModeVars.getPropertyValue("--border--custom-orange-shallow-light")};
             --darkreader-border--border--custom-orange-deep:
                 ${darkModeVars.getPropertyValue("--border--custom-orange-deep")};
             --darkreader-border--border--custom-pink-light:
                 ${darkModeVars.getPropertyValue("--border--custom-pink-light")};
             --darkreader-border--border--custom-pink-xlight:
                 ${darkModeVars.getPropertyValue("--border--custom-pink-xlight")};
+            --darkreader-border--border--custom-pink-xxlight:
+                ${darkModeVars.getPropertyValue("--border--custom-pink-xxlight")};
             --darkreader-border--border--custom-pink-shallow-xlight:
                 ${darkModeVars.getPropertyValue("--border--custom-pink-shallow-xlight")};
             --darkreader-border--border--dimgray:
@@ -164,8 +186,6 @@ async function addDarkModeCssFixes() {
                 ${darkModeVars.getPropertyValue("--bg--custom-green")};
             --darkreader-bg--bg--custom-green-light:
                 ${darkModeVars.getPropertyValue("--bg--custom-green-light")};
-            --darkreader-bg--bg--custom-green-xlight:
-                ${darkModeVars.getPropertyValue("--bg--custom-green-xlight")};
             --darkreader-bg--bg--custom-orange:
                 ${darkModeVars.getPropertyValue("--bg--custom-orange")};
             --darkreader-bg--bg--custom-orange-light:
@@ -174,12 +194,12 @@ async function addDarkModeCssFixes() {
                 ${darkModeVars.getPropertyValue("--bg--custom-orange-shallow-light")};
             --darkreader-bg--bg--custom-orange-shallow-xlight:
                 ${darkModeVars.getPropertyValue("--bg--cusom-orange-shallow-xlight")};
-            --darkreader-bg--bg--custom-pink-light:
-                ${darkModeVars.getPropertyValue("--bg--custom-pink-light")};
-            /* used in menu */
+            --darkreader-bg--bg--custom-pink-xlight:
+                ${darkModeVars.getPropertyValue("--bg--custom-pink-xlight")};
+            --darkreader-bg--bg--custom-pink-shallow-xxxlight:
+                ${darkModeVars.getPropertyValue("--bg--custom-pink-shallow-xxxlight")};
             --darkreader-bg--bg--custom-pink-shallow-xxxxlight:
                 ${darkModeVars.getPropertyValue("--bg--custom-pink-shallow-xxxxlight")};
-            /* used in navbar switch */
             --darkreader-bg--bg--custom-pink-xshallow-xxlight:
                 ${darkModeVars.getPropertyValue("--bg--custom-pink-xshallow-xxlight")};
             --darkreader-bg--bg--whitesmoke:
@@ -205,6 +225,10 @@ async function addDarkModeCssFixes() {
                 ${darkModeVars.getPropertyValue("--text--custom-orange-xdeep")};
             --darkreader-text--text--custom-orange-xxdeep:
                 ${darkModeVars.getPropertyValue("--text--custom-orange-xxdeep")};
+            --darkreader-text--text--custom-pink-light:
+                ${darkModeVars.getPropertyValue("--text--custom-pink-light")};
+            --darkreader-text--text--custom-pink-xlight:
+                ${darkModeVars.getPropertyValue("--text--custom-pink-xlight")};
             --darkreader-text--text--custom-pink-shallow:
                 ${darkModeVars.getPropertyValue("--text--custom-pink-shallow")};
             --darkreader-text--text--custom-pink-shallow-light:
@@ -215,25 +239,28 @@ async function addDarkModeCssFixes() {
                 ${darkModeVars.getPropertyValue("--text--custom-pink-shallow-xxlight")};
             --darkreader-text--text--black:
                 ${darkModeVars.getPropertyValue("--text--black")};
-            --darkreader-text--text--blue:
-                ${darkModeVars.getPropertyValue("--text--blue")};
             --darkreader-text--text--dimmergray:
                 ${darkModeVars.getPropertyValue("--text--dimmergray")};
             --darkreader-text--text--dimgray:
                 ${darkModeVars.getPropertyValue("--text--dimgray")};
             --darkreader-text--text--gray:
                 ${darkModeVars.getPropertyValue("--text--gray")};
+            --darkreader-text--text--white:
+                ${darkModeVars.getPropertyValue("--text--white")};
             --darkreader-text--text--red:
                 ${darkModeVars.getPropertyValue("--text--red")};
+            --darkreader-text--text--blue:
+                ${darkModeVars.getPropertyValue("--text--blue")};
 
-            /* turn blue links into green actually on dark mode since it's cooler, but green
-             * doesn't show up well normally in light mode */
             --darkreader-text--link-color:
                 ${darkModeVars.getPropertyValue("--link-color")};
             --darkreader-text--link-hover-color:
                 ${darkModeVars.getPropertyValue("--link-hover-color")};
             --darkreader-text--link-disabled-color:
                 ${darkModeVars.getPropertyValue("--link-disabled-color")};
+
+            --darkreader-text--code-color:
+                ${darkModeVars.getPropertyValue("--code-color")};
 
             --darkreader-border--default-border-color:
                 ${darkModeVars.getPropertyValue("--default-border-color")};
@@ -245,12 +272,13 @@ async function addDarkModeCssFixes() {
             --darkreader-bg--switch-unchecked-bg-color:
                 ${darkModeVars.getPropertyValue("--switch-unchecked-bg-color")};
 
+            /******************************************************************/
             /* bootstrap tweaks */
 
             --darkreader-bg--bs-body-bg:
-                var(--darkreader-bg--body-bg);
+                var(--darkreader-bg--default-bg);
             --darkreader-text--bs-body-color:
-                var(--darkreader-text--body-fg);
+                var(--darkreader-text--default-fg);
 
             --darkreader-border--bs-border-color:
                 var(--darkreader-border--default-border-color);
@@ -270,7 +298,7 @@ async function addDarkModeCssFixes() {
             .dropdown-item:hover,
             .dropdown-item:active {
                 /* don't change! */
-                color: var(--body-fg) !important;
+                color: var(--default-fg) !important;
             }
 
             /* since \`border-image\` doesn't seem to be changed by darkreader */
@@ -281,15 +309,10 @@ async function addDarkModeCssFixes() {
                     var(--darkreader-border--border--custom-green-light) 95deg,
                     var(--darkreader-border--border--custom-blue-xxlight) 112.5deg,
                     var(--darkreader-border--border--custom-blue-xxlight) 242.5deg,
-                    var(--darkreader-border--border--custom-pink-xlight) 260deg,
-                    var(--darkreader-border--border--custom-pink-xlight) 280deg,
+                    var(--darkreader-border--border--custom-pink-xxlight) 260deg,
+                    var(--darkreader-border--border--custom-pink-xxlight) 280deg,
                     var(--darkreader-border--border--custom-orange-light) 312.5deg
                 ) 1 !important;
-            }
-
-            .btn--custom-orange-light {
-                /* don't change! */
-                color: var(--body-fg) !important;
             }
 
             /*
@@ -314,8 +337,8 @@ async function addDarkModeCssFixes() {
             }
 
             .redacted {
-                background-color: ${darkModeVars.getPropertyValue("--body-fg")} !important;
-                color: ${darkModeVars.getPropertyValue("--body-fg")} !important;
+                background-color: ${darkModeVars.getPropertyValue("--default-fg")} !important;
+                color: ${darkModeVars.getPropertyValue("--default-fg")} !important;
             }
 
             .spoiler {

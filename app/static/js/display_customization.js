@@ -50,11 +50,11 @@ const colorChoices = {
     pink: {
         menuHighlight: "--bg--custom-pink-shallow-xxxxlight",
         form: {
-            accent: "--bg--custom-pink-light",
-            border: "--border--custom-pink-light",
-            boxShadow: "color-mix(in srgb, var(--border--custom-pink-light) 50%, transparent)"
+            accent: "--bg--custom-pink-xlight",
+            border: "--border--custom-pink-xlight",
+            boxShadow: "color-mix(in srgb, var(--border--custom-pink-xlight) 50%, transparent)"
         },
-        flashBorder: "--border--custom-pink-light",
+        flashBorder: "--border--custom-pink-xlight",
         selection: "--bg--custom-pink-shallow-xxxxlight"
     }
 };
@@ -82,7 +82,7 @@ function randomizeColors() {
 
             option:active, .dropdown-item:hover, .dropdown-item:active {
                 background-color: var(${colorChoice.menuHighlight}) !important;
-                color: var(--body-fg) !important;
+                color: var(--default-fg) !important;
             }
 
             .flash {

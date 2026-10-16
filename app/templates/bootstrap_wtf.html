@@ -52,7 +52,7 @@
   {% endif %}
 {% endmacro %}
 
-{% macro quick_form(form, id="", class="", action="", method="post", btn_color="custom-orange-light", autofocus=true, hidden=false, is_full_page=false, prompt="") %}
+{% macro quick_form(form, id="", class="", action="", method="post", btn_color="default", autofocus=true, hidden=false, is_full_page=false, prompt="") %}
   {% if is_full_page %}
     <div class="mb-3 mt-4">
       <h1 class="custom-pink-shallow-xlight fs-3">{{ prompt }}</h1>

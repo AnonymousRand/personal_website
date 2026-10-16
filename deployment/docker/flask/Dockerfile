@@ -26,12 +26,17 @@ RUN npm run compile_bootstrap
 
 ################################################################################
 
+FROM busybox:musl AS busybox
 FROM python:3.10-slim-bookworm
 
 ARG DOCKER_ROOT_USER
 ARG DOCKER_NONROOT_USER
 
 USER ${DOCKER_ROOT_USER}
+
+# install busybox's statically-compiled binaries for basic shell commands
+COPY --from=busybox /bin/busybox /bin/
+RUN ["/bin/busybox", "--install", "-s", "/bin"]
 
 RUN mkdir -p ./personal_website/
 WORKDIR ./personal_website/

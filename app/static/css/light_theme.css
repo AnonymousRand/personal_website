@@ -1,8 +1,25 @@
 :root {
-    /* general colors */
+    /**************************************************************************/
+    /* special colors :3 */
 
-    --body-bg: white;
-    --body-fg: #212529;
+    --default-bg: white;
+    --default-fg: #212529;
+    --lighter-fg: #a8a8a8;
+
+    --variant-bg: #feedf3;
+    --variant-fg: var(---custom-pink-shallow-xxlight);
+
+    --accent-border:       var(---custom-pink-xxlight);
+    --accent-bg:           var(---custom-pink-xxxlight);
+    --accent-fg:           var(---custom-pink-light);
+    --accent-hover-border: var(---custom-pink-xlight);
+    --accent-hover-bg:     var(---custom-pink-xxlight);
+    --accent-active-bg:    var(---custom-pink-xlight);
+    --strong-accent-bg:    var(---custom-pink-xxlight);
+    --strong-accent-fg:    var(---custom-pink);
+
+    /**************************************************************************/
+    /* palette colors */
 
     --border--custom-blue: var(---custom-blue); /* used in form */
     --border--custom-blue-xlight: var(---custom-blue-xlight);
@@ -13,8 +30,9 @@
     --border--custom-orange-light: var(---custom-orange-light); /* used in `.border--colorful` */
     --border--custom-orange-shallow-light: var(---custom-orange-shallow-light); /* used in select */
     --border--custom-orange-deep: var(---custom-orange-deep); /* used in btn */
-    --border--custom-pink-light: var(---custom-pink-light); /* used in form */
-    --border--custom-pink-xlight: var(---custom-pink-xlight); /* used in `.border--colorful` */
+    --border--custom-pink-light: var(---custom-pink-light); /* used in tables */
+    --border--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
+    --border--custom-pink-xxlight: var(---custom-pink-xxlight); /* used in `.border--colorful` */
     --border--custom-pink-shallow-xlight: var(---custom-pink-shallow-xlight); /* used in tooltip */
     --border--dimgray: dimgray;
     --border--gray: gray;
@@ -28,7 +46,9 @@
     --bg--custom-orange-light: var(---custom-orange-light); /* used in menu */
     --bg--custom-orange-shallow-light: var(---custom-orange-shallow-light);
     --bg--custom-orange-shallow-xlight: var(---custom-orange-shallow-xlight);
-    --bg--custom-pink-light: var(---custom-pink-light); /* used in form */
+    --bg--custom-pink-light: var(---custom-pink-light); /* used in forgejo */
+    --bg--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
+    --bg--custom-pink-shallow-xxxlight: var(---custom-pink-shallow-xxxlight); /* used in forgejo */
     --bg--custom-pink-shallow-xxxxlight: var(---custom-pink-shallow-xxxxlight); /* used in menu */
     --bg--custom-pink-xshallow-xxlight: var(---custom-pink-xshallow-xxlight); /* used in switch */
     --bg--whitesmoke: var(---dimmergray); /* used in table cell headers (TODO) */
@@ -48,18 +68,21 @@
     --text--custom-pink-shallow-xlight: var(---custom-pink-shallow-xlight);
     --text--custom-pink-shallow-xxlight: var(---custom-pink-shallow-xxlight);
     --text--black: black;
-    --text--blue: blue;
     --text--dimmergray: #282828;
     --text--dimgray: dimgray;
     --text--gray: gray;
-    --text--red: red;
     --text--white: white;
+    --text--blue: blue;
+    --text--red: red;
 
-    /* specifics */
+    /**************************************************************************/
+    /* specific colors */
 
     --link-color: var(---custom-pink-shallow-xlight);
     --link-hover-color: var(---custom-pink-shallow-light);
     --link-disabled-color: var(---custom-pink-shallow-xxxlight);
+
+    --code-color: var(---custom-pink-shallow);
 
     --default-border-color: #dee2e6;
     --translucent-border-color: rgb(0 0 0 / 0.175);
