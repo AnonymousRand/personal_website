@@ -8,15 +8,15 @@
 
     {% set descendants = comment.get_descendants(post) %}
     {% if comment.author|trim == config["VERIFIED_AUTHOR"] %}
-      <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %} border--orange border--2px">
+      <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %} border--colorful border--4px">
         <div class="card-body pb-2">
-          <h3 class="d-flex align-items-center mb-3 border-b border--1px border--gray-xxlight pb-3 fs-7">
+          <h3 class="d-flex align-items-center mb-3 border-b border--1px border--gray-xxlight pb-3 fs-8">
             {{ comment.author }}<i class="bi bi-check-circle ms-2" title="(actually verified, unlike twitter &gt;:3)"></i>
           </h3>
     {% else %}
-    <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--pink-xlight{% else %} border--gray-xxlight{% endif %} border--2px">
+    <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--pink-xxxxlight{% else %} border--gray-xxlight{% endif %} border--2px">
         <div class="card-body pb-2">
-          <h3 class="mb-3 border-b border--1px border--gray-xxlight pb-3 fs-7">{{ comment.author }}</h3>
+          <h3 class="mb-3 border-b border--1px border--gray-xxlight pb-3 fs-8">{{ comment.author }}</h3>
     {% endif %}
           <div class="comment__content mb-3">{{ comment.content|safe }}</div>
           <div class="mb-1 gray-dark fs-10">{{ moment(comment.timestamp).format("Y/M/D") }} ({{ moment(comment.timestamp).fromNow() }})</div>

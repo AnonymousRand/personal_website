@@ -73,14 +73,17 @@
       >
 
       <!-- global custom css -->
-      <!-- make sure all custom css comes after bootstrap so we can override it without needing higher specificity/`!important` -->
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/base_vars.css', _external=True) }}">
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/vars.css', _external=True) }}">
+      <!-- make sure all custom css comes after bootstrap and auto-generated css so we can override it without needing higher specificity/`!important` -->
+      <!-- start auto-generated css (from nix config) -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/colors.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/light_theme.css', _external=True) }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/btn.css', _external=True) }}">
+      <!-- end auto-generated css -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/vars.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/utils.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', _external=True) }}">
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/btn.css', _external=True) }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/surf.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_hljs.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap_tweaks.css', _external=True) }}">
 
@@ -131,8 +134,8 @@
       <div id="container--content" class="container container--content d-flex flex-column min-svh-100">
       <!-- navbar -->
       <!-- SYNC: media query in `app/static/css/style.css` where navbar collapses -->
-      <nav id="navbar" class="navbar navbar-expand-md sticky-top bg-white">
-        <a class="navbar__home navbar-brand d-inline-flex align-items-center" href="{{ url_for('main.index', _external=True) }}" target="_self">
+      <nav id="navbar" class="navbar navbar-expand-md sticky-top">
+        <a class="navbar__home navbar-brand nav-link d-inline-flex align-items-center" href="{{ url_for('main.index', _external=True) }}" target="_self">
           <img class="navbar__logo me-2" src="{{ url_for('static', filename='files/favicon.ico', _external=True) }}" alt="favicon">
           <span>home</span>
         </a>

@@ -30,6 +30,10 @@ input[value="Reply"][value="Delete"] {
     font-size: 1em; /* undo Bootstrap */
 }
 
+.footnote-ref {
+    text-decoration: none;
+}
+
 .footnotes {
     font-size: 0.9rem;
 }
@@ -138,8 +142,9 @@ input[value="Reply"][value="Delete"] {
 }
 
 /* `inherit` doesn't work for some reason so we are setting manually */
-:is(.md-dropdown).border--pink-xlight :is(hr, .md-dropdown__content) {
-    border-color: var(---pink-xlight);
+:is(.md-dropdown).border--pink-xxxlight :is(hr, .md-dropdown__content) {
+    /* yes, we do want this to be slightly lighter */
+    border-color: var(---pink-xxxxlight);
 }
 
 :is(.md-dropdown).border--gray-xxlight :is(hr, .md-dropdown__content) {
@@ -191,7 +196,7 @@ input[value="Reply"][value="Delete"] {
 
 .post__toc {
     z-index: 999;
-    border: 2px solid var(---pink-xlight);
+    border: 2px solid var(---pink-xxxxlight);
     margin-top: 1rem;
     padding: 1rem 1rem 0rem 1rem;
     max-height: max(33.3333svh, 15rem);
@@ -260,7 +265,7 @@ input[value="Reply"][value="Delete"] {
     color: var(---pink-light) !important;
 }
 
-.post-list__post:hover .blue-deep{
+.post-list__post:hover .blue-deep {
     color: var(---blue-deep) !important;
 }
 

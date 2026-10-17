@@ -4,9 +4,9 @@
    * (unless, for example, some other style completely overrode `background-color`) */
   ----curr-bg: var(----base-bg, transparent);
   ----curr-fg: var(----base-fg, inherit);
-  background-color: var(----curr-bg);
-  text-decoration-color: var(----curr-fg);
-  color: var(----curr-fg);
+  background-color: var(----curr-bg) !important;
+  text-background-color: var(----curr-fg) !important;
+  color: var(----curr-fg) !important;
 }
 .btn--default:hover, .btn--default:focus {
   ----curr-bg: var(----hover-bg);
@@ -20,9 +20,9 @@
 .btn--default {
   ----base-bg: var(--btn-raised-base-bg, var(---error-color));
   ----base-fg: var(--btn-raised-base-fg, var(---error-color));
-  ----hover-bg: hsl(from var(----base-bg) h s calc(l - 2.5%));
+  ----hover-bg: hsl(from var(----base-bg) h s calc(l - 2.5));
   ----hover-fg: var(----base-fg);
-  ----active-bg: hsl(from var(----hover-bg) h s calc(l - 2.5%));
+  ----active-bg: hsl(from var(----hover-bg) h s calc(l - 2.5));
   ----active-fg: var(----hover-fg);
 }
 
@@ -30,21 +30,36 @@
   --btn-border-color: var(--btn-raised-border-color);
 }
 
-body {
-  --btn-flat-border-color: var(---btn-flat-border-color-vrnt);
-  --btn-flat-hover-bg: var(---btn-flat-hover-bg-vrnt);
-  --btn-flat-hover-fg: var(---btn-flat-hover-fg-vrnt);
-  --btn-raised-border-color: var(---btn-raised-border-color-vrnt);
-  --btn-raised-base-bg: var(---btn-raised-base-bg-vrnt);
-  --btn-raised-base-fg: var(---btn-raised-base-fg-vrnt);
-  --btn-xraised-border-color: var(---btn-xraised-border-color-vrnt);
-  --btn-xraised-base-bg: var(---btn-xraised-base-bg-vrnt);
-  --btn-xraised-base-fg: var(---btn-xraised-base-fg-vrnt);
-  --btn-selected-border-color: var(---btn-selected-border-color-vrnt);
-  --btn-selected-base-bg: var(---btn-selected-base-bg-vrnt);
-  --btn-selected-base-fg: var(---btn-selected-base-fg-vrnt);
+.hljs, .inline-code-block, .tooltip .tooltip-inner {
+  --btn-flat-border-color: var(---btn-flat-border-vrnt-1-color);
+  --btn-flat-hover-bg: var(---btn-flat-hover-bg-vrnt-1);
+  --btn-flat-hover-fg: var(---btn-flat-hover-fg-vrnt-1);
+  --btn-raised-border-color: var(---btn-raised-border-vrnt-1-color);
+  --btn-raised-base-bg: var(---btn-raised-base-bg-vrnt-1);
+  --btn-raised-base-fg: var(---btn-raised-base-fg-vrnt-1);
+  --btn-xraised-border-color: var(---btn-xraised-border-vrnt-1-color);
+  --btn-xraised-base-bg: var(---btn-xraised-base-bg-vrnt-1);
+  --btn-xraised-base-fg: var(---btn-xraised-base-fg-vrnt-1);
+  --btn-selected-border-color: var(---btn-selected-border-vrnt-1-color);
+  --btn-selected-base-bg: var(---btn-selected-base-bg-vrnt-1);
+  --btn-selected-base-fg: var(---btn-selected-base-fg-vrnt-1);
+}
+
+body, .dropdown-menu, .dropdown-item, .flash, .navbar {
+  --btn-flat-border-color: var(---btn-flat-border-vrnt-2-color);
+  --btn-flat-hover-bg: var(---btn-flat-hover-bg-vrnt-2);
+  --btn-flat-hover-fg: var(---btn-flat-hover-fg-vrnt-2);
+  --btn-raised-border-color: var(---btn-raised-border-vrnt-2-color);
+  --btn-raised-base-bg: var(---btn-raised-base-bg-vrnt-2);
+  --btn-raised-base-fg: var(---btn-raised-base-fg-vrnt-2);
+  --btn-xraised-border-color: var(---btn-xraised-border-vrnt-2-color);
+  --btn-xraised-base-bg: var(---btn-xraised-base-bg-vrnt-2);
+  --btn-xraised-base-fg: var(---btn-xraised-base-fg-vrnt-2);
+  --btn-selected-border-color: var(---btn-selected-border-vrnt-2-color);
+  --btn-selected-base-bg: var(---btn-selected-base-bg-vrnt-2);
+  --btn-selected-base-fg: var(---btn-selected-base-fg-vrnt-2);
 }
 
 .btn--default {
-  border: 2px solid var(--btn-border-color);
+  border: 2px solid var(--btn-border-color) !important;
 }

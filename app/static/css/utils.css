@@ -42,6 +42,10 @@
     color: var(---pink-xxlight) !important;
 }
 
+.pink-xxxlight {
+    color: var(---pink-xxxlight) !important;
+}
+
 /************/
 /* `border` */
 /************/
@@ -73,36 +77,44 @@
         var(---green-light) 85deg,
         var(---green-light) 95deg,
         var(---blue-xxlight) 112.5deg,
-        var(---order-blue-xxlight) 242.5deg,
-        var(---pink-xxlight) 260deg,
-        var(---pink-xxlight) 280deg,
+        var(---blue-xxlight) 242.5deg,
+        var(---pink-xxxxlight) 260deg,
+        var(---pink-xxxxlight) 280deg,
         var(---orange-xlight) 312.5deg
     ) 1 !important;
-    /* use when `background-clip` is better supported for `border-radius` support
-    background: conic-gradient(
-        var(---orange-xlight) 62.5deg,
-        var(---green-light) 85deg,
-        var(---green-light) 95deg,
-        var(---blue-xxlight) 112.5deg,
-        var(---blue-xxlight) 242.5deg,
-        var(---pink-xxlight) 260deg,
-        var(---pink-xxlight) 280deg,
-        var(---orange-xlight) 312.5deg
-    ) border-box;
-    background-clip: border-area;
-    */
 }
 
-.border-green {
+@supports (background-clip: border-area) {
+    .border--colorful {
+        /* this allows us to round off the corners using `border-radius` */
+        background: conic-gradient(
+            var(---orange-xlight) 62.5deg,
+            var(---green-light) 85deg,
+            var(---green-light) 95deg,
+            var(---blue-xxlight) 112.5deg,
+            var(---blue-xxlight) 242.5deg,
+            var(---pink-xxxxlight) 260deg,
+            var(---pink-xxxxlight) 280deg,
+            var(---orange-xlight) 312.5deg
+        ) border-box !important;
+        background-clip: border-area !important;
+    }
+}
+
+.border--green {
     border-color: var(---green) !important;
 }
 
-.border-orange {
+.border--orange {
     border-color: var(---orange) !important;
 }
 
-.border-pink-xlight {
-    border-color: var(---pink-xlight) !important;
+.border--pink-xxxlight {
+    border-color: var(---pink-xxxlight) !important;
+}
+
+.border--pink-xxxxlight {
+    border-color: var(---pink-xxxxlight) !important;
 }
 
 .border--gray-xxlight {
@@ -122,19 +134,19 @@
 /* `btn-link` */
 /**************/
 
-.btn-link-orange-xxdeep {
+.btn-link--orange-xxdeep {
     color: var(---orange-xxdeep) !important;
 }
 
-.btn-link-orange-xxdeep:hover {
+.btn-link--orange-xxdeep:hover {
     color: var(---orange-xxxdeep) !important;
 }
 
-.btn-link-pink-xlight {
+.btn-link--pink-xlight {
     color: var(---pink-xlight) !important;
 }
 
-.btn-link-pink-xlight:hover {
+.btn-link--pink-xlight:hover {
     color: var(---pink-light) !important;
 }
 
@@ -155,48 +167,48 @@
     color: var(---gray-xxdark) !important;
 }
 
-.link-blue-xdeep {
+.link--blue-xdeep {
     text-decoration-color: currentcolor !important;
     color: var(---blue-xdeep) !important;
 }
 
-.link-blue-xdeep:hover {
+.link--blue-xdeep:hover {
     color: var(---blue-xxdeep) !important;
 }
 
-.link-green-deep-dark {
+.link--green-deep-dark {
     text-decoration-color: currentcolor !important;
     color: var(---green-deep-dark) !important;
 }
 
-.link-green-deep-dark:hover {
+.link--green-deep-dark:hover {
     color: var(---green-deep-xdark) !important;
 }
 
-.link-orange-deep {
+.link--orange-deep {
     text-decoration-color: currentcolor !important;
     color: var(---orange-deep) !important;
 }
 
-.link-orange-deep:hover {
+.link--orange-deep:hover {
     color: var(---orange-xxdeep) !important;
 }
 
-.link-pink-xlight {
+.link--pink-xlight {
     text-decoration-color: currentcolor !important;
     color: var(---pink-xlight) !important;
 }
 
-.link-pink-xlight:hover {
+.link--pink-xlight:hover {
     color: var(---pink-light) !important;
 }
 
-.link-pink-xxlight {
+.link--pink-xxlight {
     text-decoration-color: currentcolor !important;
     color: var(---pink-xxlight) !important;
 }
 
-.link-pink-xxlight:hover {
+.link--pink-xxlight:hover {
     color: var(---pink-xlight) !important;
 }
 
@@ -213,7 +225,7 @@
 /* `underline` */
 /***************/
 
-.underline-pink-xxlight {
+.underline--pink-xxlight {
     text-decoration-color: var(---pink-xxlight) !important;
 }
 
@@ -491,19 +503,6 @@
     background-color: transparent !important;
     text-decoration-color: unset !important;
     color: unset !important;
-}
-
-/* need specificity gah i freaking hate css */
-.form-switch .switch--navbar {
-    margin-top: 0;
-    border-color: var(---gray-xxlight);
-    background-color: var(---pink-xxxxxxlight);
-    width: 2.5rem;
-    height: 1.25rem;
-}
-
-.form-switch .switch--navbar:checked {
-    background-color: var(---pink-xxxxxlight) !important;
 }
 
 .text-overflow-ellipsis {

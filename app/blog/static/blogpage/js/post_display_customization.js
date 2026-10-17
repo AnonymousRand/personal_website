@@ -2,7 +2,7 @@ function addCommentSyntaxGuideTooltip() {
     $("#leave-a-comment #content-field label").first()
         .append(" (mouse over to show formatting options)")
         .attr("data-bs-toggle", "tooltip")
-        .attr("data-bs-class", "comment-tooltip")
+        .attr("data-bs-custom-class", "comment-tooltip")
         .attr("data-bs-html", "true")
         .attr(
             "data-bs-title",

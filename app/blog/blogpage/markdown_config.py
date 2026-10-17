@@ -30,7 +30,7 @@ POST_EXTS = [
     markdown_environments.DropdownExtension(
         types={
             "dropdown": {
-                "html_class": "border--2px border--pink-xlight gray-dark"
+                "html_class": "border--2px border--pink-xxxlight gray-dark"
             }
         },
         html_class="md-dropdown",
@@ -183,7 +183,7 @@ POST_EXTS = [
                 "bonus_content": {
                     "thm_type": "Bonus Content",
                     "html_class": (
-                        "border--2px border--pink-xlight gray-dark"
+                        "border--2px border--pink-xxxlight gray-dark"
                     )
                 },
 

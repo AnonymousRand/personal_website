@@ -1,17 +1,23 @@
-/* `:not(#navbar) a` doesn't work here becuase f&ck you, i guess */
-a:not(#navbar a) {
+a,
+.nav-link {
     text-decoration-color: currentcolor;
     color: var(---link-fg);
 }
 
-a:not(#navbar a):hover {
+a:is(:hover, :active, :focus, :focus-visible),
+.nav-link:is(:hover, :active, :focus, :focus-visible),
+/* to override bootstrap specificity */
+.nav-link.show.show {
+    /* needed to make animation not briefly flash to the original bootstrap color */
+    --bs-btn-active-color: var(---link-hover-fg);
+
     text-decoration-color: currentcolor;
     color: var(---link-hover-fg);
 }
 
 blockquote {
     margin-left: 0rem;
-    border-left: 4px solid var(---pink-xxlight);
+    border-left: 4px solid var(---pink-xxxxlight);
     padding-left: 1rem;
     color: var(---gray-dark);
 }
@@ -32,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 hr {
     opacity: 100%;
     border-width: 2px;
-    border-color: var(---pink-xxlight);
+    border-color: var(---pink-xxxxlight);
 }
 
 label:has(+ [required]):after,
@@ -85,14 +91,14 @@ pre, code {
 pre:not(table pre, .inline-code-block *) code,
 .code-box {
     margin-bottom: 1rem;
-    border: 2px solid var(---pink-xxlight);
+    border: 2px solid var(---pink-xxxxlight);
     border-radius: var(--bs-border-radius);
     padding: 0.75rem 1rem;
 }
 
 table {
     margin-bottom: 1rem;
-    border-color: var(---pink-light);
+    border-color: var(---pink-xxxxlight);
     width: max-content;
 }
 
@@ -155,10 +161,6 @@ textarea.form-control {
     white-space: normal;
 }
 
-.footnote-ref {
-    text-decoration: none;
-}
-
 /* need specificity gah i freaking hate css. it is a lawless land that would make even
  * the most resolute anarchist cower. */
 .form-switch .dark-mode-switch {
@@ -173,11 +175,22 @@ textarea.form-control {
     background-image: url("../files/colon_3_silly.svg");
 }
 
+/* need specificity gah i freaking hate css */
+.form-switch .switch--navbar {
+    margin-top: 0;
+    border-color: var(---pink-xxxxlight);
+    background-color: var(---gray-xxxlight);
+    width: 2.5rem;
+    height: 1.25rem;
+}
+
+.form-switch .switch--navbar:checked {
+    background-color: var(---pink-xxxxxlight) !important;
+}
+
 .flash {
     border-width: 3px;
     border-style: solid;
-    background-color: var(---default-bg);
-    color: var(---default-fg);
 }
 
 .flash__wrapper {
@@ -202,16 +215,11 @@ textarea.form-control {
 .nav-link {
     border-width: 0;
     background-color: transparent !important;
-    color: var(---gray-dark) !important;
 }
 
-.nav-link:hover {
-    color: var(---gray-xxdark) !important;
-}
-
-/* for (approx) centering due to larger font */
+/* for (approx?) centering due to 4px larger font */
 .navbar__home {
-    margin-top: -0.1em;
+    margin-top: -2px;
 }
 
 .navbar__logo {
@@ -229,7 +237,7 @@ textarea.form-control {
 
 .post-img:hover,
 :is(.post__content, .comment__content) img:hover {
-    border-color: var(---pink-xlight) !important;
+    border-color: var(---pink-xxxxlight) !important;
 }
 
 /* post images are 100% width if not specified in `width` attribute */
@@ -259,11 +267,9 @@ textarea.form-control {
 }
 
 .tooltip .tooltip-inner {
-    border: 2px solid var(---pink-xlight) !important;
+    border: 2px solid var(---pink-xxxxlight) !important;
     border-radius: var(--bs-border-radius);
-    background-color: var(---default-bg) !important;
     max-width: 30rem !important;
-    color: var(---default-fg) !important;
 }
 
 .tooltip-inner > :last-child,

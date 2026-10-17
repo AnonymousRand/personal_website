@@ -165,12 +165,12 @@ async function addDarkModeCssFixes() {
                 ${darkModeVars.getPropertyValue("--border--orange-deep")};
             --darkreader-border--border--pink-light:
                 ${darkModeVars.getPropertyValue("--border--pink-light")};
-            --darkreader-border--border--pink-xlight:
-                ${darkModeVars.getPropertyValue("--border--pink-xlight")};
+            --darkreader-border--border--pink-xxxxlight:
+                ${darkModeVars.getPropertyValue("--border--pink-xxxxlight")};
             --darkreader-border--border--pink-xxlight:
                 ${darkModeVars.getPropertyValue("--border--pink-xxlight")};
-            --darkreader-border--border--pink-xlight:
-                ${darkModeVars.getPropertyValue("--border--pink-xlight")};
+            --darkreader-border--border--pink-xxxxlight:
+                ${darkModeVars.getPropertyValue("--border--pink-xxxxlight")};
             --darkreader-border--border--gray-dark:
                 ${darkModeVars.getPropertyValue("--border--gray-dark")};
             --darkreader-border--border--gray:

@@ -1,38 +1,23 @@
-:root {
-    --bs-body-bg: var(--variant-bg);
-    --bs-body-color: var(--variant-fg);
-
-    --bs-border-color: var(--default-border-color);
-    --bs-border-color-translucent: var(--translucent-border-color);
-    --bs-dropdown-border-color: var(--dropdown-border-color);
-}
-
 /* tooltip arrow */
 .bs-tooltip-top .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
-    border-top-color: var(--border--pink-xlight) !important;
+    border-top-color: var(---pink-xxxxlight) !important;
 }
 
 .bs-tooltip-right .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
-    border-right-color: var(--border--pink-xlight) !important;
+    border-right-color: var(---pink-xxxxlight) !important;
 }
 
 .bs-tooltip-bottom .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
-    border-bottom-color: var(--border--pink-xlight) !important;
+    border-bottom-color: var(---pink-xxxxlight) !important;
 }
 
 .bs-tooltip-left .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
-    border-left-color: var(--border--pink-xlight) !important;
+    border-left-color: var(---pink-xxxxlight) !important;
 }
-
-/*
-:not(.post__toc) :is(ol ol, ul ul, ol ul, ul ol) {
-    #margin-bottom: 1rem;
-}
-*/
 
 .input-group.has-validation >
     :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),

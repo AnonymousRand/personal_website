@@ -1,0 +1,31 @@
+/******************************************************************************/
+/* base styles */
+
+body {
+  --bs-body-bg: var(---variant-2-bg);
+  --bs-body-color: var(---variant-2-gray-fg);
+}
+
+body,
+.dropdown-menu,
+.dropdown-item,
+.flash,
+.navbar {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+.hljs,
+.inline-code-block,
+.tooltip .tooltip-inner {
+  background-color: var(---variant-1-bg) !important;
+  color: var(---variant-1-gray-fg) !important;
+}
+
+/******************************************************************************/
+/* specific styles/overrides */
+
+.hljs,
+.inline-code-block {
+    color: var(---gray-dark) !important;
+}
