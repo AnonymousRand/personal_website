@@ -18,44 +18,44 @@ function applyStyles(selector) {
 
 const colorChoices = {
     blue: {
-        menuHighlight: "--bg--custom-blue-xxlight",
+        menuHighlight: "---blue-xxlight",
         form: {
-            accent: "--bg--custom-blue",
-            border: "--border--custom-blue",
-            boxShadow: "color-mix(in srgb, var(--border--custom-blue) 25%, transparent)"
+            accent: "---blue",
+            border: "---blue",
+            boxShadow: "color-mix(in srgb, var(---blue) 25%, transparent)"
         },
-        flashBorder: "--border--custom-blue-xlight",
-        selection: "--bg--custom-blue-xxlight"
+        flashBorder: "---blue-xlight",
+        selection: "---blue-xxlight"
     },
     green: {
-        menuHighlight: "--bg--custom-green-light",
+        menuHighlight: "---green-light",
         form: {
-            accent: "--bg--custom-green",
-            border: "--border--custom-green",
-            boxShadow: "color-mix(in srgb, var(--border--custom-green) 50%, transparent)"
+            accent: "---green",
+            border: "---green",
+            boxShadow: "color-mix(in srgb, var(---green) 50%, transparent)"
         },
-        flashBorder: "--border--custom-green",
-        selection: "--bg--custom-green-light"
+        flashBorder: "---green",
+        selection: "---green-light"
     },
     orange: {
-        menuHighlight: "--bg--custom-orange-shallow-light",
+        menuHighlight: "---orange-shallow-light",
         form: {
-            accent: "--bg--custom-orange",
-            border: "--border--custom-orange",
-            boxShadow: "color-mix(in srgb, var(--border--custom-orange) 40%, transparent)"
+            accent: "---orange",
+            border: "---orange",
+            boxShadow: "color-mix(in srgb, var(---orange) 40%, transparent)"
         },
-        flashBorder: "--border--custom-orange-light",
-        selection: "--bg--custom-orange-shallow-light"
+        flashBorder: "---orange-xlight",
+        selection: "---orange-shallow-light"
     },
     pink: {
-        menuHighlight: "--bg--custom-pink-shallow-xxxxlight",
+        menuHighlight: "---pink-xxxxxxlight",
         form: {
-            accent: "--bg--custom-pink-xlight",
-            border: "--border--custom-pink-xlight",
-            boxShadow: "color-mix(in srgb, var(--border--custom-pink-xlight) 50%, transparent)"
+            accent: "---pink-xlight",
+            border: "---pink-xlight",
+            boxShadow: "color-mix(in srgb, var(---pink-xlight) 50%, transparent)"
         },
-        flashBorder: "--border--custom-pink-xlight",
-        selection: "--bg--custom-pink-shallow-xxxxlight"
+        flashBorder: "---pink-xlight",
+        selection: "---pink-xxxxxxlight"
     }
 };
 
@@ -82,7 +82,7 @@ function randomizeColors() {
 
             option:active, .dropdown-item:hover, .dropdown-item:active {
                 background-color: var(${colorChoice.menuHighlight}) !important;
-                color: var(--default-fg) !important;
+                color: var(---default-fg) !important;
             }
 
             .flash {
@@ -105,5 +105,5 @@ reloadBackgroundImg();
 applyStyles("body");
 // makes sure that navigating to a url fragment doesn't hide it in the sticky navbar
 document.documentElement.style.setProperty(
-    "--navbar-outer-height", `${$("#navbar").outerHeight()}px`
+    "---navbar-outer-height", `${$("#navbar").outerHeight()}px`
 );

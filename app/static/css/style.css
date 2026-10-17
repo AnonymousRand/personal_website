@@ -1,19 +1,19 @@
 /* `:not(#navbar) a` doesn't work here becuase f&ck you, i guess */
 a:not(#navbar a) {
     text-decoration-color: currentcolor;
-    color: var(--link-color);
+    color: var(---link-fg);
 }
 
 a:not(#navbar a):hover {
     text-decoration-color: currentcolor;
-    color: var(--link-hover-color);
+    color: var(---link-hover-fg);
 }
 
 blockquote {
     margin-left: 0rem;
-    border-left: 4px solid var(--border--custom-pink-xxlight);
+    border-left: 4px solid var(---pink-xxlight);
     padding-left: 1rem;
-    color: var(--text--dimgray);
+    color: var(---gray-dark);
 }
 
 /* need `:root` to set `rem` size but also `body` to override any defaults */
@@ -32,12 +32,12 @@ h1, h2, h3, h4, h5, h6 {
 hr {
     opacity: 100%;
     border-width: 2px;
-    border-color: var(--border--custom-pink-xxlight);
+    border-color: var(---pink-xxlight);
 }
 
 label:has(+ [required]):after,
 label:has(+ * [required]):after {
-    color: var(--text--red);
+    color: var(---red);
     content:" *";
 }
 
@@ -57,7 +57,7 @@ nav .dropdown-menu {
     width: max-content;
     min-width: min-content !important;
     max-width: calc(
-        0.75 * (var(--container-content-max-width) - 2 * var(--container-content-padding-x))
+        0.75 * (var(---container-content-max-width) - 2 * var(0--container-content-padding-x))
     );
 }
 
@@ -75,7 +75,7 @@ pre {
 }
 
 pre, code {
-    color: var(--code-color);
+    color: var(---md-code-fg);
     font-family: "Maple Mono NL", monospace;
     font-size: 100%;
 }
@@ -85,14 +85,14 @@ pre, code {
 pre:not(table pre, .inline-code-block *) code,
 .code-box {
     margin-bottom: 1rem;
-    border: 2px solid var(--border--custom-pink-xxlight);
+    border: 2px solid var(---pink-xxlight);
     border-radius: var(--bs-border-radius);
     padding: 0.75rem 1rem;
 }
 
 table {
     margin-bottom: 1rem;
-    border-color: var(--border--custom-pink-light);
+    border-color: var(---pink-light);
     width: max-content;
 }
 
@@ -117,7 +117,7 @@ textarea.form-control {
 /* to compensate for fixed navbar; can be inaccurate on page load still with js-based
  * layout shifts but oh well */
 [id] {
-    scroll-margin-top: var(--navbar-outer-height);
+    scroll-margin-top: var(---navbar-outer-height);
 }
 
 .background-img {
@@ -136,19 +136,19 @@ textarea.form-control {
 }
 
 .btn-link {
-    --bs-btn-color: var(--link-color);
-    --bs-btn-hover-color: var(--link-hover-color);
-    --bs-btn-active-color: var(--link-color);
-    --bs-btn-disabled-color: var(--link-disabled-color);
+    --bs-btn-color: var(---link-fg);
+    --bs-btn-hover-color: var(---link-hover-fg);
+    --bs-btn-active-color: var(---link-fg);
+    --bs-btn-disabled-color: var(---link-disabled-fg);
     background-color: transparent !important;
     padding: 0;
 }
 
 .container--content {
     margin: auto !important;
-    padding-left: var(--container-content-padding-x) !important;
-    padding-right: var(--container-content-padding-x) !important;
-    max-width: var(--container-content-max-width) !important;
+    padding-left: var(---container-content-padding-x) !important;
+    padding-right: var(---container-content-padding-x) !important;
+    max-width: var(---container-content-max-width) !important;
 }
 
 .dropdown-item {
@@ -176,8 +176,8 @@ textarea.form-control {
 .flash {
     border-width: 3px;
     border-style: solid;
-    background-color: var(--default-bg);
-    color: var(--default-fg);
+    background-color: var(---default-bg);
+    color: var(---default-fg);
 }
 
 .flash__wrapper {
@@ -189,7 +189,7 @@ textarea.form-control {
     transform: translate(-50%);
     /* prevents flash from blocking navbar clicks when hidden */
     z-index: -1;
-    padding: 0 var(--container-content-padding-x);
+    padding: 0 var(---container-content-padding-x);
     /* this makes sure `position: fixed` doesn't just make it as wide as the viewport */
     width: inherit;
     max-width: inherit;
@@ -202,11 +202,11 @@ textarea.form-control {
 .nav-link {
     border-width: 0;
     background-color: transparent !important;
-    color: var(--text--dimgray) !important;
+    color: var(---gray-dark) !important;
 }
 
 .nav-link:hover {
-    color: var(--text--dimmergray) !important;
+    color: var(---gray-xxdark) !important;
 }
 
 /* for (approx) centering due to larger font */
@@ -229,7 +229,7 @@ textarea.form-control {
 
 .post-img:hover,
 :is(.post__content, .comment__content) img:hover {
-    border-color: var(--border--custom-pink-xlight) !important;
+    border-color: var(---pink-xlight) !important;
 }
 
 /* post images are 100% width if not specified in `width` attribute */
@@ -259,11 +259,11 @@ textarea.form-control {
 }
 
 .tooltip .tooltip-inner {
-    border: 2px solid var(--border--custom-pink-xlight) !important;
+    border: 2px solid var(---pink-xlight) !important;
     border-radius: var(--bs-border-radius);
-    background-color: var(--default-bg) !important;
+    background-color: var(---default-bg) !important;
     max-width: 30rem !important;
-    color: var(--default-fg) !important;
+    color: var(---default-fg) !important;
 }
 
 .tooltip-inner > :last-child,

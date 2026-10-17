@@ -145,104 +145,104 @@ async function addDarkModeCssFixes() {
             --darkreader-text--strong-accent-fg:
                 ${darkModeVars.getPropertyValue("--strong-accent-fg")};
 
-            --darkreader-border--border--custom-blue:
-                ${darkModeVars.getPropertyValue("--border--custom-blue")};
-            --darkreader-border--border--custom-blue-xlight:
-                ${darkModeVars.getPropertyValue("--border--custom-blue-xlight")};
-            --darkreader-border--border--custom-blue-xxlight:
-                ${darkModeVars.getPropertyValue("--border--custom-blue-xxlight")};
-            --darkreader-border--border--custom-green:
-                ${darkModeVars.getPropertyValue("--border--custom-green")};
-            --darkreader-border--border--custom-green-light:
-                ${darkModeVars.getPropertyValue("--border--custom-green-light")};
-            --darkreader-border--border--custom-orange:
-                ${darkModeVars.getPropertyValue("--border--custom-orange")};
-            --darkreader-border--border--custom-orange-light:
-                ${darkModeVars.getPropertyValue("--border--custom-orange-light")};
-            --darkreader-border--border--custom-orange-shallow-light:
-                ${darkModeVars.getPropertyValue("--border--custom-orange-shallow-light")};
-            --darkreader-border--border--custom-orange-deep:
-                ${darkModeVars.getPropertyValue("--border--custom-orange-deep")};
-            --darkreader-border--border--custom-pink-light:
-                ${darkModeVars.getPropertyValue("--border--custom-pink-light")};
-            --darkreader-border--border--custom-pink-xlight:
-                ${darkModeVars.getPropertyValue("--border--custom-pink-xlight")};
-            --darkreader-border--border--custom-pink-xxlight:
-                ${darkModeVars.getPropertyValue("--border--custom-pink-xxlight")};
-            --darkreader-border--border--custom-pink-shallow-xlight:
-                ${darkModeVars.getPropertyValue("--border--custom-pink-shallow-xlight")};
-            --darkreader-border--border--dimgray:
-                ${darkModeVars.getPropertyValue("--border--dimgray")};
+            --darkreader-border--border--blue:
+                ${darkModeVars.getPropertyValue("--border--blue")};
+            --darkreader-border--border--blue-xlight:
+                ${darkModeVars.getPropertyValue("--border--blue-xlight")};
+            --darkreader-border--border--blue-xxlight:
+                ${darkModeVars.getPropertyValue("--border--blue-xxlight")};
+            --darkreader-border--border--green:
+                ${darkModeVars.getPropertyValue("--border--green")};
+            --darkreader-border--border--green-light:
+                ${darkModeVars.getPropertyValue("--border--green-light")};
+            --darkreader-border--border--orange:
+                ${darkModeVars.getPropertyValue("--border--orange")};
+            --darkreader-border--border--orange-xlight:
+                ${darkModeVars.getPropertyValue("--border--orange-xlight")};
+            --darkreader-border--border--orange-shallow-light:
+                ${darkModeVars.getPropertyValue("--border--orange-shallow-light")};
+            --darkreader-border--border--orange-deep:
+                ${darkModeVars.getPropertyValue("--border--orange-deep")};
+            --darkreader-border--border--pink-light:
+                ${darkModeVars.getPropertyValue("--border--pink-light")};
+            --darkreader-border--border--pink-xlight:
+                ${darkModeVars.getPropertyValue("--border--pink-xlight")};
+            --darkreader-border--border--pink-xxlight:
+                ${darkModeVars.getPropertyValue("--border--pink-xxlight")};
+            --darkreader-border--border--pink-xlight:
+                ${darkModeVars.getPropertyValue("--border--pink-xlight")};
+            --darkreader-border--border--gray-dark:
+                ${darkModeVars.getPropertyValue("--border--gray-dark")};
             --darkreader-border--border--gray:
                 ${darkModeVars.getPropertyValue("--border--gray")};
-            --darkreader-border--border--lightgray:
-                ${darkModeVars.getPropertyValue("--border--lightgray")};
+            --darkreader-border--border--gray-xxlight:
+                ${darkModeVars.getPropertyValue("--border--gray-xxlight")};
 
-            --darkreader-bg--bg--custom-blue:
-                ${darkModeVars.getPropertyValue("--bg--custom-blue")};
-            --darkreader-bg--bg--custom-blue-xxlight:
-                ${darkModeVars.getPropertyValue("--bg--custom-blue-xxlight")};
-            --darkreader-bg--bg--custom-green:
-                ${darkModeVars.getPropertyValue("--bg--custom-green")};
-            --darkreader-bg--bg--custom-green-light:
-                ${darkModeVars.getPropertyValue("--bg--custom-green-light")};
-            --darkreader-bg--bg--custom-orange:
-                ${darkModeVars.getPropertyValue("--bg--custom-orange")};
-            --darkreader-bg--bg--custom-orange-light:
-                ${darkModeVars.getPropertyValue("--bg--custom-orange-light")};
-            --darkreader-bg--bg--custom-orange-shallow-light:
-                ${darkModeVars.getPropertyValue("--bg--custom-orange-shallow-light")};
-            --darkreader-bg--bg--custom-orange-shallow-xlight:
+            --darkreader-bg--bg--blue:
+                ${darkModeVars.getPropertyValue("--bg--blue")};
+            --darkreader-bg--bg--blue-xxlight:
+                ${darkModeVars.getPropertyValue("--bg--blue-xxlight")};
+            --darkreader-bg--bg--green:
+                ${darkModeVars.getPropertyValue("--bg--green")};
+            --darkreader-bg--bg--green-light:
+                ${darkModeVars.getPropertyValue("--bg--green-light")};
+            --darkreader-bg--bg--orange:
+                ${darkModeVars.getPropertyValue("--bg--orange")};
+            --darkreader-bg--bg--orange-xlight:
+                ${darkModeVars.getPropertyValue("--bg--orange-xlight")};
+            --darkreader-bg--bg--orange-shallow-light:
+                ${darkModeVars.getPropertyValue("--bg--orange-shallow-light")};
+            --darkreader-bg--bg--orange-shallow-xlight:
                 ${darkModeVars.getPropertyValue("--bg--cusom-orange-shallow-xlight")};
-            --darkreader-bg--bg--custom-pink-xlight:
-                ${darkModeVars.getPropertyValue("--bg--custom-pink-xlight")};
-            --darkreader-bg--bg--custom-pink-shallow-xxxlight:
-                ${darkModeVars.getPropertyValue("--bg--custom-pink-shallow-xxxlight")};
-            --darkreader-bg--bg--custom-pink-shallow-xxxxlight:
-                ${darkModeVars.getPropertyValue("--bg--custom-pink-shallow-xxxxlight")};
-            --darkreader-bg--bg--custom-pink-xshallow-xxlight:
-                ${darkModeVars.getPropertyValue("--bg--custom-pink-xshallow-xxlight")};
+            --darkreader-bg--bg--pink-xlight:
+                ${darkModeVars.getPropertyValue("--bg--pink-xlight")};
+            --darkreader-bg--bg--pink-xxxlight:
+                ${darkModeVars.getPropertyValue("--bg--pink-xxxlight")};
+            --darkreader-bg--bg--pink-xxxxxxlight:
+                ${darkModeVars.getPropertyValue("--bg--pink-xxxxxxlight")};
+            --darkreader-bg--bg--pink-xshallow-xxlight:
+                ${darkModeVars.getPropertyValue("--bg--pink-xshallow-xxlight")};
             --darkreader-bg--bg--whitesmoke:
                 ${darkModeVars.getPropertyValue("--bg--whitesmoke")};
 
-            --darkreader-text--text--custom-blue-deep:
-                ${darkModeVars.getPropertyValue("--text--custom-blue-deep")};
-            --darkreader-text--text--custom-blue-deep-dark:
-                ${darkModeVars.getPropertyValue("--text--custom-blue-deep-dark")};
-            --darkreader-text--text--custom-blue-xdeep:
-                ${darkModeVars.getPropertyValue("--text--custom-blue-xdeep")};
-            --darkreader-text--text--custom-blue-xxdeep:
-                ${darkModeVars.getPropertyValue("--text--custom-blue-xxdeep")};
-            --darkreader-text--text--custom-green-deep-dark:
-                ${darkModeVars.getPropertyValue("--text--custom-green-deep-dark")};
-            --darkreader-text--text--custom-green-deep-xdark:
-                ${darkModeVars.getPropertyValue("--text--custom-green-deep-xdark")};
-            --darkreader-text--text--custom-green-deep-xxdark:
-                ${darkModeVars.getPropertyValue("--text--custom-green-deep-xxdark")};
-            --darkreader-text--text--custom-orange-deep:
-                ${darkModeVars.getPropertyValue("--text--custom-orange-deep")};
-            --darkreader-text--text--custom-orange-xdeep:
-                ${darkModeVars.getPropertyValue("--text--custom-orange-xdeep")};
-            --darkreader-text--text--custom-orange-xxdeep:
-                ${darkModeVars.getPropertyValue("--text--custom-orange-xxdeep")};
-            --darkreader-text--text--custom-pink-light:
-                ${darkModeVars.getPropertyValue("--text--custom-pink-light")};
-            --darkreader-text--text--custom-pink-xlight:
-                ${darkModeVars.getPropertyValue("--text--custom-pink-xlight")};
-            --darkreader-text--text--custom-pink-shallow:
-                ${darkModeVars.getPropertyValue("--text--custom-pink-shallow")};
-            --darkreader-text--text--custom-pink-shallow-light:
-                ${darkModeVars.getPropertyValue("--text--custom-pink-shallow-light")};
-            --darkreader-text--text--custom-pink-shallow-xlight:
-                ${darkModeVars.getPropertyValue("--text--custom-pink-shallow-xlight")};
-            --darkreader-text--text--custom-pink-shallow-xxlight:
-                ${darkModeVars.getPropertyValue("--text--custom-pink-shallow-xxlight")};
+            --darkreader-text--text--blue-deep:
+                ${darkModeVars.getPropertyValue("--text--blue-deep")};
+            --darkreader-text--text--blue-deep-dark:
+                ${darkModeVars.getPropertyValue("--text--blue-deep-dark")};
+            --darkreader-text--text--blue-xdeep:
+                ${darkModeVars.getPropertyValue("--text--blue-xdeep")};
+            --darkreader-text--text--blue-xxdeep:
+                ${darkModeVars.getPropertyValue("--text--blue-xxdeep")};
+            --darkreader-text--text--green-deep-dark:
+                ${darkModeVars.getPropertyValue("--text--green-deep-dark")};
+            --darkreader-text--text--green-deep-xdark:
+                ${darkModeVars.getPropertyValue("--text--green-deep-xdark")};
+            --darkreader-text--text--green-deep-xxdark:
+                ${darkModeVars.getPropertyValue("--text--green-deep-xxdark")};
+            --darkreader-text--text--orange-deep:
+                ${darkModeVars.getPropertyValue("--text--orange-deep")};
+            --darkreader-text--text--orange-xxdeep:
+                ${darkModeVars.getPropertyValue("--text--orange-xxdeep")};
+            --darkreader-text--text--orange-xxxdeep:
+                ${darkModeVars.getPropertyValue("--text--orange-xxxdeep")};
+            --darkreader-text--text--pink-light:
+                ${darkModeVars.getPropertyValue("--text--pink-light")};
+            --darkreader-text--text--pink-xlight:
+                ${darkModeVars.getPropertyValue("--text--pink-xlight")};
+            --darkreader-text--text--pink-shallow:
+                ${darkModeVars.getPropertyValue("--text--pink-shallow")};
+            --darkreader-text--text--pink-light:
+                ${darkModeVars.getPropertyValue("--text--pink-light")};
+            --darkreader-text--text--pink-xlight:
+                ${darkModeVars.getPropertyValue("--text--pink-xlight")};
+            --darkreader-text--text--pink-xxlight:
+                ${darkModeVars.getPropertyValue("--text--pink-xxlight")};
             --darkreader-text--text--black:
                 ${darkModeVars.getPropertyValue("--text--black")};
-            --darkreader-text--text--dimmergray:
-                ${darkModeVars.getPropertyValue("--text--dimmergray")};
-            --darkreader-text--text--dimgray:
-                ${darkModeVars.getPropertyValue("--text--dimgray")};
+            --darkreader-text--text--gray-xxdark:
+                ${darkModeVars.getPropertyValue("--text--gray-xxdark")};
+            --darkreader-text--text--gray-dark:
+                ${darkModeVars.getPropertyValue("--text--gray-dark")};
             --darkreader-text--text--gray:
                 ${darkModeVars.getPropertyValue("--text--gray")};
             --darkreader-text--text--white:
@@ -304,14 +304,14 @@ async function addDarkModeCssFixes() {
             /* since \`border-image\` doesn't seem to be changed by darkreader */
             .border--colorful {
                 border-image: conic-gradient(
-                    var(--darkreader-border--border--custom-orange-light) 62.5deg,
-                    var(--darkreader-border--border--custom-green-light) 85deg,
-                    var(--darkreader-border--border--custom-green-light) 95deg,
-                    var(--darkreader-border--border--custom-blue-xxlight) 112.5deg,
-                    var(--darkreader-border--border--custom-blue-xxlight) 242.5deg,
-                    var(--darkreader-border--border--custom-pink-xxlight) 260deg,
-                    var(--darkreader-border--border--custom-pink-xxlight) 280deg,
-                    var(--darkreader-border--border--custom-orange-light) 312.5deg
+                    var(--darkreader-border--border--orange-xlight) 62.5deg,
+                    var(--darkreader-border--border--green-light) 85deg,
+                    var(--darkreader-border--border--green-light) 95deg,
+                    var(--darkreader-border--border--blue-xxlight) 112.5deg,
+                    var(--darkreader-border--border--blue-xxlight) 242.5deg,
+                    var(--darkreader-border--border--pink-xxlight) 260deg,
+                    var(--darkreader-border--border--pink-xxlight) 280deg,
+                    var(--darkreader-border--border--orange-xlight) 312.5deg
                 ) 1 !important;
             }
 
@@ -342,7 +342,7 @@ async function addDarkModeCssFixes() {
             }
 
             .spoiler {
-                background-color: dimgray !important;
+                background-color: gray-dark !important;
             }
 
             .spoiler:hover {

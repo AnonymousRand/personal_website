@@ -8,28 +8,28 @@
 
     {% set descendants = comment.get_descendants(post) %}
     {% if comment.author|trim == config["VERIFIED_AUTHOR"] %}
-      <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %} border--custom-orange border--2px">
+      <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %} border--orange border--2px">
         <div class="card-body pb-2">
-          <h3 class="d-flex align-items-center mb-3 border-b border--1px border--lightgray pb-3 fs-7">
+          <h3 class="d-flex align-items-center mb-3 border-b border--1px border--gray-xxlight pb-3 fs-7">
             {{ comment.author }}<i class="bi bi-check-circle ms-2" title="(actually verified, unlike twitter &gt;:3)"></i>
           </h3>
     {% else %}
-    <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--custom-pink-shallow-xlight{% else %} border--lightgray{% endif %} border--2px">
+    <div id="comment-{{ comment.id }}" class="comment card mt-{% if comment.depth == 0 %}3{% else %}1{% endif %}{% if current_user.is_authenticated and comment.is_unread %} border--pink-xlight{% else %} border--gray-xxlight{% endif %} border--2px">
         <div class="card-body pb-2">
-          <h3 class="mb-3 border-b border--1px border--lightgray pb-3 fs-7">{{ comment.author }}</h3>
+          <h3 class="mb-3 border-b border--1px border--gray-xxlight pb-3 fs-7">{{ comment.author }}</h3>
     {% endif %}
           <div class="comment__content mb-3">{{ comment.content|safe }}</div>
-          <div class="mb-1 dimgray fs-10">{{ moment(comment.timestamp).format("Y/M/D") }} ({{ moment(comment.timestamp).fromNow() }})</div>
+          <div class="mb-1 gray-dark fs-10">{{ moment(comment.timestamp).format("Y/M/D") }} ({{ moment(comment.timestamp).fromNow() }})</div>
           
           {% if comment.depth < 6 %}
-            <button id="comment__reply-btn-{{ comment.id }}" class="comment__reply-btn btn btn-link btn-link--custom-orange-xdeep underline-on-hover-only" type="button">reply</button>
+            <button id="comment__reply-btn-{{ comment.id }}" class="comment__reply-btn btn btn-link btn-link--orange-xxdeep underline-on-hover-only" type="button">reply</button>
             {{ wtf.quick_form(add_comment_form, id="comment__add-reply-form-" ~ comment.id, class="comment__add-form mt-3 mb-2", hidden=true) }}
           {% else %}
-            <p class="comment__nest-limit-text mb-0 custom-orange-xdeep">pwease stop replying, my code cannot handle this 0~0</p>
+            <p class="comment__nest-limit-text mb-0 orange-xxdeep">pwease stop replying, my code cannot handle this 0~0</p>
           {% endif %}
 
           <div class="d-flex align-items-center"{% if not current_user.is_authenticated %} hidden{% endif %}>
-            <button id="comment__make-edit-btn-{{ comment.id }}" class="comment__make-edit-btn btn btn-link btn-link--custom-pink-shallow-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">edit</button><span class="pipe--0_85em mx-2 custom-pink-shallow-xlight"></span><button id="comment__delete-btn-{{ comment.id }}" class="comment__delete-btn btn btn-link btn-link--custom-pink-shallow-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">delete</button>
+            <button id="comment__make-edit-btn-{{ comment.id }}" class="comment__make-edit-btn btn btn-link btn-link--pink-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">edit</button><span class="pipe--0_85em mx-2 pink-xlight"></span><button id="comment__delete-btn-{{ comment.id }}" class="comment__delete-btn btn btn-link btn-link--pink-xlight d-inline-block underline-on-hover-only show-when-logged-in" type="button">delete</button>
           </div>
         </div>
       </div>

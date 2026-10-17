@@ -30,7 +30,7 @@ POST_EXTS = [
     markdown_environments.DropdownExtension(
         types={
             "dropdown": {
-                "html_class": "border--2px border--custom-pink-xlight dimgray"
+                "html_class": "border--2px border--pink-xlight gray-dark"
             }
         },
         html_class="md-dropdown",
@@ -76,14 +76,14 @@ POST_EXTS = [
                     "thm_type": "Corollary",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--lightgray"
+                        "md-textbox last-child-no-mb border--4px border--gray-xxlight"
                     )
                 },
                 "coro_thm": {
                     "thm_type": "Corollary",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--custom-orange"
+                        "md-textbox last-child-no-mb border--4px border--orange"
                     )
                 },
                 "coro_impt": {
@@ -98,13 +98,13 @@ POST_EXTS = [
                     "thm_type": "Definition",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--custom-green"
+                        "md-textbox last-child-no-mb border--4px border--green"
                     )
                 },
                 r"defn\\\*": {
                     "thm_type": "Definition",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--custom-green"
+                        "md-textbox last-child-no-mb border--4px border--green"
                     )
                 },
 
@@ -112,7 +112,7 @@ POST_EXTS = [
                     "thm_type": "Example",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "dimgray"
+                        "gray-dark"
                     )
                 },
                 r"ex\\\*": {
@@ -123,7 +123,7 @@ POST_EXTS = [
                     "thm_type": "Lemma",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--lightgray"
+                        "md-textbox last-child-no-mb border--4px border--gray-xxlight"
                     )
                 },
 
@@ -131,13 +131,13 @@ POST_EXTS = [
                     "thm_type": "Notation",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--lightgray"
+                        "md-textbox last-child-no-mb border--4px border--gray-xxlight"
                     )
                 },
                 r"notat\\\*": {
                     "thm_type": "Notation",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--lightgray"
+                        "md-textbox last-child-no-mb border--4px border--gray-xxlight"
                     )
                 },
 
@@ -145,13 +145,13 @@ POST_EXTS = [
                     "thm_type": "Proposition",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--lightgray"
+                        "md-textbox last-child-no-mb border--4px border--gray-xxlight"
                     )
                 },
                 r"prop\\\*": {
                     "thm_type": "Proposition",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--lightgray"
+                        "md-textbox last-child-no-mb border--4px border--gray-xxlight"
                     )
                 },
 
@@ -159,13 +159,13 @@ POST_EXTS = [
                     "thm_type": "Theorem",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--custom-orange"
+                        "md-textbox last-child-no-mb border--4px border--orange"
                     )
                 },
                 r"thm\\\*": {
                     "thm_type": "Theorem",
                     "html_class": (
-                        "md-textbox last-child-no-mb border--4px border--custom-orange"
+                        "md-textbox last-child-no-mb border--4px border--orange"
                     )
                 },
                 "thm_impt": {
@@ -183,7 +183,7 @@ POST_EXTS = [
                 "bonus_content": {
                     "thm_type": "Bonus Content",
                     "html_class": (
-                        "border--2px border--custom-pink-xlight dimgray"
+                        "border--2px border--pink-xlight gray-dark"
                     )
                 },
 
@@ -191,13 +191,13 @@ POST_EXTS = [
                     "thm_type": "Exercise",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-exer border--2px border--lightgray dimgray"
+                        "md-exer border--2px border--gray-xxlight gray-dark"
                     )
                 },
                 r"exer\\\*": {
                     "thm_type": "Exercise",
                     "html_class": (
-                        "md-exer border--2px border--lightgray dimgray"
+                        "md-exer border--2px border--gray-xxlight gray-dark"
                     )
                 },
 
@@ -205,7 +205,7 @@ POST_EXTS = [
                     "thm_type": "Proof",
                     "thm_name_overrides_thm_heading": True,
                     "html_class": (
-                        "md-pf dropdown--default-open border--2px border--lightgray dimgray"
+                        "md-pf dropdown--default-open border--2px border--gray-xxlight gray-dark"
                     )
                 },
 
@@ -213,13 +213,13 @@ POST_EXTS = [
                     "thm_type": "Remark",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "border--2px border--lightgray dimgray"
+                        "border--2px border--gray-xxlight gray-dark"
                     )
                 },
                 r"rmk\\\*": {
                     "thm_type": "Remark",
                     "html_class": (
-                        "border--2px border--lightgray dimgray"
+                        "border--2px border--gray-xxlight gray-dark"
                     )
                 }
             },

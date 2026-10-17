@@ -74,12 +74,13 @@
 
       <!-- global custom css -->
       <!-- make sure all custom css comes after bootstrap so we can override it without needing higher specificity/`!important` -->
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/general_vars.css', _external=True) }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/base_vars.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/vars.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/light_theme.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/utils.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', _external=True) }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/btn.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_hljs.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap_tweaks.css', _external=True) }}">
 

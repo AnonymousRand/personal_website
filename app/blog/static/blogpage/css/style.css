@@ -4,12 +4,12 @@ input[value="Reply"][value="Delete"] {
 }
 
 .blogpage__name {
-    color: var(--text--custom-pink-shallow-xxlight);
+    color: var(---pink-xxlight);
 }
 
 .blogpage__subname {
     line-height: 1.4em;
-    color: var(--text--custom-blue-deep-dark);
+    color: var(---blue-deep-dark);
 }
 
 .comment__nest-limit-text {
@@ -36,7 +36,7 @@ input[value="Reply"][value="Delete"] {
 
 .footnotes__wrapper {
     margin-bottom: 1rem;
-    color: var(--text--dimgray);
+    color: var(---gray-dark);
 }
 
 .goto-page-form__page-input {
@@ -65,7 +65,7 @@ input[value="Reply"][value="Delete"] {
 .md-captioned-figure__caption {
     margin-top: -0.5rem;
     text-align: center;
-    color: var(--text--dimgray);
+    color: var(---gray-dark);
     font-size: 0.95rem;
 }
 
@@ -89,12 +89,12 @@ input[value="Reply"][value="Delete"] {
 .md-cmd-line,
 .md-cmd-line pre {
     width: 100%;
-    color: var(--text--dimgray);
+    color: var(---gray-dark);
 }
 
 .md-cmd-line .md-cmd-line__cmd,
 .md-cmd-line .md-cmd-line__cmd pre {
-    color: var(--text--custom-pink-shallow-light);
+    color: var(---pink-light);
 }
 
 .md-dropdown {
@@ -138,12 +138,12 @@ input[value="Reply"][value="Delete"] {
 }
 
 /* `inherit` doesn't work for some reason so we are setting manually */
-:is(.md-dropdown).border--custom-pink-xlight :is(hr, .md-dropdown__content) {
-    border-color: var(--border--custom-pink-xlight);
+:is(.md-dropdown).border--pink-xlight :is(hr, .md-dropdown__content) {
+    border-color: var(---pink-xlight);
 }
 
-:is(.md-dropdown).border--lightgray :is(hr, .md-dropdown__content) {
-    border-color: var(--border--lightgray);
+:is(.md-dropdown).border--gray-xxlight :is(hr, .md-dropdown__content) {
+    border-color: var(---gray-xxlight);
 }
 
 .md-textbox {
@@ -191,7 +191,7 @@ input[value="Reply"][value="Delete"] {
 
 .post__toc {
     z-index: 999;
-    border: 2px solid var(--border--custom-pink-xlight);
+    border: 2px solid var(---pink-xlight);
     margin-top: 1rem;
     padding: 1rem 1rem 0rem 1rem;
     max-height: max(33.3333svh, 15rem);
@@ -207,9 +207,9 @@ input[value="Reply"][value="Delete"] {
          * (up to the size it would be on a 1728px screen), and is centered within the
          * left margin (with 1/6 of the margin on each side of the TOC) */
         /* i'm sure there are better ways to do this but im a frontend noob so math it is */
-        --sticky-width: calc((min(100vw, 1728px) - var(--container-content-max-width)) / 3);
-        --left-sticky-margin-left: calc(
-            -5 * (min(100vw, 1728px) - var(--container-content-max-width)) / 12
+        ---sticky-width: calc((min(100vw, 1728px) - var(---container-content-max-width)) / 3);
+        ---left-sticky-margin-left: calc(
+            -5 * (min(100vw, 1728px) - var(---container-content-max-width)) / 12
         );
     }
 
@@ -221,10 +221,10 @@ input[value="Reply"][value="Delete"] {
         padding: 0 !important;
         /* TOC takes up max 2/3 of the screen height, and is vertically centered
          * (as if it took 75% of the screen height) when stickied */
-        top: calc(16.667svh + var(--toc-heading-outer-height)) !important;
-        max-height: calc(66.667svh - var(--toc-heading-outer-height)) !important;
-        margin-left: var(--left-sticky-margin-left) !important;
-        width: var(--sticky-width) !important;
+        top: calc(16.667svh + var(---toc-heading-outer-height)) !important;
+        max-height: calc(66.667svh - var(---toc-heading-outer-height)) !important;
+        margin-left: var(---left-sticky-margin-left) !important;
+        width: var(---sticky-width) !important;
     }
 
     .sticky-btns {
@@ -232,8 +232,8 @@ input[value="Reply"][value="Delete"] {
         float: left !important;
         margin-top: 0 !important;
         top: 3.4375rem !important;
-        margin-left: var(--left-sticky-margin-left) !important;
-        width: var(--sticky-width) !important;
+        margin-left: var(---left-sticky-margin-left) !important;
+        width: var(---sticky-width) !important;
     }
 
     .toc__heading {
@@ -256,12 +256,12 @@ input[value="Reply"][value="Delete"] {
     font-size: 14px;
 }
 
-.post-list__post:hover .custom-pink-shallow-xlight {
-    color: var(--text--custom-pink-shallow-light) !important;
+.post-list__post:hover .pink-xlight {
+    color: var(---pink-light) !important;
 }
 
-.post-list__post:hover .custom-blue-deep{
-    color: var(--text--custom-blue-deep) !important;
+.post-list__post:hover .blue-deep{
+    color: var(---blue-deep) !important;
 }
 
 .sticky-btns {
@@ -282,9 +282,9 @@ input[value="Reply"][value="Delete"] {
 }
 
 .toc__heading {
-    background-color: var(--default-bg); /* to match card body */
+    background-color: var(--bs-card-bg); /* to match card body */
 }
 
-.underline--custom-pink-shallow-xlight.post-list__post:hover {
-    text-decoration-color: var(--text--custom-pink-shallow-light) !important;
+.underline--pink-xlight.post-list__post:hover {
+    text-decoration-color: var(---pink-light) !important;
 }

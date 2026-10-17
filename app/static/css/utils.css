@@ -3,47 +3,43 @@
 /**********/
 
 .black {
-    color: var(--text--black) !important;
+    color: var(---black) !important;
 }
 
-.blue {
-    color: var(--text--blue) !important;
-}
-
-.dimgray {
-    color: var(--text--dimgray) !important;
+.gray-dark {
+    color: var(---gray-dark) !important;
 }
 
 .gray {
-    color: var(--text--gray) !important;
+    color: var(---gray) !important;
 }
 
 .red {
-    color: var(--text--red) !important;
+    color: var(---red) !important;
 }
 
-.custom-blue-deep-dark {
-    color: var(--text--custom-blue-deep-dark) !important;
+.blue-deep-dark {
+    color: var(---blue-deep-dark) !important;
 }
 
-.custom-orange-deep {
-    color: var(--text--custom-orange-deep) !important;
+.orange-deep {
+    color: var(---orange-deep) !important;
 }
 
-.custom-orange-xdeep {
-    color: var(--text--custom-orange-deep) !important;
+.orange-xxdeep {
+    color: var(---orange-deep) !important;
 }
 
-.custom-pink-shallow-light {
-    color: var(--text--custom-pink-shallow-light) !important;
+.pink-light {
+    color: var(---pink-light) !important;
 }
 
-.custom-pink-shallow-xlight {
-    color: var(--text--custom-pink-shallow-xlight) !important;
+.pink-xlight {
+    color: var(---pink-xlight) !important;
 }
 
-.custom-pink-shallow-xxlight {
-    color: var(--text--custom-pink-shallow-xxlight) !important;
+.pink-xxlight {
+    color: var(---pink-xxlight) !important;
 }
 
 /************/
@@ -73,44 +69,44 @@
 .border--colorful {
     border-color: transparent !important;
     border-image: conic-gradient(
-        var(--border--custom-orange-light) 62.5deg,
-        var(--border--custom-green-light) 85deg,
-        var(--border--custom-green-light) 95deg,
-        var(--border--custom-blue-xxlight) 112.5deg,
-        var(--border--custom-blue-xxlight) 242.5deg,
-        var(--border--custom-pink-xxlight) 260deg,
-        var(--border--custom-pink-xxlight) 280deg,
-        var(--border--custom-orange-light) 312.5deg
+        var(---orange-xlight) 62.5deg,
+        var(---green-light) 85deg,
+        var(---green-light) 95deg,
+        var(---blue-xxlight) 112.5deg,
+        var(---order-blue-xxlight) 242.5deg,
+        var(---pink-xxlight) 260deg,
+        var(---pink-xxlight) 280deg,
+        var(---orange-xlight) 312.5deg
     ) 1 !important;
     /* use when `background-clip` is better supported for `border-radius` support
     background: conic-gradient(
-        var(--border--custom-orange-light) 62.5deg,
-        var(--border--custom-green-light) 85deg,
-        var(--border--custom-green-light) 95deg,
-        var(--border--custom-blue-xxlight) 112.5deg,
-        var(--border--custom-blue-xxlight) 242.5deg,
-        var(--border--custom-pink-xxlight) 260deg,
-        var(--border--custom-pink-xxlight) 280deg,
-        var(--border--custom-orange-light) 312.5deg
+        var(---orange-xlight) 62.5deg,
+        var(---green-light) 85deg,
+        var(---green-light) 95deg,
+        var(---blue-xxlight) 112.5deg,
+        var(---blue-xxlight) 242.5deg,
+        var(---pink-xxlight) 260deg,
+        var(---pink-xxlight) 280deg,
+        var(---orange-xlight) 312.5deg
     ) border-box;
     background-clip: border-area;
     */
 }
 
-.border--custom-green {
-    border-color: var(--border--custom-green) !important;
+.border-green {
+    border-color: var(---green) !important;
 }
 
-.border--custom-orange {
-    border-color: var(--border--custom-orange) !important;
+.border-orange {
+    border-color: var(---orange) !important;
 }
 
-.border--custom-pink-xlight {
-    border-color: var(--border--custom-pink-xlight) !important;
+.border-pink-xlight {
+    border-color: var(---pink-xlight) !important;
 }
 
-.border--lightgray {
-    border-color: var(--border--lightgray) !important;
+.border--gray-xxlight {
+    border-color: var(---gray-xxlight) !important;
 }
 
 /*********/
@@ -122,39 +118,24 @@
     border-style: solid;
 }
 
-.btn--default {
-    border-color: var(--accent-border) !important;
-    background-color: var(--accent-bg) !important;
-    color: var(--accent-fg) !important;
-}
-
-.btn--default:hover {
-    border-color: var(--accent-hover-border) !important;
-    background-color: var(--accent-hover-bg) !important;
-}
-
-.btn--default:active {
-    background-color: var(--accent-active-bg) !important;
-}
-
 /**************/
 /* `btn-link` */
 /**************/
 
-.btn-link--custom-orange-xdeep {
-    color: var(--text--custom-orange-xdeep) !important;
+.btn-link-orange-xxdeep {
+    color: var(---orange-xxdeep) !important;
 }
 
-.btn-link--custom-orange-xdeep:hover {
-    color: var(--text--custom-orange-xxdeep) !important;
+.btn-link-orange-xxdeep:hover {
+    color: var(---orange-xxxdeep) !important;
 }
 
-.btn-link--custom-pink-shallow-xlight {
-    color: var(--text--custom-pink-shallow-xlight) !important;
+.btn-link-pink-xlight {
+    color: var(---pink-xlight) !important;
 }
 
-.btn-link--custom-pink-shallow-xlight:hover {
-    color: var(--text--custom-pink-shallow-light) !important;
+.btn-link-pink-xlight:hover {
+    color: var(---pink-light) !important;
 }
 
 /**********/
@@ -166,74 +147,74 @@
     text-decoration: underline !important;
     text-decoration-style: dotted !important;
     text-decoration-color: currentcolor !important;
-    color: var(--text--dimgray) !important;
+    color: var(---gray-dark) !important;
 }
 
 .link--discreet:hover,
 .link--discreet:hover .MathJax * {
-    color: var(--text--dimmergray) !important;
+    color: var(---gray-xxdark) !important;
 }
 
-.link--custom-blue-xdeep {
+.link-blue-xdeep {
     text-decoration-color: currentcolor !important;
-    color: var(--text--custom-blue-xdeep) !important;
+    color: var(---blue-xdeep) !important;
 }
 
-.link--custom-blue-xdeep:hover {
-    color: var(--text--custom-blue-xxdeep) !important;
+.link-blue-xdeep:hover {
+    color: var(---blue-xxdeep) !important;
 }
 
-.link--custom-green-deep-dark {
+.link-green-deep-dark {
     text-decoration-color: currentcolor !important;
-    color: var(--text--custom-green-deep-dark) !important;
+    color: var(---green-deep-dark) !important;
 }
 
-.link--custom-green-deep-dark:hover {
-    color: var(--text--custom-green-deep-xdark) !important;
+.link-green-deep-dark:hover {
+    color: var(---green-deep-xdark) !important;
 }
 
-.link--custom-orange-deep {
+.link-orange-deep {
     text-decoration-color: currentcolor !important;
-    color: var(--text--custom-orange-deep) !important;
+    color: var(---orange-deep) !important;
 }
 
-.link--custom-orange-deep:hover {
-    color: var(--text--custom-orange-xdeep) !important;
+.link-orange-deep:hover {
+    color: var(---orange-xxdeep) !important;
 }
 
-.link--custom-pink-shallow-xlight {
+.link-pink-xlight {
     text-decoration-color: currentcolor !important;
-    color: var(--text--custom-pink-shallow-xlight) !important;
+    color: var(---pink-xlight) !important;
 }
 
-.link--custom-pink-shallow-xlight:hover {
-    color: var(--text--custom-pink-shallow-light) !important;
+.link-pink-xlight:hover {
+    color: var(---pink-light) !important;
 }
 
-.link--custom-pink-shallow-xxlight {
+.link-pink-xxlight {
     text-decoration-color: currentcolor !important;
-    color: var(--text--custom-pink-shallow-xxlight) !important;
+    color: var(---pink-xxlight) !important;
 }
 
-.link--custom-pink-shallow-xxlight:hover {
-    color: var(--text--custom-pink-shallow-xlight) !important;
+.link-pink-xxlight:hover {
+    color: var(---pink-xlight) !important;
 }
 
 .link--gray {
     text-decoration-color: currentcolor !important;
-    color: var(--text--gray) !important;
+    color: var(---gray) !important;
 }
 
 .link--gray:hover {
-    color: var(--text--dimgray) !important;
+    color: var(---gray-dark) !important;
 }
 
 /***************/
 /* `underline` */
 /***************/
 
-.underline--custom-pink-shallow-xxlight {
-    text-decoration-color: var(--text--custom-pink-shallow-xxlight) !important;
+.underline-pink-xxlight {
+    text-decoration-color: var(---pink-xxlight) !important;
 }
 
 /*********/
@@ -401,13 +382,13 @@
 .cell--left-header {
     border-right-width: 3px !important;
     border-right-style: double !important;
-    background-color: var(--bg--whitesmoke) !important;
+    background-color: var(---pink-xxxxxxlight) !important;
 }
 
 .cell--top-header {
     border-bottom-width: 3px !important;
     border-bottom-style: double !important;
-    background-color: var(--bg--whitesmoke) !important;
+    background-color: var(---pink-xxxxxxlight) !important;
 }
 
 .extend-off-page {
@@ -416,9 +397,9 @@
     /* extend exactly to edge of screen and clip */
     width: calc(
         /* distance to edge of main container */
-        var(--container-content-width) + var(--container-content-padding-x) +
+        var(---container-content-width) + var(---container-content-padding-x) +
         /* distance from edge of main container to edge of screen */
-        (100svw - var(--container-content-max-width)) / 2
+        (100svw - var(---container-content-max-width)) / 2
     );
 }
 
@@ -446,7 +427,7 @@
     margin-bottom: 1rem;
     border-bottom: 3px solid currentcolor;
     padding-bottom: 0.5rem;
-    color: var(--text--custom-pink-shallow-xxlight);
+    color: var(---pink-xxlight);
     font-size: calc(1.3rem + 2.4vw); /* fs-3 */
 }
 
@@ -462,7 +443,7 @@
     margin-bottom: 1rem !important;
     border-bottom: 2px solid currentcolor;
     padding-bottom: 0.25rem;
-    color: var(--text--custom-blue-deep-dark);
+    color: var(---blue-deep-dark);
     font-size: calc(1.2rem + 1.6vw); /* fs-5 */
 }
 
@@ -515,14 +496,14 @@
 /* need specificity gah i freaking hate css */
 .form-switch .switch--navbar {
     margin-top: 0;
-    border-color: var(--border--lightgray);
-    background-color: var(--switch-unchecked-bg-color);
+    border-color: var(---gray-xxlight);
+    background-color: var(---pink-xxxxxxlight);
     width: 2.5rem;
     height: 1.25rem;
 }
 
 .form-switch .switch--navbar:checked {
-    background-color: var(--bg--custom-pink-xshallow-xxlight) !important;
+    background-color: var(---pink-xxxxxlight) !important;
 }
 
 .text-overflow-ellipsis {

@@ -2,7 +2,7 @@ function addCommentSyntaxGuideTooltip() {
     $("#leave-a-comment #content-field label").first()
         .append(" (mouse over to show formatting options)")
         .attr("data-bs-toggle", "tooltip")
-        .attr("data-bs-custom-class", "comment-tooltip")
+        .attr("data-bs-class", "comment-tooltip")
         .attr("data-bs-html", "true")
         .attr(
             "data-bs-title",
@@ -43,5 +43,5 @@ addCommentSyntaxGuideTooltip();
 tweakFootnotes();
 // for making sure TOC is vertically centered
 document.documentElement.style.setProperty(
-    "--toc-heading-outer-height", `${$("#toc__heading").outerHeight()}px`
+    "---toc-heading-outer-height", `${$("#toc__heading").outerHeight()}px`
 );

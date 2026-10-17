@@ -1,92 +1,100 @@
 :root {
-    /**************************************************************************/
-    /* special colors :3 */
-
-    --default-bg: white;
-    --default-fg: #212529;
-    --lighter-fg: #a8a8a8;
-
-    --variant-bg: #feedf3;
-    --variant-fg: var(---custom-pink-shallow-xxlight);
-
-    --accent-border:       var(---custom-pink-xxlight);
-    --accent-bg:           var(---custom-pink-xxxlight);
-    --accent-fg:           var(---custom-pink-light);
-    --accent-hover-border: var(---custom-pink-xlight);
-    --accent-hover-bg:     var(---custom-pink-xxlight);
-    --accent-active-bg:    var(---custom-pink-xlight);
-    --strong-accent-bg:    var(---custom-pink-xxlight);
-    --strong-accent-fg:    var(---custom-pink);
-
-    /**************************************************************************/
-    /* palette colors */
-
-    --border--custom-blue: var(---custom-blue); /* used in form */
-    --border--custom-blue-xlight: var(---custom-blue-xlight);
-    --border--custom-blue-xxlight: var(---custom-blue-xxlight); /* used in `.border--colorful` */
-    --border--custom-green: var(---custom-green); /* used in form */
-    --border--custom-green-light: var(---custom-green-light); /* used in `.border--colorful` */
-    --border--custom-orange: var(---custom-orange); /* used in form */
-    --border--custom-orange-light: var(---custom-orange-light); /* used in `.border--colorful` */
-    --border--custom-orange-shallow-light: var(---custom-orange-shallow-light); /* used in select */
-    --border--custom-orange-deep: var(---custom-orange-deep); /* used in btn */
-    --border--custom-pink-light: var(---custom-pink-light); /* used in tables */
-    --border--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
-    --border--custom-pink-xxlight: var(---custom-pink-xxlight); /* used in `.border--colorful` */
-    --border--custom-pink-shallow-xlight: var(---custom-pink-shallow-xlight); /* used in tooltip */
-    --border--dimgray: dimgray;
-    --border--gray: gray;
-    --border--lightgray: lightgray;
-
-    --bg--custom-blue: var(---custom-blue); /* used in form */
-    --bg--custom-blue-xxlight: var(---custom-blue-xxlight); /* used in menu */
-    --bg--custom-green: var(---custom-green); /* used in form */
-    --bg--custom-green-light: var(---custom-green-light); /* used in menu, select */
-    --bg--custom-orange: var(---custom-orange); /* used in form */
-    --bg--custom-orange-light: var(---custom-orange-light); /* used in menu */
-    --bg--custom-orange-shallow-light: var(---custom-orange-shallow-light);
-    --bg--custom-orange-shallow-xlight: var(---custom-orange-shallow-xlight);
-    --bg--custom-pink-light: var(---custom-pink-light); /* used in forgejo */
-    --bg--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
-    --bg--custom-pink-shallow-xxxlight: var(---custom-pink-shallow-xxxlight); /* used in forgejo */
-    --bg--custom-pink-shallow-xxxxlight: var(---custom-pink-shallow-xxxxlight); /* used in menu */
-    --bg--custom-pink-xshallow-xxlight: var(---custom-pink-xshallow-xxlight); /* used in switch */
-    --bg--whitesmoke: var(---dimmergray); /* used in table cell headers (TODO) */
-
-    --text--custom-blue-deep: var(---custom-blue-deep);
-    --text--custom-blue-deep-dark: var(---custom-blue-deep-dark);
-    --text--custom-blue-xdeep: var(---custom-blue-xdeep);
-    --text--custom-blue-xxdeep: var(---custom-blue-xxdeep);
-    --text--custom-green-deep-dark: var(---custom-green-deep-dark);
-    --text--custom-green-deep-xdark: var(---custom-green-deep-xdark);
-    --text--custom-green-deep-xxdark: var(---custom-green-deep-xxdark);
-    --text--custom-orange-deep: var(---custom-orange-deep);
-    --text--custom-orange-xdeep: var(---custom-orange-xdeep);
-    --text--custom-orange-xxdeep: var(---custom-orange-xxdeep);
-    --text--custom-pink-shallow: var(---custom-pink-shallow);
-    --text--custom-pink-shallow-light: var(---custom-pink-shallow-light);
-    --text--custom-pink-shallow-xlight: var(---custom-pink-shallow-xlight);
-    --text--custom-pink-shallow-xxlight: var(---custom-pink-shallow-xxlight);
-    --text--black: black;
-    --text--dimmergray: #282828;
-    --text--dimgray: dimgray;
-    --text--gray: gray;
-    --text--white: white;
-    --text--blue: blue;
-    --text--red: red;
-
-    /**************************************************************************/
-    /* specific colors */
-
-    --link-color: var(---custom-pink-shallow-xlight);
-    --link-hover-color: var(---custom-pink-shallow-light);
-    --link-disabled-color: var(---custom-pink-shallow-xxxlight);
-
-    --code-color: var(---custom-pink-shallow);
-
-    --default-border-color: #dee2e6;
-    --translucent-border-color: rgb(0 0 0 / 0.175);
-    --dropdown-border-color: var(--translucent-border-color);
-
-    --switch-unchecked-bg-color: #f0f0f0;
+  ---accent-1-bg: #ffabd5;
+  ---accent-1-fg: #ff0080;
+  ---accent-2-bg: #ffc7e4;
+  ---accent-2-fg: #ff409f;
+  ---accent-3-bg: #ffdbed;
+  ---accent-3-fg: #ff73b9;
+  ---accent-4-bg: #ffe3f1;
+  ---accent-4-fg: #ff91c8;
+  ---accent-blue-fg: #00eaff;
+  ---accent-brown-fg: #ff9500;
+  ---accent-default-bg: #ffdbed;
+  ---accent-default-fg: #ff73b9;
+  ---accent-gold-fg: #ffbb00;
+  ---accent-gray-fg: #505050;
+  ---accent-green-fg: #78da00;
+  ---accent-olive-fg: #70cc00;
+  ---accent-orange-fg: #ffaa00;
+  ---accent-pink-fg: #ffabd5;
+  ---accent-purple-fg: #ff00ea;
+  ---accent-red-fg: #ff0000;
+  ---accent-teal-fg: #00d0ff;
+  ---accent-violet-fg: #ff66f2;
+  ---accent-yellow-fg: #ffaa00;
+  ---border-1-color: #ff73b9;
+  ---border-2-color: #ff91c8;
+  ---border-3-color: #ffabd5;
+  ---border-4-color: #ffc7e4;
+  ---border-default-color: #ffabd5;
+  ---btn-flat-border-color: #ffabd5;
+  ---btn-flat-border-slct-color: #ff91c8;
+  ---btn-flat-border-vrnt-color: #ffc7e4;
+  ---btn-flat-hover-bg: #ffdbed;
+  ---btn-flat-hover-bg-vrnt: #ffe3f1;
+  ---btn-flat-hover-fg: #ff73b9;
+  ---btn-flat-hover-fg-vrnt: #ff91c8;
+  ---btn-raised-base-bg: #ffdbed;
+  ---btn-raised-base-bg-slct: #ffc7e4;
+  ---btn-raised-base-bg-vrnt: #ffe3f1;
+  ---btn-raised-base-fg: #ff73b9;
+  ---btn-raised-base-fg-slct: #ff409f;
+  ---btn-raised-base-fg-vrnt: #ff91c8;
+  ---btn-raised-border-color: #ff91c8;
+  ---btn-raised-border-slct-color: #ff73b9;
+  ---btn-raised-border-vrnt-color: #ffabd5;
+  ---btn-selected-base-bg: #ffc7e4;
+  ---btn-selected-base-bg-vrnt: #ffdbed;
+  ---btn-selected-base-fg: #ff409f;
+  ---btn-selected-base-fg-vrnt: #ff73b9;
+  ---btn-selected-border-color: #ff73b9;
+  ---btn-selected-border-vrnt-color: #ff91c8;
+  ---btn-xraised-base-bg: #ffc7e4;
+  ---btn-xraised-base-bg-vrnt: #ffdbed;
+  ---btn-xraised-base-fg: #ff409f;
+  ---btn-xraised-base-fg-vrnt: #ff73b9;
+  ---btn-xraised-border-color: #ff73b9;
+  ---btn-xraised-border-vrnt-color: #ff91c8;
+  ---code-class-fg: #ffaa00;
+  ---code-comment-fg: #70cc00;
+  ---code-constant-fg: #00d0ff;
+  ---code-function-fg: #ffaa00;
+  ---code-keyword-fg: #ff91c8;
+  ---code-match-paren-bg: #baff66;
+  ---code-match-paren-fg: #707070;
+  ---code-variable-fg: #707070;
+  ---cursor-bg: #ffc7e4;
+  ---cursor-fg: #ff409f;
+  ---default-bg: #feedf3;
+  ---default-fg: #707070;
+  ---error-color: #ff0000;
+  ---error-bg: #ffcccc;
+  ---error-fg: #cc0000;
+  ---hover-bg: #ffdbed;
+  ---hover-bg-vrnt: #ffe3f1;
+  ---hover-fg: #ff73b9;
+  ---hover-fg-vrnt: #ff91c8;
+  ---lighter-fg: #a8a8a8;
+  ---link-fg: #ff73b9;
+  ---link-disabled-fg: #ffabd5;
+  ---link-hover-fg: #ff409f;
+  ---link-visited-fg: #ff409f;
+  ---md-bold-fg: #ff91c8;
+  ---md-code-fg: #ff409f;
+  ---md-italic: #ff91c8;
+  ---md-title-fg: #ff409f;
+  ---search-bg: #ffdbed;
+  ---search-curr-bg: #a3ff33;
+  ---search-curr-fg: #707070;
+  ---search-fg: #ff73b9;
+  ---selection-bg: #ffdbed;
+  ---selection-fg: #ff73b9;
+  ---success-color: #70cc00;
+  ---success-bg: #e8ffcc;
+  ---success-fg: #4c8a00;
+  ---variant-bg: #fffafc;
+  ---variant-fg: #ff91c8;
+  ---warning-color: #ff9500;
+  ---warning-bg: #ffeecc;
+  ---warning-fg: #bd6800;
 }

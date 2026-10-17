@@ -1,0 +1,50 @@
+/* a general catch-all placeholder for all elements which may change colors on hover/activation */
+.btn--default {
+  /* colors should generally be overriden by just setting `----curr-bg` and/or `----base-bg`
+   * (unless, for example, some other style completely overrode `background-color`) */
+  ----curr-bg: var(----base-bg, transparent);
+  ----curr-fg: var(----base-fg, inherit);
+  background-color: var(----curr-bg);
+  text-decoration-color: var(----curr-fg);
+  color: var(----curr-fg);
+}
+.btn--default:hover, .btn--default:focus {
+  ----curr-bg: var(----hover-bg);
+  ----curr-fg: var(----hover-fg);
+}
+.btn--default:active {
+  ----curr-bg: var(----active-bg);
+  ----curr-fg: var(----active-fg);
+}
+
+.btn--default {
+  ----base-bg: var(--btn-raised-base-bg, var(---error-color));
+  ----base-fg: var(--btn-raised-base-fg, var(---error-color));
+  ----hover-bg: hsl(from var(----base-bg) h s calc(l - 2.5%));
+  ----hover-fg: var(----base-fg);
+  ----active-bg: hsl(from var(----hover-bg) h s calc(l - 2.5%));
+  ----active-fg: var(----hover-fg);
+}
+
+.btn--default {
+  --btn-border-color: var(--btn-raised-border-color);
+}
+
+body {
+  --btn-flat-border-color: var(---btn-flat-border-color-vrnt);
+  --btn-flat-hover-bg: var(---btn-flat-hover-bg-vrnt);
+  --btn-flat-hover-fg: var(---btn-flat-hover-fg-vrnt);
+  --btn-raised-border-color: var(---btn-raised-border-color-vrnt);
+  --btn-raised-base-bg: var(---btn-raised-base-bg-vrnt);
+  --btn-raised-base-fg: var(---btn-raised-base-fg-vrnt);
+  --btn-xraised-border-color: var(---btn-xraised-border-color-vrnt);
+  --btn-xraised-base-bg: var(---btn-xraised-base-bg-vrnt);
+  --btn-xraised-base-fg: var(---btn-xraised-base-fg-vrnt);
+  --btn-selected-border-color: var(---btn-selected-border-color-vrnt);
+  --btn-selected-base-bg: var(---btn-selected-base-bg-vrnt);
+  --btn-selected-base-fg: var(---btn-selected-base-fg-vrnt);
+}
+
+.btn--default {
+  border: 2px solid var(--btn-border-color);
+}

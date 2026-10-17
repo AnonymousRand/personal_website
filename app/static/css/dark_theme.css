@@ -1,94 +1,100 @@
 :root {
-    /**************************************************************************/
-    /* special colors :3 */
-
-    --default-bg: black;
-    --default-fg: #e9e4dc;
-    --lighter-fg: #909090;
-
-    --variant-bg: var(---dimmergray);
-    --variant-fg: var(---custom-pink-shallow-xxlight);
-
-    --accent-border:       var(---custom-pink-light);
-    --accent-bg:           var(---custom-pink-xlight);
-    --accent-fg:           var(---custom-pink);
-    --accent-hover-border: var(---custom-pink-xlight);
-    --accent-hover-bg:     var(---custom-pink-xxlight);
-    --accent-active-bg:    var(---custom-pink-xxxlight);
-    --strong-accent-bg:    var(---custom-pink-xxlight);
-    --strong-accent-fg:    var(---custom-pink);
-
-    /**************************************************************************/
-    /* palette colors */
-
-    --border--custom-blue: var(---custom-blue); /* used in form */
-    --border--custom-blue-xlight: var(---custom-blue-xlight);
-    --border--custom-blue-xxlight: var(---custom-blue-xlight); /* used in `.border--colorful` */
-    --border--custom-green: var(---custom-green); /* used in form */
-    --border--custom-green-light: var(---custom-green); /* used in `.border--colorful` */
-    --border--custom-orange: var(---custom-orange); /* used in form */
-    --border--custom-orange-light: var(---custom-orange); /* used in `.border--colorful` */
-    --border--custom-orange-shallow-light: var(---custom-orange); /* used in select */
-    --border--custom-orange-deep: var(---custom-orange-light); /* used in btn */
-    --border--custom-pink-light: var(---custom-pink-xxlight); /* used in tables */
-    --border--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
-    --border--custom-pink-xxlight: var(---custom-pink-xlight); /* used in `.border--colorful` */
-    --border--custom-pink-shallow-xlight: var(---custom-pink); /* used in tooltip */
-    --border--dimgray: lightgray;
-    --border--gray: gray;
-    --border--lightgray: gray;
-
-    --bg--custom-blue: var(---custom-blue); /* used in form */
-    --bg--custom-blue-xxlight: var(---custom-blue-deep-xlight); /* used in menu */
-    --bg--custom-green: var(---custom-green); /* used in form */
-    --bg--custom-green-light: var(---custom-green-light); /* used in menu, select */
-    --bg--custom-orange: var(---custom-orange); /* used in form */
-    --bg--custom-orange-light: var(---custom-orange-light); /* used in menu */
-    --bg--custom-orange-shallow-light: var(---custom-orange-shallow-light);
-    --bg--custom-orange-shallow-xlight: var(---custom-orange-light);
-    --bg--custom-pink-light: var(---custom-pink-xxlight); /* used in forgejo */
-    --bg--custom-pink-xlight: var(---custom-pink-xlight); /* used in form */
-    --bg--custom-pink-shallow-xxxlight: var(---custom-pink-shallow-xxxxlight); /* used in forgejo */
-    --bg--custom-pink-shallow-xxxxlight: var(---custom-pink-xshallow-xxlight); /* used in menu */
-    --bg--custom-pink-xshallow-xxlight: var(---custom-pink-xshallow-xxlight); /* used in switch */
-    --bg--whitesmoke: var(---dimmergray); /* used in table cell headers (TODO) */
-
-    --text--custom-blue-deep: var(---custom-blue);
-    --text--custom-blue-deep-dark: var(---custom-blue-light);
-    --text--custom-blue-xdeep: var(---custom-blue-deep-light);
-    --text--custom-blue-xxdeep: var(---custom-blue-deep-xlight);
-    --text--custom-green-deep-dark: var(---custom-green-deep);
-    --text--custom-green-deep-xdark: var(---custom-green);
-    --text--custom-green-deep-xxdark: var(---custom-green-light);
-    --text--custom-orange-deep: var(---custom-orange);
-    --text--custom-orange-xdeep: var(---custom-orange-light);
-    --text--custom-orange-xxdeep: var(---custom-orange-xlight);
-    --text--custom-pink-shallow: var(---custom-pink-xshallow-xlight);
-    --text--custom-pink-shallow-light: var(---custom-pink-xshallow-xxlight);
-    --text--custom-pink-shallow-xlight: var(---custom-pink-xshallow-xlight);
-    --text--custom-pink-shallow-xxlight: var(---custom-pink-xshallow-light);
-    --text--black: white;
-    --text--dimmergray: #d9d4cc;
-    --text--dimgray: #c7bfb3;
-    --text--gray: #c7c1b7;
-    --text--white: black;
-    --text--blue: cyan;
-    --text--red: red;
-
-    /**************************************************************************/
-    /* specific colors */
-
-    /* turn blue links into green actually on dark mode since it's cooler, but green
-     * doesn't show up well normally in light mode */
-    --link-color: var(---custom-green-light);
-    --link-hover-color: var(---custom-green-xlight);
-    --link-disabled-color: var(---custom-green-deep-xxdark);
-
-    --code-color: var(---custom-pink-xshallow-xxlight);
-
-    --default-border-color: gray;
-    --translucent-border-color: gray;
-    --dropdown-border-color: var(--translucent-border-color);
-
-    --switch-unchecked-bg-color: white;
+  ---accent-1-bg: #ff73b9;
+  ---accent-1-fg: #000000;
+  ---accent-2-bg: #ff91c8;
+  ---accent-2-fg: #242424;
+  ---accent-3-bg: #ffabd5;
+  ---accent-3-fg: #ff0080;
+  ---accent-4-bg: #ffc7e4;
+  ---accent-4-fg: #ff409f;
+  ---accent-blue-fg: #66f2ff;
+  ---accent-brown-fg: #ff9500;
+  ---accent-default-bg: #ffabd5;
+  ---accent-default-fg: #ff0080;
+  ---accent-gold-fg: #ffbb00;
+  ---accent-gray-fg: #505050;
+  ---accent-green-fg: #a3ff33;
+  ---accent-olive-fg: #78da00;
+  ---accent-orange-fg: #ffc526;
+  ---accent-pink-fg: #ffabd5;
+  ---accent-purple-fg: #ff00ea;
+  ---accent-red-fg: #ff0000;
+  ---accent-teal-fg: #00bbff;
+  ---accent-violet-fg: #ff66f2;
+  ---accent-yellow-fg: #ffea00;
+  ---border-1-color: #ff409f;
+  ---border-2-color: #ff73b9;
+  ---border-3-color: #ff91c8;
+  ---border-4-color: #ffabd5;
+  ---border-default-color: #ff91c8;
+  ---btn-flat-border-color: #ff91c8;
+  ---btn-flat-border-slct-color: #ff73b9;
+  ---btn-flat-border-vrnt-color: #ffabd5;
+  ---btn-flat-hover-bg: #ffabd5;
+  ---btn-flat-hover-bg-vrnt: #ffc7e4;
+  ---btn-flat-hover-fg: #ff0080;
+  ---btn-flat-hover-fg-vrnt: #ff409f;
+  ---btn-raised-base-bg: #ffabd5;
+  ---btn-raised-base-bg-slct: #ff91c8;
+  ---btn-raised-base-bg-vrnt: #ffc7e4;
+  ---btn-raised-base-fg: #ff0080;
+  ---btn-raised-base-fg-slct: #242424;
+  ---btn-raised-base-fg-vrnt: #ff409f;
+  ---btn-raised-border-color: #ff73b9;
+  ---btn-raised-border-slct-color: #ff409f;
+  ---btn-raised-border-vrnt-color: #ff91c8;
+  ---btn-selected-base-bg: #ff91c8;
+  ---btn-selected-base-bg-vrnt: #ffabd5;
+  ---btn-selected-base-fg: #242424;
+  ---btn-selected-base-fg-vrnt: #ff0080;
+  ---btn-selected-border-color: #ff409f;
+  ---btn-selected-border-vrnt-color: #ff73b9;
+  ---btn-xraised-base-bg: #ff91c8;
+  ---btn-xraised-base-bg-vrnt: #ffabd5;
+  ---btn-xraised-base-fg: #242424;
+  ---btn-xraised-base-fg-vrnt: #ff0080;
+  ---btn-xraised-border-color: #ff409f;
+  ---btn-xraised-border-vrnt-color: #ff73b9;
+  ---code-class-fg: #ffd500;
+  ---code-comment-fg: #a3ff33;
+  ---code-constant-fg: #66f2ff;
+  ---code-function-fg: #ffd500;
+  ---code-keyword-fg: #ffc7e4;
+  ---code-match-paren-bg: #baff66;
+  ---code-match-paren-fg: #000000;
+  ---code-variable-fg: #cccccc;
+  ---cursor-bg: #ffc7e4;
+  ---cursor-fg: #ff409f;
+  ---default-bg: #000000;
+  ---default-fg: #cccccc;
+  ---error-color: #ff0000;
+  ---error-bg: #ffcccc;
+  ---error-fg: #cc0000;
+  ---hover-bg: #ffabd5;
+  ---hover-bg-vrnt: #ffc7e4;
+  ---hover-fg: #ff0080;
+  ---hover-fg-vrnt: #ff409f;
+  ---lighter-fg: #909090;
+  ---link-fg: #c9ff40;
+  ---link-disabled-fg: #70cc00;
+  ---link-hover-fg: #deff8c;
+  ---link-visited-fg: #deff8c;
+  ---md-bold-fg: #ffabd5;
+  ---md-code-fg: #ff91c8;
+  ---md-italic: #ffabd5;
+  ---md-title-fg: #ff91c8;
+  ---search-bg: #ffc7e4;
+  ---search-curr-bg: #a3ff33;
+  ---search-curr-fg: #000000;
+  ---search-fg: #ff409f;
+  ---selection-bg: #ffc7e4;
+  ---selection-fg: #ff409f;
+  ---success-color: #b7ff00;
+  ---success-bg: #e8ffcc;
+  ---success-fg: #4c8a00;
+  ---variant-bg: #242424;
+  ---variant-fg: #ff91c8;
+  ---warning-color: #ffbb00;
+  ---warning-bg: #ffeecc;
+  ---warning-fg: #bd6800;
 }
