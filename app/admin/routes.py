@@ -127,7 +127,8 @@ def search_posts(*args, **kwargs):
         if post is None:
             return jsonify(flash_msg="that post doesn't exist 3:")
         return jsonify(redir_url=url_for(
-            f"blog.{post.blogpage_id}.edit_post_form", post_sanitized_title=post.sanitized_title,
+            f"blog.{post.blogpage_id}.edit_post_form",
+            post_id=post_id, post_sanitized_title=post.sanitized_title,
             _external=True
         ))
 

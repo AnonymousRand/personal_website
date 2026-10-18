@@ -30,7 +30,7 @@
   --btn-border-color: var(--btn-raised-border-color);
 }
 
-.hljs, .inline-code-block, .tooltip .tooltip-inner {
+details, .code-box, .form-control, .hljs, .inline-code-block, .tooltip .tooltip-inner {
   --btn-flat-border-color: var(---btn-flat-border-vrnt-1-color);
   --btn-flat-hover-bg: var(---btn-flat-hover-bg-vrnt-1);
   --btn-flat-hover-fg: var(---btn-flat-hover-fg-vrnt-1);

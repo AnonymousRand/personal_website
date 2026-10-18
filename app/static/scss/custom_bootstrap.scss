@@ -1,0 +1,198 @@
+$font-size:   16px;
+$font-weight: 500;
+
+$body-border: var(---variant-2-border);
+$body-bg:     var(---variant-2-bg);
+$body-color:  var(---variant-2-gray-fg);
+
+$variant-1-border: var(---variant-1-border);
+$variant-1-bg:     var(---variant-1-bg);
+$variant-1-color:  var(---variant-1-gray-fg);
+
+$accent-bg: var(---accent-default-bg);
+$accent-fg: var(---accent-default-fg);
+
+$border-color:   var(---border-default-color);
+$border-4-color: var(---border-4-color);
+
+$disabled-opacity: 0.5;
+
+$navbar-light-color:       $body-color;
+$navbar-light-hover-color: hsl(from #{$navbar-light-color} h s calc(l - 2.5));
+$navbar-dark-color:        $body-color;
+$navbar-dark-hover-color:  hsl(from #{$navbar-dark-color} h s calc(l - 2.5));
+
+@use "../node_modules/bootstrap/scss/bootstrap" with (
+  // IMPORTANT: currently for bootstrap v5.3.*! variables may change in different versions
+
+  // font
+
+  $font-family-sans-serif: "Quicksand :3",
+  $font-family-monospace:  "Maple Mono NL",
+  $font-size-root:         $font-size,
+
+  $font-weight-normal:   $font-weight,
+  $headings-font-weight: $font-weight,
+  $input-font-weight:    $font-weight,
+
+  /*
+  // we are not overriding palette colors since that also requires changing bootstrap's whole
+  // tinting and shading process as currently that uses scss' `mix()` which doesn't support css vars
+
+  $primary:   var(---accent-default-fg),
+  $secondary: var(---accent-cyan-fg),
+  $success:   var(---success-fg),
+  $info:      var(---info-fg),
+  $warning:   var(---warning-fg),
+  $danger:    var(---error-fg),
+  $light:     var(---gray-xxxlight-bg),
+  $dark:      var(---gray-xxdark-fg),
+
+  // body
+
+  $body-bg:    var(---variant-2-bg),
+  $body-color: var(---variant-2-gray-fg),
+
+  // links
+
+  $link-color:       var(---link-fg),
+  $link-hover-color: var(---link-hover-fg),
+
+  // components
+
+  $border-width:             2px,
+  $border-color:             $border-color,
+  $border-color-translucent: rgb($border-color, 0.5),
+
+  $component-active-bg:    $accent-bg,
+  $component-active-color: $accent-fg,
+
+  $text-muted: var(---gray-dark-fg),
+
+  $hr-opacity: 1,
+  $hr-color:   $border-color,
+
+  // tables
+
+  $table-border-color:  var(---border-2-color),
+  $table-caption-color: var(---gray-dark-fg),
+
+  // buttons
+
+  $btn-disabled-opacity:    $disabled-opacity,
+
+  $btn-link-color:          var(---link-fg),
+  $btn-link-hover-color:    var(---link-hover-fg),
+  $btn-link-disabled-color: var(---link-disabled-fg),
+
+  // forms
+
+  $input-border-color: $variant-1-border,
+  $input-bg:           $variant-1-bg,
+  $input-color:        $variant-1-color,
+
+  $form-check-input-border: 2px solid $border-color,
+  $form-check-input-bg:     $body-bg,
+
+  $form-switch-color: var(---gray-xxxlight-bg),
+
+  // e.g. file form button
+  $input-group-addon-border-color: $variant-1-border,
+  $input-group-addon-bg:           $variant-1-bg,
+  $input-group-addon-color:        $variant-1-color,
+
+  $form-file-button-hover-bg: hsl(from #{$variant-1-bg} h s calc(l - 2.5)),
+
+  // override this as it tries to use `mix()` on css var
+  $form-range-thumb-active-bg: $accent-bg,
+
+  // navbar
+
+  $nav-link-disabled-color: var(---link-disabled-fg),
+
+  $navbar-light-color:                $navbar-light-color,
+  $navbar-light-hover-color:          $navbar-light-hover-color,
+  $navbar-light-active-color:         hsl(from #{$navbar-light-hover-color} h s calc(l - 2.5)),
+  $navbar-light-disabled-color:       rgb(from #{$navbar-light-color} r g b / $disabled-opacity),
+  $navbar-light-toggler-border-color: var(---border-5-color),
+  $navbar-light-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$border-4-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>"),
+
+  $navbar-dark-color:                $navbar-dark-color,
+  $navbar-dark-hover-color:          $navbar-dark-hover-color,
+  $navbar-dark-active-color:         hsl(from #{$navbar-dark-hover-color} h s calc(l - 2.5)),
+  $navbar-dark-disabled-color:       rgb(from #{$navbar-dark-color} r g b / $disabled-opacity),
+  $navbar-dark-toggler-border-color: var(---border-5-color),
+  $navbar-dark-toggler-icon-bg:      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$border-4-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>"),
+
+  // dropdowns
+
+  $dropdown-border-color: $variant-1-border,
+  $dropdown-bg:           $variant-1-bg,
+  $dropdown-color:        $variant-1-color,
+
+  $dropdown-link-color:       var(---link-fg),
+  $dropdown-link-hover-color: var(---link-hover-fg),
+  $dropdown-header-color:     var(---pink-xlight-fg),
+
+  $dropdown-dark-border-color:     $variant-1-border,
+  $dropdown-dark-bg:               $variant-1-bg,
+  $dropdown-dark-color:            $variant-1-color,
+  $dropdown-dark-link-color:       var(---link-fg),
+  $dropdown-dark-link-hover-color: var(---link-hover-fg),
+  $dropdown-dark-header-color:     var(---pink-xlight-fg),
+
+  // cards
+
+  $card-border-color: $variant-1-border,
+  $card-bg:           $variant-1-bg,
+  $card-color:        $variant-1-color,
+  $card-cap-bg:       var(---default-bg),
+  $card-cap-color:    var(---default-fg),
+
+  // accordion
+
+  // override this as it tries to use `mix()` on css var
+  $accordion-button-active-bg:    $accent-bg,
+  $accordion-button-active-color: $accent-fg,
+
+  // tooltips
+
+  $tooltip-opacity: 1,
+  $tooltip-bg:      $variant-1-bg,
+  $tooltip-color:   $variant-1-color,
+
+  // popovers
+
+  $popover-border-color: $variant-1-border,
+  $popover-bg:           $variant-1-bg,
+  $popover-body-color:   $variant-1-color,
+
+  $popover-header-bg:    var(---default-bg),
+  $popover-header-color: var(---default-fg),
+
+  // modals
+
+  $modal-content-bg:           $body-bg,
+  $modal-content-border-color: $body-border,
+
+  $modal-backdrop-bg:      $accent-bg,
+  $modal-backdrop-opacity: 0.3,
+
+  $modal-header-border-color: $border-color,
+  $modal-footer-border-color: $border-color,
+
+  // figures
+
+  $figure-caption-color: var(---gray-dark-fg),
+
+  // close
+
+  $btn-close-color: var(---pink-xlight-fg),
+
+  // code
+
+  $code-font-size: $font-size,
+  $code-color:     var(---md-code-fg),
+  $pre-color:      var(---gray-dark-fg)
+  */
+);

@@ -1,23 +1,26 @@
 /******************************************************************************/
 /* base styles */
 
-body {
-  --bs-body-bg: var(---variant-2-bg);
-  --bs-body-color: var(---variant-2-gray-fg);
-}
-
 body,
 .dropdown-menu,
 .dropdown-item,
 .flash,
 .navbar {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
+  --bs-body-bg:    var(---variant-2-bg);
+  --bs-body-color: var(---variant-2-gray-fg);
+
+  border-color: var(---variant-2-border);
+  background-color: var(---variant-2-bg);
+  color: var(---variant-2-gray-fg);
 }
 
+details,
+.code-box,
+.form-control,
 .hljs,
 .inline-code-block,
 .tooltip .tooltip-inner {
+  border-color: var(---variant-1-border) !important;
   background-color: var(---variant-1-bg) !important;
   color: var(---variant-1-gray-fg) !important;
 }
@@ -25,7 +28,8 @@ body,
 /******************************************************************************/
 /* specific styles/overrides */
 
+.code-box,
 .hljs,
 .inline-code-block {
-  color: var(---gray-dark) !important;
+  color: var(---gray-dark-fg) !important;
 }

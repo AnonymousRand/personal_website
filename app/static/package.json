@@ -4,7 +4,8 @@
   "description": "using npm with flask is a bad idea, they said",
   "main": "index.js",
   "scripts": {
-    "compile_bootstrap": "sass scss/custom.scss css/custom_bootstrap.css --style=compressed"
+    "compile_bootstrap":
+        "sass scss/custom_bootstrap.scss css/custom_bootstrap.css --style=compressed"
   },
   "author": "AnonymousRand",
   "license": "ISC",
@@ -12,7 +13,7 @@
     "sass": "^1.83.0"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
+    "bootstrap": "~5.3.3",
     "package.json": "^0.0.0"
   }
 }

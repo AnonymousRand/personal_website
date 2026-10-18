@@ -1,0 +1,49 @@
+:root {
+  --bs-red:    var(---accent-red-fg);
+  --bs-orange: var(---accent-orange-fg);
+  --bs-yellow: var(---accent-yellow-fg);
+  --bs-green:  var(---accent-green-fg);
+  --bs-teal:   var(---accent-teal-fg);
+  --bs-cyan:   var(---accent-cyan-fg);
+  --bs-blue:   var(---accent-blue-fg);
+  --bs-indigo: var(---accent-indigo-fg);
+  --bs-purple: var(---accent-purple-fg);
+  --bs-pink:   var(---accent-pink-fg);
+
+  --bs-black:     var(---black-fg);
+  --bs-gray-dark: var(---gray-xdark-fg);
+  --bs-gray:      var(---gray-dark-fg);
+  --bs-white:     var(---white-fg);
+
+  --bs-primary:   var(---accent-default-fg);
+  --bs-secondary: var(---secondary-fg);
+  --bs-success:   var(---success-fg);
+  --bs-info:      var(---info-fg);
+  --bs-warning:   var(---warning-fg);
+  --bs-danger:    var(---error-fg);
+  --bs-light:     var(---gray-xxxlight-bg);
+  --bs-dark:      var(---gray-xxdark-fg);
+
+  --bs-font-sans-serif:  "Quicksand :3", sans-serif;
+  --bs-font-monospace:   "Maple Mono NL", monospace;
+  --bs-body-font-size:   1rem;
+  --bs-body-font-weight: 500;
+
+  --bs-body-bg:     var(---variant-2-bg);
+  --bs-body-color:  var(---variant-2--gray-fg);
+
+  --bs-secondary-bg:    var(---secondary-bg);
+  --bs-secondary-color: var(---secondary-fg);
+
+  --bs-border-width:             2px;
+  --bs-border-color:             var(---border-default-color);
+  --bs-border-color-translucent: rgb(from var(---border-default-color) r g b / 0.5);
+
+  --bs-highlight-bg:    var(---selection-bg);
+  --bs-highlight-color: var(---selection-fg);
+
+  --bs-link-color:       var(---link-fg);
+  --bs-link-hover-color: var(---link-hover-fg);
+
+  --bs-code-color: var(---md-code-fg);
+}

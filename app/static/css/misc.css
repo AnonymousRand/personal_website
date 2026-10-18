@@ -17,9 +17,9 @@ a:is(:hover, :active, :focus, :focus-visible),
 
 blockquote {
   margin-left: 0rem;
-  border-left: 4px solid var(---pink-xxxxlight);
+  border-left: 4px solid var(---accent-2-bg);
   padding-left: 1rem;
-  color: var(---gray-dark);
+  color: var(---gray-dark-fg);
 }
 
 /* need `:root` to set `rem` size but also `body` to override any defaults */
@@ -37,14 +37,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 hr {
-  opacity: 100%;
-  border-width: 2px;
-  border-color: var(---pink-xxxxlight);
+  opacity: 1;
+  border-top: 2px solid var(---border-default-color);
 }
 
 label:has(+ [required]):after,
 label:has(+ * [required]):after {
-  color: var(---red);
+  color: var(---red-fg);
   content:" *";
 }
 
@@ -88,18 +87,21 @@ pre, code {
 }
 
 /* use `.inline-code-block` for "inline code blocks", i.e. a code block that respects whitespace
- * unlike inline code, but still does things like word wrapping */
+ * unlike inline code, but still does e.g. word wrapping unlike fenced code blocks which scroll */
+/* and use `.code-box` for manually adding code boxes to code that was not added in via fenced
+ * markdown syntax and hence doesn't get `.hljs` (e.g. from custom markdown syntax) */
 pre:not(table pre, .inline-code-block *) code,
 .code-box {
   margin-bottom: 1rem;
-  border: 2px solid var(---pink-xxxxlight);
+  border: 2px solid;
   border-radius: var(--bs-border-radius);
   padding: 0.75rem 1rem;
 }
 
 table {
   margin-bottom: 1rem;
-  border-color: var(---pink-xxlight);
+  border: 2px solid var(--border-default-color);
+  /*border: 1px solid var(--border-2-color);*/
   width: max-content;
 }
 
@@ -138,8 +140,25 @@ textarea.form-control {
   font-size: 1.125em;
 }
 
-.btn-close {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23909090'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e")
+/* tooltip arrow */
+.bs-tooltip-top .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
+  border-top-color: var(---pink-xxxxlight) !important;
+}
+
+.bs-tooltip-right .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
+  border-right-color: var(---pink-xxxxlight) !important;
+}
+
+.bs-tooltip-bottom .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
+  border-bottom-color: var(---pink-xxxxlight) !important;
+}
+
+.bs-tooltip-left .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
+  border-left-color: var(---pink-xxxxlight) !important;
 }
 
 .btn-link {
@@ -147,6 +166,7 @@ textarea.form-control {
   --bs-btn-hover-color: var(---link-hover-fg);
   --bs-btn-active-color: var(---link-fg);
   --bs-btn-disabled-color: var(---link-disabled-fg);
+
   background-color: transparent !important;
   padding: 0;
 }
@@ -179,14 +199,9 @@ textarea.form-control {
 /* need specificity gah i freaking hate css */
 .form-switch .switch--navbar {
   margin-top: 0;
-  border-color: var(---pink-xxxxlight);
-  background-color: var(---gray-xxxlight);
+  border-color: var(---border-4-color);
   width: 2.5rem;
   height: 1.25rem;
-}
-
-.form-switch .switch--navbar:checked {
-  background-color: var(---pink-xxxxxlight) !important;
 }
 
 .flash {
@@ -209,8 +224,13 @@ textarea.form-control {
   max-width: inherit;
 }
 
-.icon-navbar-toggler {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='%23909090' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
+.input-group.has-validation >
+  :nth-last-child(n + 3):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating),
+.input-group.has-validation > .dropdown-toggle:nth-last-child(n + 4),
+.input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-control,
+.input-group.has-validation > .form-floating:nth-last-child(n + 3) > .form-select {
+  border-top-right-radius: var(--bs-border-radius);
+  border-bottom-right-radius: var(--bs-border-radius);
 }
 
 .nav-link {
@@ -236,9 +256,55 @@ textarea.form-control {
   max-width: 100%;
 }
 
+/* use classes like `post-h1` to mimic post h1 styling outside of posts */
+.post-h1,
+:is(.post__content, .comment__content) h1 {
+  margin-bottom: 1rem;
+  border-bottom: 3px solid currentcolor;
+  padding-bottom: 0.5rem;
+  color: var(---pink-xxlight-fg);
+  font-size: calc(1.3rem + 2.4vw); /* fs-3 */
+}
+
+@media (min-width: 800px) {
+  .post-h1,
+  :is(.post__content, .comment__content) h1 {
+    font-size: 2.5rem;
+  }
+}
+
+.post-h2,
+:is(.post__content, .comment__content) h2 {
+  margin-bottom: 1rem !important;
+  border-bottom: 2px solid currentcolor;
+  padding-bottom: 0.25rem;
+  color: var(---blue-deep-dark-fg);
+  font-size: calc(1.2rem + 1.6vw); /* fs-5 */
+}
+
+@media (min-width: 800px) {
+  .post-h2,
+  :is(.post__content, .comment__content) h2 {
+    font-size: 2rem;
+  }
+}
+
+.post-h3,
+:is(.post__content, .comment__content) h3 {
+  margin-bottom: 1rem;
+  font-size: calc(1.15rem + 1.2vw); /* fs-6 */
+}
+
+@media (min-width: 800px) {
+  .post-h3,
+  :is(.post__content, .comment__content) h3 {
+    font-size: 1.75rem;
+  }
+}
+
 .post-img:hover,
 :is(.post__content, .comment__content) img:hover {
-  border-color: var(---pink-xxxxlight) !important;
+  border-color: var(---border-4-color) !important;
 }
 
 /* post images are 100% width if not specified in `width` attribute */
@@ -268,7 +334,7 @@ textarea.form-control {
 }
 
 .tooltip .tooltip-inner {
-  border: 2px solid var(---pink-xxxxlight) !important;
+  border: 2px solid !important;
   border-radius: var(--bs-border-radius);
   max-width: 30rem !important;
 }

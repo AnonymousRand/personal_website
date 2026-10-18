@@ -66,19 +66,26 @@ function randomizeColors() {
     // can't use `css()` here since it doesn't support `!important`, which is needed sometimes
     $("body").append(`
         <style>
+            :root {
+              --bs-box-shadow: 0 0.5rem 1rem var(${colorChoice.form.boxShadow});
+              --bs-focus-ring-color: var(${colorChoice.form.border});
+            }
+
             ::selection {
               background-color: var(${colorChoice.selection});
             }
 
+            /*
             :is(select, input:not([type="button"], [type="submit"]), textarea):is(:hover, :focus) {
               box-shadow: 0 0 0 0.25rem ${colorChoice.form.boxShadow} !important;
               border-color: var(${colorChoice.form.border}) !important;
             }
 
-            /* probably won't work yet, maybe in the future though :( */
-            input.is([type="checkbox"], [type="radio"]) {
-              accent-color: var(${colorChoice.form.accent}) !important;
+            .form-check-input:checked {
+              border-color: var(${colorChoice.form.border}) !important;
+              background-color: var(${colorChoice.form.accent}) !important;
             }
+            */
 
             option:active, .dropdown-item:hover, .dropdown-item:active {
               background-color: var(${colorChoice.menuHighlight}) !important;

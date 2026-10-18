@@ -4,12 +4,12 @@ input[value="Reply"][value="Delete"] {
 }
 
 .blogpage__name {
-  color: var(---pink-xxlight);
+  color: var(---pink-xxlight-fg);
 }
 
 .blogpage__subname {
   line-height: 1.4em;
-  color: var(---blue-deep-dark);
+  color: var(---blue-deep-dark-fg);
 }
 
 .comment__nest-limit-text {
@@ -40,7 +40,7 @@ input[value="Reply"][value="Delete"] {
 
 .footnotes__wrapper {
   margin-bottom: 1rem;
-  color: var(---gray-dark);
+  color: var(---gray-dark-fg);
 }
 
 .goto-page-form__page-input {
@@ -69,7 +69,7 @@ input[value="Reply"][value="Delete"] {
 .md-captioned-figure__caption {
   margin-top: -0.5rem;
   text-align: center;
-  color: var(---gray-dark);
+  color: var(---gray-dark-fg);
   font-size: 0.95rem;
 }
 
@@ -93,12 +93,12 @@ input[value="Reply"][value="Delete"] {
 .md-cmd-line,
 .md-cmd-line pre {
   width: 100%;
-  color: var(---gray-dark);
+  color: var(---gray-dark-fg);
 }
 
 .md-cmd-line .md-cmd-line__cmd,
 .md-cmd-line .md-cmd-line__cmd pre {
-  color: var(---pink-light);
+  color: var(---pink-light-fg);
 }
 
 .md-dropdown {
@@ -110,6 +110,10 @@ input[value="Reply"][value="Delete"] {
 
 .md-dropdown__content {
   margin-top: 0.5rem;
+}
+
+.md-dropdown__summary {
+  color: var(---pink-xlight-fg);
 }
 
 /* need first paragraph to be `inline` to start on same line as open/close dropdown marker,
@@ -142,13 +146,8 @@ input[value="Reply"][value="Delete"] {
 }
 
 /* `inherit` doesn't work for some reason so we are setting manually */
-:is(.md-dropdown).border--pink-xxxlight :is(hr, .md-dropdown__content) {
-  /* yes, we do want this to be slightly lighter */
-  border-color: var(---pink-xxxxlight);
-}
-
-:is(.md-dropdown).border--gray-xxlight :is(hr, .md-dropdown__content) {
-  border-color: var(---gray-xxlight);
+:is(.md-dropdown).border--4 :is(hr, .md-dropdown__content) {
+  border-color: var(---border-4-color);
 }
 
 .md-textbox {
@@ -202,6 +201,11 @@ input[value="Reply"][value="Delete"] {
   max-height: max(33.3333svh, 15rem);
 }
 
+.post__toc > .toc__heading {
+  /* so any color changes span the whole thing */
+  width: 100%;
+}
+
 .post__toc > hr {
   z-index: 999;
 }
@@ -220,13 +224,14 @@ input[value="Reply"][value="Delete"] {
 
   .post__toc {
     position: sticky !important;
-    float: left !important;
-    margin-top: 0 !important;
-    border: none !important;
-    padding: 0 !important;
     /* TOC takes up max 2/3 of the screen height, and is vertically centered
      * (as if it took 75% of the screen height) when stickied */
     top: calc(16.667svh + var(---toc-heading-outer-height)) !important;
+    float: left !important;
+    margin-top: 0 !important;
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
     max-height: calc(66.667svh - var(---toc-heading-outer-height)) !important;
     margin-left: var(---left-sticky-margin-left) !important;
     width: var(---sticky-width) !important;
