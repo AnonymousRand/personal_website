@@ -1,12 +1,20 @@
 let flashMsgTimeoutId;
 
-function flashMsg(msg) {
+function flashMsg(msg, impt = false) {
     clearTimeout(flashMsgTimeoutId);
+    jqFlash = $("#flash");
+    // non-important flashes cannot override active `impt` ones
+    if (impt) {
+        jqFlash.addClass("impt-flash");
+    } else if (jqFlash.hasClass("impt-flash")) {
+        return;
+    }
+
     $("#flash__text").text(msg); // `text()` by itself is xss-safe
-    $("#flash").removeAttr("hidden");
+    jqFlash.removeAttr("hidden");
     $("#flash__wrapper").css("z-index", "9999");
     flashMsgTimeoutId = setTimeout(function() {
-        $("#flash").alert("close");
+        jqFlash.alert("close");
     }, 10000);
 }
 
@@ -27,5 +35,6 @@ $(document).ready(flashMsgFromQueryStr);
 $(document).on("close.bs.alert", "#flash", function(e) {
     const nodeDuplicateFlash = e.target.cloneNode(true);
     nodeDuplicateFlash.setAttribute("hidden", "");
+    nodeDuplicateFlash.classList.remove("impt-flash");
     document.getElementById("flash__wrapper").append(nodeDuplicateFlash);
 });

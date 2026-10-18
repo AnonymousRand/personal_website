@@ -50,11 +50,11 @@ const colorChoices = {
     pink: {
         menuHighlight: "---pink-xxxxxxlight",
         form: {
-            accent: "---pink-xxlight",
-            border: "---pink-xxlight",
-            boxShadow: "color-mix(in srgb, var(---pink-xxlight) 50%, transparent)"
+            accent: "---pink-xxxxlight",
+            border: "---pink-xxxxlight",
+            boxShadow: "color-mix(in srgb, var(---pink-xxxxlight) 50%, transparent)"
         },
-        flashBorder: "---pink-xlight",
+        flashBorder: "---pink-xxxxlight",
         selection: "---pink-xxxxxxlight"
     }
 };
