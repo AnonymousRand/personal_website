@@ -3,47 +3,47 @@
 /**********/
 
 .black {
-    color: var(---black) !important;
+  color: var(---black) !important;
 }
 
 .gray-dark {
-    color: var(---gray-dark) !important;
+  color: var(---gray-dark) !important;
 }
 
 .gray {
-    color: var(---gray) !important;
+  color: var(---gray) !important;
 }
 
 .red {
-    color: var(---red) !important;
+  color: var(---red) !important;
 }
 
 .blue-deep-dark {
-    color: var(---blue-deep-dark) !important;
+  color: var(---blue-deep-dark) !important;
 }
 
 .orange-deep {
-    color: var(---orange-deep) !important;
+  color: var(---orange-deep) !important;
 }
 
 .orange-xxdeep {
-    color: var(---orange-deep) !important;
+  color: var(---orange-deep) !important;
 }
 
 .pink-light {
-    color: var(---pink-light) !important;
+  color: var(---pink-light) !important;
 }
 
 .pink-xlight {
-    color: var(---pink-xlight) !important;
+  color: var(---pink-xlight) !important;
 }
 
 .pink-xxlight {
-    color: var(---pink-xxlight) !important;
+  color: var(---pink-xxlight) !important;
 }
 
 .pink-xxxlight {
-    color: var(---pink-xxxlight) !important;
+  color: var(---pink-xxxlight) !important;
 }
 
 /************/
@@ -51,74 +51,74 @@
 /************/
 
 .border--1px {
-    border-width: 1px !important;
+  border-width: 1px !important;
 }
 
 .border--2px {
-    border-width: 2px !important;
+  border-width: 2px !important;
 }
 
 .border--4px {
-    border-width: 4px !important;
+  border-width: 4px !important;
 }
 
 .border--6px {
-    border-width: 6px !important;
+  border-width: 6px !important;
 }
 
 .border-b {
-    border-bottom-style: solid !important;
+  border-bottom-style: solid !important;
 }
 
 .border--colorful {
-    border-color: transparent !important;
-    border-image: conic-gradient(
-        var(---orange-xlight) 62.5deg,
-        var(---green-light) 85deg,
-        var(---green-light) 95deg,
-        var(---blue-xxlight) 112.5deg,
-        var(---blue-xxlight) 242.5deg,
-        var(---pink-xxxxlight) 260deg,
-        var(---pink-xxxxlight) 280deg,
-        var(---orange-xlight) 312.5deg
-    ) 1 !important;
+  border-color: transparent !important;
+  border-image: conic-gradient(
+    var(---orange-xlight) 62.5deg,
+    var(---green-light) 85deg,
+    var(---green-light) 95deg,
+    var(---blue-xxlight) 112.5deg,
+    var(---blue-xxlight) 242.5deg,
+    var(---pink-xxxxlight) 260deg,
+    var(---pink-xxxxlight) 280deg,
+    var(---orange-xlight) 312.5deg
+  ) 1 !important;
 }
 
 @supports (background-clip: border-area) {
-    .border--colorful {
-        /* this allows us to round off the corners using `border-radius` */
-        background: conic-gradient(
-            var(---orange-xlight) 62.5deg,
-            var(---green-light) 85deg,
-            var(---green-light) 95deg,
-            var(---blue-xxlight) 112.5deg,
-            var(---blue-xxlight) 242.5deg,
-            var(---pink-xxxxlight) 260deg,
-            var(---pink-xxxxlight) 280deg,
-            var(---orange-xlight) 312.5deg
-        ) border-box !important;
-        background-clip: border-area !important;
-    }
+  .border--colorful {
+    /* this allows us to round off the corners using `border-radius` */
+    background: conic-gradient(
+      var(---orange-xlight) 62.5deg,
+      var(---green-light) 85deg,
+      var(---green-light) 95deg,
+      var(---blue-xxlight) 112.5deg,
+      var(---blue-xxlight) 242.5deg,
+      var(---pink-xxxxlight) 260deg,
+      var(---pink-xxxxlight) 280deg,
+      var(---orange-xlight) 312.5deg
+    ) border-box !important;
+    background-clip: border-area !important;
+  }
 }
 
 .border--green {
-    border-color: var(---green) !important;
+  border-color: var(---green) !important;
 }
 
 .border--orange {
-    border-color: var(---orange) !important;
+  border-color: var(---orange) !important;
 }
 
 .border--pink-xxxlight {
-    border-color: var(---pink-xxxlight) !important;
+  border-color: var(---pink-xxxlight) !important;
 }
 
 .border--pink-xxxxlight {
-    border-color: var(---pink-xxxxlight) !important;
+  border-color: var(---pink-xxxxlight) !important;
 }
 
 .border--gray-xxlight {
-    border-color: var(---gray-xxlight) !important;
+  border-color: var(---gray-xxlight) !important;
 }
 
 /*********/
@@ -126,8 +126,8 @@
 /*********/
 
 .btn:not(.btn-link, .nav-link) {
-    border-width: 3px;
-    border-style: solid;
+  border-width: 3px;
+  border-style: solid;
 }
 
 /**************/
@@ -135,19 +135,19 @@
 /**************/
 
 .btn-link--orange-xxdeep {
-    color: var(---orange-xxdeep) !important;
+  color: var(---orange-xxdeep) !important;
 }
 
 .btn-link--orange-xxdeep:hover {
-    color: var(---orange-xxxdeep) !important;
+  color: var(---orange-xxxdeep) !important;
 }
 
 .btn-link--pink-xlight {
-    color: var(---pink-xlight) !important;
+  color: var(---pink-xlight) !important;
 }
 
 .btn-link--pink-xlight:hover {
-    color: var(---pink-light) !important;
+  color: var(---pink-light) !important;
 }
 
 /**********/
@@ -156,69 +156,69 @@
 
 .link--discreet,
 .link--discreet .MathJax * {
-    text-decoration: underline !important;
-    text-decoration-style: dotted !important;
-    text-decoration-color: currentcolor !important;
-    color: var(---gray-dark) !important;
+  text-decoration: underline !important;
+  text-decoration-style: dotted !important;
+  text-decoration-color: currentcolor !important;
+  color: var(---gray-dark) !important;
 }
 
 .link--discreet:hover,
 .link--discreet:hover .MathJax * {
-    color: var(---gray-xxdark) !important;
+  color: var(---gray-xxdark) !important;
 }
 
 .link--blue-xdeep {
-    text-decoration-color: currentcolor !important;
-    color: var(---blue-xdeep) !important;
+  text-decoration-color: currentcolor !important;
+  color: var(---blue-xdeep) !important;
 }
 
 .link--blue-xdeep:hover {
-    color: var(---blue-xxdeep) !important;
+  color: var(---blue-xxdeep) !important;
 }
 
 .link--green-deep-dark {
-    text-decoration-color: currentcolor !important;
-    color: var(---green-deep-dark) !important;
+  text-decoration-color: currentcolor !important;
+  color: var(---green-deep-dark) !important;
 }
 
 .link--green-deep-dark:hover {
-    color: var(---green-deep-xdark) !important;
+  color: var(---green-deep-xdark) !important;
 }
 
 .link--orange-deep {
-    text-decoration-color: currentcolor !important;
-    color: var(---orange-deep) !important;
+  text-decoration-color: currentcolor !important;
+  color: var(---orange-deep) !important;
 }
 
 .link--orange-deep:hover {
-    color: var(---orange-xxdeep) !important;
+  color: var(---orange-xxdeep) !important;
 }
 
 .link--pink-xlight {
-    text-decoration-color: currentcolor !important;
-    color: var(---pink-xlight) !important;
+  text-decoration-color: currentcolor !important;
+  color: var(---pink-xlight) !important;
 }
 
 .link--pink-xlight:hover {
-    color: var(---pink-light) !important;
+  color: var(---pink-light) !important;
 }
 
 .link--pink-xxlight {
-    text-decoration-color: currentcolor !important;
-    color: var(---pink-xxlight) !important;
+  text-decoration-color: currentcolor !important;
+  color: var(---pink-xxlight) !important;
 }
 
 .link--pink-xxlight:hover {
-    color: var(---pink-xlight) !important;
+  color: var(---pink-xlight) !important;
 }
 
 .link--gray {
-    text-decoration-color: currentcolor !important;
-    color: var(---gray) !important;
+  text-decoration-color: currentcolor !important;
+  color: var(---gray) !important;
 }
 
 .link--gray:hover {
-    color: var(---gray-dark) !important;
+  color: var(---gray-dark) !important;
 }
 
 /***************/
@@ -226,7 +226,7 @@
 /***************/
 
 .underline--pink-xxlight {
-    text-decoration-color: var(---pink-xxlight) !important;
+  text-decoration-color: var(---pink-xxlight) !important;
 }
 
 /*********/
@@ -235,97 +235,97 @@
 
 /* override all Bootstrap `fs` classes */
 .fs-1 {
-    font-size: calc(1.46em + 3.68vw) !important;
+  font-size: calc(1.46em + 3.68vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-1 {
-        font-size: 3.3em !important;
-    }
+  .fs-1 {
+    font-size: 3.3em !important;
+  }
 }
 
 .fs-2 {
-    font-size: calc(1.4em + 3.2vw) !important;
+  font-size: calc(1.4em + 3.2vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-2 {
-        font-size: 3em !important;
-    }
+  .fs-2 {
+    font-size: 3em !important;
+  }
 }
 
 .fs-3 {
-    font-size: calc(1.3em + 2.4vw) !important;
+  font-size: calc(1.3em + 2.4vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-3 {
-        font-size: 2.5em !important;
-    }
+  .fs-3 {
+    font-size: 2.5em !important;
+  }
 }
 
 .fs-4 {
-    font-size: calc(1.25em + 2vw) !important;
+  font-size: calc(1.25em + 2vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-4 {
-        font-size: 2.25em !important;
-    }
+  .fs-4 {
+    font-size: 2.25em !important;
+  }
 }
 
 .fs-5 {
-    font-size: calc(1.2em + 1.6vw) !important;
+  font-size: calc(1.2em + 1.6vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-5 {
-        font-size: 2em !important;
-    }
+  .fs-5 {
+    font-size: 2em !important;
+  }
 }
 
 .fs-6 {
-    font-size: calc(1.15em + 1.2vw) !important;
+  font-size: calc(1.15em + 1.2vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-6 {
-        font-size: 1.75em !important;
-    }
+  .fs-6 {
+    font-size: 1.75em !important;
+  }
 }
 
 .fs-7 {
-    font-size: calc(1.1em + 0.8vw) !important;
+  font-size: calc(1.1em + 0.8vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-7 {
-        font-size: 1.5em !important;
-    }
+  .fs-7 {
+    font-size: 1.5em !important;
+  }
 }
 
 .fs-8 {
-    font-size: calc(1.05em + 0.4vw) !important;
+  font-size: calc(1.05em + 0.4vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-8 {
-        font-size: 1.25em !important;
-    }
+  .fs-8 {
+    font-size: 1.25em !important;
+  }
 }
 
 .fs-9 {
-    font-size: calc(1.025em + 0.2vw) !important;
+  font-size: calc(1.025em + 0.2vw) !important;
 }
 
 @media (min-width: 800px) {
-    .fs-9 {
-        font-size: 1.125em !important;
-    }
+  .fs-9 {
+    font-size: 1.125em !important;
+  }
 }
 
 .fs-10 {
-    font-size: 0.875em !important;
+  font-size: 0.875em !important;
 }
 
 /*************/
@@ -333,31 +333,31 @@
 /*************/
 
 .me-0_75rem {
-    margin-right: 0.75rem !important;
+  margin-right: 0.75rem !important;
 }
 
 .p-mb-0 p {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .pt-0_75rem {
-    padding-top: 0.75rem !important;
+  padding-top: 0.75rem !important;
 }
 
 .pb-0_75rem {
-    padding-bottom: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
 }
 
 .w-2rem {
-    width: 2rem !important;
+  width: 2rem !important;
 }
 
 .w-2_5em {
-    width: 2.5em !important;
+  width: 2.5em !important;
 }
 
 .w-max-content {
-    width: max-content !important;
+  width: max-content !important;
 }
 
 /* can't use descendant selector; must strictly be last child of last child of ... etc. */
@@ -372,7 +372,7 @@
 .last-child-no-mb > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child,
 .last-child-no-mb > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child,
 .last-child-no-mb > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child {
-    margin-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /********/
@@ -380,11 +380,11 @@
 /********/
 
 .flex-equal-children > * {
-    flex: 1 !important;
+  flex: 1 !important;
 }
 
 .flex-basis-75 {
-    flex-basis: 75% !important;
+  flex-basis: 75% !important;
 }
 
 /*********/
@@ -392,128 +392,128 @@
 /*********/
 
 .cell--left-header {
-    border-right-width: 3px !important;
-    border-right-style: double !important;
-    background-color: var(---pink-xxxxxxlight) !important;
+  border-right-width: 3px !important;
+  border-right-style: double !important;
+  background-color: var(---pink-xxxxxxlight) !important;
 }
 
 .cell--top-header {
-    border-bottom-width: 3px !important;
-    border-bottom-style: double !important;
-    background-color: var(---pink-xxxxxxlight) !important;
+  border-bottom-width: 3px !important;
+  border-bottom-style: double !important;
+  background-color: var(---pink-xxxxxxlight) !important;
 }
 
 .extend-off-page {
-    white-space: nowrap;
-    overflow: hidden;
-    /* extend exactly to edge of screen and clip */
-    width: calc(
-        /* distance to edge of main container */
-        var(---container-content-width) + var(---container-content-padding-x) +
-        /* distance from edge of main container to edge of screen */
-        (100svw - var(---container-content-max-width)) / 2
-    );
+  white-space: nowrap;
+  overflow: hidden;
+  /* extend exactly to edge of screen and clip */
+  width: calc(
+    /* distance to edge of main container */
+    var(---container-content-width) + var(---container-content-padding-x) +
+    /* distance from edge of main container to edge of screen */
+    (100svw - var(---container-content-max-width)) / 2
+  );
 }
 
 .inline-code-block code {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 .min-svh-100 {
-    min-height: 100svh !important;
+  min-height: 100svh !important;
 }
 
 .pipe--0_85em {
-    border-left: 2px solid !important;
-    height: 0.85em;
+  border-left: 2px solid !important;
+  height: 0.85em;
 }
 
 .pipe--1_5em {
-    border-left: 2px solid !important;
-    height: 1.5em;
+  border-left: 2px solid !important;
+  height: 1.5em;
 }
 
 /* use classes like `post-h1` to mimic post h1 styling outside of posts */
 .post-h1,
 :is(.post__content, .comment__content) h1 {
-    margin-bottom: 1rem;
-    border-bottom: 3px solid currentcolor;
-    padding-bottom: 0.5rem;
-    color: var(---pink-xxlight);
-    font-size: calc(1.3rem + 2.4vw); /* fs-3 */
+  margin-bottom: 1rem;
+  border-bottom: 3px solid currentcolor;
+  padding-bottom: 0.5rem;
+  color: var(---pink-xxlight);
+  font-size: calc(1.3rem + 2.4vw); /* fs-3 */
 }
 
 @media (min-width: 800px) {
-    .post-h1,
-    :is(.post__content, .comment__content) h1 {
-        font-size: 2.5rem;
-    }
+  .post-h1,
+  :is(.post__content, .comment__content) h1 {
+    font-size: 2.5rem;
+  }
 }
 
 .post-h2,
 :is(.post__content, .comment__content) h2 {
-    margin-bottom: 1rem !important;
-    border-bottom: 2px solid currentcolor;
-    padding-bottom: 0.25rem;
-    color: var(---blue-deep-dark);
-    font-size: calc(1.2rem + 1.6vw); /* fs-5 */
+  margin-bottom: 1rem !important;
+  border-bottom: 2px solid currentcolor;
+  padding-bottom: 0.25rem;
+  color: var(---blue-deep-dark);
+  font-size: calc(1.2rem + 1.6vw); /* fs-5 */
 }
 
 @media (min-width: 800px) {
-    .post-h2,
-    :is(.post__content, .comment__content) h2 {
-        font-size: 2rem;
-    }
+  .post-h2,
+  :is(.post__content, .comment__content) h2 {
+    font-size: 2rem;
+  }
 }
 
 .post-h3,
 :is(.post__content, .comment__content) h3 {
-    margin-bottom: 1rem;
-    font-size: calc(1.15rem + 1.2vw); /* fs-6 */
+  margin-bottom: 1rem;
+  font-size: calc(1.15rem + 1.2vw); /* fs-6 */
 }
 
 @media (min-width: 800px) {
-    .post-h3,
-    :is(.post__content, .comment__content) h3 {
-        font-size: 1.75rem;
-    }
+  .post-h3,
+  :is(.post__content, .comment__content) h3 {
+    font-size: 1.75rem;
+  }
 }
 
 .redacted {
-    background-color: black !important;
-    color: black !important;
+  background-color: black !important;
+  color: black !important;
 }
 
 .scroll-overflow-x {
-    overflow-x: auto !important;
-    /* for mathjax equation environments with `\\[pt]` extra line spacing */
-    overflow-y: hidden !important;
+  overflow-x: auto !important;
+  /* for mathjax equation environments with `\\[pt]` extra line spacing */
+  overflow-y: hidden !important;
 }
 
 .spoiler,
 .spoiler * {
-    background-color: gainsboro !important;
-    text-decoration-color: transparent !important;
-    color: transparent !important;
-    transition: background-color 0.4s, color 0.4s !important;
+  background-color: gainsboro !important;
+  text-decoration-color: transparent !important;
+  color: transparent !important;
+  transition: background-color 0.4s, color 0.4s !important;
 }
 
 .spoiler:hover,
 .spoiler:hover * {
-    background-color: transparent !important;
-    text-decoration-color: unset !important;
-    color: unset !important;
+  background-color: transparent !important;
+  text-decoration-color: unset !important;
+  color: unset !important;
 }
 
 .text-overflow-ellipsis {
-    text-overflow: ellipsis !important;
+  text-overflow: ellipsis !important;
 }
 
 .underline-on-hover-only {
-    text-decoration-line: none !important;
+  text-decoration-line: none !important;
 }
 
 .underline-on-hover-only:hover,
 .underline-on-hover-only:hover .MathJax * {
-    text-decoration-line: underline !important;
+  text-decoration-line: underline !important;
 }

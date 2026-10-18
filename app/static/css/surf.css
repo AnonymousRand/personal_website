@@ -27,5 +27,5 @@ body,
 
 .hljs,
 .inline-code-block {
-    color: var(---gray-dark) !important;
+  color: var(---gray-dark) !important;
 }

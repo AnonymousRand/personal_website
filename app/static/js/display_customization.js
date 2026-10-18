@@ -67,25 +67,25 @@ function randomizeColors() {
     $("body").append(`
         <style>
             ::selection {
-                background-color: var(${colorChoice.selection});
+              background-color: var(${colorChoice.selection});
             }
 
             :is(select, input:not([type="button"], [type="submit"]), textarea):is(:hover, :focus) {
-                box-shadow: 0 0 0 0.25rem ${colorChoice.form.boxShadow} !important;
-                border-color: var(${colorChoice.form.border}) !important;
+              box-shadow: 0 0 0 0.25rem ${colorChoice.form.boxShadow} !important;
+              border-color: var(${colorChoice.form.border}) !important;
             }
 
             /* probably won't work yet, maybe in the future though :( */
             input.is([type="checkbox"], [type="radio"]) {
-                accent-color: var(${colorChoice.form.accent}) !important;
+              accent-color: var(${colorChoice.form.accent}) !important;
             }
 
             option:active, .dropdown-item:hover, .dropdown-item:active {
-                background-color: var(${colorChoice.menuHighlight}) !important;
+              background-color: var(${colorChoice.menuHighlight}) !important;
             }
 
             .flash {
-                border-color: var(${colorChoice.flashBorder});
+              border-color: var(${colorChoice.flashBorder});
             }
         </style>
     `);
