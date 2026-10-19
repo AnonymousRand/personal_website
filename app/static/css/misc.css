@@ -26,8 +26,10 @@ blockquote {
 :root, body {
   text-decoration-thickness: 1px;
   overflow-wrap: anywhere;
+  /*
   font-family: "Quicksand :3", sans-serif;
   font-size: 16px;
+  */
   caret-color: var(---cursor-bg);
 }
 
@@ -36,10 +38,12 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
+/*
 hr {
   opacity: 1;
   border-top: 2px solid var(---border-default-color);
 }
+*/
 
 label:has(+ [required]):after,
 label:has(+ * [required]):after {
@@ -81,9 +85,11 @@ pre {
 }
 
 pre, code {
+  /*
   color: var(---md-code-fg);
   font-family: "Maple Mono NL", monospace;
   font-size: 100%;
+  */
 }
 
 /* use `.inline-code-block` for "inline code blocks", i.e. a code block that respects whitespace
@@ -100,13 +106,14 @@ pre:not(table pre, .inline-code-block *) code,
 
 table {
   margin-bottom: 1rem;
-  border: 2px solid var(--border-default-color);
+  /*border: 2px solid var(--border-default-color);*/
   /*border: 1px solid var(--border-2-color);*/
   width: max-content;
 }
 
 td, th {
-  border-width: 1px;
+  /*border-width: 1px;*/
+  border-width: 2px;
   padding: 0.5rem;
 }
 
@@ -143,22 +150,22 @@ textarea.form-control {
 /* tooltip arrow */
 .bs-tooltip-top .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
-  border-top-color: var(---pink-xxxxlight) !important;
+  border-top-color: var(--bs-border-color) !important;
 }
 
 .bs-tooltip-right .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
-  border-right-color: var(---pink-xxxxlight) !important;
+  border-right-color: var(--bs-border-color) !important;
 }
 
 .bs-tooltip-bottom .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
-  border-bottom-color: var(---pink-xxxxlight) !important;
+  border-bottom-color: var(--bs-border-color) !important;
 }
 
 .bs-tooltip-left .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
-  border-left-color: var(---pink-xxxxlight) !important;
+  border-left-color: var(--bs-border-color) !important;
 }
 
 .btn-link {
@@ -182,28 +189,6 @@ textarea.form-control {
   white-space: normal;
 }
 
-/* need specificity gah i freaking hate css. it is a lawless land that would make even
- * the most resolute anarchist cower. */
-.form-switch .dark-mode-switch {
-  background-image: url("../files/sun.svg");
-}
-
-.form-switch .silly-mode-switch {
-  background-image: url("../files/colon_3.svg");
-}
-
-.form-switch .silly-mode-switch:checked {
-  background-image: url("../files/colon_3_silly.svg");
-}
-
-/* need specificity gah i freaking hate css */
-.form-switch .switch--navbar {
-  margin-top: 0;
-  border-color: var(---border-4-color);
-  width: 2.5rem;
-  height: 1.25rem;
-}
-
 .flash {
   border-width: 3px;
   border-style: solid;
@@ -222,6 +207,43 @@ textarea.form-control {
   /* this makes sure `position: fixed` doesn't just make it as wide as the viewport */
   width: inherit;
   max-width: inherit;
+}
+
+.footnote-ref {
+  text-decoration: none;
+}
+
+.footnotes {
+  font-size: 0.9rem;
+}
+
+.footnotes__wrapper {
+  margin-bottom: 1rem;
+  background-color: var(--bs-body-fg) !important;
+  color: var(---gray-dark-fg) !important;
+}
+
+
+/* need specificity gah i freaking hate css. it is a lawless land that would make even
+ * the most resolute anarchist cower. */
+.form-switch .dark-mode-switch {
+  background-image: url("../files/sun.svg");
+}
+
+.form-switch .silly-mode-switch {
+  background-image: url("../files/colon_3.svg");
+}
+
+.form-switch .silly-mode-switch:checked {
+  background-image: url("../files/colon_3_silly.svg");
+}
+
+/* need specificity gah i freaking hate css */
+.form-switch .switch--navbar {
+  margin-top: 0;
+  /*border-color: var(--bs-border-color);*/
+  width: 2.5rem;
+  height: 1.25rem;
 }
 
 .input-group.has-validation >
@@ -246,6 +268,10 @@ textarea.form-control {
 .navbar__logo {
   width: 2rem;
   height: 2rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) rgb(from var(--bs-focus-ring-color) / var(--bs-focus-ring-opacity));
 }
 
 .post-img,
@@ -304,7 +330,7 @@ textarea.form-control {
 
 .post-img:hover,
 :is(.post__content, .comment__content) img:hover {
-  border-color: var(---border-4-color) !important;
+  border-color: var(--bs-border-color) !important;
 }
 
 /* post images are 100% width if not specified in `width` attribute */

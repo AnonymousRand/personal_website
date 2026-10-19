@@ -101,9 +101,11 @@
   }
 }
 
+/*
 .border--4 {
   border-color: var(---border-4-color) !important;
 }
+*/
 
 .border--green {
   border-color: var(---green-border) !important;

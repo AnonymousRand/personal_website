@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -ex
+set -euo pipefail
+set -x
 
 # this makes sure that this script always runs in its own directory so that it pulls
 # the right `.env`, for instance (this should also be an absolute path)

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-set -ex
+set -euo pipefail
+set -x
 
 # this makes sure that this script always runs in its own directory so that it pulls
 # the right `.env`, for instance (this should also be an absolute path)
@@ -15,7 +16,7 @@ chmod +x ./stop.sh && ./stop.sh
 
 docker system prune --force
 docker compose --profile "$DOCKER_DEFAULT_PROFILE" build --no-cache --progress=plain
-if [[ "$1" == "-d" ]]; then
+if [[ "$#" -gt 0 && "$1" == "-d" ]]; then
     docker compose --profile "$DOCKER_DEFAULT_PROFILE" up --force-recreate -d
 else
     docker compose --profile "$DOCKER_DEFAULT_PROFILE" up --force-recreate

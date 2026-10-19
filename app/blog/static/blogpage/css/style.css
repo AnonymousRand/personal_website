@@ -30,19 +30,6 @@ input[value="Reply"][value="Delete"] {
   font-size: 1em; /* undo Bootstrap */
 }
 
-.footnote-ref {
-  text-decoration: none;
-}
-
-.footnotes {
-  font-size: 0.9rem;
-}
-
-.footnotes__wrapper {
-  margin-bottom: 1rem;
-  color: var(---gray-dark-fg);
-}
-
 .goto-page-form__page-input {
   padding-top: 1px;
   padding-bottom: 1px;
@@ -146,9 +133,11 @@ input[value="Reply"][value="Delete"] {
 }
 
 /* `inherit` doesn't work for some reason so we are setting manually */
+/*
 :is(.md-dropdown).border--4 :is(hr, .md-dropdown__content) {
   border-color: var(---border-4-color);
 }
+*/
 
 .md-textbox {
   margin-bottom: 1rem;
@@ -195,13 +184,14 @@ input[value="Reply"][value="Delete"] {
 
 .post__toc {
   z-index: 999;
-  border: 2px solid var(---pink-xxxxlight);
+  /*border: 2px solid var(---pink-xxxxlight);*/
   margin-top: 1rem;
   padding: 1rem 1rem 0rem 1rem;
   max-height: max(33.3333svh, 15rem);
 }
 
 .post__toc > .toc__heading {
+  background-color: var(--bs-card-bg); /* to match card body */
   /* so any color changes span the whole thing */
   width: 100%;
 }
@@ -246,9 +236,10 @@ input[value="Reply"][value="Delete"] {
     width: var(---sticky-width) !important;
   }
 
-  .toc__heading {
+  .post__toc > .toc__heading {
     position: absolute !important;
     top: -1.5em !important;
+    background: none !important;
   }
 }
 
@@ -289,10 +280,6 @@ input[value="Reply"][value="Delete"] {
 
 .toc__body :is(ol, ul) {
   padding-left: 1.5rem;
-}
-
-.toc__heading {
-  background-color: var(--bs-card-bg); /* to match card body */
 }
 
 .underline--pink-xlight.post-list__post:hover {

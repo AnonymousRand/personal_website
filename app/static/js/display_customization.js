@@ -18,44 +18,36 @@ function applyStyles(selector) {
 
 const colorChoices = {
     blue: {
-        menuHighlight: "---blue-xxlight",
-        form: {
-            accent: "---blue",
-            border: "---blue",
-            boxShadow: "color-mix(in srgb, var(---blue) 25%, transparent)"
-        },
-        flashBorder: "---blue-xlight",
-        selection: "---blue-xxlight"
+        menuHighlight: "---blue-xxlight-bg",
+        inputAccent: "---blue-bg",
+        inputBorder: "---blue-border-color",
+        focusRing: "rgb(from var(---blue-border-color) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---blue-xlight-border-color",
+        selection: "---blue-xxlight-bg"
     },
     green: {
-        menuHighlight: "---green-light",
-        form: {
-            accent: "---green",
-            border: "---green",
-            boxShadow: "color-mix(in srgb, var(---green) 50%, transparent)"
-        },
-        flashBorder: "---green",
-        selection: "---green-light"
+        menuHighlight: "---green-light-bg",
+        inputAccent: "---green-bg",
+        inputBorder: "---green-border-color",
+        focusRing: "rgb(from var(---green-border-color) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---green-border-color",
+        selection: "---green-light-bg"
     },
     orange: {
-        menuHighlight: "---orange-shallow-light",
-        form: {
-            accent: "---orange",
-            border: "---orange",
-            boxShadow: "color-mix(in srgb, var(---orange) 40%, transparent)"
-        },
-        flashBorder: "---orange-xlight",
-        selection: "---orange-shallow-light"
+        menuHighlight: "---orange-shallow-light-bg",
+        inputAccent: "---orange-bg",
+        inputBorder: "---orange-border-color",
+        focusRing: "rgb(from var(---orange-border-color) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---orange-xlight-border-color",
+        selection: "---orange-shallow-light-bg"
     },
     pink: {
-        menuHighlight: "---pink-xxxxxxlight",
-        form: {
-            accent: "---pink-xxxxlight",
-            border: "---pink-xxxxlight",
-            boxShadow: "color-mix(in srgb, var(---pink-xxxxlight) 50%, transparent)"
-        },
-        flashBorder: "---pink-xxxxlight",
-        selection: "---pink-xxxxxxlight"
+        menuHighlight: "---pink-xxxxxxlight-bg",
+        inputAccent: "---pink-xxxxlight-bg",
+        inputBorder: "---pink-xxxxlight-border-color",
+        focusRing: "rgb(from var(---pink-xxxxlight-border-color) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---pink-xxxxlight-border-color",
+        selection: "---pink-xxxxxxlight-bg"
     }
 };
 
@@ -67,8 +59,12 @@ function randomizeColors() {
     $("body").append(`
         <style>
             :root {
-              --bs-box-shadow: 0 0.5rem 1rem var(${colorChoice.form.boxShadow});
-              --bs-focus-ring-color: var(${colorChoice.form.border});
+              --bs-box-shadow: 0 0.5rem 1rem ${colorChoice.focusRing};
+              --bs-box-shadow-sm: 0 0.125rem 0.25rem ${colorChoice.focusRing};
+              --bs-box-shadow-lg: 0 1rem 3rem ${colorChoice.focusRing};
+              --bs-box-shadow-inset: inset 1px 2px ${colorChoice.focusRing};
+
+              --bs-focus-ring-color: var(${colorChoice.inputBorder});
             }
 
             ::selection {
@@ -77,13 +73,13 @@ function randomizeColors() {
 
             /*
             :is(select, input:not([type="button"], [type="submit"]), textarea):is(:hover, :focus) {
-              box-shadow: 0 0 0 0.25rem ${colorChoice.form.boxShadow} !important;
-              border-color: var(${colorChoice.form.border}) !important;
+              box-shadow: 0 0 0 0.25rem ${colorChoice.focusRing} !important;
+              border-color: var(${colorChoice.inputBorder}) !important;
             }
 
             .form-check-input:checked {
-              border-color: var(${colorChoice.form.border}) !important;
-              background-color: var(${colorChoice.form.accent}) !important;
+              border-color: var(${colorChoice.inputBorder}) !important;
+              background-color: var(${colorChoice.inputAccent}) !important;
             }
             */
 

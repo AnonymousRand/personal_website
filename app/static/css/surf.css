@@ -9,7 +9,7 @@ body,
   --bs-body-bg:    var(---variant-2-bg);
   --bs-body-color: var(---variant-2-gray-fg);
 
-  border-color: var(---variant-2-border);
+  border-color: var(---variant-2-border-color);
   background-color: var(---variant-2-bg);
   color: var(---variant-2-gray-fg);
 }
@@ -20,7 +20,7 @@ details,
 .hljs,
 .inline-code-block,
 .tooltip .tooltip-inner {
-  border-color: var(---variant-1-border) !important;
+  border-color: var(---variant-1-border-color) !important;
   background-color: var(---variant-1-bg) !important;
   color: var(---variant-1-gray-fg) !important;
 }
