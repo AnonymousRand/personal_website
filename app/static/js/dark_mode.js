@@ -98,7 +98,7 @@ $(document).ready(async function() {
 async function addDarkModeCssFixes() {
     // we don't use javascript module to import the css here as that makes the top-level
     // variables and functions inaccessible to other traditional scripts 3:
-    const darkModeCss = await fetch(`${BASE_STATIC_URL}css/dark_theme.css`);
+    const darkModeCss = await fetch(`${BASE_STATIC_URL}theme/css/dark_theme.css`);
     const darkModeCssText = await darkModeCss.text();
     const darkModeSheet = new CSSStyleSheet();
     await darkModeSheet.replace(darkModeCssText);
