@@ -1,0 +1,3 @@
+[submodule "app/static/theme"]
+	path = app/static/theme
+	url = ssh://git@git.anonymousrand.xyz:2222/AnonymousRand-Theme/personal_website.git
