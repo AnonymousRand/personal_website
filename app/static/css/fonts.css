@@ -1,23 +1,20 @@
 @font-face {
   font-family: "Quicksand :3";
-  src: url("../fonts/quicksand_meow.ttf") format(TrueType),
-       url("https://anonymousrand.xyz/static/fonts/quicksand_meow.ttf") format(TrueType);
+  src: url("../theme/fonts/quicksand/quicksand_meow.ttf") format(TrueType);
   font-weight: 500;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Quicksand :3";
-  src: url("../fonts/quicksand_meow_bold.ttf") format(TrueType),
-       url("https://anonymousrand.xyz/static/fonts/quicksand_meow_bold.ttf") format(TrueType);
+  src: url("../theme/fonts/quicksand/quicksand_meow_bold.ttf") format(TrueType);
   font-weight: bold;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Maple Mono NL";
-  src: url("../fonts/maple_mono_nl.woff2") format(woff2),
-       url("https://anonymousrand.xyz/static/fonts/maple_mono_nl.woff2") format(woff2);
+  src: url("../theme/fonts/maple_mono/maple_mono_nl.woff2") format(woff2);
   font-weight: normal;
   font-display: swap;
   font-feature-settings: "cv61" on, "calt" off;
@@ -25,8 +22,7 @@
 
 @font-face {
   font-family: "Maple Mono NL";
-  src: url("../fonts/maple_mono_nl_bold.woff2") format(woff2),
-       url("https://anonymousrand.xyz/static/fonts/maple_mono_nl_bold.woff2") format(woff2);
+  src: url("../theme/fonts/maple_mono/maple_mono_nl_bold.woff2") format(woff2);
   font-weight: bold;
   font-display: swap;
   font-feature-settings: "cv61" on, "calt" off;
@@ -34,8 +30,7 @@
 
 @font-face {
   font-family: "Maple Mono NL";
-  src: url("../fonts/maple_mono_nl_italic.woff2") format(woff2),
-       url("https://anonymousrand.xyz/static/fonts/maple_mono_nl_italic.woff2") format(woff2);
+  src: url("../theme/fonts/maple_mono/maple_mono_nl_italic.woff2") format(woff2);
   font-weight: normal;
   font-style: italic;
   font-feature-settings: "cv61" on, "calt" off;
@@ -44,8 +39,7 @@
 
 @font-face {
   font-family: "Maple Mono NL";
-  src: url("../fonts/maple_mono_nl_bold_italic.woff2") format(woff2),
-       url("https://anonymousrand.xyz/static/fonts/maple_mono_nl_bold_italic.woff2") format(woff2);
+  src: url("../theme/fonts/maple_mono/maple_mono_nl_bold_italic.woff2") format(woff2);
   font-weight: bold;
   font-style: italic;
   font-feature-settings: "cv61" on, "calt" off;
@@ -54,7 +48,6 @@
 
 @font-face {
   font-family: "Hachi Maru Pop";
-  src: url("../fonts/hachi_maru_pop.ttf") format(TrueType),
-       url("https://anonymousrand.xyz/static/fonts/hachi_maru_pop.ttf") format(TrueType);
+  src: url("../theme/fonts/hachi_maru_pop.ttf") format(TrueType);
   font-display: swap;
 }
