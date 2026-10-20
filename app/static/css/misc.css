@@ -242,6 +242,7 @@ textarea.form-control {
 .form-switch .switch--navbar {
   margin-top: 0;
   /*border-color: var(--bs-border-color);*/
+  background-color: var(---gray-xxxlight-bg);
   width: 2.5rem;
   height: 1.25rem;
 }

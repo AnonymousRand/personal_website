@@ -1,4 +1,5 @@
-.git/
+# `**` since we may have the theming submodule!
+**/.git/
 .github/
 .venv/
 venv/
