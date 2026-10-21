@@ -1,0 +1,60 @@
+.navbar {
+  // for (approx?) centering due to 4px larger font
+  &__home {
+    margin-top: -2px;
+  }
+  
+  &__logo {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &-toggler:focus {
+    box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) rgb(from var(--bs-focus-ring-color) / var(--bs-focus-ring-opacity));
+  }
+}
+
+.form-switch {
+  .switch--navbar {
+    margin-top: 0;
+    /*border-color: var(--bs-border);*/
+    background-color: var(---color-gray-xxxlight-bg);
+    width: 2.5rem;
+    height: 1.25rem;
+  }
+
+  // need specificity so nested, gah i freaking hate css
+  // it is a lawless land that would make even the most hardened anarchist cower
+  .dark-mode-switch {
+    background-image: url("../files/sun.svg");
+  }
+  
+  .silly-mode-switch {
+    background-image: url("../files/colon_3.svg");
+
+    &:checked {
+      background-image: url("../files/colon_3_silly.svg");
+    }
+  }
+}
+
+.nav-link {
+  border-width: 0;
+  background-color: transparent !important;
+}
+
+// adjust dropdown menu width
+nav .dropdown-menu {
+  width: max-content;
+  min-width: min-content !important;
+  max-width: calc(
+    0.75 * (var(---container-content-max-width) - 2 * var(---container-content-padding-x))
+  );
+}
+
+@media (max-width: 768px) {
+  nav .dropdown-menu {
+    width: 100%;
+    max-width: unset;
+  }
+}

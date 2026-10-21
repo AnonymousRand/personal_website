@@ -133,11 +133,9 @@ input[value="Reply"][value="Delete"] {
 }
 
 /* `inherit` doesn't work for some reason so we are setting manually */
-/*
-:is(.md-dropdown).border--4 :is(hr, .md-dropdown__content) {
-  border-color: var(---border-4-color);
+.md-dropdown__content {
+  border-color: var(--bs-border-color);
 }
-*/
 
 .md-textbox {
   margin-bottom: 1rem;

@@ -1,0 +1,19 @@
+%post-img {
+  display: block;
+  margin: 1rem auto 1rem auto;
+  border: 2px solid transparent;
+  max-width: 100%;
+
+  &:hover {
+    border-color: var(--bs-border) !important;
+  }
+
+  &:not([width]) {
+    width: 100%;
+  }
+}
+
+.post-img,
+:is(.post__content, .comment__content) img {
+  @extend %post-img;
+}

@@ -30,7 +30,7 @@ POST_EXTS = [
     markdown_environments.DropdownExtension(
         types={
             "dropdown": {
-                "html_class": "border--2px gray-dark"
+                "html_class": "border--2px"
             }
         },
         html_class="md-dropdown",
@@ -111,9 +111,6 @@ POST_EXTS = [
                 "ex": {
                     "thm_type": "Example",
                     "thm_counter_incr": "0,0,1",
-                    "html_class": (
-                        "gray-dark"
-                    )
                 },
                 r"ex\\\*": {
                     "thm_type": "Example"
@@ -183,7 +180,7 @@ POST_EXTS = [
                 "bonus_content": {
                     "thm_type": "Bonus Content",
                     "html_class": (
-                        "border--2px gray-dark"
+                        "border--2px"
                     )
                 },
 
@@ -191,13 +188,13 @@ POST_EXTS = [
                     "thm_type": "Exercise",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "md-exer border--2px gray-dark"
+                        "md-exer border--2px"
                     )
                 },
                 r"exer\\\*": {
                     "thm_type": "Exercise",
                     "html_class": (
-                        "md-exer border--2px gray-dark"
+                        "md-exer border--2px"
                     )
                 },
 
@@ -205,7 +202,7 @@ POST_EXTS = [
                     "thm_type": "Proof",
                     "thm_name_overrides_thm_heading": True,
                     "html_class": (
-                        "md-pf dropdown--default-open border--2px gray-dark"
+                        "md-pf dropdown--default-open border--2px"
                     )
                 },
 
@@ -213,13 +210,13 @@ POST_EXTS = [
                     "thm_type": "Remark",
                     "thm_counter_incr": "0,0,1",
                     "html_class": (
-                        "border--2px gray-dark"
+                        "border--2px"
                     )
                 },
                 r"rmk\\\*": {
                     "thm_type": "Remark",
                     "html_class": (
-                        "border--2px gray-dark"
+                        "border--2px"
                     )
                 }
             },

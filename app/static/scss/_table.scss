@@ -1,0 +1,16 @@
+@use "./scss_utils";
+
+table {
+  margin-bottom: 1rem;
+  border-color: var(--bs-border);
+  width: max-content;
+}
+
+:is(td, th) {
+  border-width: inherit;
+  padding: 0.5rem;
+
+  #{scss_utils.$gen-last-child-sels()} {
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,87 @@
+.md-captioned-figure {
+  &__caption {
+    margin-top: -0.5rem;
+    text-align: center;
+    color: var(---color-gray-dark-fg);
+    font-size: 0.95rem;
+  }
+
+  img {
+    margin-bottom: 1rem;
+  }
+
+  p:has(> img) {
+    margin-bottom: 0;
+  }
+}
+
+.md-cited-blockquote {
+  margin-bottom: 0.5rem;
+
+  &:last-child {
+    margin-bottom: 0.25rem;
+  }
+}
+
+// bunch of specificity hacks; this whole system with the code formatting is extremely fragile...
+.md-cmd-line {
+  &, & pre {
+    width: 100%;
+    color: var(---color-gray-dark-fg);
+  }
+
+  .md-cmd-line__cmd {
+    &, & pre {
+      color: var(---color-pink-light-fg);
+    }
+  }
+}
+
+.md-dropdown {
+  margin-bottom: 1rem;
+  border-style: solid;
+  border-radius: var(--bs-border-radius);
+  padding: 0.75rem 1rem;
+
+  &__content {
+    margin-top: 0.75rem;
+    border-too: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+    padding-top: 0.75rem;
+  }
+
+  &__summary {
+    color: var(---color-pink-xlight-fg);
+
+    // need first paragraph to be `inline` to start on same line as open/close dropdown marker,
+    // but still have padding between it and any subsequent elements
+    // `display: inline-block` is so close to working but occasionally it still starts on
+    // a new line for some stupid reason >_<
+    > :first-child {
+      display: inline;
+    }
+
+    > :nth-child(2) {
+      margin-top: 1rem;
+    }
+
+    > ol {
+      list-style-position: outside;
+    }
+  }
+}
+
+.md-textbox {
+  margin-bottom: 1rem;
+  border-style: solid;
+  border-radius: var(--bs-border-radius);
+  padding: 0.75rem 1rem;
+  width: 100%;
+}
+
+.md-thm-heading__emph {
+  font-weight: bold;
+
+  @at-root .md-dropdown__summary & {
+    font-weight: unset;
+  }
+}

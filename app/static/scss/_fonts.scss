@@ -51,3 +51,100 @@
   src: url("../theme/fonts/hachi_maru_pop.ttf") format(TrueType);
   font-display: swap;
 }
+
+//------------------------------------------------------------------------------
+
+// override all of bootstrap's `fs` classes
+.fs-1 {
+  font-size: calc(1.46em + 3.68vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-1 {
+    font-size: 3.3em !important;
+  }
+}
+
+.fs-2 {
+  font-size: calc(1.4em + 3.2vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-2 {
+    font-size: 3em !important;
+  }
+}
+
+.fs-3 {
+  font-size: calc(1.3em + 2.4vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-3 {
+    font-size: 2.5em !important;
+  }
+}
+
+.fs-4 {
+  font-size: calc(1.25em + 2vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-4 {
+    font-size: 2.25em !important;
+  }
+}
+
+.fs-5 {
+  font-size: calc(1.2em + 1.6vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-5 {
+    font-size: 2em !important;
+  }
+}
+
+.fs-6 {
+  font-size: calc(1.15em + 1.2vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-6 {
+    font-size: 1.75em !important;
+  }
+}
+
+.fs-7 {
+  font-size: calc(1.1em + 0.8vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-7 {
+    font-size: 1.5em !important;
+  }
+}
+
+.fs-8 {
+  font-size: calc(1.05em + 0.4vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-8 {
+    font-size: 1.25em !important;
+  }
+}
+
+.fs-9 {
+  font-size: calc(1.025em + 0.2vw) !important;
+}
+
+@media (min-width: 800px) {
+  .fs-9 {
+    font-size: 1.125em !important;
+  }
+}
+
+.fs-10 {
+  font-size: 0.875em !important;
+}

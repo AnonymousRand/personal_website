@@ -1,0 +1,45 @@
+@use "./scss_utils";
+
+.p-mb-0 p {
+  margin-bottom: 0 !important;
+}
+
+.pe-0_75rem {
+  margin-right: 0.75rem !important;
+}
+
+.pb-0_75rem {
+  padding-bottom: 0.75rem !important;
+}
+
+.pt-0_75rem {
+  padding-top: 0.75rem !important;
+}
+
+.w-2rem {
+  width: 2rem !important;
+}
+
+.w-2_5em {
+  width: 2.5em !important;
+}
+
+.w-max-content {
+  width: max-content !important;
+}
+
+// can't use descendant selector naively; must strictly be last child of last child of ... etc.
+// css was invented by a troglodyte who took a gamma ray burst to the brain
+.last-child-no-mb {
+  #{scss_utils.$gen-last-child-sels()} {
+    margin-bottom: 0 !important;
+  }
+}
+
+.flex-equal-children > * {
+  flex: 1 !important;
+}
+
+.flex-basis-75 {
+  flex-basis: 75% !important;
+}

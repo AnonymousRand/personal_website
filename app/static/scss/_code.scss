@@ -1,0 +1,37 @@
+%code-block {
+  color: var(---color-gray-dark-fg) !important;
+}
+
+.code-box,
+.hljs,
+.inline-code-block {
+  @extend %code-block;
+}
+
+//------------------------------------------------------------------------------
+
+/* god i hate specificity; have to separate this from `code`'s stuff */
+pre {
+  margin-bottom: 0;
+  font-size: 100%;
+}
+
+/*
+pre, code {
+  color: var(---color-md-code);
+  font-family: "Maple Mono NL", monospace;
+  font-size: 100%;
+}
+*/
+
+/* use `.inline-code-block` for "inline code blocks", i.e. a code block that respects whitespace
+ * unlike inline code, but still does e.g. word wrapping unlike fenced code blocks which scroll */
+/* and use `.code-box` for manually adding code boxes to code that was not added in via fenced
+ * markdown syntax and hence doesn't get `.hljs` (e.g. from custom markdown syntax) */
+pre:not(table pre, .inline-code-block *) code,
+.code-box {
+  margin-bottom: 1rem;
+  border: 2px solid;
+  border-radius: var(--bs-border-radius);
+  padding: 0.75rem 1rem;
+}

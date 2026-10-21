@@ -1,0 +1,11 @@
+@function gen-last-child-sels($nest-depth: 10) {
+  $last-child-sels: "";
+  @for $i from 1 through $nest-depth {
+    $new-sel: "";
+    @for $j from 1 through $i {
+      $new-sel: $new-sel + " > :last-child";
+    }
+    $last-child-sels: $last-child-sels + if($i == 0, $new-sel, ",#{$new-sel}");
+  }
+  @return $last-child-sels;
+}

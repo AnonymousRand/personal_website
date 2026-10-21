@@ -1,0 +1,70 @@
+.border {
+  &-b {
+    border-bottom-style: solid !important;
+  }
+
+  &--1px {
+    border-width: 1px !important;
+  }
+ 
+  &--2px {
+    border-width: 2px !important;
+  }
+  
+  &--4px {
+    border-width: 4px !important;
+  }
+  
+  &--6px {
+    border-width: 6px !important;
+  }
+  
+  &--colorful {
+    border-color: transparent !important;
+    border-image: conic-gradient(
+      var(---color-orange-xlight) 62.5deg,
+      var(---color-green-light) 85deg,
+      var(---color-green-light) 95deg,
+      var(---color-blue-xxlight) 112.5deg,
+      var(---color-blue-xxlight) 242.5deg,
+      var(---color-pink-xxxxlight) 260deg,
+      var(---color-pink-xxxxlight) 280deg,
+      var(---color-orange-xlight) 312.5deg
+    ) 1 !important;
+  }
+  
+  @supports (background-clip: border-area) {
+    &--colorful {
+      /* this allows us to round off the corners using `border-radius` */
+      background: conic-gradient(
+        var(---color-orange-xlight) 62.5deg,
+        var(---color-green-light) 85deg,
+        var(---color-green-light) 95deg,
+        var(---color-blue-xxlight) 112.5deg,
+        var(---color-blue-xxlight) 242.5deg,
+        var(---color-pink-xxxxlight) 260deg,
+        var(---color-pink-xxxxlight) 280deg,
+        var(---color-orange-xlight) 312.5deg
+      ) border-box !important;
+      background-clip: border-area !important;
+    }
+  }
+  
+  /*
+  &--4 {
+    border-color: var(---color-border-4) !important;
+  }
+  */
+  
+  &--green {
+    border-color: var(---color-green-border) !important;
+  }
+  
+  &--orange {
+    border-color: var(---color-orange-border) !important;
+  }
+  
+  &--gray-xxlight {
+    border-color: var(---color-gray-xxlight-border) !important;
+  }
+}

@@ -1,0 +1,42 @@
+:root {
+  ---container-content-max-width: min(672px, 100vw);
+}
+
+body {
+  text-decoration-thickness: 1px;
+  overflow-wrap: anywhere;
+  caret-color: var(---color-cursor-strong-bg);
+}
+
+.container--content {
+  // for scoping issues on accessing `--bs-gutter-x`
+  ---container-content-padding-x: calc(0.5 * var(--bs-gutter-x));
+  ---container-content-width: calc(
+    var(---container-content-max-width) - 2 * var(---container-content-padding-x)
+  );
+
+  margin: auto !important;
+  padding-left: var(---container-content-padding-x) !important;
+  padding-right: var(---container-content-padding-x) !important;
+  max-width: var(---container-content-max-width) !important;
+}
+
+.background-img {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* css is so stupid that `hidden` html attribute is overridden by `display` property in css,
+ * so I HAVE TO MANUALLY GO AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the
+ * absolute gobsmacking gobsmacker gobsmackery freak is this */
+[hidden] {
+  display: none !important;
+}
+
+/* to compensate for fixed navbar; can be inaccurate on page load still with js-based
+ * layout shifts but oh well */
+[id] {
+  scroll-margin-top: var(---navbar-outer-height);
+}

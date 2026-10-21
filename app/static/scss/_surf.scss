@@ -1,0 +1,41 @@
+@use "utils";
+@use "./grouped_styles";
+
+//------------------------------------------------------------------------------
+	
+$default-surfs: [];
+
+$variant-1-surfs:
+  "%code-block",
+  "details",
+  ".form-control",
+  ".tooltip .tooltip-inner";
+
+$variant-2-surfs:
+  "body",
+  ".dropdown-menu",
+  ".dropdown-item",
+  ".flash",
+  ".navbar";
+
+$selected-surfs: [];
+
+//------------------------------------------------------------------------------
+
+#{$default-surfs} {
+  border-color:     var(---color-default-border);
+  background-color: var(---color-default-bg);
+  color:            var(---color-default-fg);
+}
+
+#{$variant-1-surfs} {
+  border-color:     var(---color-variant-1-border);
+  background-color: var(---color-variant-1-bg);
+  color:            var(---color-variant-1-gray-fg);
+}
+
+#{$variant-2-surfs} {
+  border-color:     var(---color-variant-2-border);
+  background-color: var(---color-variant-2-bg);
+  color:            var(---color-variant-2-gray-fg);
+}

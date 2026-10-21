@@ -1,0 +1,87 @@
+a,
+.nav-link {
+  text-decoration-color: currentcolor;
+  color: var(---color-link);
+}
+
+a:is(:hover, :active, :focus, :focus-visible),
+.nav-link:is(:hover, :active, :focus, :focus-visible),
+/* to override bootstrap specificity */
+.nav-link.show.show {
+  /* needed to make animation not briefly flash to the original bootstrap color */
+  --bs-btn-active-color: var(---color-link-hover);
+
+  text-decoration-color: currentcolor;
+  color: var(---color-link-hover);
+}
+
+//------------------------------------------------------------------------------
+
+.link {
+  &--discreet,
+  &--discreet .MathJax * {
+    text-decoration: underline !important;
+    text-decoration-style: dotted !important;
+    text-decoration-color: currentcolor !important;
+    color: var(---color-gray-dark-fg) !important;
+  }
+  
+  &--discreet:hover,
+  &--discreet:hover .MathJax * {
+    color: var(---color-gray-xxdark-fg) !important;
+  }
+  
+  &--blue-xdeep {
+    text-decoration-color: currentcolor !important;
+    color: var(---color-blue-xdeep-fg) !important;
+  }
+  
+  &--blue-xdeep:hover {
+    color: var(---color-blue-xxdeep-fg) !important;
+  }
+  
+  &--green-deep-dark {
+    text-decoration-color: currentcolor !important;
+    color: var(---color-green-deep-dark-fg) !important;
+  }
+  
+  &--green-deep-dark:hover {
+    color: var(---color-green-deep-xdark-fg) !important;
+  }
+  
+  &--orange-deep {
+    text-decoration-color: currentcolor !important;
+    color: var(---color-orange-deep-fg) !important;
+  }
+  
+  &--orange-deep:hover {
+    color: var(---color-orange-xxdeep-fg) !important;
+  }
+  
+  &--pink-xlight {
+    text-decoration-color: currentcolor !important;
+    color: var(---color-pink-xlight-fg) !important;
+  }
+  
+  &--pink-xlight:hover {
+    color: var(---color-pink-light-fg) !important;
+  }
+  
+  &--pink-xxlight {
+    text-decoration-color: currentcolor !important;
+    color: var(---color-pink-xxlight-fg) !important;
+  }
+  
+  &--pink-xxlight:hover {
+    color: var(---color-pink-xlight-fg) !important;
+  }
+  
+  &--gray {
+    text-decoration-color: currentcolor !important;
+    color: var(---color-gray-fg) !important;
+  }
+  
+  &--gray:hover {
+    color: var(---color-gray-dark-fg) !important;
+  }
+}

@@ -1,0 +1,40 @@
+.tooltip {
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  font-style: inherit !important;
+
+  &.show {
+    opacity: 100%;
+  }
+
+  &.tooltip-inner {
+    border: 2px solid !important;
+    border-radius: var(--bs-border-radius);
+    max-width: 30rem !important;
+  }
+
+  #{scss_utils.$gen-last-child-sels()} {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* tooltip arrow */
+.bs-tooltip-top .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
+  border-top-color: var(--bs-border) !important;
+}
+
+.bs-tooltip-right .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
+  border-right-color: var(--bs-border) !important;
+}
+
+.bs-tooltip-bottom .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
+  border-bottom-color: var(--bs-border) !important;
+}
+
+.bs-tooltip-left .tooltip-arrow::before,
+.bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
+  border-left-color: var(--bs-border) !important;
+}

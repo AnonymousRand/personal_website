@@ -1,0 +1,13 @@
+.footnote-ref {
+  text-decoration: none;
+}
+
+.footnotes {
+  font-size: 0.9rem;
+
+  &__wrapper {
+    margin-bottom: 1rem;
+    background-color: var(--bs-body-fg) !important;
+    color: var(---color-gray-dark-fg) !important;
+  }
+}

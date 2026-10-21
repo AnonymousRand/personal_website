@@ -21,8 +21,9 @@ ENV NPM_CONFIG_CACHE=/tmp/.npm/
 
 USER ${DOCKER_NONROOT_USER}
 
+RUN mkdir -p ./scss_output/
 RUN npm install sass
-RUN npm run compile_bootstrap
+RUN npm run compile_scss
 
 ################################################################################
 
@@ -45,7 +46,7 @@ COPY --chown=${DOCKER_NONROOT_USER} ./app/ ./app/
 COPY --chown=${DOCKER_NONROOT_USER} ./migrations/ ./migrations/
 COPY --chown=${DOCKER_NONROOT_USER} ./personal_website.py ./config.py ./
 COPY --chown=${DOCKER_NONROOT_USER} ./deployment/docker/flask/entrypoint.sh ./
-COPY --from=node --chown=${DOCKER_NONROOT_USER} /static/css/custom_bootstrap.css ./app/static/css/
+COPY --from=node --chown=${DOCKER_NONROOT_USER} /static/scss_output/* ./app/static/css/
 
 # `pip install` generally needs root still
 COPY ./requirements.txt ./requirements.txt

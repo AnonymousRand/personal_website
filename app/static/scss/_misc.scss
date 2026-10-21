@@ -1,0 +1,151 @@
+blockquote {
+  margin-left: 0rem;
+  border-left: 4px solid var(---color-accent-2-bg);
+  padding-left: 1rem;
+  color: var(---color-gray-dark-fg);
+}
+
+label:has(+ [required]):after,
+label:has(+ * [required]):after {
+  color: var(---color-red-fg);
+  content:" *";
+}
+
+// make list elements that have multiple lines (and are hence wrapped in a `<p>`) not inject extra
+// spacing after itself unless it ends with display math, so that nested list spacing is correct
+li > p:last-of-type:not(:has(.display-math)) {
+  margin-bottom: 0;
+}
+
+/* to get mathjax `\overline` to show, because they can never fix it themselves */
+.mjx-c2013 mjx-c {
+  font-size: 1.25em !important;
+}
+
+.bi-link-45deg::before {
+  font-size: 1.125em;
+}
+
+.dropdown-item {
+  white-space: normal;
+}
+
+.flash {
+  border-width: 3px;
+  border-style: solid;
+
+  &__wrapper {
+    position: fixed;
+    // this and `transform` horizontally centers this, which we have to do manually
+    // since it is `position: fixed`
+    left: 50%;
+    top: 0.75rem;
+    transform: translate(-50%);
+    // prevents flash from blocking navbar clicks when hidden
+    z-index: -1;
+    padding: 0 var(---container-content-padding-x);
+    // this makes sure `position: fixed` doesn't just make it as wide as the viewport
+    width: inherit;
+    max-width: inherit;
+  }
+}
+
+.silly-mode {
+  font-family: "Hachi Maru Pop", sans-serif;
+  font-size: 14px;
+}
+
+.toggle-password-visibility {
+  display: flex;
+  align-items: center;
+}
+
+//------------------------------------------------------------------------------
+
+.cell--left-header {
+  border-right-style: double !important;
+}
+
+.cell--top-header {
+  border-bottom-style: double !important;
+}
+
+.cell--left-header,
+.cell--top-header {
+  border-width: 3px !important;
+  background-color: var(---color-accent-4-bg) !important;
+  color: var(---color-accent-4-fg) !important;
+}
+
+.extend-off-page {
+  white-space: nowrap;
+  overflow: hidden;
+  /* extend exactly to edge of screen and clip */
+  width: calc(
+    /* distance to edge of main container */
+    var(---container-content-width) + var(---container-content-padding-x) +
+    /* distance from edge of main container to edge of screen */
+    (100svw - var(---container-content-max-width)) / 2
+  );
+}
+
+.inline-code-block code {
+  white-space: pre-wrap;
+}
+
+.min-svh-100 {
+  min-height: 100svh !important;
+}
+
+.pipe--0_85em {
+  border-left: 2px solid !important;
+  height: 0.85em;
+}
+
+.pipe--1_5em {
+  border-left: 2px solid !important;
+  height: 1.5em;
+}
+
+.redacted {
+  background-color: black !important;
+  color: black !important;
+}
+
+.scroll-overflow-x {
+  overflow-x: auto !important;
+  /* for mathjax equation environments with `\\[pt]` extra line spacing */
+  overflow-y: hidden !important;
+}
+
+.spoiler,
+.spoiler * {
+  background-color: gainsboro !important;
+  text-decoration-color: transparent !important;
+  color: transparent !important;
+  transition: background-color 0.4s, color 0.4s !important;
+}
+
+.spoiler:hover,
+.spoiler:hover * {
+  background-color: transparent !important;
+  text-decoration-color: unset !important;
+  color: unset !important;
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis !important;
+}
+
+.underline--pink-xxlight {
+  text-decoration-color: var(---color-pink-xxlight-fg) !important;
+}
+
+.underline-on-hover-only {
+  text-decoration-line: none !important;
+}
+
+.underline-on-hover-only:hover,
+.underline-on-hover-only:hover .MathJax * {
+  text-decoration-line: underline !important;
+}

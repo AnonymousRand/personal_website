@@ -18,36 +18,36 @@ function applyStyles(selector) {
 
 const colorChoices = {
     blue: {
-        menuHighlight: "---blue-xxlight-bg",
-        inputAccent: "---blue-bg",
-        inputBorder: "---blue-border-color",
-        focusRing: "rgb(from var(---blue-border-color) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder: "---blue-xlight-border-color",
-        selection: "---blue-xxlight-bg"
+        menuHighlight: "---color-blue-xxlight-bg",
+        inputAccent: "---color-blue-bg",
+        inputBorder: "---color-blue-border",
+        focusRing: "rgb(from var(---color-blue-border) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---color-blue-xlight-border",
+        selection: "---color-blue-xxlight-bg"
     },
     green: {
-        menuHighlight: "---green-light-bg",
-        inputAccent: "---green-bg",
-        inputBorder: "---green-border-color",
-        focusRing: "rgb(from var(---green-border-color) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder: "---green-border-color",
-        selection: "---green-light-bg"
+        menuHighlight: "---color-green-light-bg",
+        inputAccent: "---color-green-bg",
+        inputBorder: "---color-green-border",
+        focusRing: "rgb(from var(---color-green-border) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---color-green-border",
+        selection: "---color-green-light-bg"
     },
     orange: {
-        menuHighlight: "---orange-shallow-light-bg",
-        inputAccent: "---orange-bg",
-        inputBorder: "---orange-border-color",
-        focusRing: "rgb(from var(---orange-border-color) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder: "---orange-xlight-border-color",
-        selection: "---orange-shallow-light-bg"
+        menuHighlight: "---color-orange-shallow-light-bg",
+        inputAccent: "---color-orange-bg",
+        inputBorder: "---color-orange-border",
+        focusRing: "rgb(from var(---color-orange-border) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---color-orange-xlight-border",
+        selection: "---color-orange-shallow-light-bg"
     },
     pink: {
-        menuHighlight: "---pink-xxxxxxlight-bg",
-        inputAccent: "---pink-xxxxlight-bg",
-        inputBorder: "---pink-xxxxlight-border-color",
-        focusRing: "rgb(from var(---pink-xxxxlight-border-color) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder: "---pink-xxxxlight-border-color",
-        selection: "---pink-xxxxxxlight-bg"
+        menuHighlight: "---color-pink-xxxxxxlight-bg",
+        inputAccent: "---color-pink-xxxxlight-bg",
+        inputBorder: "---color-pink-xxxxlight-border",
+        focusRing: "rgb(from var(---color-pink-xxxxlight-border) r g b / var(--bs-focus-ring-opacity))",
+        flashBorder: "---color-pink-xxxxlight-border",
+        selection: "---color-pink-xxxxxxlight-bg"
     }
 };
 
