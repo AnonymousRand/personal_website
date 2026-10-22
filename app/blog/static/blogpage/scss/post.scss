@@ -1,3 +1,28 @@
+@use "./comment";
+
+.copy-permanent-link-btn {
+  margin-bottom: -0.125rem;
+  font-size: 1em; // undo bootstrap >:3
+}
+
+.go-to-comments-link {
+  margin-bottom: -0.1875rem;
+}
+
+.heading-link {
+  visibility: hidden;
+  margin-left: 0.25em;
+  padding-right: 0;
+  vertical-align: bottom;
+  text-decoration: none;
+  font-size: 0.9em;
+  font-family: bootstrap-icons; // for bootstrap's private area unicode icon to show
+
+  @at-root :is(h1, h2, h3, h4, h5, h6):hover & {
+    visibility: visible;
+  }
+}
+
 :is(.post__content, .comment__content) table {
   margin-right: auto;
   margin-left: auto;
@@ -10,112 +35,113 @@
   }
 }
 
+.post-list {
+  &__blogtitle {
+    font-size: 0.85rem;
+  }
+  
+  &__comment-icon {
+    margin-bottom: -0.25rem;
+    padding-right: 1px; /* since otherwise it seems to jut out ever so slightly */
+    font-size: 14px;
+  }
+  
+  &__post:hover {
+    &.pink-xlight {
+      color: var(---color-pink-light) !important;
+    }
+    
+    &.blue-deep {
+      color: var(---color-blue-deep) !important;
+    }
+
+    &.underline--pink-xlight {
+      text-decoration-color: var(---color-pink-light) !important;
+    }
+  }
+}
+
 .post {
   &__timestamp {
     margin-right: 0.625rem;
   }
-}
 
-.post__toc {
-  z-index: 999;
-  /*border: 2px solid var(---color-pink-xxxxlight);*/
-  margin-top: 1rem;
-  padding: 1rem 1rem 0rem 1rem;
-  max-height: max(33.3333svh, 15rem);
-}
+  &__toc {
+    z-index: 999;
+    /*border: 2px solid var(---color-pink-xxxxlight);*/
+    margin-top: 1rem;
+    padding: 1rem 1rem 0rem 1rem;
+    max-height: max(33.3333svh, 15rem);
 
-.post__toc > .toc__heading {
-  background-color: var(--bs-card-bg); /* to match card body */
-  /* so any color changes span the whole thing */
-  width: 100%;
-}
+    .toc__heading {
+      background-color: var(--bs-card-bg); /* to match card body */
+      /* so any color changes span the whole thing */
+      width: 100%;
+    }
 
-.post__toc > hr {
-  z-index: 999;
-}
+    .toc__body {
+      font-size: 0.95rem;
 
-@media (min-width: 1536px) and (min-height: 660px) {
-  :root {
-    /* left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen
-     * (up to the size it would be on a 1728px screen), and is centered within the
-     * left margin (with 1/6 of the margin on each side of the TOC) */
-    /* i'm sure there are better ways to do this but im a frontend noob so math it is */
-    ---sticky-width: calc((min(100vw, 1728px) - var(---container-content-max-width)) / 3);
-    ---left-sticky-margin-left: calc(
-      -5 * (min(100vw, 1728px) - var(---container-content-max-width)) / 12
-    );
+      > li:last-child {
+        margin-bottom: 0.5rem;
+      }
+  
+      ol, ul {
+        padding-left: 1.5rem;
+      }
+    }
+
+    > hr {
+      z-index: 999;
+    }
+
+    ul:last-child {
+      margin-bottom: 0;
+    }
+
+    @at-root .sticky-btns {
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    @media (min-width: 1536px) and (min-height: 660px) {
+
+      // left sticky (TOC etc.) takes up 2/3 of the margin on the left of the screen
+      // (up to the size it would be on a 1728px screen), and is centered within the
+      // left margin (with 1/6 of the margin on each side of the TOC)
+      // i'm sure there are better ways to do this but im a frontend noob so math it is :3
+      ---sticky-width: calc((min(100vw, 1728px) - var(---container-content-max-width)) / 3);
+      ---left-sticky-margin-left: calc(
+        -5 * (min(100vw, 1728px) - var(---container-content-max-width)) / 12
+      );
+
+      position: sticky !important;
+      // TOC takes up max 2/3 of the screen height, and is vertically centered
+      // (as if it took 75% of the screen height) when stickied
+      top: calc(16.667svh + var(---toc-heading-outer-height)) !important;
+      float: left !important;
+      margin-top: 0 !important;
+      border: none !important;
+      background: none !important;
+      padding: 0 !important;
+      max-height: calc(66.667svh - var(---toc-heading-outer-height)) !important;
+      margin-left: var(---left-sticky-margin-left) !important;
+      width: var(---sticky-width) !important;
+
+      @at-root .sticky-btns {
+        position: fixed !important;
+        float: left !important;
+        margin-top: 0 !important;
+        top: 3.4375rem !important;
+        margin-left: var(---left-sticky-margin-left) !important;
+        width: var(---sticky-width) !important;
+      }
+
+      > .toc__heading {
+        position: absolute !important;
+        top: -1.5em !important;
+        background: none !important;
+      }
+    }
   }
-
-  .post__toc {
-    position: sticky !important;
-    /* TOC takes up max 2/3 of the screen height, and is vertically centered
-     * (as if it took 75% of the screen height) when stickied */
-    top: calc(16.667svh + var(---toc-heading-outer-height)) !important;
-    float: left !important;
-    margin-top: 0 !important;
-    border: none !important;
-    background: none !important;
-    padding: 0 !important;
-    max-height: calc(66.667svh - var(---toc-heading-outer-height)) !important;
-    margin-left: var(---left-sticky-margin-left) !important;
-    width: var(---sticky-width) !important;
-  }
-
-  .sticky-btns {
-    position: fixed !important;
-    float: left !important;
-    margin-top: 0 !important;
-    top: 3.4375rem !important;
-    margin-left: var(---left-sticky-margin-left) !important;
-    width: var(---sticky-width) !important;
-  }
-
-  .post__toc > .toc__heading {
-    position: absolute !important;
-    top: -1.5em !important;
-    background: none !important;
-  }
-}
-
-.post__toc ul:last-child {
-  margin-bottom: 0;
-}
-
-.post-list__blogtitle {
-  font-size: 0.85rem;
-}
-
-.post-list__comment-icon {
-  margin-bottom: -0.25rem;
-  padding-right: 1px; /* since otherwise it seems to jut out ever so slightly */
-  font-size: 14px;
-}
-
-.post-list__post:hover .pink-xlight {
-  color: var(---color-pink-light) !important;
-}
-
-.post-list__post:hover .blue-deep {
-  color: var(---color-blue-deep) !important;
-}
-
-.sticky-btns {
-  margin-top: 0.5rem;
-  width: 100%;
-}
-
-.toc__body {
-  font-size: 0.95rem;
-}
-
-.toc__body > li:last-child {
-  margin-bottom: 0.5rem;
-}
-
-.toc__body :is(ol, ul) {
-  padding-left: 1.5rem;
-}
-
-.post-list__post.underline--pink-xlight:hover {
-  text-decoration-color: var(---color-pink-light) !important;
 }

@@ -1,0 +1,15 @@
+.blogpage {
+  &__name {
+    color: var(---pink-xxlight-fg);
+  }
+  
+  &__subname {
+    line-height: 1.4em;
+    color: var(---blue-deep-dark-fg);
+  }
+}
+
+.goto-page-form__page-input {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}

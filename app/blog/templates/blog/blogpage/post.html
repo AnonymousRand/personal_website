@@ -13,6 +13,12 @@
 {% endblock %}
 
 
+{% block css %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('blog.static', filename='blogpage/css/post.css', _external=True) }}">
+{% endblock %}
+
+
 {% block js_head_inline %}
 {{ super() }}
 const BLOGPAGE_ID = {{ blogpage_id }};
