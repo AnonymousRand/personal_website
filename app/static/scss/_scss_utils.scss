@@ -5,7 +5,7 @@
     @for $j from 1 through $i {
       $new-sel: $new-sel + " > :last-child";
     }
-    $last-child-sels: $last-child-sels + if($i == 0, $new-sel, ",#{$new-sel}");
+    $last-child-sels: $last-child-sels + if($i == 1, $new-sel, ",#{$new-sel}");
   }
   @return $last-child-sels;
 }

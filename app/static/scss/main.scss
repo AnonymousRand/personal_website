@@ -1,21 +1,26 @@
-@use "base";
+// this sets the config vars globally before any other modules are loaded, avoiding errors
+@use "base" with (
+  $use-impt: true
+);
 
-@use "border";
-@use "btn";
-@use "code";
-@use "fonts";
-@use "footnote";
-@use "global";
-@use "heading";
-@use "image";
-@use "input";
-@use "layout";
-@use "link";
-@use "misc";
-@use "navbar";
-@use "scss_utils";
-@use "surf";
-@use "syntax_hl";
-@use "table";
-@use "text";
-@use "tooltip";
+@use "colors";
+@use "light_theme";
+
+@use "./border";
+@use "./btn";
+@use "./code";
+@use "./fonts";
+@use "./footnote";
+@use "./global";
+@use "./heading";
+@use "./image";
+@use "./input";
+@use "./layout";
+@use "./link";
+@use "./misc";
+@use "./navbar";
+@use "./surf";
+@use "./syntax_hl";
+@use "./table";
+@use "./text";
+@use "./tooltip";

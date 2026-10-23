@@ -31,7 +31,7 @@
 // can't use descendant selector naively; must strictly be last child of last child of ... etc.
 // css was invented by a troglodyte who took a gamma ray burst to the brain
 .last-child-no-mb {
-  #{scss_utils.$gen-last-child-sels()} {
+  #{scss_utils.gen-last-child-sels()} {
     margin-bottom: 0 !important;
   }
 }

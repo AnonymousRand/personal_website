@@ -10,7 +10,7 @@ table {
   border-width: inherit;
   padding: 0.5rem;
 
-  #{scss_utils.$gen-last-child-sels()} {
+  #{scss_utils.gen-last-child-sels()} {
     margin-bottom: 0;
   }
 }

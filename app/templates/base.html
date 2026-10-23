@@ -74,8 +74,6 @@
 
       <!-- global custom css -->
       <!-- make sure all custom css comes after bootstrap and auto-generated css so we can override it without needing higher specificity/`!important` -->
-      <link rel="stylesheet" href="{{ url_for('static', filename='theme/css/colors.css', _external=True) }}">
-      <link rel="stylesheet" href="{{ url_for('static', filename='theme/css/light_theme.css', _external=True) }}">
       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', _external=True) }}">
 
       {% block css %}{% endblock %}
