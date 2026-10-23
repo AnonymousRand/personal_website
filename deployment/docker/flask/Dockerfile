@@ -13,10 +13,13 @@ ARG DOCKER_NONROOT_USER
 # as creating directories in `/` needs root perms
 USER ${DOCKER_ROOT_USER}
 
-RUN mkdir -p /static/          && chown ${DOCKER_NONROOT_USER} /static/
-RUN mkdir -p /blogpage_static/ && chown ${DOCKER_NONROOT_USER} /blogpage_static/
-COPY --chown=${DOCKER_NONROOT_USER} ./app/static/               /static/
-COPY --chown=${DOCKER_NONROOT_USER} ./app/blog/static/blogpage/ /blogpage_static/
+# this is needed since node doesn't like it when it is run from `/`
+RUN mkdir -p /node/             && chown ${DOCKER_NONROOT_USER} /node/
+WORKDIR /node/
+RUN mkdir -p ./static/          && chown ${DOCKER_NONROOT_USER} ./static/
+RUN mkdir -p ./blogpage_static/ && chown ${DOCKER_NONROOT_USER} ./blogpage_static/
+COPY --chown=${DOCKER_NONROOT_USER} ./app/static/               ./static/
+COPY --chown=${DOCKER_NONROOT_USER} ./app/blog/static/blogpage/ ./blogpage_static/
 
 USER ${DOCKER_NONROOT_USER}
 
@@ -24,11 +27,13 @@ USER ${DOCKER_NONROOT_USER}
 ENV NPM_CONFIG_CACHE=/tmp/.npm/
 RUN npm install sass
 
-RUN npm --prefix /static/ run compile_custom_bootstrap
-RUN sass /static/scss/:/static/compiled_css/ \
-    --load-path /static/theme/scss/ --load-path /static/theme/css/ --style=compressed
-RUN sass /blogpage_static/scss/:/blogpage_static/compiled_css/ \
-    --load-path /static/theme/scss/ --load-path /static/theme/css/ --style=compressed
+RUN npm --prefix ./static/ install
+RUN npm --prefix ./static/ run compile_custom_bootstrap
+
+RUN npx sass ./static/scss/:./static/compiled_css/ \
+    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ --style=compressed
+RUN npx sass ./blogpage_static/scss/:./blogpage_static/compiled_css/ \
+    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ --style=compressed
 
 ################################################################################
 
@@ -60,9 +65,9 @@ USER ${DOCKER_NONROOT_USER}
 RUN mkdir -p ./app/static/css/
 RUN mkdir -p ./app/blog/static/blogpage/css/
 COPY --from=node --chown=${DOCKER_NONROOT_USER} \
-    /static/compiled_css/* ./app/static/css/
+    /node/static/compiled_css/*          ./app/static/css/
 COPY --from=node --chown=${DOCKER_NONROOT_USER} \
-    /blogpage_static/compiled_css/* ./app/blog/static/blogpage/css/
+    /node/blogpage_static/compiled_css/* ./app/blog/static/blogpage/css/
 
 COPY --chown=${DOCKER_NONROOT_USER} ./deployment/docker/flask/entrypoint.sh ./
 RUN chmod +x entrypoint.sh
