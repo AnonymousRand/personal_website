@@ -4,7 +4,8 @@
   "description": "using npm with flask is a bad idea, they said",
   "main": "index.js",
   "scripts": {
-    "compile_scss": "bash ./compile_scss.sh"
+    "compile_custom_bootstrap":
+        "sass /static/scss/custom_bootstrap.scss:/static/compiled_css/custom_bootstrap.css"
   },
   "author": "AnonymousRand",
   "license": "ISC",
