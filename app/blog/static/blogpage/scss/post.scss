@@ -1,14 +1,5 @@
 @use "./comment";
 
-.copy-permanent-link-btn {
-  margin-bottom: -0.125rem;
-  font-size: 1em; // undo bootstrap >:3
-}
-
-.go-to-comments-link {
-  margin-bottom: -0.1875rem;
-}
-
 .heading-link {
   visibility: hidden;
   margin-left: 0.25em;
@@ -62,6 +53,17 @@
 }
 
 .post {
+  &__heading {
+    .copy-permanent-link-icon {
+      margin-bottom: -0.125rem;
+      font-size: 1em; // undo bootstrap >:3
+    }
+
+    .go-to-comments-icon {
+      margin-bottom: -0.1875rem;
+    }
+  }
+
   &__timestamp {
     margin-right: 0.625rem;
   }
@@ -144,4 +146,15 @@
       }
     }
   }
+}
+
+// use these as heading sections within proofs
+.pf__h1 {
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.pf__h2 {
+  font-weight: bold;
+  font-size: 1.15rem;
 }

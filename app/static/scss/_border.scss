@@ -22,14 +22,14 @@
   &--colorful {
     border-color: transparent !important;
     border-image: conic-gradient(
-      var(---color-orange-xlight) 62.5deg,
-      var(---color-green-light) 85deg,
-      var(---color-green-light) 95deg,
-      var(---color-blue-xxlight) 112.5deg,
-      var(---color-blue-xxlight) 242.5deg,
-      var(---color-pink-xxxxlight) 260deg,
-      var(---color-pink-xxxxlight) 280deg,
-      var(---color-orange-xlight) 312.5deg
+      var(---color-orange-xlight-border) 62.5deg,
+      var(---color-green-light-border) 85deg,
+      var(---color-green-light-border) 95deg,
+      var(---color-blue-xxlight-border) 112.5deg,
+      var(---color-blue-xxlight-border) 242.5deg,
+      var(---color-pink-xxxxlight-border) 260deg,
+      var(---color-pink-xxxxlight-border) 280deg,
+      var(---color-orange-xlight-border) 312.5deg
     ) 1 !important;
   }
   
@@ -37,14 +37,14 @@
     &--colorful {
       /* this allows us to round off the corners using `border-radius` */
       background: conic-gradient(
-        var(---color-orange-xlight) 62.5deg,
-        var(---color-green-light) 85deg,
-        var(---color-green-light) 95deg,
-        var(---color-blue-xxlight) 112.5deg,
-        var(---color-blue-xxlight) 242.5deg,
-        var(---color-pink-xxxxlight) 260deg,
-        var(---color-pink-xxxxlight) 280deg,
-        var(---color-orange-xlight) 312.5deg
+        var(---color-orange-xlight-border) 62.5deg,
+        var(---color-green-light-border) 85deg,
+        var(---color-green-light-border) 95deg,
+        var(---color-blue-xxlight-border) 112.5deg,
+        var(---color-blue-xxlight-border) 242.5deg,
+        var(---color-pink-xxxxlight-border) 260deg,
+        var(---color-pink-xxxxlight-border) 280deg,
+        var(---color-orange-xlight-border) 312.5deg
       ) border-box !important;
       background-clip: border-area !important;
     }

@@ -29,6 +29,7 @@ async function genFootnoteTooltips(selector) {
 
         // replace serialized mathml html with its corresponding original latex
         // to render with `MathJax.typeset()` on mouseover
+        // the `await` is necessary as otherwise this code seems to run before mathjax starts up
         await MathJax.startup.promise;
         const mathItems = MathJax.startup.document.getMathItemsWithin(nodeFootnote);
         const matches = tooltipContents.match(MATCH_MATHJAX_RE);
