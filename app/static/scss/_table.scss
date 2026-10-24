@@ -2,15 +2,29 @@
 
 table {
   margin-bottom: 1rem;
-  border-color: var(--bs-border);
+  border-color: var(--bs-border-color);
   width: max-content;
 }
 
 :is(td, th) {
-  border-width: inherit;
+  border-width: var(--bs-border-width);
   padding: 0.5rem;
 
   #{scss_utils.gen-last-child-sels()} {
     margin-bottom: 0;
   }
+}
+
+.cell--left-header {
+  border-right-width: calc(var(--bs-border-width) + 1px);
+}
+
+.cell--top-header {
+  border-bottom-width: calc(var(--bs-border-width) + 1px);
+}
+
+.cell--left-header,
+.cell--top-header {
+  background-color: var(---color-variant-1-bg) !important;
+  color: var(---color-accent-4-fg) !important;
 }

@@ -21,6 +21,12 @@
     background-color: var(---color-gray-xxxlight-bg);
     width: 2.5rem;
     height: 1.25rem;
+
+    // bootstrap does this by default but with not enough specificity, and we can't lower
+    // our specificity as it then isn't enough too. fuck you css. fuck you.
+    &:checked {
+      background-color: var(---color-pink-xxxxxxlight-bg);
+    }
   }
 
   // need specificity so nested, gah i freaking hate css

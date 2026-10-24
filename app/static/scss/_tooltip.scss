@@ -9,10 +9,12 @@
     opacity: 100%;
   }
 
-  &.tooltip-inner {
-    border: 2px solid !important;
+  .tooltip-inner {
+    border-width: var(--bs-border-width);
+    border-style: var(--bs-border-style);
     border-radius: var(--bs-border-radius);
     max-width: 30rem !important;
+    font-size: 0.9rem;
   }
 
   #{scss_utils.gen-last-child-sels()} {

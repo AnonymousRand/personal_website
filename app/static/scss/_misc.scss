@@ -51,6 +51,10 @@ li > p:last-of-type:not(:has(.display-math)) {
     width: inherit;
     max-width: inherit;
   }
+
+  .btn-close {
+    opacity: 1;
+  }
 }
 
 .silly-mode {
@@ -64,21 +68,6 @@ li > p:last-of-type:not(:has(.display-math)) {
 }
 
 //------------------------------------------------------------------------------
-
-.cell--left-header {
-  border-right-style: double !important;
-}
-
-.cell--top-header {
-  border-bottom-style: double !important;
-}
-
-.cell--left-header,
-.cell--top-header {
-  border-width: 3px !important;
-  background-color: var(---color-accent-4-bg) !important;
-  color: var(---color-accent-4-fg) !important;
-}
 
 .extend-off-page {
   white-space: nowrap;

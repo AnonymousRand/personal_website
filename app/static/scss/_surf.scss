@@ -5,16 +5,14 @@
 $default-surfs: [];
 
 $variant-1-surfs:
-  "%code-block",
-  "details",
   ".form-control",
   ".tooltip .tooltip-inner";
 
 $variant-2-surfs:
   "body",
+  "details",
   ".dropdown-menu",
   ".dropdown-item",
-  ".flash",
   ".navbar";
 
 $selected-surfs: [];
