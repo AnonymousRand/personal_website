@@ -1,0 +1,4 @@
+.dark-mode-manual {
+    // this is what darkreader does
+    filter: invert(100%) hue-rotate(180deg) !important;
+}

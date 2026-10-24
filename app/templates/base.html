@@ -74,6 +74,10 @@
 
       <!-- global custom css -->
       <!-- make sure all custom css comes after bootstrap and auto-generated css so we can override it without needing higher specificity/`!important` -->
+      <link id="light-theme-css" rel="stylesheet" href="{{ url_for('static', filename='theme/css/light_theme.css', _external=True) }}">
+      <!-- this must come after the light mode so as to be able to override it by toggling `disabled` -->
+      <link id="dark-theme-css" rel="stylesheet" href="{{ url_for('static', filename='theme/css/dark_theme.css', _external=True) }}" disabled>
+      <link id="extra-dark-mode-css" rel="stylesheet" href="{{ url_for('static', filename='css/extra_dark_mode_css.css', _external=True) }}" disabled>
       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css', _external=True) }}">
 
       {% block css %}{% endblock %}
