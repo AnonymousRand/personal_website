@@ -27,7 +27,7 @@ const TOTAL_PAGES = {{ total_pages }};
     <div>
       {% if blogpage.is_all_posts %}
         {% set color = post.blogpage.color %}
-        <a class="post-list__post link--{{ color }} underline-on-hover-only" href="{{ url_for('blog.' ~ post.blogpage_id ~ '.get_post', post_id=post.id, post_sanitized_title=post.sanitized_title, _external=True) }}">
+        <a class="post-list__post link--{{ color }} ul-on-hover-only" href="{{ url_for('blog.' ~ post.blogpage_id ~ '.get_post', post_id=post.id, post_sanitized_title=post.sanitized_title, _external=True) }}">
           <div class="d-flex align-items-top">
             <div class="flex-shrink-0 flex-basis-75 me-3">
               <h1 class="mb-0 p-mb-0 fs-5">{{ post.title|safe }}</h1>
@@ -44,26 +44,26 @@ const TOTAL_PAGES = {{ total_pages }};
             {% else %}
               <span class="flex-basis-75 me-3 mb-0">{{ moment(post.timestamp).format("Y/M/D") }}</span>
             {% endif %}
-            <span class="d-flex align-items-center ms-auto text-gray">
-              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="text-pink-light">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
+            <span class="d-flex align-items-center ms-auto text--gray">
+              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="text--pink-light">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
             </span>
           </div>
       {% else %}
-        <a class="post-list__post underline-on-hover-only underline--pink-xxlight" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_post', post_id=post.id, post_sanitized_title=post.sanitized_title, _external=True) }}">
-          <h1 class="mb-0 p-mb-0 text-pink-xxlight fs-5">{{ post.title|safe }}</h1>
+        <a class="post-list__post ul-on-hover-only ul--pink-xxlight" href="{{ url_for('blog.' ~ blogpage_id ~ '.get_post', post_id=post.id, post_sanitized_title=post.sanitized_title, _external=True) }}">
+          <h1 class="mb-0 p-mb-0 text--pink-xxlight fs-5">{{ post.title|safe }}</h1>
   
           {% if post.subtitle is not none %}
-            <h2 class="mt-1 mb-0 p-mb-0 text-blue-deep-dark fs-8">{{ post.subtitle|safe }}</h2>
+            <h2 class="mt-1 mb-0 p-mb-0 text--blue-deep-dark fs-8">{{ post.subtitle|safe }}</h2>
           {% endif %}
   
           <div class="d-flex align-items-center mt-2">
             {% if post.updated_timestamp is not none %}
-              <span class="flex-basis-75 me-3 mb-0 text-black">{{ moment(post.timestamp).format("Y/M/D") }} | updated {{ moment(post.updated_timestamp).format("Y/M/D") }}</span>
+              <span class="flex-basis-75 me-3 mb-0 text--black">{{ moment(post.timestamp).format("Y/M/D") }} | updated {{ moment(post.updated_timestamp).format("Y/M/D") }}</span>
             {% else %}
-              <span class="flex-basis-75 me-3 mb-0 text-black">{{ moment(post.timestamp).format("Y/M/D") }}</span>
+              <span class="flex-basis-75 me-3 mb-0 text--black">{{ moment(post.timestamp).format("Y/M/D") }}</span>
             {% endif %}
-            <span class="d-flex align-items-center text-gray ms-auto">
-              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="text-pink-light show-when-logged-in">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
+            <span class="d-flex align-items-center text--gray ms-auto">
+              <span class="me-2">{% if current_user.is_authenticated and post.get_unread_comment_count() > 0 %}<span class="text--pink-light show-when-logged-in">({{ post.get_unread_comment_count() }})</span> {% endif %}{{ post.get_comment_count() }}</span><i class="post-list__comment-icon bi bi-chat-right-text"></i>
             </span>
           </div>
       {% endif %}
@@ -79,10 +79,10 @@ const TOTAL_PAGES = {{ total_pages }};
       {% if total_pages > 1 %}
         <div class="d-flex justify-content-center align-items-center">
           {% if prev_page_url %}
-            <a class="w-2rem text-end underline-on-hover-only" href="{{ prev_page_url }}"><code>--</code></a>
+            <a class="w-2rem text-end ul-on-hover-only" href="{{ prev_page_url }}"><code>--</code></a>
             <span class="pipe--1_5em mx-4"></span>
           {% else %}
-            <a class="invisible w-2rem text-end underline-on-hover-only"><code>--</code></a>
+            <a class="invisible w-2rem text-end ul-on-hover-only"><code>--</code></a>
             <span class="pipe--1_5em invisible mx-4"></span>
           {% endif %}
     
@@ -92,16 +92,16 @@ const TOTAL_PAGES = {{ total_pages }};
                 <label class="d-inline" for="goto-page-form__page-input">page = </label>
                 <input id="goto-page-form__page-input" class="goto-page-form__page-input form-control d-inline w-2_5em" name="page" type="text" maxlength="5" value="" size="1"/>
               </div>
-              &nbsp;<input class="btn btn-link underline-on-hover-only" name="submit" type="submit" value="go!">
+              &nbsp;<input class="btn btn-link ul-on-hover-only" name="submit" type="submit" value="go!">
             </div>
           </form>
         
           {% if next_page_url %}
             <span class="pipe--1_5em mx-4"></span>
-            <a class="w-2rem text-start underline-on-hover-only" href="{{ next_page_url }}"><code>++</code></a>
+            <a class="w-2rem text-start ul-on-hover-only" href="{{ next_page_url }}"><code>++</code></a>
           {% else %}
             <span class="pipe--1_5em invisible mx-4"></span>
-            <a class="invisible w-2rem text-start underline-on-hover-only"><code>++</code></a>
+            <a class="invisible w-2rem text-start ul-on-hover-only"><code>++</code></a>
           {% endif %}
         </div>
       {% endif %}

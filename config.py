@@ -53,6 +53,7 @@ class Config(object):
             "cdn.jsdelivr.net",
             "cdnjs.cloudflare.com", # highlight.js, flask-moment/moment.js
             "code.jquery.com",
+            "http.cat",             # error pages :3
             "\'unsafe-inline\'"     # anubis 3:
         ],
         "style-src": _csp_self + [

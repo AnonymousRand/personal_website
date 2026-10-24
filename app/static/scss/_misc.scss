@@ -31,6 +31,9 @@ li > p:last-of-type:not(:has(.display-math)) {
 }
 
 .flash {
+  --bs-alert-bg: var(--bs-body-bg);
+  --bs-alert-color: var(--bs-body-color);
+
   border-width: 3px;
   border-style: solid;
 
@@ -137,15 +140,15 @@ li > p:last-of-type:not(:has(.display-math)) {
   text-overflow: ellipsis !important;
 }
 
-.underline--pink-xxlight {
+.ul--pink-xxlight {
   text-decoration-color: var(---color-pink-xxlight-fg) !important;
 }
 
-.underline-on-hover-only {
+.ul-on-hover-only {
   text-decoration-line: none !important;
 }
 
-.underline-on-hover-only:hover,
-.underline-on-hover-only:hover .MathJax * {
+.ul-on-hover-only:hover,
+.ul-on-hover-only:hover .MathJax * {
   text-decoration-line: underline !important;
 }

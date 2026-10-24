@@ -23,7 +23,21 @@ def favicon():
 
 def handle_general_http_error(e):
     # meow :3
-    return redirect(f"https://http.cat/{e.code}")
+    # only redir on html and image requests as otherwise it won't work and probably wastes resources
+    should_redir = False
+    if request.accept_mimetypes.accept_html:
+        should_redir = True
+    else:
+        for mimetype in request.accept_mimetypes:
+            if mimetype.startswith("image/"):
+                should_redir = True
+                break
+
+    if should_redir:
+        return redirect(f"https://http.cat/{e.code}")
+    else:
+        # this falls back to regular error handling
+        return None
 
 
 def get_url_for():

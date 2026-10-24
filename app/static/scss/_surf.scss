@@ -29,7 +29,7 @@ $selected-surfs: [];
   }
 }
 
-@if list.length($default-surfs) > 0 {
+@if list.length($variant-1-surfs) > 0 {
   #{$variant-1-surfs} {
     border-color:     var(---color-variant-1-border);
     background-color: var(---color-variant-1-bg);
@@ -37,7 +37,7 @@ $selected-surfs: [];
   }
 }
 
-@if list.length($default-surfs) > 0 {
+@if list.length($variant-2-surfs) > 0 {
   #{$variant-2-surfs} {
     border-color:     var(---color-variant-2-border);
     background-color: var(---color-variant-2-bg);

@@ -88,7 +88,7 @@ function randomizeColors() {
             }
 
             .flash {
-              border-color: var(${colorChoice.flashBorder});
+              --bs-alert-border-color: var(${colorChoice.flashBorder});
             }
         </style>
     `);

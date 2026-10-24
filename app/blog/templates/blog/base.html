@@ -1,12 +1,6 @@
 {% extends "base.html" %}
 
 
-{% block css %}
-{{ super() }}
-<link rel="stylesheet" href="{{ url_for('blog.static', filename='css/style.css', _external=True) }}">
-{% endblock %}
-
-
 {% block js_head_inline %}
 {{ super() }}
 const GET_POSTS_WITH_UNREAD_COMMENTS_URL = "{{ url_for('blog.get_posts_with_unread_comments', _external=True) }}";

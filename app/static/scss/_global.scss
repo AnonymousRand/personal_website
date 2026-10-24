@@ -1,4 +1,7 @@
 :root {
+  // for form file "browse..." button; this is not an scss variable
+  --bs-tertiary-bg: var(---color-variant-1-bg);
+
   ---container-content-max-width: min(672px, 100vw);
 }
 

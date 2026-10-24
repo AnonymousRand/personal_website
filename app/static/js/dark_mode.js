@@ -8,7 +8,7 @@ let darkReaderFixes = {
     invert: [
         ".dark-mode-manual"
     ]
-}
+};
 
 DarkReader.setFetchMethod(window.fetch); // solves cors issue
 
@@ -92,7 +92,7 @@ $(document).ready(async function() {
 
     // only do this here instead of on top-level since we can't use await on top level for fetch,
     // and top-level promises mean the dark reader fixes variable isn't initialized in time
-    await addDarkModeCssFixes();
+    addDarkModeCssFixes();
 });
 
 async function addDarkModeCssFixes() {
@@ -108,6 +108,6 @@ async function addDarkModeCssFixes() {
         // have to re-enable with the new fixes since this loads later after darkreader
         // has already activated, due to the fetch
         // we only enable darkreader without fixes at the beginning to avoid a bright flash
-        DarkReader.enable(DARKREADER_OPTIONS, darkReaderFixes);
+        enableDarkMode(false);
     }
 }
