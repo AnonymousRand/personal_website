@@ -1,4 +1,13 @@
 .navbar {
+  background-color:  var(---color-variant-2-bg);
+  --bs-navbar-color: var(---color-variant-2-gray-fg);
+
+  // this replaces the color inside the svg stroke
+  mask-image:         var(--bs-navbar-toggler-icon-bg);
+  -webkit-mask-image: var(--bs-navbar-toggler-icon-bg);
+  background-image: none;
+  background-color: var(---color-border-4);
+
   // for (approx?) centering due to 4px larger font
   &__home {
     margin-top: -2px;
@@ -17,15 +26,15 @@
 .form-switch {
   .switch--navbar {
     margin-top: 0;
-    background-color: var(---color-gray-xxxlight-bg);
+    //background-color: var(---color-gray-xxxlight-bg);
     width: 2.5rem;
     height: 1.25rem;
 
-    // bootstrap does this by default but with not enough specificity, and we can't lower
-    // our specificity as it then isn't enough too. fuck you css. fuck you.
-    &:checked {
-      background-color: var(---color-pink-xxxxxxlight-bg);
-    }
+    //// bootstrap does this by default but with not enough specificity, and we can't lower
+    //// our specificity as it then isn't enough too. fuck you css. fuck you.
+    //&:checked {
+    //  background-color: var(---color-pink-xxxxxxlight-bg);
+    //}
   }
 
   // need specificity so nested, gah i freaking hate css

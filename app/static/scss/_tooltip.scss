@@ -2,14 +2,15 @@
 
 .tooltip {
   --bs-tooltip-opacity: 1;
+  --bs-tooltip-bg:      var(---color-variant-1-bg);
+  --bs-tooltip-color:   var(---color-variant-1-gray-fg);
 
   font-family: inherit !important;
   font-weight: inherit !important;
   font-style: inherit !important;
 
   .tooltip-inner {
-    border-width: var(--bs-border-width);
-    border-style: var(--bs-border-style);
+    border: var(--bs-border-width) var(--bs-border-style) var(---color-variant-1-border);
     border-radius: var(--bs-border-radius);
     max-width: 30rem !important;
     font-size: 0.9rem;

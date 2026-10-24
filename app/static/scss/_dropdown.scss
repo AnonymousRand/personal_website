@@ -1,0 +1,10 @@
+.dropdown-menu {
+  --bs-dropdown-border-color: var(---color-variant-2-border);
+  --bs-dropdown-bg:           var(---color-variant-2-bg);
+  --bs-dropdown-color:        var(---color-variant-2-gray-fg);
+
+  // these are dropdown items
+  --bs-dropdown-link-color:        var(--bs-dropdown-color);
+  --bs-dropdown-link-hover-color:  var(--bs-dropdown-color);
+  --bs-dropdown-link-active-color: var(--bs-dropdown-color);
+}

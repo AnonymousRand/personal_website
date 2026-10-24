@@ -1,0 +1,21 @@
+.form-control {
+  @extend %surf--variant-1;
+}
+
+.form-check-input {
+  border-color: var(--bs-border-color);
+
+  &:checked {
+    border-color:     var(--bs-border-color);
+    background-color: var(---colors-pink-xxxxxlight-bg);
+    color:            var(---colors-pink-xxxlight-fg);
+  }
+}
+
+.form-switch {
+  background-color: var(---colors-gray-xxxlight-bg);
+
+  &:checked {
+    background-color: var(---colors-accent-default-bg);
+  }
+}

@@ -1,49 +1,44 @@
 @use "utils";
 
+%surf {
+  &--body {
+    border-color:     var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    color:            var(--bs-body-text);
+  }
+
+  &--variant-1 {
+    border-color:     var(---color-variant-1-border);
+    background-color: var(---color-variant-1-bg);
+    color:            var(---color-variant-1-gray-fg);
+  }
+
+  &--variant-2 {
+    border-color:     var(---color-variant-2-border);
+    background-color: var(---color-variant-2-bg);
+    color:            var(---color-variant-2-gray-fg);
+  }
+}
+
+//------------------------------------------------------------------------------
+
+// currently, surface registries are only for button colors, so we won't register any surfaces that
+// we do not anticipate having buttons on them, preferring modular/localized styles per such surface
+// we also avoid registering placeholders since styling them in the separate button file won't work
+
 $default-surfs: [];
 $variant-1-surfs: [];
 $variant-2-surfs: [];
 $selected-surfs: [];
 
 //------------------------------------------------------------------------------
-// variant 1 surfs
-
-$variant-1-surfs: utils.register-sels($variant-1-surfs, [
-  "%surf--variant-1",
-  ".form-control"
-]);
-%surf--variant-1,
-.form-control {
-  border-color:     var(---color-variant-1-border);
-  background-color: var(---color-variant-1-bg);
-  color:            var(---color-variant-1-gray-fg);
-}
-
-$variant-1-surfs: utils.register-sels($variant-1-surfs, [
-  ".tooltip .tooltip-inner"
-]);
-.tooltip .tooltip-inner {
-  border-color:       var(---color-variant-1-border);
-  --bs-tooltip-bg:    var(---color-variant-1-bg);
-  --bs-tooltip-color: var(---color-variant-1-gray-fg);
-}
-
-//------------------------------------------------------------------------------
 // variant 2 surfs
 
 $variant-2-surfs: utils.register-sels($variant-2-surfs, [
-  "%surf--variant-2",
-  "%surf--body",
-  "details",
   ".modal"
 ]);
-%surf--variant-2,
-%surf--body,
-details,
 .modal {
-  border-color:     var(---color-variant-2-border);
-  background-color: var(---color-variant-2-bg);
-  color:            var(---color-variant-2-gray-fg);
+  @extend %surf--variant-2;
 }
 
 $variant-2-surfs: utils.register-sels($variant-2-surfs, [
@@ -52,30 +47,6 @@ $variant-2-surfs: utils.register-sels($variant-2-surfs, [
 body {
   --bs-body-bg:    var(---color-variant-2-bg);
   --bs-body-color: var(---color-variant-2-gray-fg);
-}
-
-$variant-2-surfs: utils.register-sels($variant-2-surfs, [
-  ".dropdown-menu",
-  ".dropdown-item"
-]);
-.dropdown-menu {
-  --bs-dropdown-border-color: var(---color-variant-2-border);
-  --bs-dropdown-bg:           var(---color-variant-2-bg);
-  --bs-dropdown-color:        var(---color-variant-2-gray-fg);
-}
-.dropdown-item {
-  background-color: var(---color-variant-2-bg);
-  color:            var(---color-variant-2-gray-fg);
-}
-
-$variant-2-surfs: utils.register-sels($variant-2-surfs, [
-  ".navbar"
-]);
-.navbar {
-  background-color:  var(---color-variant-2-bg);
-  --bs-navbar-color: var(---color-variant-2-gray-fg);
-
-  --bs-navbar-toggler-border-color: var(---color-border-5);
 }
 
 $variant-2-surfs: utils.register-sels($variant-2-surfs, [

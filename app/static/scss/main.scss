@@ -10,7 +10,9 @@
 @use "./border";
 @use "./btn";
 @use "./code";
+@use "./dropdown";
 @use "./fonts";
+@use "./form";
 @use "./footnote";
 @use "./global";
 @use "./global_bootstrap";
@@ -20,6 +22,7 @@
 @use "./layout";
 @use "./link";
 @use "./misc";
+@use "./modal";
 @use "./navbar";
 @use "./surf";
 @use "./syntax_hl";

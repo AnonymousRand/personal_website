@@ -2,6 +2,7 @@
 
 %code-block {
   @extend %surf--variant-1;
+  color: var(---color-gray-dark-fg);
 }
 
 .code-box,
@@ -12,10 +13,12 @@
 
 //------------------------------------------------------------------------------
 
-// god i hate specificity; have to separate this from `code`'s stuff
+code {
+  font-size: 1em;
+}
+
 pre {
   margin-bottom: 0;
-  font-size: 100%;
 }
 
 // use `.inline-code-block` for "inline code blocks", i.e. a code block that respects whitespace

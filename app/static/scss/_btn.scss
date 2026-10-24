@@ -5,39 +5,41 @@
   surf.$default-surfs, surf.$variant-1-surfs, surf.$variant-2-surfs, surf.$selected-surfs
 );
 
-.btn--default {
-  @extend %btn-base;
-  @extend %btn-raised;
-  @include base.btn-bordered;
-}
+.btn {
+  --bs-btn-disabled-opacity: 0.5;
 
-//------------------------------------------------------------------------------
-// `.btn-close`
-
-.btn-close {
-  --bs-btn-close-color: var(---color-pink-xlight-fg);
-}
-
-//------------------------------------------------------------------------------
-// `.btn-link`
-
-.btn-link {
-  background-color: transparent !important;
-  padding: 0;
-
-  &--orange-xxdeep {
-    color: var(---color-orange-xxdeep-fg) !important;
+  &--default {
+    @extend %btn-base;
+    @extend %btn-raised;
+    @include base.btn-bordered;
   }
-  
-  &--orange-xxdeep:hover {
-    color: var(---color-orange-xxxdeep-fg) !important;
+
+  &-close {
+    --bs-btn-close-color: var(---color-pink-xlight-fg);
   }
-  
-  &--pink-xlight {
-    color: var(---color-pink-xlight-fg) !important;
-  }
-  
-  &--pink-xlight:hover {
-    color: var(---color-pink-light-fg) !important;
+
+  &-link {
+    --bs-btn-color:          var(---color-link);
+    --bs-btn-hover-color:    var(---color-link-hover);
+    --bs-btn-active-color:   var(---color-link-hover);
+    --bs-btn-disabled-color: var(---color-link-disabled);
+
+    padding: 0;
+
+    &--orange-xxdeep {
+      color: var(---color-orange-xxdeep-fg) !important;
+    }
+    
+    &--orange-xxdeep:hover {
+      color: var(---color-orange-xxxdeep-fg) !important;
+    }
+    
+    &--pink-xlight {
+      color: var(---color-pink-xlight-fg) !important;
+    }
+    
+    &--pink-xlight:hover {
+      color: var(---color-pink-light-fg) !important;
+    }
   }
 }

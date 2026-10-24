@@ -1,3 +1,13 @@
+function applyInterpolatingCss () {
+    $("body").append(`
+        <style>
+          .navbar {
+
+          }
+        </style>
+    `);
+}
+
 function applyStyles(selector) {
     const jqBase = $(selector);
     if (jqBase.length === 0) {
@@ -22,7 +32,7 @@ const colorChoices = {
         inputAccent:   "---color-blue-bg",
         inputBorder:   "---color-blue-border",
         focusRing:     "rgb(from var(---color-blue-border) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder:   "---color-blue-xlight-border",
+        alertBorder:   "---color-blue-xlight-border",
         // `slice()` to remove leading hashtag, as that has to be encoded in the svg
         flashCloseBtn: fetchCssColorVar("---color-blue-xlight-border").slice(1),
         selection:     "---color-blue-xxlight-bg"
@@ -33,7 +43,7 @@ const colorChoices = {
         inputAccent:   "---color-green-bg",
         inputBorder:   "---color-green-border",
         focusRing:     "rgb(from var(---color-green-border) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder:   "---color-green-border",
+        alertBorder:   "---color-green-border",
         flashCloseBtn: fetchCssColorVar("---color-green-border").slice(1),
         selection:     "---color-green-light-bg"
     },
@@ -43,7 +53,7 @@ const colorChoices = {
         inputAccent:   "---color-orange-bg",
         inputBorder:   "---color-orange-border",
         focusRing:     "rgb(from var(---color-orange-border) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder:   "---color-orange-xlight-border",
+        alertBorder:   "---color-orange-xlight-border",
         flashCloseBtn: fetchCssColorVar("---color-orange-xlight-border").slice(1),
         selection:     "---color-orange-shallow-light-bg"
     },
@@ -53,7 +63,7 @@ const colorChoices = {
         inputAccent:   "---color-pink-xxxxlight-bg",
         inputBorder:   "---color-pink-xxxxlight-border",
         focusRing:     "rgb(from var(---color-pink-xxxxlight-border) r g b / var(--bs-focus-ring-opacity))",
-        flashBorder:   "---color-pink-xxxxlight-border",
+        alertBorder:   "---color-pink-xxxxlight-border",
         flashCloseBtn: fetchCssColorVar("---color-pink-xxxxlight-border").slice(1),
         selection:     "---color-pink-xxxxxxlight-bg"
     }
@@ -66,44 +76,40 @@ function randomizeColors() {
     // can't use `css()` here since it doesn't support `!important`, which is needed sometimes
     $("body").append(`
         <style>
-            :root {
-              --bs-box-shadow: 0 0.5rem 1rem ${colorChoice.focusRing};
-              --bs-box-shadow-sm: 0 0.125rem 0.25rem ${colorChoice.focusRing};
-              --bs-box-shadow-lg: 0 1rem 3rem ${colorChoice.focusRing};
-              --bs-box-shadow-inset: inset 1px 2px ${colorChoice.focusRing};
+          :root {
+            --bs-box-shadow: 0 0.5rem 1rem ${colorChoice.focusRing};
+            --bs-box-shadow-sm: 0 0.125rem 0.25rem ${colorChoice.focusRing};
+            --bs-box-shadow-lg: 0 1rem 3rem ${colorChoice.focusRing};
+            --bs-box-shadow-inset: inset 1px 2px ${colorChoice.focusRing};
 
-              --bs-focus-ring-color: var(${colorChoice.inputBorder});
-            }
+            --bs-focus-ring-color: var(${colorChoice.inputBorder});
+          }
 
-            ::selection {
-              background-color: var(${colorChoice.selection});
-            }
+          ::selection {
+            background-color: var(${colorChoice.selection});
+          }
 
-            /*
-            :is(select, input:not([type="button"], [type="submit"]), textarea):is(:hover, :focus) {
-              box-shadow: 0 0 0 0.25rem ${colorChoice.focusRing} !important;
-              border-color: var(${colorChoice.inputBorder}) !important;
-            }
+          /* needed still since they otherwise use colors set at scss compile time, not in css */
+          :is(.form-control, .form-select):is(:focus, :focus-visible),
+          .form-check-input:checked {
+            box-shadow: 0 0 0 0.25rem ${colorChoice.focusRing} !important;
+            border-color: var(${colorChoice.inputBorder}) !important;
+          }
 
-            .form-check-input:checked {
-              border-color: var(${colorChoice.inputBorder}) !important;
-              background-color: var(${colorChoice.inputAccent}) !important;
-            }
-            */
+          option:is(:hover, :active),
+          .dropdown-item:is(:hover, :active) {
+            --bs-dropdown-link-hover-bg: var(${colorChoice.menuHighlight});
+            --bs-dropdown-link-active-bg: var(${colorChoice.menuHighlight});
+            background-color: var(${colorChoice.menuHighlight}) !important;
+          }
 
-            option:active,
-            .dropdown-item:hover,
-            .dropdown-item:active {
-              background-color: var(${colorChoice.menuHighlight}) !important;
-            }
+          .alert {
+            --bs-alert-border-color: var(${colorChoice.alertBorder});
+          }
 
-            .flash {
-              --bs-alert-border-color: var(${colorChoice.flashBorder});
-            }
-
-            .flash .btn-close {
-              --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23${colorChoice.flashCloseBtn}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
-            }
+          .flash .btn-close {
+            --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23${colorChoice.flashCloseBtn}'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+          }
         </style>
     `);
 }

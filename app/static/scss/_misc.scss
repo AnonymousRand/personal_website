@@ -5,6 +5,11 @@ blockquote {
   color: var(---color-gray-dark-fg);
 }
 
+hr {
+  opacity: 1;
+  color: var(--bs-border-color);
+}
+
 label:has(+ [required]):after,
 label:has(+ * [required]):after {
   color: var(---color-red-fg);
