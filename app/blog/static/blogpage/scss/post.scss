@@ -1,5 +1,6 @@
+@use "bg";
 @use "./custom_md";
-@use "./comment";
+@use "./post_comment";
 
 $collapse-left-sticky-width: 1536px;
 $collapse-left-sticky-height: 660px;
@@ -86,15 +87,16 @@ $collapse-left-sticky-height: 660px;
   }
 
   &__toc {
+    @extend %bg--variant-1;
+
     z-index: 999;
-    /*border: 2px solid var(---color-pink-xxxxlight);*/
     margin-top: 1rem;
     padding: 1rem 1rem 0rem 1rem;
     max-height: max(33.3333svh, 15rem);
 
     .toc__heading {
-      background-color: var(--bs-card-bg); /* to match card body */
-      /* so any color changes span the whole thing */
+      background-color: inherit;
+      // so any color changes span the whole thing
       width: 100%;
     }
 
@@ -126,6 +128,7 @@ $collapse-left-sticky-height: 660px;
       float: left !important;
       margin-top: 0 !important;
       border: none !important;
+      // "you may not extend selectors across media queries" fuck you fuck you fuck you
       background-color: var(--bs-body-bg) !important;
       padding: 0 !important;
       max-height: calc(66.667svh - var(---toc-heading-outer-height)) !important;

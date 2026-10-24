@@ -1,13 +1,11 @@
 @use "scss_utils";
 
 .tooltip {
+  --bs-tooltip-opacity: 1;
+
   font-family: inherit !important;
   font-weight: inherit !important;
   font-style: inherit !important;
-
-  &.show {
-    opacity: 100%;
-  }
 
   .tooltip-inner {
     border-width: var(--bs-border-width);
@@ -22,23 +20,23 @@
   }
 }
 
-/* tooltip arrow */
+// tooltip arrow
 .bs-tooltip-top .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=top] .tooltip-arrow::before {
-  border-top-color: var(--bs-border) !important;
+  border-top-color: var(--bs-border-color) !important;
 }
 
 .bs-tooltip-right .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=right] .tooltip-arrow::before {
-  border-right-color: var(--bs-border) !important;
+  border-right-color: var(--bs-border-color) !important;
 }
 
 .bs-tooltip-bottom .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=bottom] .tooltip-arrow::before {
-  border-bottom-color: var(--bs-border) !important;
+  border-bottom-color: var(--bs-border-color) !important;
 }
 
 .bs-tooltip-left .tooltip-arrow::before,
 .bs-tooltip-auto[data-popper-placement^=left] .tooltip-arrow::before {
-  border-left-color: var(--bs-border) !important;
+  border-left-color: var(--bs-border-color) !important;
 }

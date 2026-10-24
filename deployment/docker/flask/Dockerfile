@@ -31,9 +31,11 @@ RUN npm --prefix ./static/ install
 RUN npm --prefix ./static/ run compile_custom_bootstrap
 
 RUN npx sass ./static/scss/:./static/compiled_css/ \
-    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ --style=compressed
+    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ \
+    --style=compressed
 RUN npx sass ./blogpage_static/scss/:./blogpage_static/compiled_css/ \
-    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ --style=compressed
+    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ --load-path ./static/scss/ \
+    --style=compressed
 
 ################################################################################
 

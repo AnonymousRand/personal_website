@@ -5,12 +5,15 @@
 
 @use "colors";
 
+@use "./alert";
+@use "./bg";
 @use "./border";
 @use "./btn";
 @use "./code";
 @use "./fonts";
 @use "./footnote";
 @use "./global";
+@use "./global_bootstrap";
 @use "./heading";
 @use "./image";
 @use "./input";

@@ -1,3 +1,5 @@
+@use "./border";
+
 %post-img {
   display: block;
   margin: 1rem auto 1rem auto;
@@ -5,7 +7,7 @@
   max-width: 100%;
 
   &:hover {
-    border-color: var(--bs-border) !important;
+    @extend %border--default;
   }
 
   &:not([width]) {

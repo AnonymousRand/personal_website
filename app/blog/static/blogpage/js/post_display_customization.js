@@ -6,18 +6,18 @@ function addCommentSyntaxGuideTooltip() {
         .attr("data-bs-html", "true")
         .attr(
             "data-bs-title",
-            "markdown:" +
-              "<ul>" +
-                "<li>python-markdown with <code>attr_list</code>, <code>fenced_code</code>, " +
-                    "<code>md_in_html</code>, <code>tables</code> extensions</li>" +
-                "<li>plaintext links only, no images or footnotes</li>" +
-              "</ul>" +
-            "latex (mathjax):" +
-              "<ul>" +
-                "<li>escape anything that is also narkdown: <code>\\(</code>, <code>\\)</code>, " +
-                    "<code>\\{</code>, <code>\\\\</code>, <code>\*</code> etc.</li>" +
-                "<li>my custom macros are available if you can find them :3" +
-              "</ul>"
+            "markdown:"
+              + "<ul>"
+                + "<li>python-markdown with <code>attr_list</code>, <code>fenced_code</code>, "
+                    + "<code>md_in_html</code>, <code>tables</code> extensions</li>"
+                + "<li>plaintext links only, no images or footnotes</li>"
+              + "</ul>"
+            + "latex (mathjax):"
+              + "<ul>"
+                + "<li>escape anything that is also narkdown: <code>\\(</code>, <code>\\)</code>, "
+                    + "<code>\\{</code>, <code>\\\\</code>, <code>\*</code> etc.</li>"
+                + "<li>my custom macros are available if you can find them :3"
+              + "</ul>"
         );
     refreshTooltips("#leave-a-comment");
 }
@@ -29,7 +29,10 @@ function tweakFootnotes() {
         // the singular bothers me
         jqFootnotes.addClass("footnotes");
         jqFootnotes.removeClass("footnote");
-        jqFootnotes.wrap('<details id="footnotes__wrapper" class="footnotes__wrapper"></details>')
+        jqFootnotes.wrap(
+            '<details id="footnotes__wrapper" '
+            + 'class="footnotes__wrapper mb-3 bg--body text--gray-dark"></details>'
+        );
         jqFootnotes.before("<summary>footnotes</summary>");
     }
 

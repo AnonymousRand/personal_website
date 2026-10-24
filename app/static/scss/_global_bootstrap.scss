@@ -1,0 +1,41 @@
+// change all possible bootstrap vars here, esp colors so they are not the hardcoded hex
+// in the scss that doesn't respond to light/dark changes; accompanying bootstrap's
+// gradual shift from scss to css
+:root {
+  --bs-font-sans-serif:  "Quicksand :3", "Quicksand", sans-serif;
+  --bs-font-monospace:   "Maple Mono NL", monospace;
+  --bs-root-font-size:   16px;
+  --bs-body-font-weight: 500;
+
+  --bs-border-width:             2px;
+  --bs-border-color:             var(---color-border-default);
+  --bs-border-color-translucent: rgb(from var(--bs-border-color) r g b / 0.5);
+
+  --bs-link-color:       var(---color-link);
+  --bs-link-hover-color: var(---color-link-hover);
+
+  --bs-code-color: var(---color-md-code);
+
+  // for form file "browse..." button; this is not an scss variable
+  --bs-tertiary-bg: var(---color-variant-1-bg);
+
+  --bs-red:     var(---color-accent-red-fg);
+  --bs-orange:  var(---color-accent-orange-fg);
+  --bs-yellow:  var(---color-accent-yellow-fg);
+  --bs-green:   var(---color-accent-green-fg);
+  --bs-teal:    var(---color-accent-teal-fg);
+  --bs-cyan:    var(---color-accent-cyan-fg);
+  --bs-blue:    var(---color-accent-blue-fg);
+  --bs-indigo:  var(---color-accent-indigo-fg);
+  --bs-purple:  var(---color-accent-purple-fg);
+  --bs-pink:    var(---color-accent-pink-fg);
+
+  --bs-primary:   var(---color-accent-default-fg);
+  --bs-secondary: var(---color-accent-cyan-fg);
+  --bs-success:   var(---color-success-fg);
+  --bs-info:      var(---color-info-fg);
+  --bs-warning:   var(---color-warning-fg);
+  --bs-danger:    var(---color-error-fg);
+  --bs-light:     var(---color-gray-xxxlight-bg);
+  --bs-dark:      var(---color-gray-xxdark-fg);
+}

@@ -12,22 +12,16 @@
 }
 
 //------------------------------------------------------------------------------
+// `.btn-close`
 
-/*
-.btn:not(.btn-link, .nav-link) {
-  border-width: 3px;
-  border-style: solid;
+.btn-close {
+  --bs-btn-close-color: var(---color-pink-xlight-fg);
 }
-*/
+
+//------------------------------------------------------------------------------
+// `.btn-link`
 
 .btn-link {
-    /*
-  --bs-btn-color: var(---color-link);
-  --bs-btn-hover-color: var(---color-link-hover);
-  --bs-btn-active-color: var(---color-link);
-  --bs-btn-disabled-color: var(---color-link-disabled);
-  */ 
-
   background-color: transparent !important;
   padding: 0;
 

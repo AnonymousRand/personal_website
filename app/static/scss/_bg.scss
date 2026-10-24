@@ -1,0 +1,19 @@
+%bg {
+  &--body {
+    background-color: var(--bs-body-bg) !important;
+  }
+
+  &--variant-1 {
+    background-color: var(---color-variant-1-bg) !important;
+  }
+
+  &--variant-2 {
+    background-color: var(---color-variant-2-bg) !important;
+  }
+}
+
+//------------------------------------------------------------------------------
+
+.bg--body {
+  @extend %bg--body;
+}

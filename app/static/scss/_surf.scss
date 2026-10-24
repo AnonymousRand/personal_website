@@ -1,44 +1,90 @@
-@use "sass:list";
+@use "utils";
 
-//------------------------------------------------------------------------------
-	
 $default-surfs: [];
-
-$variant-1-surfs:
-  ".form-control",
-  ".tooltip .tooltip-inner";
-
-$variant-2-surfs:
-  "body",
-  "details",
-  ".dropdown-menu",
-  ".dropdown-item",
-  ".navbar";
-
+$variant-1-surfs: [];
+$variant-2-surfs: [];
 $selected-surfs: [];
 
 //------------------------------------------------------------------------------
+// variant 1 surfs
 
-@if list.length($default-surfs) > 0 {
-  #{$default-surfs} {
-    border-color:     var(---color-default-border);
-    background-color: var(---color-default-bg);
-    color:            var(---color-default-fg);
-  }
+$variant-1-surfs: utils.register-sels($variant-1-surfs, [
+  "%surf--variant-1",
+  ".form-control"
+]);
+%surf--variant-1,
+.form-control {
+  border-color:     var(---color-variant-1-border);
+  background-color: var(---color-variant-1-bg);
+  color:            var(---color-variant-1-gray-fg);
 }
 
-@if list.length($variant-1-surfs) > 0 {
-  #{$variant-1-surfs} {
-    border-color:     var(---color-variant-1-border);
-    background-color: var(---color-variant-1-bg);
-    color:            var(---color-variant-1-gray-fg);
-  }
+$variant-1-surfs: utils.register-sels($variant-1-surfs, [
+  ".tooltip .tooltip-inner"
+]);
+.tooltip .tooltip-inner {
+  border-color:       var(---color-variant-1-border);
+  --bs-tooltip-bg:    var(---color-variant-1-bg);
+  --bs-tooltip-color: var(---color-variant-1-gray-fg);
 }
 
-@if list.length($variant-2-surfs) > 0 {
-  #{$variant-2-surfs} {
-    border-color:     var(---color-variant-2-border);
-    background-color: var(---color-variant-2-bg);
-    color:            var(---color-variant-2-gray-fg);
-  }
+//------------------------------------------------------------------------------
+// variant 2 surfs
+
+$variant-2-surfs: utils.register-sels($variant-2-surfs, [
+  "%surf--variant-2",
+  "%surf--body",
+  "details",
+  ".modal"
+]);
+%surf--variant-2,
+%surf--body,
+details,
+.modal {
+  border-color:     var(---color-variant-2-border);
+  background-color: var(---color-variant-2-bg);
+  color:            var(---color-variant-2-gray-fg);
+}
+
+$variant-2-surfs: utils.register-sels($variant-2-surfs, [
+  "body"
+]);
+body {
+  --bs-body-bg:    var(---color-variant-2-bg);
+  --bs-body-color: var(---color-variant-2-gray-fg);
+}
+
+$variant-2-surfs: utils.register-sels($variant-2-surfs, [
+  ".dropdown-menu",
+  ".dropdown-item"
+]);
+.dropdown-menu {
+  --bs-dropdown-border-color: var(---color-variant-2-border);
+  --bs-dropdown-bg:           var(---color-variant-2-bg);
+  --bs-dropdown-color:        var(---color-variant-2-gray-fg);
+}
+.dropdown-item {
+  background-color: var(---color-variant-2-bg);
+  color:            var(---color-variant-2-gray-fg);
+}
+
+$variant-2-surfs: utils.register-sels($variant-2-surfs, [
+  ".navbar"
+]);
+.navbar {
+  background-color:  var(---color-variant-2-bg);
+  --bs-navbar-color: var(---color-variant-2-gray-fg);
+
+  --bs-navbar-toggler-border-color: var(---color-border-5);
+}
+
+$variant-2-surfs: utils.register-sels($variant-2-surfs, [
+  ".card"
+]);
+.card {
+  --bs-card-border-color: var(---color-variant-2-border);
+  --bs-card-bg:           var(---color-variant-2-bg);
+  --bs-card-color:        var(---color-variant-2-gray-fg);
+  --bs-card-cap-bg:       var(---color-variant-1-bg);
+  --bs-card-cap-color:    var(---color-variant-1-fg);
 }

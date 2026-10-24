@@ -1,8 +1,9 @@
+@use "./border";
 @use "./scss_utils";
 
 table {
+  @extend %border--default;
   margin-bottom: 1rem;
-  border-color: var(--bs-border-color);
   width: max-content;
 }
 

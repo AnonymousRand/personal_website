@@ -1,4 +1,16 @@
+%border {
+  &--default {
+    border-color: var(--bs-border-color) !important;
+  }
+}
+
+//------------------------------------------------------------------------------
+
 .border {
+  &--default {
+    @extend %border--default;
+  }
+
   &-b {
     border-bottom-style: solid !important;
   }
@@ -50,18 +62,16 @@
     }
   }
   
-  /*
-  &--4 {
-    border-color: var(---color-border-4) !important;
-  }
-  */
-  
   &--green {
     border-color: var(---color-green-border) !important;
   }
   
   &--orange {
     border-color: var(---color-orange-border) !important;
+  }
+
+  &--pink-xlight {
+    border-color: var(---color-pink-xlight-border) !important;
   }
   
   &--gray-xxlight {
