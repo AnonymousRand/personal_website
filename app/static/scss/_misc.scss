@@ -27,10 +27,6 @@ li > p:last-of-type:not(:has(.display-math)) {
   font-size: 1.25em !important;
 }
 
-.bi-link-45deg::before {
-  font-size: 1.125em;
-}
-
 .dropdown-item {
   white-space: normal;
 }
@@ -46,6 +42,7 @@ li > p:last-of-type:not(:has(.display-math)) {
 }
 
 //------------------------------------------------------------------------------
+// util classes
 
 .extend-off-page {
   white-space: nowrap;
@@ -61,10 +58,6 @@ li > p:last-of-type:not(:has(.display-math)) {
 
 .inline-code-block code {
   white-space: pre-wrap;
-}
-
-.min-svh-100 {
-  min-height: 100svh !important;
 }
 
 .pipe--0_85em {
@@ -107,15 +100,17 @@ li > p:last-of-type:not(:has(.display-math)) {
   text-overflow: ellipsis !important;
 }
 
-.ul--pink-xxlight {
-  text-decoration-color: var(---color-pink-xxlight-fg) !important;
-}
-
-.ul-on-hover-only {
-  text-decoration-line: none !important;
-}
-
-.ul-on-hover-only:hover,
-.ul-on-hover-only:hover .MathJax * {
-  text-decoration-line: underline !important;
+.ul {
+  &--pink-xxlight {
+    text-decoration-color: var(---color-pink-xxlight-fg) !important;
+  }
+  
+  &-on-hover-only {
+    text-decoration-line: none !important;
+  
+    &:hover,
+    &:hover .MathJax * {
+      text-decoration-line: underline !important;
+    }
+  }
 }

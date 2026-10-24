@@ -72,13 +72,13 @@ $collapse-left-sticky-height: 660px;
 
 .post {
   &__heading {
-    .copy-permanent-link-icon {
-      margin-bottom: -0.125rem;
-      font-size: 1em; // undo bootstrap >:3
-    }
-
     .go-to-comments-icon {
       margin-bottom: -0.1875rem;
+    }
+
+    .copy-permanent-link-icon {
+      margin-bottom: -0.125rem;
+      font-size: 1.125em;
     }
   }
 

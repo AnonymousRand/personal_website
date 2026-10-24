@@ -16,7 +16,8 @@ USER ${DOCKER_ROOT_USER}
 # this is needed since node doesn't like it when it is run from `/`
 RUN mkdir -p /node/             && chown ${DOCKER_NONROOT_USER} /node/
 WORKDIR /node/
-RUN mkdir -p ./static/          && chown ${DOCKER_NONROOT_USER} ./static/
+RUN mkdir -p ./static/scss/     && chown ${DOCKER_NONROOT_USER} ./static/scss/
+RUN mkdir -p ./static/theme/    && chown ${DOCKER_NONROOT_USER} ./static/theme/
 RUN mkdir -p ./blogpage_static/ && chown ${DOCKER_NONROOT_USER} ./blogpage_static/
 COPY --chown=${DOCKER_NONROOT_USER} ./app/static/               ./static/
 COPY --chown=${DOCKER_NONROOT_USER} ./app/blog/static/blogpage/ ./blogpage_static/
@@ -26,9 +27,6 @@ USER ${DOCKER_NONROOT_USER}
 # needed for nonroot `npm install` to be able to write to its target dir
 ENV NPM_CONFIG_CACHE=/tmp/.npm/
 RUN npm install sass
-
-RUN npm --prefix ./static/ install
-RUN npm --prefix ./static/ run compile_custom_bootstrap
 
 RUN npx sass ./static/scss/:./static/compiled_css/ \
     --load-path ./static/theme/scss/ --load-path ./static/theme/css/ \
