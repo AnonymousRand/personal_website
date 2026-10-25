@@ -5,9 +5,6 @@
 venv/
 __pycache__/
 
-app/static/*
-!app/static/scss/
-!app/static/theme/
 app/blog/static/blogpage/*
 !app/blog/static/blogpage/scss/
 

@@ -50,14 +50,14 @@ class Config(object):
             "http.cat" # error pages :3
         ],
         "script-src": _csp_self + [
-            "cdn.jsdelivr.net",
+            "cdn.jsdelivr.net",     # bootstrap
             "cdnjs.cloudflare.com", # highlight.js, flask-moment/moment.js
             "code.jquery.com",
             "http.cat",             # error pages :3
             "\'unsafe-inline\'"     # anubis 3:
         ],
         "style-src": _csp_self + [
-            "cdn.jsdelivr.net",
+            "cdn.jsdelivr.net",     # bootstrap
             "cdnjs.cloudflare.com", # highlight.js
             "code.jquery.com",
             "\'unsafe-inline\'"     # a lot of things apparently 3:

@@ -8,3 +8,18 @@
   --bs-dropdown-link-hover-color:  var(--bs-dropdown-color);
   --bs-dropdown-link-active-color: var(--bs-dropdown-color);
 }
+
+.dropdown-item {
+  &:hover,
+  &:active {
+    --bs-dropdown-link-hover-bg:  var(--color-menu-highlight-bg);
+    --bs-dropdown-link-active-bg: var(--color-menu-highlight-bg);
+  }
+}
+
+option {
+  &:hover,
+  &:active {
+    background-color: var(--color-menu-highlight-bg);
+  }
+}

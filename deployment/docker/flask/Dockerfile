@@ -14,13 +14,15 @@ ARG DOCKER_NONROOT_USER
 USER ${DOCKER_ROOT_USER}
 
 # this is needed since node doesn't like it when it is run from `/`
-RUN mkdir -p /node/             && chown ${DOCKER_NONROOT_USER} /node/
+RUN mkdir -p /node/
 WORKDIR /node/
-RUN mkdir -p ./static/scss/     && chown ${DOCKER_NONROOT_USER} ./static/scss/
-RUN mkdir -p ./static/theme/    && chown ${DOCKER_NONROOT_USER} ./static/theme/
-RUN mkdir -p ./blogpage_static/ && chown ${DOCKER_NONROOT_USER} ./blogpage_static/
-COPY --chown=${DOCKER_NONROOT_USER} ./app/static/               ./static/
-COPY --chown=${DOCKER_NONROOT_USER} ./app/blog/static/blogpage/ ./blogpage_static/
+RUN mkdir -p ./static/scss/
+RUN mkdir -p ./static/theme/
+RUN mkdir -p ./blogpage_static/
+RUN chown -R ${DOCKER_NONROOT_USER} ./
+COPY --chown=${DOCKER_NONROOT_USER} ./app/static/scss/               ./static/scss/
+COPY --chown=${DOCKER_NONROOT_USER} ./app/static/theme/              ./static/theme/
+COPY --chown=${DOCKER_NONROOT_USER} ./app/blog/static/blogpage/scss/ ./blogpage_static/scss/
 
 USER ${DOCKER_NONROOT_USER}
 

@@ -3,14 +3,6 @@ const HORIZ_SCROLL_DIV_HTML_FULL_WIDTH = '<div class="scroll-overflow-x" width="
 
 //------------------------------------------------------------------------------
 
-const ROOT_STYLES = window.getComputedStyle(document.documentElement);
-
-function fetchCssColorVar(colorVarName) {
-    return ROOT_STYLES.getPropertyValue(colorVarName).trim();
-}
-
-//------------------------------------------------------------------------------
-
 /**
  * add code to an existing function/merges two functions.
  *

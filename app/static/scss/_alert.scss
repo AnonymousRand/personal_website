@@ -25,7 +25,12 @@
   }
 
   .btn-close {
-    opacity: 1;
+    opacity:          1;
+    // this is what the default `background` does
+    mask:             var(--bs-btn-close-bg) center/1em auto no-repeat;
+    -webkit-mask:     var(--bs-btn-close-bg) center/1em auto no-repeat;
+    background-image: none;
+    background-color: var(--bs-alert-border-color);
   }
 }
 

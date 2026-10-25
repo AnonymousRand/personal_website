@@ -1,21 +1,51 @@
-.form-control {
+@use "./surf";
+
+.form-control,
+.form-select {
   @extend %surf--variant-1;
-}
 
-.form-check-input {
-  border-color: var(--bs-border-color);
+  &:active,
+  &:focus,
+  &:focus-visible {
+    @extend %surf--body;
 
-  &:checked {
-    border-color:     var(--bs-border-color);
-    background-color: var(---colors-pink-xxxxxlight-bg);
-    color:            var(---colors-pink-xxxlight-fg);
+    border-color: var(--color-input-border);
+    box-shadow:   0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
   }
 }
 
-.form-switch {
-  background-color: var(---colors-gray-xxxlight-bg);
+.form-check-input {
+  &:not(.form-switch &) {
+    &:checked {
+      // since it seems infeasible to mask this background image using `color` instead of
+      // `background-color` and havso that it is a brighter spot inside the button
+      background-image: none;
+      background-color: var(---color-pink-xxxxxlight-bg);
+    }
+  }
+
+  @at-root .form-switch & {
+    --bs-form-check-bg: var(---color-gray-xxxlight-bg);
+
+    &:checked {
+      background-color: var(---color-pink-xxxxxxlight-bg);
+    }
+  }
+
+  &:active {
+    // bootstrap by default has a -10% brightness filter which is ugly
+    filter: none;
+  }
+
+  &:active,
+  &:focus,
+  &:focus-visible {
+    // needs `!important` to override the `:checked` border color
+    border-color: var(--color-input-border) !important;
+    box-shadow:   0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color);
+  }
 
   &:checked {
-    background-color: var(---colors-accent-default-bg);
+    border-color:     var(--bs-border-color);
   }
 }

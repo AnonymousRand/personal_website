@@ -32,8 +32,8 @@ services:
         source: ./app/blog/static/blogpage/
         # SYNC: path, inside container
         target: /personal_website/app/blog/static/blogpage/
-      # this prevents the bind mount above from overriding this subdir, as dockerfile
-      # copies compiled scss into here
+      # this prevents the bind mount above from overriding this subdir, as dockerfile copies
+      # compiled scss into here inside the container but this path doesn't exist on the host
       - type: volume
         target: /personal_website/app/blog/static/blogpage/css/
     # SYNC: env file paths, relative to current path containing compose file

@@ -2,12 +2,6 @@
   background-color:  var(---color-variant-2-bg);
   --bs-navbar-color: var(---color-variant-2-gray-fg);
 
-  // this replaces the color inside the svg stroke
-  mask-image:         var(--bs-navbar-toggler-icon-bg);
-  -webkit-mask-image: var(--bs-navbar-toggler-icon-bg);
-  background-image: none;
-  background-color: var(---color-border-4);
-
   // for (approx?) centering due to 4px larger font
   &__home {
     margin-top: -2px;
@@ -18,8 +12,21 @@
     height: 2rem;
   }
 
-  &-toggler:focus {
-    box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) rgb(from var(--bs-focus-ring-color) / var(--bs-focus-ring-opacity));
+  &-toggler {
+    --bs-navbar-toggler-border-color: var(---color-border-5);
+
+    &-icon {
+      // this replaces the color inside the svg stroke
+      mask-image:         var(--bs-navbar-toggler-icon-bg);
+      -webkit-mask-image: var(--bs-navbar-toggler-icon-bg);
+      background-image: none;
+      background-color: var(---color-border-4);
+    }
+
+    &:focus,
+    &:focus-visible {
+      box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) var(--bs-focus-ring-color);
+    }
   }
 }
 
