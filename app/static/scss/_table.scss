@@ -20,12 +20,14 @@ table {
   border-right-width: calc(var(--bs-border-width) + 1px);
 }
 
-.cell--top-header {
+.cell--top-header,
+th {
   border-bottom-width: calc(var(--bs-border-width) + 1px);
 }
 
 .cell--left-header,
-.cell--top-header {
+.cell--top-header,
+th {
   background-color: var(---color-variant-1-bg) !important;
   color: var(---color-accent-4-fg) !important;
 }

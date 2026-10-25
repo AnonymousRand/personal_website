@@ -13,8 +13,10 @@
 
 //------------------------------------------------------------------------------
 
-code,
-pre code {
+// need both separately to override bootstrap's annoying specificity
+pre,
+code {
+  color: var(---color-md-code);
   font-size: 1em;
 }
 
@@ -33,9 +35,4 @@ pre:not(table pre, .inline-code-block *) code,
   border-style: var(--bs-border-style);
   border-radius: var(--bs-border-radius);
   padding: 0.75rem 1rem;
-}
-
-code {
-  // (scss doesn't work with light/dark modes since it must be a hardcoded hex value)
-  color: var(---color-md-code);
 }

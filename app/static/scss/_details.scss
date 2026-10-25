@@ -1,0 +1,5 @@
+@use "./surf";
+
+details {
+  @extend %surf--variant-2;
+}
