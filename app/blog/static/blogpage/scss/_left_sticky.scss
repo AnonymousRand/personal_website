@@ -1,0 +1,29 @@
+$collapse-left-sticky-width: 1536px;
+$collapse-left-sticky-height: 660px;
+
+@media (min-width: $collapse-left-sticky-width) and (min-height: $collapse-left-sticky-height) {
+  // left sticky (TOC, post edit btns etc.) takes up 2/3 of the margin on the left of the screen
+  // (up to the size it would be on a 1728px screen), and is centered within the
+  // left margin (with 1/6 of the margin on each side of the TOC)
+  // i'm sure there are better ways to do this but im a frontend noob so math it is :3
+  :root {
+    ---sticky-width: calc((min(100vw, 1728px) - var(---container-content-max-width)) / 3);
+    ---left-sticky-margin-left: calc(
+      -5 * (min(100vw, 1728px) - var(---container-content-max-width)) / 12
+    );
+  }
+}
+
+.left-sticky-btns {
+  margin-top: 0.5rem;
+  width: 100%;
+
+  @media (min-width: $collapse-left-sticky-width) and (min-height: $collapse-left-sticky-height) {
+    position: fixed !important;
+    float: left !important;
+    margin-top: 0 !important;
+    top: 3.4375rem !important;
+    margin-left: var(---left-sticky-margin-left) !important;
+    width: var(---sticky-width) !important;
+  }
+}
