@@ -47,7 +47,7 @@
   
   @supports (background-clip: border-area) {
     &--colorful {
-      /* this allows us to round off the corners using `border-radius` */
+      // this allows us to round off the corners using `border-radius`
       background: conic-gradient(
         var(---color-orange-xlight-border) 62.5deg,
         var(---color-green-light-border) 85deg,

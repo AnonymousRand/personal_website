@@ -6,9 +6,9 @@ a,
 
 a:is(:hover, :active, :focus, :focus-visible),
 .nav-link:is(:hover, :active, :focus, :focus-visible),
-/* to override bootstrap specificity */
+// to override bootstrap specificity
 .nav-link.show.show {
-  /* needed to make animation not briefly flash to the original bootstrap color */
+  // needed to make animation not briefly flash to the original bootstrap color
   --bs-btn-active-color: var(---color-link-hover);
 
   text-decoration-color: currentcolor;

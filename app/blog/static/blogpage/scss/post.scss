@@ -51,7 +51,8 @@ $collapse-left-sticky-height: 660px;
   
   &__comment-icon {
     margin-bottom: -0.25rem;
-    padding-right: 1px; /* since otherwise it seems to jut out ever so slightly */
+    // since otherwise it seems to jut out ever so slightly
+    padding-right: 1px;
     font-size: 14px;
   }
   

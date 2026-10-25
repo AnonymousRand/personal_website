@@ -28,15 +28,15 @@ body {
   background-attachment: fixed;
 }
 
-/* css is so stupid that `hidden` html attribute is overridden by `display` property in css,
- * so I HAVE TO MANUALLY GO AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the
- * absolute gobsmacking gobsmacker gobsmackery freak is this */
+// css is so stupid that `hidden` html attribute is overridden by `display` property in css,
+// so I HAVE TO MANUALLY GO AND TELL A HIDDEN ELEMENT TO BE HIDDEN. like. what the
+// absolute gobsmacking gobsmacker gobsmackery freak is this
 [hidden] {
   display: none !important;
 }
 
-/* to compensate for fixed navbar; can be inaccurate on page load still with js-based
- * layout shifts but oh well */
+// to compensate for fixed navbar; can be inaccurate on page load still with js-based
+// layout shifts but oh well
 [id] {
   scroll-margin-top: var(---navbar-outer-height);
 }

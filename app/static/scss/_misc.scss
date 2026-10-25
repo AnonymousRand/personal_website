@@ -22,7 +22,7 @@ li > p:last-of-type:not(:has(.display-math)) {
   margin-bottom: 0;
 }
 
-/* to get mathjax `\overline` to show, because they can never fix it themselves */
+// to get mathjax `\overline` to show, because they can never fix it themselves
 .mjx-c2013 mjx-c {
   font-size: 1.25em !important;
 }
@@ -47,11 +47,11 @@ li > p:last-of-type:not(:has(.display-math)) {
 .extend-off-page {
   white-space: nowrap;
   overflow: hidden;
-  /* extend exactly to edge of screen and clip */
+  // extend exactly to edge of screen and clip
   width: calc(
-    /* distance to edge of main container */
+    // distance to edge of main container
     var(---container-content-width) + var(---container-content-padding-x) +
-    /* distance from edge of main container to edge of screen */
+    // distance from edge of main container to edge of screen
     (100svw - var(---container-content-max-width)) / 2
   );
 }
@@ -77,7 +77,7 @@ li > p:last-of-type:not(:has(.display-math)) {
 
 .scroll-overflow-x {
   overflow-x: auto !important;
-  /* for mathjax equation environments with `\\[pt]` extra line spacing */
+  // for mathjax equation environments with `\\[pt]` extra line spacing
   overflow-y: hidden !important;
 }
 
