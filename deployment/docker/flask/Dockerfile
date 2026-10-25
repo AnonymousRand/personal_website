@@ -1,11 +1,7 @@
 # SYNC: all filepaths and names
-
-ARG DOCKER_ROOT_USER
-ARG DOCKER_NONROOT_USER
-
-################################################################################
-
-FROM node:current-alpine AS node
+# note: later versions of python may not work due to packages not having pre-compiled wheels
+# and hence needing things like g++, but the slim image does not have g++
+FROM nikolaik/python-nodejs:python3.12-nodejs26-slim
 
 ARG DOCKER_ROOT_USER
 ARG DOCKER_NONROOT_USER
@@ -13,16 +9,16 @@ ARG DOCKER_NONROOT_USER
 # as creating directories in `/` needs root perms
 USER ${DOCKER_ROOT_USER}
 
-# this is needed since node doesn't like it when it is run from `/`
-RUN mkdir -p /node/
-WORKDIR /node/
-RUN mkdir -p ./static/scss/
-RUN mkdir -p ./static/theme/
-RUN mkdir -p ./blogpage_static/
-RUN chown -R ${DOCKER_NONROOT_USER} ./
-COPY --chown=${DOCKER_NONROOT_USER} ./app/static/scss/               ./static/scss/
-COPY --chown=${DOCKER_NONROOT_USER} ./app/static/theme/              ./static/theme/
-COPY --chown=${DOCKER_NONROOT_USER} ./app/blog/static/blogpage/scss/ ./blogpage_static/scss/
+RUN mkdir -p ./personal_website/
+RUN chown ${DOCKER_NONROOT_USER} ./personal_website/
+WORKDIR ./personal_website/
+
+COPY --chown=${DOCKER_NONROOT_USER} ./app/ ./app/
+COPY --chown=${DOCKER_NONROOT_USER} ./migrations/ ./migrations/
+COPY --chown=${DOCKER_NONROOT_USER} ./personal_website.py ./config.py ./
+
+################################################################################
+# compile scss
 
 USER ${DOCKER_NONROOT_USER}
 
@@ -30,46 +26,30 @@ USER ${DOCKER_NONROOT_USER}
 ENV NPM_CONFIG_CACHE=/tmp/.npm/
 RUN npm install sass
 
-RUN npx sass ./static/scss/:./static/compiled_css/ \
-    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ \
+RUN npx sass ./app/static/scss/:./app/static/css/ \
+    --load-path ./app/static/theme/scss/ \
+    --load-path ./app/static/theme/css/ \
     --style=compressed
-RUN npx sass ./blogpage_static/scss/:./blogpage_static/compiled_css/ \
-    --load-path ./static/theme/scss/ --load-path ./static/theme/css/ --load-path ./static/scss/ \
+RUN npx sass ./app/blog/static/blogpage/scss/:./app/blog/static/blogpage/css/ \
+    --load-path ./app/static/theme/scss/ \
+    --load-path ./app/static/theme/css/ \
+    --load-path ./app/static/scss/ \
     --style=compressed
 
 ################################################################################
+# pip install
 
-FROM busybox:musl AS busybox
-FROM python:3.10-slim-bookworm
-
-ARG DOCKER_ROOT_USER
-ARG DOCKER_NONROOT_USER
-
+# `pip install` generally needs root still; but we compile sass first since that has
+# a higher chance of breaking
 USER ${DOCKER_ROOT_USER}
 
-# install busybox's statically-compiled binaries for basic shell commands
-COPY --from=busybox /bin/busybox /bin/
-RUN ["/bin/busybox", "--install", "-s", "/bin"]
-
-RUN mkdir -p ./personal_website/
-WORKDIR ./personal_website/
-
-COPY --chown=${DOCKER_NONROOT_USER} ./app/ ./app/
-COPY --chown=${DOCKER_NONROOT_USER} ./migrations/ ./migrations/
-COPY --chown=${DOCKER_NONROOT_USER} ./personal_website.py ./config.py ./
-
-# `pip install` generally needs root still
 COPY ./requirements.txt ./requirements.txt
 RUN pip install -r ./requirements.txt
 
-USER ${DOCKER_NONROOT_USER}
+################################################################################
+# entrypoint
 
-RUN mkdir -p ./app/static/css/
-RUN mkdir -p ./app/blog/static/blogpage/css/
-COPY --from=node --chown=${DOCKER_NONROOT_USER} \
-    /node/static/compiled_css/*          ./app/static/css/
-COPY --from=node --chown=${DOCKER_NONROOT_USER} \
-    /node/blogpage_static/compiled_css/* ./app/blog/static/blogpage/css/
+USER ${DOCKER_NONROOT_USER}
 
 COPY --chown=${DOCKER_NONROOT_USER} ./deployment/docker/flask/entrypoint.sh ./
 RUN chmod +x entrypoint.sh

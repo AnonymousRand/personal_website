@@ -18,32 +18,32 @@ function applyStyles(selector) {
 
 const colorChoices = {
     blue: {
-        menuHighlightBg: "---color-blue-xxlight-bg",
-        inputBorder:     "---color-blue-border",
-        alertBorder:     "---color-blue-xlight-border",
+        inputBorder:     "var(---color-blue-border)",
+        alertBorder:     "var(---color-blue-xlight-border)",
         // `slice()` to remove leading hashtag, as that has to be encoded in the svg
-        selectionBg:     "---color-blue-xxlight-bg"
+        selectionBg:     "var(---color-blue-xxlight-bg)",
+        selectionFgDark: "var(----color-gray-xxdark)"
     },
 
     green: {
-        menuHighlightBg: "---color-green-light-bg",
-        inputBorder:     "---color-green-border",
-        alertBorder:     "---color-green-border",
-        selectionBg:     "---color-green-light-bg"
+        inputBorder:     "var(---color-green-border)",
+        alertBorder:     "var(---color-green-border)",
+        selectionBg:     "var(---color-green-light-bg)",
+        selectionFgDark: "var(----color-gray-xxdark)"
     },
 
     orange: {
-        menuHighlightBg: "---color-orange-shallow-light-bg",
-        inputBorder:     "---color-orange-border",
-        alertBorder:     "---color-orange-xlight-border",
-        selectionBg:     "---color-orange-shallow-light-bg"
+        inputBorder:     "var(---color-orange-border)",
+        alertBorder:     "var(---color-orange-xlight-border)",
+        selectionBg:     "var(---color-orange-shallow-light-bg)",
+        selectionFgDark: "var(----color-gray-xxdark)"
     },
 
     pink: {
-        menuHighlightBg: "---color-pink-xxxxxxlight-bg",
-        inputBorder:     "---color-pink-xxxxlight-border",
-        alertBorder:     "---color-pink-xxxxlight-border",
-        selectionBg:     "---color-pink-xxxxxxlight-bg"
+        inputBorder:     "var(---color-pink-xxxxlight-border)",
+        alertBorder:     "var(---color-pink-xxxxlight-border)",
+        selectionBg:     "var(---color-pink-xxxxxxlight-bg)",
+        selectionFgDark: "var(----color-gray-xxdark)"
     }
 };
 
@@ -55,8 +55,7 @@ function randomizeColors() {
     $("body").append(`
         <style>
           :root {
-            --color-menu-highlight-bg: var(${colorChoice.menuHighlightBg});
-            --color-input-border:      var(${colorChoice.inputBorder});
+            --color-input-border: ${colorChoice.inputBorder};
 
             --bs-focus-ring-color:
               rgb(from var(--color-input-border) r g b / var(--bs-focus-ring-opacity));
@@ -68,11 +67,15 @@ function randomizeColors() {
           }
 
           ::selection {
-            background-color: var(${colorChoice.selectionBg});
+            background-color: ${colorChoice.selectionBg};
+          }
+
+          :root.dark ::selection {
+            color: ${colorChoice.selectionFgDark};
           }
 
           .alert {
-            --bs-alert-border-color: var(${colorChoice.alertBorder});
+            --bs-alert-border-color: ${colorChoice.alertBorder};
           }
         </style>
     `);

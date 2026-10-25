@@ -17,6 +17,7 @@ function enableDarkMode(isVoluntary) {
     isDarkMode = true;
     document.getElementById("dark-theme-css").disabled = false;
     document.getElementById("extra-dark-mode-css").disabled = false;
+    document.documentElement.classList.add("dark");
 
     if (jqDarkModeSwitch && jqDarkModeSwitch.length > 0 && !jqDarkModeSwitch.prop("checked")) {
         jqDarkModeSwitch.prop("checked", true);
@@ -34,6 +35,7 @@ function disableDarkMode(isVoluntary) {
     isDarkMode = false;
     document.getElementById("dark-theme-css").disabled = true;
     document.getElementById("extra-dark-mode-css").disabled = true;
+    document.documentElement.classList.remove("dark");
 
     if (jqDarkModeSwitch && jqDarkModeSwitch.length > 0 && jqDarkModeSwitch.prop("checked")) {
         jqDarkModeSwitch.prop("checked", false);

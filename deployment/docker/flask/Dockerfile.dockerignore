@@ -5,6 +5,7 @@
 venv/
 __pycache__/
 
+# as the rest is bind mounted
 app/blog/static/blogpage/*
 !app/blog/static/blogpage/scss/
 
