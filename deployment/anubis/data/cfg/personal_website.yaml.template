@@ -1,4 +1,17 @@
 bots:
+  - name: "block-enumeration"
+    expression: >-
+      path.startsWith("/wp-")
+      || path.endsWith(".php")
+      || path.endsWith(".env")
+      || path.startsWith("/.git")
+      || path.startsWith("/.aws")
+    action: CHALLENGE
+    challenge:
+      # impossible challenge; intentionally waste their compute >:3
+      difficulty: 16
+      algorithm: fast
+
   ## the docker bind mount/extends setup i have should ensure that this relative path
   ## is correct inside the container :3
   #- import: ./base_bot_policies.yaml
