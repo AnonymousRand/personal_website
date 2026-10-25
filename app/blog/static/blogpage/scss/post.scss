@@ -44,40 +44,10 @@ $collapse-left-sticky-height: 660px;
   }
 }
 
-.post-list {
-  &__blogtitle {
-    font-size: 0.85rem;
-  }
-  
-  &__comment-icon {
-    margin-bottom: -0.25rem;
-    // since otherwise it seems to jut out ever so slightly
-    padding-right: 1px;
-    font-size: 14px;
-  }
-  
-  &__post:hover {
-    &.pink-xlight {
-      color: var(---color-pink-light) !important;
-    }
-    
-    &.blue-deep {
-      color: var(---color-blue-deep) !important;
-    }
-
-    &.ul--pink-xlight {
-      text-decoration-color: var(---color-pink-light) !important;
-    }
-  }
-}
-
 .post {
   &__heading {
-    .go-to-comments-icon {
-      margin-bottom: -0.1875rem;
-    }
-
     .copy-permanent-link-icon {
+      // the margin is to correct for the font size increase, so the line spacing doesn't change
       margin-bottom: -0.125rem;
       font-size: 1.125em;
     }

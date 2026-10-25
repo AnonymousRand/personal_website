@@ -9,6 +9,32 @@
   }
 }
 
+.post-list {
+  &__blogtitle {
+    font-size: 0.85rem;
+  }
+  
+  &__comment-icon {
+    // since otherwise it seems to jut out ever so slightly
+    padding-right: 1px;
+    font-size: 14px;
+  }
+  
+  &__post:hover {
+    &.pink-xlight {
+      color: var(---color-pink-light) !important;
+    }
+    
+    &.blue-deep {
+      color: var(---color-blue-deep) !important;
+    }
+
+    &.ul--pink-xlight {
+      text-decoration-color: var(---color-pink-light) !important;
+    }
+  }
+}
+
 .goto-page-form__page-input {
   padding-top: 1px;
   padding-bottom: 1px;

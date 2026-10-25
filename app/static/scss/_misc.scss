@@ -22,6 +22,10 @@ li > p:last-of-type:not(:has(.display-math)) {
   margin-bottom: 0;
 }
 
+.bi-chat-right-text::before {
+  vertical-align: -0.21875em;
+}
+
 // to get mathjax `\overline` to show, because they can never fix it themselves
 .mjx-c2013 mjx-c {
   font-size: 1.25em !important;
@@ -71,8 +75,8 @@ li > p:last-of-type:not(:has(.display-math)) {
 }
 
 .redacted {
-  background-color: black !important;
-  color: black !important;
+  background-color: var(---color-black-fg) !important;
+  color: var(---color-black-fg) !important;
 }
 
 .scroll-overflow-x {
@@ -83,7 +87,7 @@ li > p:last-of-type:not(:has(.display-math)) {
 
 .spoiler,
 .spoiler * {
-  background-color: gainsboro !important;
+  background-color: var(---color-gray-xxxlight-bg) !important;
   text-decoration-color: transparent !important;
   color: transparent !important;
   transition: background-color 0.4s, color 0.4s !important;
