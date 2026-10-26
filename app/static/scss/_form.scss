@@ -55,6 +55,7 @@
 .form-control {
   &::file-selector-button {
     background-color: var(---color-btn-raised-base-bg-vrnt-2);
+    color:            var(---color-btn-raised-base-fg-vrnt-2);
   }
 
   // this selector makes simply extending raised btn not feasible :(
