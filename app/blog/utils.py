@@ -2,6 +2,7 @@ from functools import wraps
 
 from flask import jsonify, redirect, request, url_for
 
+import app.utils as utils
 from app import db
 from app.models import *
 from app.utils import ContentType

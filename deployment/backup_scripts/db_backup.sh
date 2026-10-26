@@ -15,9 +15,9 @@ source ./.db_backup.env
 
 host_backup_path="./backup_$2.sql"
 
-mysqldump -S "$PERSONAL_WEBSITE_MYSQL_SCKT" \
+mysqldump -S "$PERSONAL_WEBSITE_MYSQL_SCKT_HOST" \
     -u "$PERSONAL_WEBSITE_MYSQL_USERNAME" \
-    -password="$PERSONAL_WEBSITE_MYSQL_PASSWORD" \
+    --password="$PERSONAL_WEBSITE_MYSQL_PASSWORD" \
     "$PERSONAL_WEBSITE_MYSQL_DB_NAME" > "$host_backup_path"
 rsync -e "ssh -i $SSH_PRIVATE_KEY_LOCATION" --backup --suffix=`date +'.%F_%H-%M-%S'` \
     "$host_backup_path" "$1"
