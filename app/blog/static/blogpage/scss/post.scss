@@ -1,19 +1,47 @@
+@use "utils";
 @use "bg";
 @use "./custom_md";
 @use "./left_sticky";
 @use "./post_comment";
 
 .heading-link {
-  visibility: hidden;
-  margin-left: 0.25em;
-  padding-right: 0;
-  vertical-align: bottom;
+  position: absolute;
+  left: -1.25em;
+  top: 0.125em;
+
+  opacity: 0;
+  // this makes sure that there is no gap in the hitboxes between this and the heading
+  // (sync with `left`)
+  padding-right: 1.25em;
   text-decoration: none;
+  color: inherit !important;
   font-size: 0.9em;
   font-family: bootstrap-icons; // for bootstrap's private area unicode icon to show
 
-  @at-root :is(h1, h2, h3, h4, h5, h6):hover & {
-    visibility: visible;
+  // needed for relative `left` etc. values to work
+  @at-root :is(h1, h2):has(&) {
+    position: relative;
+  }
+
+  // SYNC: hover colors with post heading colors! (i don't think i can do this otherwise ._.)
+  @at-root h1:hover &,
+  h1 &:hover {
+    opacity: 1;
+  }
+  h1 &:hover {
+    color: #{utils.change-lightness(
+      var(---color-pink-xxlight-fg), calc(2 * utils.$default-interact-light-change)
+    )} !important;
+  }
+
+  @at-root h2:hover &,
+  h2 &:hover {
+    opacity: 1;
+  }
+  h2 &:hover {
+    color: #{utils.change-lightness(
+      var(---color-blue-deep-dark-fg), calc(2 * utils.$default-interact-light-change)
+    )} !important;
   }
 }
 

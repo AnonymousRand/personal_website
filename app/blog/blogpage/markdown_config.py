@@ -20,8 +20,10 @@ POST_EXTS = [
     md_in_html.MarkdownInHtmlExtension(),
     tables.TableExtension(),
     toc.TocExtension(
-        marker="", permalink="\uf470", permalink_class="heading-link link-target-self",
-        permalink_title="", slugify=_generate_toc_anchors, toc_depth=2
+        marker="", permalink="\uf470",
+        permalink_class="heading-link link-target-self",
+        permalink_title="", permalink_leading=True,
+        slugify=_generate_toc_anchors, toc_depth=2
     ),
 
     # other extensions
@@ -111,9 +113,15 @@ POST_EXTS = [
                 "ex": {
                     "thm_type": "Example",
                     "thm_counter_incr": "0,0,1",
+                    "html_class": (
+                        "text--gray-dark"
+                    )
                 },
                 r"ex\\\*": {
-                    "thm_type": "Example"
+                    "thm_type": "Example",
+                    "html_class": (
+                        "text--gray-dark"
+                    )
                 },
 
                 "lem": {

@@ -10,22 +10,6 @@
   &--body {
     @extend %text--body;
   }
-
-  &--black {
-    color: var(---color-black-fg) !important;
-  }
-  
-  &--gray-dark {
-    color: var(---color-gray-dark-fg) !important;
-  }
-  
-  &--gray {
-    color: var(---color-gray-fg) !important;
-  }
-  
-  &--red {
-    color: var(---color-red-fg) !important;
-  }
   
   &--blue-deep-dark {
     color: var(---color-blue-deep-dark-fg) !important;
@@ -53,5 +37,21 @@
   
   &--pink-xxxlight {
     color: var(---color-pink-xxxlight-fg) !important;
+  }
+
+  &--black {
+    color: var(---color-black-fg) !important;
+  }
+  
+  &--gray-dark {
+    color: var(---color-gray-dark-fg) !important;
+  }
+  
+  &--gray {
+    color: var(---color-gray-fg) !important;
+  }
+  
+  &--red {
+    color: var(---color-red-fg) !important;
   }
 }
