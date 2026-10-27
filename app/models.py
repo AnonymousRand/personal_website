@@ -8,6 +8,7 @@ from datetime import datetime, timezone
 import sqlalchemy as sa
 import sqlalchemy.dialects.mysql as sa_mysql
 import sqlalchemy.orm as so
+from bs4 import BeautifulSoup
 from flask import current_app
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -156,7 +157,7 @@ class Post(db.Model):
     )
 
     ############################################################################
-    # util
+    # utils
 
     SANITIZE_TITLE_PATTERN = re.compile(r"[^A-Za-z0-9-]")
 
@@ -167,12 +168,14 @@ class Post(db.Model):
         """
 
         self.sanitized_title = ("-".join(self.title.split())).lower()
+        # html stripping must be done before sanitize regex as that may remove "<" and ">"
+        self.sanitized_title = BeautifulSoup(self.sanitized_title, "html.parser").get_text()
         self.sanitized_title = self.SANITIZE_TITLE_PATTERN.sub("", self.sanitized_title)
 
     def validate_titles_and_flush(self, should_add_to_db: bool) -> str:
         # check that title still exists after sanitization
         if self.sanitized_title == "":
-            return "post must have alphanumeric characters in its title :3"
+            return "post must have alphanumeric, non-html characters in its title :3"
         # standardize empty subtitles to `None` (sql `NULL`)
         if self.subtitle == "":
             self.subtitle = None
@@ -273,7 +276,7 @@ class Comment(db.Model):
     right: so.Mapped[int] = so.mapped_column(nullable=False, index=True)
 
     ############################################################################
-    # util
+    # utils
 
     def insert_comment(self, post: Post, parent: Comment) -> bool:
         if parent is None:
@@ -357,7 +360,7 @@ class User(UserMixin, db.Model):
     )
 
     ############################################################################
-    # util
+    # utils
 
     def set_password(self, password: str) -> None:
         self.password_hash = generate_password_hash(password)

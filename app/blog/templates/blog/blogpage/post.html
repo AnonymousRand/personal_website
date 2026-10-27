@@ -3,7 +3,7 @@
 
 
 {% block title %}
-{{ post.title }} - {{ blogpage.name }}
+{{ post.title|striptags }} - {{ blogpage.name }}
 {% endblock %}
 
 

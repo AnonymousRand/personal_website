@@ -3,7 +3,7 @@
 
 
 {% block title %}
-{{ title }} {{ super() }}
+{{ title|striptags }} {{ super() }}
 {% endblock %}
 
 
