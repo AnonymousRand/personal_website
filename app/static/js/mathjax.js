@@ -51,6 +51,7 @@ window.MathJax = {
             nul: "\\operatorname{nul}",
             nullity: "\\operatorname{nullity}",
             op: "\\operatorname{op}",
+            Obj: "\\operatorname{Obj}",
             Orb: "\\operatorname{Orb}",
             Out: "\\operatorname{Out}",
             perm: ["{}^{#1}P_{#2}", 2],
