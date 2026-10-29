@@ -3,6 +3,7 @@ import urllib.parse as parse
 from enum import Enum
 from functools import wraps
 
+from bs4 import BeautifulSoup
 from flask import current_app, jsonify, redirect, request, url_for
 from flask_login import current_user
 
@@ -118,3 +119,7 @@ def decode_uri_component(s: str) -> str:
     """
 
     return parse.unquote(s)
+
+
+def strip_html(s: str) -> str:
+    return BeautifulSoup(s, "html.parser").get_text()

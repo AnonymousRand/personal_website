@@ -8,12 +8,12 @@ from datetime import datetime, timezone
 import sqlalchemy as sa
 import sqlalchemy.dialects.mysql as sa_mysql
 import sqlalchemy.orm as so
-from bs4 import BeautifulSoup
 from flask import current_app
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, login_manager
+from app.utils import strip_html
 from config import Config
 
 
@@ -169,7 +169,7 @@ class Post(db.Model):
 
         self.sanitized_title = ("-".join(self.title.split())).lower()
         # html stripping must be done before sanitize regex as that may remove "<" and ">"
-        self.sanitized_title = BeautifulSoup(self.sanitized_title, "html.parser").get_text()
+        self.sanitized_title = strip_html(self.sanitized_title)
         self.sanitized_title = self.SANITIZE_TITLE_PATTERN.sub("", self.sanitized_title)
 
     def validate_titles_and_flush(self, should_add_to_db: bool) -> str:
