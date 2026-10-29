@@ -10,6 +10,7 @@ window.MathJax = {
         macros: {
             ab: "\\mathrm{ab}",
             Aut: "\\operatorname{Aut}",
+            Bil: "\\operatorname{Bil}",
             blue: ["\\textcolor{blue}{#1}", 1],
             C: "\\mathbb{C}",
             charac: "\\operatorname{char}",
