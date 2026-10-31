@@ -47,6 +47,10 @@ window.MathJax = {
             Maps: "\\operatorname{Maps}",
             mapsfrom: "\\leftarrow\\!\\shortmid",
             N: "\\mathbb{N}",
+            natfrom: "\\Leftarrow",
+            natto: "\\Rightarrow",
+            // `xRightarrow` doesn't exist in mathjax >:(
+            nattoiso: "\\stackrel{\\sim}{\\Rightarrow}",
             nequiv: "\\not\\equiv",
             nimplies: "\\mathrel{\\rlap{\\hskip .5em/}}\\Longrightarrow",
             nul: "\\operatorname{nul}",
