@@ -69,7 +69,8 @@ def require_valid_post():
             blogpage_id = get_blogpage_id()
             # flask view functions seem to turn `args` into `kwargs` (but I'm not complaining :D)
             post = blog_utils.get_post(kwargs.get("post_id"), kwargs.get("post"))
-            if post is None:
+            # need the blogpage id check or else a post can be accessed from any blogpage's url
+            if post is None or post.blogpage_id != blogpage_id:
                 return blog_utils.on_nonexistent_post(content_type)
             # also return `post` in addition since functions with these decorators
             # probably need `post` anyway

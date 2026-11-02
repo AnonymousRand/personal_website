@@ -86,7 +86,7 @@ def get_posts(*args, **kwargs):
 @bp_utils.require_valid_post()
 # (`post` param is from `@require_valid_post()`)
 def get_post(post, post_id, post_sanitized_title, *args, **kwargs):
-    is_unprivileged_mode = post.blogpage.is_login_required and not current_user.is_authenticated;
+    is_unprivileged_mode = post.blogpage.is_login_required and not current_user.is_authenticated
     # only use `post_id` to determine what post to get (in case titles change), so if
     # the `post_sanitized_title` given in the request doesn't match that of the post
     # with id `post_id`, redirect to the correct url
