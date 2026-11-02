@@ -10,6 +10,17 @@ function flashMsg(msg, impt = false) {
         return;
     }
 
+    // animate with a flash if there is an existing flash that is being replaced
+    // otherwise it might not be visually apparent that a new message has been displayed
+    // especially if the text remains the same
+    if (!jqFlash.get(0).hasAttribute("hidden")) {
+        jqFlash.get(0).animate([
+            { opacity: "1" },
+            { opacity: "0" },
+            { opacity: "1" }
+        ], 250);
+    }
+
     $("#flash__text").text(msg); // `text()` by itself is xss-safe
     jqFlash.removeAttr("hidden");
     $("#flash__wrapper").css("z-index", "9999");
