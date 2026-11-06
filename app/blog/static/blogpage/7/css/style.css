@@ -1,7 +1,7 @@
 .blogpage__name {
-    color: var(--pink-xxxlight);
+    color: var(---color-pink-xxxlight-fg);
 }
 
 .blogpage__subname {
-    color: var(--orange-deep-light);
+    color: var(---color-orange-deep-light-fg);
 }
