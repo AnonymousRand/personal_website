@@ -30,6 +30,11 @@ a:is(:hover, :active, :focus, :focus-visible),
   &--discreet:hover .MathJax * {
     color: var(---color-gray-xxdark-fg) !important;
   }
+
+  &--blue-deep-dark {
+    text-decoration-color: currentcolor !important;
+    color: var(---color-blue-deep-dark-fg) !important;
+  }
   
   &--blue-xdeep {
     text-decoration-color: currentcolor !important;
