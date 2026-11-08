@@ -22,6 +22,8 @@ window.MathJax = {
             comb: ["{}^{#1}C_{#2}", 2],
             concat: "\\ ||\\ ",
             dom: "\\operatorname{dom}",
+            dx: ["\\mathrm{d} #1", 1, "x"],
+            dydx: ["\\frac{\\mathrm{d} #1}{\\mathrm{d} #2}", 2],
             eqcolon: "\\mathrel{≕}",
             ev: "\\operatorname{ev}",
             F: "\\mathbb{F}",
