@@ -16,7 +16,7 @@ services:
       # SYNC: paths in which the container produces data (e.g. in config)
       - type: volume
         source: personal_website_anubis_var
-        target: /var/anubis/
+        target: ${PERSONAL_WEBSITE_ANUBIS_VAR_DEST_DIR:?}
     env_file:
       # for `envsubst`
       - ./.env
@@ -27,3 +27,4 @@ services:
 
 volumes:
   personal_website_anubis_var:
+    name: personal_website_anubis_var
