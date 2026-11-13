@@ -43,7 +43,7 @@ def login():
 
         # if modal login, we are done
         if request.form.get("is_modal") == "true":
-            return jsonify(success=True, flash_msg="the universe is at your paws :333")
+            return jsonify(success=True, flash_msg="the universe is at your paws :3")
 
         # if not modal login, then try to redirect back to previous page
         next_url = utils.decode_uri_component(
