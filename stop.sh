@@ -19,12 +19,9 @@ chmod +x "$path_to_utils/sync_dotenvs.sh" && "$path_to_utils/sync_dotenvs.sh"
 docker compose --profile "$DOCKER_DEFAULT_PROFILE" down
 
 # otherwise (e.g. if they were started by the root docker project), we do a project-agnostic stop
-# also, unfortunately this stops the entire proxy stack since we `depend_on` it, and removing
-# the `depend_on`s seem to break things 3:
+# we don't restart the proxy stack though to not impact other services
 # SYNC: containers and depended on containers!
 source "$path_to_utils/bash_utils.sh"
 errorless_docker_down personal_website
 errorless_docker_down personal_website_mysql
 errorless_docker_down personal_website_anubis
-errorless_docker_down nginx
-errorless_docker_down iocaine
