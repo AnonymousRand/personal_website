@@ -35,9 +35,9 @@ $selected-surfs: [];
 // variant 2 surfs
 
 $variant-2-surfs: utils.register-sels($variant-2-surfs, [
-  ".modal"
+  ".modal-dialog"
 ]);
-.modal {
+.modal-dialog {
   @extend %surf--variant-2;
 }
 
