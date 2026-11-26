@@ -55,5 +55,5 @@ def get_url_for():
 
 def get_auth_status():
     resp = make_response(jsonify(is_logged_in=current_user.is_authenticated))
-    resp.headers["Cache-Control"] = "no-cache, no-store"
+    resp.headers["Cache-Control"] = "no-store"
     return resp

@@ -7,8 +7,8 @@ import shutil
 import sqlalchemy as sa
 import sqlalchemy.orm as so
 import sqlalchemy.sql.functions as sa_func
-from flask import current_app, jsonify, render_template, redirect, request, send_from_directory, \
-        url_for
+from flask import current_app, jsonify, make_response, render_template, redirect, request, \
+        send_from_directory, url_for
 from flask_login import current_user
 
 import app.blog.blogpage.markdown_config as markdown_config
@@ -200,11 +200,13 @@ def edit_post_form(post, post_id, *args, **kwargs):
     # pre-populate form fields with existing post content
     form = EditBlogpostForm(post=post, obj=post)
     blogpage_id = bp_utils.get_blogpage_id()
-    return render_template(
+    resp = make_response(render_template(
         "blog/blogpage/form_base.html", title=f"editing: {post.title}", prompt="edit post",
         form=form, action=url_for(f"blog.{blogpage_id}.edit_post", post_id=post_id, _external=True),
         method="PUT"
-    )
+    ))
+    resp.headers["Cache-Control"] = "no-store"
+    return resp
 
 
 @bp.put("/<int:post_id>")
@@ -431,9 +433,11 @@ def edit_comment_form(post, post_id, comment, comment_id, *args, **kwargs):
     # pre-populate form fields with existing comment content; leave out `parent` since that
     # should not be changeable
     form = EditCommentForm(obj=comment)
-    return jsonify(html=render_template(
+    resp = make_response(jsonify(html=render_template(
         "blog/blogpage/post_comment_edit_form.html", form=form, comment=comment
-    ))
+    )))
+    resp.headers["Cache-Control"] = "no-store"
+    return resp
 
 
 @bp.put("/<int:post_id>/comments/<int:comment_id>")
